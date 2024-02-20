@@ -1,0 +1,11 @@
+{
+    "/ticketmaster/*": {
+    "target": "https://app.ticketmaster.com/discovery/v2/",
+    "secure": false,
+    "pathRewrite":{
+      "^/ticketmaster":""
+    },
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

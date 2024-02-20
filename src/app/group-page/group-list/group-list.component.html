@@ -1,0 +1,23 @@
+
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+
+			<th scope="col">GroupName</th>
+			<th scope="col">EventName</th>
+			<th scope="col">members</th>
+		</tr>
+	</thead>
+	<tbody>
+        
+			<tr (click)="onClick(g)" *ngFor="let g of groups">
+				<td>
+					{{ g.groupName }}
+				</td>
+				<td>{{ g.event.eventName }}</td>
+				<td>{{ g.groupMembers}}</td>
+			</tr>
+		
+	</tbody>
+</table>

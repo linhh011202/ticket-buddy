@@ -1,0 +1,20 @@
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <button ngbNavLink>Groups</button>
+      <ng-template ngbNavContent>
+        <h5>Admin</h5>
+        <app-group-list (groupClicked)="choseGroup($event)" [groups]="groups|grouppipe:currentUser:true"></app-group-list>
+        <h5>Member</h5>
+        <app-group-list (groupClicked)="choseGroup($event)" [groups]="groups|grouppipe:currentUser:false"></app-group-list>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2" >
+      <button ngbNavLink [hidden]="!chosen">{{chosen?.groupName}}</button>
+      <ng-template ngbNavContent>
+        <app-group-detail [group]="chosen"></app-group-detail>
+
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="container p-2"></div>

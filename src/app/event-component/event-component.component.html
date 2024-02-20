@@ -1,0 +1,21 @@
+
+<div class="card mb-4 box-shadow">
+    <div class="card-img-top">
+        
+        <ngb-carousel [interval]='0'>
+            <ng-template ngbSlide *ngFor="let img of event.images"; index as i>
+                <img class="card-img-top" [src]=img alt="Random first slide" />
+                <div class="carousel-caption">
+                    <h3>{{event.eventName}}</h3>
+                </div>
+            </ng-template>
+        
+          
+      </ngb-carousel>                    
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{event.eventName}}</h5>
+      <p class="card-text">Location: {{event.location}}</p>
+      <p class="card-text">{{event.details}}</p>
+    </div>
+  </div>
