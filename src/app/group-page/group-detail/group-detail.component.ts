@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { GroupInterface } from 'src/app/group-interface';
+import { GroupInterface } from 'src/app/interfaces/group-interface';
 
 @Component({
   selector: 'app-group-detail',

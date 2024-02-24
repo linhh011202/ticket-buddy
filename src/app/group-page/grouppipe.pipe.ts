@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { GroupInterface } from '../group-interface';
+import { GroupInterface } from '../interfaces/group-interface';
 
 @Pipe({
   name: 'grouppipe'

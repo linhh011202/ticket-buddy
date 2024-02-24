@@ -1,5 +1,5 @@
 import { Component ,Input } from '@angular/core';
-import {EventInterface} from '../event-interface';
+import {EventInterface} from '../../interfaces/event-interface';
 @Component({
   selector: 'app-list-events',
   templateUrl: './list-events.component.html',

@@ -6,9 +6,8 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
-import { ListEventsComponent } from './list-events/list-events.component';
-import { EventComponentComponent } from './event-component/event-component.component';
-import { PersonalCalenderComponentComponent } from './personal-calender-component/personal-calender-component.component';
+import { ListEventsComponent } from './search-page/list-events/list-events.component';
+import { EventComponentComponent } from './search-page/event-component/event-component.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FlatpickrModule } from 'angularx-flatpickr';
@@ -19,17 +18,20 @@ import { GroupListComponent } from './group-page/group-list/group-list.component
 import { HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http';
 import { GrouppipePipe } from './group-page/grouppipe.pipe';
 import { GroupDetailComponent } from './group-page/group-detail/group-detail.component';
+import { PersonalCalenderPageComponent } from './personal-calender-page/personal-calender-page.component';
+import { CalanderComponent } from './utilities/calander/calander.component';
 @NgModule({
     declarations: [
         AppComponent,
         ListEventsComponent,
         EventComponentComponent,
-        PersonalCalenderComponentComponent,
         SearchPageComponent,
         GroupPageComponent,
         GroupListComponent,
         GrouppipePipe,
-        GroupDetailComponent
+        GroupDetailComponent,
+        PersonalCalenderPageComponent,
+        CalanderComponent
     ],
     providers: [provideAnimations()],
     bootstrap: [AppComponent],

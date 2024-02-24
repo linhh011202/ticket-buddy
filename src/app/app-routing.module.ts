@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PersonalCalenderComponentComponent } from './personal-calender-component/personal-calender-component.component';
+import {PersonalCalenderPageComponent} from './personal-calender-page/personal-calender-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { GroupPageComponent } from './group-page/group-page.component';
 const routes: Routes = [
-  {path:"personalcalender", component:PersonalCalenderComponentComponent},
+  {path:"personalcalender", component:PersonalCalenderPageComponent},
   {path:"search", component:SearchPageComponent},
   {path:"group", component:GroupPageComponent},
-  {path:'', redirectTo:'/search', pathMatch:'full'}
+  {path:'', redirectTo:'/personalcalender', pathMatch:'full'}
 
 ];
 

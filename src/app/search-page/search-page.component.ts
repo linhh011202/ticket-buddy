@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { TicketmasterService } from '../network/ticketmaster.service';
+import { Observable, of } from 'rxjs';
+import { EventInterface } from '../interfaces/event-interface';
+import { PageInterface } from '../interfaces/page-interface';
 
 @Component({
   selector: 'app-search-page',
@@ -6,7 +10,44 @@ import { Component } from '@angular/core';
   styleUrls: ['./search-page.component.css']
 })
 export class SearchPageComponent {
-  loadedEvents=[{eventName:"TS concert", details:"Songs of another failed relationship", location:"Singapore", images:["https://picsum.photos/id/0/900/500", "https://picsum.photos/id/1/900/500", "https://picsum.photos/id/2/900/500"]},
-  {eventName:"Superbowl", location:"Seatle", details:"Patriots vs Seahawks", images:["https://picsum.photos/id/90/900/500", "https://picsum.photos/id/430/900/500", "https://picsum.photos/id/930/900/500"]}
-];
+  loadedEvents:EventInterface[]= [];
+  pageInfo?:PageInterface;
+  constructor(private tmApi: TicketmasterService){
+    
+  }
+  ngOnInit(){
+    this.getEvents();
+  }
+  changePage(pgNum:number){
+    
+    this.tmApi.getEvents(pgNum-1).subscribe({
+      next:(n)=>{
+        this.pageInfo = n.page;
+        this.pageInfo!.number+=1;
+        n = n._embedded;
+        this.loadedEvents = n.events.map((e:any)=>{
+          var rtn:EventInterface = {details:e.description, images:e.images.map((img:any)=>img.url),location:e._embedded.venues.map((v:any)=>v.name), eventName:e.name};
+          return rtn;
+        });   
+      }
+    });
+  }
+  getEvents(){
+    this.tmApi.getEvents().subscribe({
+      next:(n)=>{
+        this.pageInfo = n.page;
+        this.pageInfo!.number+=1;
+        n = n._embedded;
+        this.loadedEvents = n.events.map((e:any)=>{
+          var rtn:EventInterface = {details:e.description, images:e.images.map((img:any)=>img.url),location:e._embedded.venues.map((v:any)=>v.name), eventName:e.name};
+          return rtn;
+        });   
+           
+      },
+      error:(e)=>{
+
+      }
+    });
+  }
+
 }
