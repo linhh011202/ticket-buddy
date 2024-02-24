@@ -15,7 +15,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { GroupPageComponent } from './group-page/group-page.component';
 import { GroupListComponent } from './group-page/group-list/group-list.component';
-import { HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { GrouppipePipe } from './group-page/grouppipe.pipe';
 import { GroupDetailComponent } from './group-page/group-detail/group-detail.component';
 import { PersonalCalenderPageComponent } from './personal-calender-page/personal-calender-page.component';

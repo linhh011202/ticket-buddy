@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TicketmasterService } from '../network/ticketmaster.service';
+import { TicketmasterService } from '../network/ticketmaster/ticketmaster.service';
 import { Observable, of } from 'rxjs';
 import { EventInterface } from '../interfaces/event-interface';
 import { PageInterface } from '../interfaces/page-interface';
