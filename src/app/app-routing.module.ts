@@ -9,7 +9,6 @@ const routes: Routes = [
   {path:"search", component:SearchPageComponent},
   {path:"group", component:GroupPageComponent},
   {path:'', redirectTo:'/personalcalender', pathMatch:'full'}
-
 ];
 
 
