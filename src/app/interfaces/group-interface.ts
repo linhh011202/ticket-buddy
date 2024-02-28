@@ -1,8 +1,12 @@
 import { EventInterface } from "./event-interface";
+import { UserInterface } from "./user-interface";
 
 export interface GroupInterface {
-    admin:string;
-    groupName:string;
+    id: string;
+    name:string;
     event:EventInterface;
-    groupMembers:string[];
+    admin: UserInterface;
+    members:UserInterface[];
+    confirmed:UserInterface[];
+    booked: boolean;
 }

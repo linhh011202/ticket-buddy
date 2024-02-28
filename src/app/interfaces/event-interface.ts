@@ -1,5 +1,6 @@
 export interface EventInterface {
-    eventName:string;
+    id: string;
+    name:string;
     location:string[];
     images:string[];
     details:string;

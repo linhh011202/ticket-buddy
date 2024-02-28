@@ -1,9 +1,10 @@
-import { CalanderStatus } from "../enums/calenderenum";
-
+import { CalanderType } from "../enums/calenderenum";
+import { UserInterface } from "../user-interface";
 
 export interface CalanderEvent {
-    start:Date,
-    end:Date,
-    details:string,
-    username:string
+    user: UserInterface,
+    start: Date,
+    end: Date,
+    detail: string,
+    type: CalanderType
 }
