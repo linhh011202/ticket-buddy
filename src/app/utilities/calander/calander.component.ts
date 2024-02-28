@@ -1,18 +1,21 @@
-import { Component, inject} from '@angular/core';
+import { Component, Input, inject} from '@angular/core';
 import { NgbCalendar, NgbDate, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { CalanderEvent } from 'src/app/interfaces/calander-interface/CalanderEvent-interface';
 @Component({
   selector: 'app-calander',
   templateUrl: './calander.component.html',
   styleUrls: ['./calander.component.css']
 })
 export class CalanderComponent {
-	//date of the event
-	//
+	@Input() userDates:CalanderEvent[] = [];
+	@Input() eventDate:Date[] = [];
   	calendar = inject(NgbCalendar);
 	hoveredDate: NgbDate | null = null;
-	fromDate: NgbDate = this.calendar.getToday();
-	toDate: NgbDate | null = this.calendar.getNext(this.fromDate, 'd', 10);
-
+	
+	convertToNgbDate(d:Date){
+		return new NgbDate(d.getFullYear(), d.getMonth()+1, d.getDate());
+	}
+	
 	onDateSelection(date: NgbDate) {
 		if (!this.fromDate && !this.toDate) {
 			this.fromDate = date;

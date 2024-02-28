@@ -4,7 +4,7 @@
 
 <ng-template #t let-date let-focused="focused">
 	<span
-		class="custom-day"
+		class="custom-day" placement="bottom" ngbTooltip="Tooltip on bottom"
 		[class.focused]="focused"
 		[class.range]="isRange(date)"
 		[class.faded]="isHovered(date) || isInside(date)"
@@ -12,5 +12,7 @@
 		(mouseleave)="hoveredDate = null"
 	>
 		{{ date.day }}
+		
 	</span>
+	
 </ng-template>

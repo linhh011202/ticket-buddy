@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import {PersonalCalenderPageComponent} from './personal-calender-page/personal-calender-page.component';
+import { PersonalCalenderPageComponent } from './personal-calender-page/personal-calender-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { GroupPageComponent } from './group-page/group-page.component';
 const routes: Routes = [
