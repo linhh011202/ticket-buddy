@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse,HttpEventType, HttpParams } 
 import { Router } from '@angular/router';
 import { PlatformLocation } from '@angular/common';
 import { Observable, take, throwError } from 'rxjs';
+import { ticketMasterApi } from 'src/environments/env-prod';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +21,7 @@ export class TicketmasterService {
     getEvents(pg?:number):Observable<any>{
       if(!pg) pg=0;
       var base_url = (this.platformLocation as any)._location.origin+"/ticketmaster";
-      return this.http.get(base_url+"/events.json", {params:{page:pg,size:5, apikey:"5Jqei2SXCUbEHOfAy9F6vyC4wA8Pj6s0"}}).pipe(
+      return this.http.get(base_url+"/events.json", {params:{page:pg,size:5, apikey: ticketMasterApi}}).pipe(
         take(1)
         
         );
