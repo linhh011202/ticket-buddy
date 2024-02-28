@@ -20,6 +20,7 @@ import { GrouppipePipe } from './group-page/grouppipe.pipe';
 import { GroupDetailComponent } from './group-page/group-detail/group-detail.component';
 import { PersonalCalenderPageComponent } from './personal-calender-page/personal-calender-page.component';
 import { CalanderComponent } from './utilities/calander/calander.component';
+import { WatchlistPageComponent } from './watchlist-page/watchlist-page.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -31,7 +32,8 @@ import { CalanderComponent } from './utilities/calander/calander.component';
         GrouppipePipe,
         GroupDetailComponent,
         PersonalCalenderPageComponent,
-        CalanderComponent
+        CalanderComponent,
+        WatchlistPageComponent
     ],
     providers: [provideAnimations()],
     bootstrap: [AppComponent],
