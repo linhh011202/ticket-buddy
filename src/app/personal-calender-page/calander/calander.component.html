@@ -1,0 +1,14 @@
+
+
+<ngb-datepicker #dp (dateSelect)="clickedDate.emit($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" />
+
+<ng-template #t let-date let-focused="focused">
+	<span
+		class="custom-day" placement="bottom" ngbTooltip="Tooltip on bottom"
+		[class.range]="isInside(date)"
+	>
+		{{ date.day }}
+		
+	</span>
+	<!--Tooltip will be a list of events on that day-->
+</ng-template>

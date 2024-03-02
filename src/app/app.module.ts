@@ -19,8 +19,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { GrouppipePipe } from './group-page/grouppipe.pipe';
 import { GroupDetailComponent } from './group-page/group-detail/group-detail.component';
 import { PersonalCalenderPageComponent } from './personal-calender-page/personal-calender-page.component';
-import { CalanderComponent } from './utilities/calander/calander.component';
 import { WatchlistPageComponent } from './watchlist-page/watchlist-page.component';
+import { CalanderComponent } from './personal-calender-page/calander/calander.component';
+
+import { GroupmemberPipePipe } from './group-page/groupmember-pipe.pipe';
 @NgModule({
     declarations: [
         AppComponent,
@@ -32,8 +34,9 @@ import { WatchlistPageComponent } from './watchlist-page/watchlist-page.componen
         GrouppipePipe,
         GroupDetailComponent,
         PersonalCalenderPageComponent,
-        CalanderComponent,
-        WatchlistPageComponent
+        WatchlistPageComponent,
+        GroupmemberPipePipe,
+        CalanderComponent
     ],
     providers: [provideAnimations()],
     bootstrap: [AppComponent],

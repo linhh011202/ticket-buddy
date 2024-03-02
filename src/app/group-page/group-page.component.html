@@ -9,7 +9,7 @@
       </ng-template>
     </li>
     <li [ngbNavItem]="2" >
-      <button ngbNavLink [hidden]="!chosen">{{chosen?.groupName}}</button>
+      <button ngbNavLink [hidden]="!chosen">{{chosen?.name}}</button>
       <ng-template ngbNavContent>
         <app-group-detail [group]="chosen"></app-group-detail>
 
