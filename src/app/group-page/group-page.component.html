@@ -1,20 +1,32 @@
+<ng-template #content let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+		<button type="button" class="btn-close" aria-label="Close"></button>
+	</div>
+	<div class="modal-body">
+		<p>Hello, World!</p>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" >Save</button>
+	</div>
+</ng-template>
+
 <ul ngbNav #nav="ngbNav" class="nav-tabs">
-    <li [ngbNavItem]="1">
-      <button ngbNavLink>Groups</button>
-      <ng-template ngbNavContent>
-        <h5>Admin</h5>
-        <app-group-list (groupClicked)="choseGroup($event)" [groups]="groups|grouppipe:currentUser:true"></app-group-list>
-        <h5>Member</h5>
-        <app-group-list (groupClicked)="choseGroup($event)" [groups]="groups|grouppipe:currentUser:false"></app-group-list>
-      </ng-template>
-    </li>
-    <li [ngbNavItem]="2" >
-      <button ngbNavLink [hidden]="!chosen">{{chosen?.name}}</button>
-      <ng-template ngbNavContent>
-        <app-group-detail [group]="chosen"></app-group-detail>
+  <li [ngbNavItem]="1">
+    <button ngbNavLink>Groups</button>
+    <ng-template ngbNavContent>
+      <h5>Admin</h5>
+      <app-group-list (groupClicked)="choseGroup($event)" [groups]="groups|grouppipe:currentUser:true"></app-group-list>
+      <h5>Member</h5>
+      <app-group-list (groupClicked)="choseGroup($event)" [groups]="groups|grouppipe:currentUser:false"></app-group-list>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2" *ngIf="chosen">
+    <button ngbNavLink >{{chosen.name}}</button>
+    <ng-template ngbNavContent>
+      <app-group-detail [group]="chosen"></app-group-detail>
 
-      </ng-template>
-    </li>
-  </ul>
-
-  <div [ngbNavOutlet]="nav" class="container p-2"></div>
+    </ng-template>
+  </li>
+</ul>
+<div [ngbNavOutlet]="nav" class="container p-2"></div>

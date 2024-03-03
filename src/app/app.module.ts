@@ -8,9 +8,9 @@ import { FormsModule } from '@angular/forms';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListEventsComponent } from './search-page/list-events/list-events.component';
 import { EventComponentComponent } from './search-page/event-component/event-component.component';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { FlatpickrModule } from 'angularx-flatpickr';
+
+
+
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { GroupPageComponent } from './group-page/group-page.component';
@@ -20,9 +20,11 @@ import { GrouppipePipe } from './group-page/grouppipe.pipe';
 import { GroupDetailComponent } from './group-page/group-detail/group-detail.component';
 import { PersonalCalenderPageComponent } from './personal-calender-page/personal-calender-page.component';
 import { WatchlistPageComponent } from './watchlist-page/watchlist-page.component';
-import { CalanderComponent } from './personal-calender-page/calander/calander.component';
+import { CalanderComponent } from './common/calander/calander.component';
 
 import { GroupmemberPipePipe } from './group-page/groupmember-pipe.pipe';
+import { NavigationComponent } from './common/navigation/navigation.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -36,7 +38,9 @@ import { GroupmemberPipePipe } from './group-page/groupmember-pipe.pipe';
         PersonalCalenderPageComponent,
         WatchlistPageComponent,
         GroupmemberPipePipe,
-        CalanderComponent
+        CalanderComponent,
+        NavigationComponent,
+        LoginPageComponent
     ],
     providers: [provideAnimations()],
     bootstrap: [AppComponent],
@@ -47,9 +51,7 @@ import { GroupmemberPipePipe } from './group-page/groupmember-pipe.pipe';
         AppRoutingModule,
         NgbModule,
         NgbCarouselModule,
-        FormsModule,
-        FlatpickrModule.forRoot(),
-        CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
+        FormsModule
     ]
 })
 export class AppModule { }
