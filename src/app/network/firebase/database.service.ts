@@ -132,6 +132,18 @@ export class DatabaseService {
 
   // Calendar
 
+  dbToCalendarEvent(dbCalEnt: DocumentData | DocumentData & {id: string;}, user: UserInterface): CalanderEvent 
+  { 
+    return { 
+      id: dbCalEnt["id"],
+      user: user, 
+      start: dbCalEnt["start"].toDate(), 
+      end: dbCalEnt["end"].toDate(), 
+      detail: dbCalEnt["detail"], 
+      type: CalanderType[dbCalEnt["type"] as keyof typeof CalanderType] 
+    } 
+  } 
+
   addCalendarEvent(calendarEvent: CalanderEvent): Promise<void>{
     let calCollection: CollectionReference = collection(this.fs, "calendar");
 
@@ -148,6 +160,23 @@ export class DatabaseService {
         console.log(docRef);
         res();
       });
+    })
+  }
+
+  getCalendar(user: UserInterface): Observable<CalanderEvent[]>{
+    let calCollection: CollectionReference = collection(this.fs, "calendar");
+    let q = query(calCollection, where("uid","==",user.id));
+
+    return new Observable<CalanderEvent[]>(obs=>{
+      collectionData(q, {idField: 'id'}).subscribe(
+        data=>{
+          let result: CalanderEvent[] = [];
+          data.forEach(cal=>{
+            result.push(this.dbToCalendarEvent(cal,user));
+          })
+          obs.next(result);
+        }
+      )
     })
   }
 }

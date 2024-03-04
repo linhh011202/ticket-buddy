@@ -84,4 +84,13 @@ export class LoginPageComponent {
       console.log("cal event added");
     })
   }
+
+  getCalendar(){
+    let user:UserInterface|undefined = this.auth.getCurrentUser();
+    if (user == undefined) return;
+
+    this.data.getCalendar(user).subscribe(data=>{
+      console.log(data);
+    })
+  }
 }
