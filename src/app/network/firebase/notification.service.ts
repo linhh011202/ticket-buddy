@@ -17,6 +17,10 @@ export class NotificationService {
       message: message
     }
     return new Promise<void>(res=>{
+      if (to.length<1) {
+        res();
+        return;
+      }
       addDoc(mailCol, mailDoc).then((docRef: DocumentReference)=>{
         res();
       });
