@@ -254,4 +254,17 @@ export class DatabaseService {
       })
     })
   }
+
+  removeWatchlistEvent(user: UserInterface, event: EventInterface): Promise<void>{
+    let watchDoc = doc(this.fs, `watchlist/${user.id}`);
+    let update = {saved: arrayRemove(event.id)}
+
+    return new Promise<void>(res=>{
+      updateDoc(watchDoc, update).then(_=>{
+        res();
+      })
+    });
+  }
+
+  
 }

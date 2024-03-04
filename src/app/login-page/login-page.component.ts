@@ -121,12 +121,22 @@ export class LoginPageComponent {
     })
   }
 
+  // TODO: Combine add and remove into a toggleWatchlist for convenience;
   addWatchlistEvent(){
     let user:UserInterface|undefined = this.auth.getCurrentUser();
     if (user == undefined) return;
 
     this.data.addWatchlistEvent(user,e1).then(_=>{
       console.log("event saved to watchlist.");
+    })
+  }
+
+  removeWatchlistEvent(){
+    let user:UserInterface|undefined = this.auth.getCurrentUser();
+    if (user == undefined) return;
+
+    this.data.removeWatchlistEvent(user,e1).then(_=>{
+      console.log("event removed from watchlist.");
     })
   }
 }
