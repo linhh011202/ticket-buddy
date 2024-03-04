@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { EventInterface } from 'src/app/interfaces/event-interface';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 
-import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData} from '@angular/fire/firestore';
+import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { GroupInterface } from 'src/app/interfaces/group-interface';
 
@@ -13,6 +13,20 @@ export class DatabaseService {
   constructor(private fs: Firestore) { }
 
   // Group
+
+  dbToGroupInterface(dbGroup: DocumentData | DocumentData & {id: string;}): GroupInterface
+  {
+    return {
+      id: dbGroup["id"],
+      name: dbGroup["name"],
+      event: {id: dbGroup["event"]},
+      admin: dbGroup["admin"],
+      members: dbGroup["members"],
+      confirmed: dbGroup["confirmed"],
+      booked: dbGroup["booked"]
+    }
+  }
+
   createGroup(name: string, event: EventInterface, admin: UserInterface): Promise<void>
   {
     let grpCollection: CollectionReference = collection(this.fs, "group");
@@ -45,15 +59,7 @@ export class DatabaseService {
         data=>{
           let result: GroupInterface[] = [];
           data.forEach(grp=>{
-            result.push({
-                id: grp["id"],
-                name: grp["name"],
-                event: {id: grp["event"]},
-                admin: grp["admin"],
-                members: grp["members"],
-                confirmed: grp["confirmed"],
-                booked: grp["booked"]
-            });
+            result.push(this.dbToGroupInterface(grp));
           })
           obs.next(result);
         }
