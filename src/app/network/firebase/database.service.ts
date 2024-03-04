@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { EventInterface } from 'src/app/interfaces/event-interface';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 
-import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData, updateDoc, arrayUnion, arrayRemove, and, deleteDoc} from '@angular/fire/firestore';
+import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData, updateDoc, arrayUnion, arrayRemove, and, deleteDoc, setDoc} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { GroupInterface } from 'src/app/interfaces/group-interface';
 import { CalanderEvent } from 'src/app/interfaces/calander-interface/CalanderEvent-interface';
@@ -233,5 +233,25 @@ export class DatabaseService {
         obs.next(data["saved"]);
       });
     });
+  }
+
+  addWatchlistEvent(user: UserInterface, event: EventInterface): Promise<void>{
+    let watchDoc = doc(this.fs, `watchlist/${user.id}`);
+    let update = {saved: arrayUnion(event.id)}
+    
+    // Attempt to append to document, if not found, initialise a new one.
+    return new Promise<void>(res=>{
+      updateDoc(watchDoc, update).then(_=>{
+        res();
+      }).catch(rej=>{
+        if (rej.code == "not-found"){
+          setDoc(watchDoc,update).then(_=>{
+            res();
+          })
+        } else {
+          throw(rej);
+        }
+      })
+    })
   }
 }

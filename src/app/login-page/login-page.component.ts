@@ -120,4 +120,13 @@ export class LoginPageComponent {
       console.log(data);
     })
   }
+
+  addWatchlistEvent(){
+    let user:UserInterface|undefined = this.auth.getCurrentUser();
+    if (user == undefined) return;
+
+    this.data.addWatchlistEvent(user,e1).then(_=>{
+      console.log("event saved to watchlist.");
+    })
+  }
 }
