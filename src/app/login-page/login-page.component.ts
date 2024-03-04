@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from '../network/firebase/authentication.service';
 
 @Component({
   selector: 'app-login-page',
@@ -7,4 +8,21 @@ import { Component } from '@angular/core';
 })
 export class LoginPageComponent {
 
+  constructor(private auth: AuthenticationService) {}
+
+  googleSignIn(){
+    this.auth.loginGoogle().then(_=>{
+      console.log("login success");
+    })
+  }
+
+  getUser(){
+    console.log(this.auth.getCurrentUser());
+  }
+
+  logOut(){
+    this.auth.logOut().then(_=>{
+      console.log("logout");
+    })
+  }
 }
