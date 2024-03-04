@@ -38,4 +38,21 @@ export class NotificationService {
 
     return this.sendEmail(emailList,{subject: `${group.event.name||'Concert'} Date Confirmation`, html: content})
   }
+
+  sendConfirmation(group: GroupInterface): Promise<void>{
+    let emailList: string[] = [];
+    group.members.forEach(member=>{
+      if (group.confirmed.includes(member.id))
+        emailList.push(member.email);
+    });
+
+    let content = `
+    <h2>Date confirmed for ${group.event.name||'the concert'}!</h2>
+    <p>Congratulations! ${group.name} has confirmed <b>${group.date?.toDateString()}</b> for ${group.event.name||'the concert'}.</p>
+    <p>Contact ${group.admin.name} for details regarding the booking!</p>
+    <p><i>Ticket Buddy</i></p>
+    `
+
+    return this.sendEmail(emailList,{subject: `${group.event.name||'Concert'} Date Confirmed!`, html: content})
+  }
 }

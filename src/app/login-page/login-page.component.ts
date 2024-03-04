@@ -183,4 +183,14 @@ export class LoginPageComponent {
       sub.unsubscribe();
     })
   }
+
+  sendConfirmation(){
+    let sub = this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(group=>{
+      if (group==undefined) return;
+      this.noti.sendConfirmation(group).then(_=>{
+        console.log("email sent!");
+      })
+      sub.unsubscribe();
+    })
+  }
 }
