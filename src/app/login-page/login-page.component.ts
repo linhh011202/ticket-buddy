@@ -67,4 +67,15 @@ export class LoginPageComponent {
       sub.unsubscribe();
     })
   }
+
+  removeFromGroup(){
+    let sub = this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(data=>{
+      let user = this.auth.getCurrentUser();
+      if (data===undefined || user===undefined) return;
+      this.data.removeFromGroup(data,user).then(_=>{
+        console.log("group left");
+      });
+      sub.unsubscribe();
+    })
+  }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { EventInterface } from 'src/app/interfaces/event-interface';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 
-import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData, updateDoc, arrayUnion} from '@angular/fire/firestore';
+import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData, updateDoc, arrayUnion, arrayRemove} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { GroupInterface } from 'src/app/interfaces/group-interface';
 
@@ -35,7 +35,7 @@ export class DatabaseService {
       name: name,
       event: event.id,
       admin: admin,
-      member: [],
+      members: [],
       confirmed: [],
       booked: false,
       allUUID: [admin.id]
@@ -88,11 +88,40 @@ export class DatabaseService {
   {
     let grpDoc = doc(this.fs, `group/${group.id}`);
     let update = {
-      member: arrayUnion(user),
+      members: arrayUnion(user),
       allUUID: arrayUnion(user.id),
     }
     
     return new Promise<void>(res=>{
+      updateDoc(grpDoc, update).then(_=>{
+        res();
+      })
+    })
+  }
+
+  removeFromGroup(group: GroupInterface, user: UserInterface): Promise<void>
+  {
+    let grpDoc = doc(this.fs, `group/${group.id}`);
+    
+    // Protection against display name change
+    let toRemove: UserInterface|undefined = undefined;
+    console.log(group);
+    group.members.forEach(member=>{
+      if (member.id === user.id){
+        toRemove = member;
+        return;
+      }
+    })
+    console.log("01")
+
+    return new Promise<void>(res=>{
+      // Check if user is a member in group
+      if (toRemove === undefined) res();
+      
+      let update = {
+        members: arrayRemove(toRemove),
+        allUUID: arrayRemove(user.id)
+      }
       updateDoc(grpDoc, update).then(_=>{
         res();
       })
