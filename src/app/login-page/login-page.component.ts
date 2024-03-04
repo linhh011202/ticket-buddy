@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../network/firebase/authentication.service';
+import { DatabaseService } from '../network/firebase/database.service';
+import { e1 } from '../interfaces/testdata';
+import { UserInterface } from '../interfaces/user-interface';
 
 @Component({
   selector: 'app-login-page',
@@ -8,7 +11,10 @@ import { AuthenticationService } from '../network/firebase/authentication.servic
 })
 export class LoginPageComponent {
 
-  constructor(private auth: AuthenticationService) {}
+  constructor(
+    private auth: AuthenticationService,
+    private data: DatabaseService, // temp
+  ) {}
 
   googleSignIn(){
     this.auth.loginGoogle().then(_=>{
@@ -23,6 +29,16 @@ export class LoginPageComponent {
   logOut(){
     this.auth.logOut().then(_=>{
       console.log("logout");
+    })
+  }
+
+  // Dummy methods
+  createGroup(){
+    let user:UserInterface|undefined = this.auth.getCurrentUser();
+    if (user == undefined) return;
+
+    this.data.createGroup("test group name 1", e1, user).then(_=>{
+      console.log("grp created");
     })
   }
 }
