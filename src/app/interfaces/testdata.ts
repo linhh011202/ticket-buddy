@@ -4,10 +4,10 @@ import { EventInterface } from "./event-interface";
 import { GroupInterface } from "./group-interface";
 import { UserInterface } from "./user-interface";
 
-export const user1:UserInterface = {id:"user1id", name:"john"};
-export const user2:UserInterface = {id:"user1id", name:"becca"};
-export const user3:UserInterface = {id:"user1id", name:"Tom"};
-export const user4:UserInterface = {id:"user1id", name:"Rick"};
+export const user1:UserInterface = {id:"user1id", name:"john", email: "ur@mother.com"};
+export const user2:UserInterface = {id:"user1id", name:"becca", email: "ur@father.com"};
+export const user3:UserInterface = {id:"user1id", name:"Tom", email: "ur@sister.com"};
+export const user4:UserInterface = {id:"user1id", name:"Rick", email: "ur@brother.com"};
 
 export const e1:EventInterface = {
     id:"evt1", name:"Superbowl", location:["Seatle stadium"], 
@@ -39,17 +39,17 @@ var start3 = new Date(start2.getTime() + 5*60*60*1000);
 var end3 = new Date(start3.getTime() + 2*60*60*1000);
 
 export const dates:CalanderEvent[] = [
-    {user:{name:"john", id:"user1"}, 
+    {user:{name:"john", id:"user1", email: "ur@mother.com"}, 
     start:start, 
     end:end, 
     detail:"Doctors Appointment", 
     type:CalanderType.Personal},
-    {user:{name:"john", id:"user1"}, 
+    {user:{name:"john", id:"user1", email: "ur@mother.com"}, 
     start:start2, 
     end:end2, 
     detail:"School project meeting", 
     type:CalanderType.Personal},
-    {user:{name:"john", id:"user1"}, 
+    {user:{name:"john", id:"user1", email: "ur@mother.com"}, 
     start:start3, 
     end:end3, 
     detail:"Dental Checkup", 
