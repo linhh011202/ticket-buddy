@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { EventInterface } from 'src/app/interfaces/event-interface';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 
-import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData} from '@angular/fire/firestore';
+import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData, updateDoc, arrayUnion} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { GroupInterface } from 'src/app/interfaces/group-interface';
 
@@ -81,5 +81,19 @@ export class DatabaseService {
       });
     });
 
+  }
+
+  // Currently does not check if user is already in group
+  joinGroup(group: GroupInterface, user:UserInterface): Promise<void>
+  {
+    let grpDoc = doc(this.fs, `group/${group.id}`);
+    return new Promise<void>(res=>{
+      updateDoc(grpDoc, {
+        member: arrayUnion(user),
+        allUUID: arrayUnion(user.id),
+      }).then(_=>{
+        res();
+      })
+    })
   }
 }

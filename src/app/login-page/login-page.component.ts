@@ -56,4 +56,15 @@ export class LoginPageComponent {
       console.log(data);
     })
   }
+
+  joinGroup(){
+    let sub = this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(data=>{
+      let user = this.auth.getCurrentUser();
+      if (data===undefined || user===undefined) return;
+      this.data.joinGroup(data,user).then(_=>{
+        console.log("grp joined");
+      });
+      sub.unsubscribe();
+    })
+  }
 }
