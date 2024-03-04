@@ -111,4 +111,13 @@ export class LoginPageComponent {
       sub.unsubscribe();
     })
   }
+
+  getWatchlist(){
+    let user:UserInterface|undefined = this.auth.getCurrentUser();
+    if (user == undefined) return;
+
+    this.data.getWatchlist(user).subscribe(data=>{
+      console.log(data);
+    })
+  }
 }

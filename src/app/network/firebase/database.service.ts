@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { EventInterface } from 'src/app/interfaces/event-interface';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 
-import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData, updateDoc, arrayUnion, arrayRemove, and} from '@angular/fire/firestore';
+import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData, updateDoc, arrayUnion, arrayRemove, and, deleteDoc} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { GroupInterface } from 'src/app/interfaces/group-interface';
 import { CalanderEvent } from 'src/app/interfaces/calander-interface/CalanderEvent-interface';
@@ -209,5 +209,29 @@ export class DatabaseService {
         }
       )
     })
+  }
+
+  removeCalendarEvent(calendarEvent: CalanderEvent): Promise<void>{
+    let calDoc = doc(this.fs, `calendar/${calendarEvent.id}`);
+    return new Promise<void>(res=>{
+      deleteDoc(calDoc).then(birdbird=>{
+        res();
+      })
+    });
+  }
+
+  // Watchlist
+  getWatchlist(user: UserInterface): Observable<string[]>{
+    let watchDoc = doc(this.fs, `watchlist/${user.id}`);
+
+    return new Observable<string[]>(obs=>{
+      docData(watchDoc).subscribe(data=>{
+        if (data===undefined){
+          obs.next([]);
+          return;
+        } 
+        obs.next(data["saved"]);
+      });
+    });
   }
 }
