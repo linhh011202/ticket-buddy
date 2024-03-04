@@ -161,4 +161,14 @@ export class LoginPageComponent {
       sub.unsubscribe();
     })
   }
+
+  confirmGroupBooking(){
+    let sub = this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(group=>{
+      if (group==undefined) return;
+      this.data.confirmGroupBooking(group).then(_=>{
+        console.log("group confirmed");
+      })
+      sub.unsubscribe();
+    })
+  }
 }

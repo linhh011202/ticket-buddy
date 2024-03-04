@@ -296,4 +296,15 @@ export class DatabaseService {
         })
       });
   }
+
+  confirmGroupBooking(group: GroupInterface): Promise<void>{
+    let grpDoc = doc(this.fs, `group/${group.id}`);
+    let update = {booked: true};
+
+    return new Promise<void>(res=>{
+      updateDoc(grpDoc, update).then(_=>{
+        res();
+      })
+    });
+  }
 }
