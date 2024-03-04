@@ -3,6 +3,7 @@ import { AuthenticationService } from '../network/firebase/authentication.servic
 import { DatabaseService } from '../network/firebase/database.service';
 import { dates, e1 } from '../interfaces/testdata';
 import { UserInterface } from '../interfaces/user-interface';
+import { NotificationService } from '../network/firebase/notification.service';
 
 @Component({
   selector: 'app-login-page',
@@ -14,6 +15,7 @@ export class LoginPageComponent {
   constructor(
     private auth: AuthenticationService,
     private data: DatabaseService, // temp
+    private noti: NotificationService // temp
   ) {}
 
   googleSignIn(){
@@ -167,6 +169,16 @@ export class LoginPageComponent {
       if (group==undefined) return;
       this.data.confirmGroupBooking(group).then(_=>{
         console.log("group confirmed");
+      })
+      sub.unsubscribe();
+    })
+  }
+
+  sendConfirmationRequest(){
+    let sub = this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(group=>{
+      if (group==undefined) return;
+      this.noti.sendConfirmationRequest(group).then(_=>{
+        console.log("email sent!");
       })
       sub.unsubscribe();
     })
