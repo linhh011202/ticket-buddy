@@ -87,11 +87,13 @@ export class DatabaseService {
   joinGroup(group: GroupInterface, user:UserInterface): Promise<void>
   {
     let grpDoc = doc(this.fs, `group/${group.id}`);
+    let update = {
+      member: arrayUnion(user),
+      allUUID: arrayUnion(user.id),
+    }
+    
     return new Promise<void>(res=>{
-      updateDoc(grpDoc, {
-        member: arrayUnion(user),
-        allUUID: arrayUnion(user.id),
-      }).then(_=>{
+      updateDoc(grpDoc, update).then(_=>{
         res();
       })
     })
