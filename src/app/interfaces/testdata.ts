@@ -22,11 +22,11 @@ export const e2:EventInterface = {
 export const g1:GroupInterface = {
     id:"grp1", name:"TS fan group", 
     event: e2, admin:user1, members:[user2, user3], 
-    confirmed:[], booked:false};
+    confirmed:[], booked:false, allUUID:["user1", "user2", "user3"]};
 export const g2:GroupInterface = {
     id:"grp2", name:"GO Patriots Group", 
     event: e1, admin:user4, members:[user1, user2, user3], 
-    confirmed:[], booked:false};
+    confirmed:[], booked:false, allUUID:["user4","user1", "user2", "user3"]};
 
 export const watchlist:EventInterface[] = [e1, e2];
 var start =new Date();

@@ -9,4 +9,5 @@ export interface GroupInterface {
     members:UserInterface[];
     confirmed:UserInterface[];
     booked: boolean;
+    allUUID: string[]; 
 }

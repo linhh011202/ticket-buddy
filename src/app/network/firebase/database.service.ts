@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { EventInterface } from 'src/app/interfaces/event-interface';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 
-import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData, updateDoc, arrayUnion, arrayRemove} from '@angular/fire/firestore';
+import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData, updateDoc, arrayUnion, arrayRemove, and} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { GroupInterface } from 'src/app/interfaces/group-interface';
 import { CalanderEvent } from 'src/app/interfaces/calander-interface/CalanderEvent-interface';
@@ -25,7 +25,8 @@ export class DatabaseService {
       admin: dbGroup["admin"],
       members: dbGroup["members"],
       confirmed: dbGroup["confirmed"],
-      booked: dbGroup["booked"]
+      booked: dbGroup["booked"],
+      allUUID: dbGroup["allUUID"]
     }
   }
 
@@ -173,6 +174,36 @@ export class DatabaseService {
           let result: CalanderEvent[] = [];
           data.forEach(cal=>{
             result.push(this.dbToCalendarEvent(cal,user));
+          })
+          obs.next(result);
+        }
+      )
+    })
+  }
+
+  getGroupCalendar(group: GroupInterface, start:Date, end:Date): Observable<CalanderEvent[]>{
+    let calCollection: CollectionReference = collection(this.fs, "calendar");
+    let q = query(calCollection, and(
+      where("uid","in",group.allUUID), //Limited to 29 members, can increase if we split the calls up.
+      // inequalities on multiple fields not allowed
+      // where("start", "<=", end),
+      // where("end", ">=", start)
+      // pulling events that have yet to end
+      where("end", ">" , new Date())
+    ));
+
+    let allUserMap:any = {}
+    allUserMap[group.admin.id] = group.admin;
+    group.members.forEach(member => {
+      allUserMap[member.id] = member;
+    });
+
+    return new Observable<CalanderEvent[]>(obs=>{
+      collectionData(q, {idField: 'id'}).subscribe(
+        data=>{
+          let result: CalanderEvent[] = [];
+          data.forEach(cal=>{
+            result.push(this.dbToCalendarEvent(cal, allUserMap[cal["uid"]]));
           })
           obs.next(result);
         }

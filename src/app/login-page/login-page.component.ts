@@ -93,4 +93,22 @@ export class LoginPageComponent {
       console.log(data);
     })
   }
+
+  // further testing required
+  getGroupCalendar(){
+    let user:UserInterface|undefined = this.auth.getCurrentUser();
+    if (user == undefined) return;
+
+    let start = new Date();
+    start.setHours(0,0,0,0);
+    let end = new Date(start.getTime() +  24*60*60*1000);
+
+    let sub = this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(group=>{
+      if (group===undefined || user===undefined) return;
+      this.data.getGroupCalendar(group, start, end).subscribe(cal=>{
+        console.log(cal);
+      })
+      sub.unsubscribe();
+    })
+  }
 }
