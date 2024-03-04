@@ -1,4 +1,5 @@
-import { CalanderType } from "../enums/calenderenum";
+import { NgbDate } from "@ng-bootstrap/ng-bootstrap/datepicker/ngb-date";
+import { CalanderStatus, CalanderType } from "../enums/calenderenum";
 import { UserInterface } from "../user-interface";
 
 export interface CalanderEvent {
@@ -8,3 +9,4 @@ export interface CalanderEvent {
     detail: string,
     type: CalanderType
 }
+

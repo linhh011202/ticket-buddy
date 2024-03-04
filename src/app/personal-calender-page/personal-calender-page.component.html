@@ -1,1 +1,35 @@
-<app-calander></app-calander>
+<div class="row">
+    <div class="d-flex justify-content-center">
+        <app-calander [events]="events" (clickedDate)="evts = $event"></app-calander>
+    </div>
+</div>
+<div class="row pt-2">
+    <table class="table ">
+        <thead>
+            <tr>
+                <th scope="col">Event Detail</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+                <th scope="col">Action</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+           <tr *ngFor="let e of evts">
+                <td>{{e.detail}}</td>
+                <td>{{e.start}}</td>
+                <td>{{e.end}}</td>
+                <td><button type="button" class="btn btn-info">Update</button></td>
+                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                
+           </tr>
+           <tr>
+            <td><input type="text"></td>
+            <td><input type="datetime-local"></td>
+            <td><input type="datetime-local"></td>
+            <td><button type="button" class="btn btn-info">Add</button></td>
+            <td></td>
+           </tr>
+        </tbody>
+    </table>
+</div>

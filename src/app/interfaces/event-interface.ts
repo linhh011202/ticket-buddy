@@ -4,4 +4,6 @@ export interface EventInterface {
     location:string[];
     images:string[];
     details:string;
+    startDate:Date;
+    endDate:Date
 }

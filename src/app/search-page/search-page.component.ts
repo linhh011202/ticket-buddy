@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TicketmasterService } from '../network/ticketmaster/ticketmaster.service';
-import { Observable, of } from 'rxjs';
 import { EventInterface } from '../interfaces/event-interface';
 import { PageInterface } from '../interfaces/page-interface';
 
@@ -24,25 +23,17 @@ export class SearchPageComponent {
       next:(n)=>{
         this.pageInfo = n.page;
         this.pageInfo!.number+=1;
-        n = n._embedded;
-        this.loadedEvents = n.events.map((e:any)=>{
-          var rtn:EventInterface = {details:e.description, images:e.images.map((img:any)=>img.url),location:e._embedded.venues.map((v:any)=>v.name), eventName:e.name};
-          return rtn;
-        });   
+        this.loadedEvents = n.events;   
       }
     });
   }
   getEvents(){
     this.tmApi.getEvents().subscribe({
       next:(n)=>{
-        this.pageInfo = n.page;
-        this.pageInfo!.number+=1;
-        n = n._embedded;
-        this.loadedEvents = n.events.map((e:any)=>{
-          var rtn:EventInterface = {details:e.description, images:e.images.map((img:any)=>img.url),location:e._embedded.venues.map((v:any)=>v.name), eventName:e.name};
-          return rtn;
-        });   
-           
+        
+        this.pageInfo = n.page
+        this.pageInfo!.number+=1;        
+        this.loadedEvents = n.events;   
       },
       error:(e)=>{
 

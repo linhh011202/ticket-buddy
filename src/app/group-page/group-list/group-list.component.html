@@ -1,6 +1,6 @@
 
 
-<table class="table table-striped">
+<table class="table">
 	<thead>
 		<tr>
 
@@ -13,10 +13,10 @@
         
 			<tr (click)="onClick(g)" *ngFor="let g of groups">
 				<td>
-					{{ g.groupName }}
+					{{ g.name }}
 				</td>
-				<td>{{ g.event.eventName }}</td>
-				<td>{{ g.groupMembers}}</td>
+				<td>{{ g.event.name }}</td>
+				<td>{{ g.members |groupmemberPipe}}</td>
 			</tr>
 		
 	</tbody>

@@ -1,1 +1,60 @@
-sodfjofj
+
+
+<div class="d-flex flex-row justify-content-center">
+    <h1 class="d-inline-flex justify-content-center">{{group.name}}</h1>
+</div>
+<div class="d-flex flex-row justify-content-center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Kick</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let m of group.members">
+                <td>{{ m.name }} </td>
+                <td><button type="button" class="btn btn-danger">Kick</button></td>
+            </tr>      
+        </tbody>
+    </table>
+</div>
+<div class="d-flex flex-row justify-content-center">
+    <app-calander [events]="events" (clickedDate)="evts = $event" [color]="color"></app-calander>
+</div>
+
+<div class="row pt-2">
+    <table class="table ">
+        <thead>
+            <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Event Detail</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+            </tr>
+        </thead>
+        <tbody>
+           <tr *ngFor="let e of evts">
+                <td>{{e.user.name}}</td>
+                <td>{{e.detail}}</td>
+                <td>{{e.start}}</td>
+                <td>{{e.end}}</td>     
+           </tr>
+           
+        </tbody>
+    </table>
+</div>
+<!--
+
+Group name
+
+Invite link
+
+Admin
+
+A list of members (kick)
+
+Have the calander
+
+Infomraiton about the clicked dates 
+-->
