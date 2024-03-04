@@ -50,4 +50,10 @@ export class LoginPageComponent {
       console.log(data);
     })
   }
+
+  getGroupById(){
+    this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(data=>{
+      console.log(data);
+    })
+  }
 }

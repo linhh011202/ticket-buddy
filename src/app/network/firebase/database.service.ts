@@ -66,4 +66,20 @@ export class DatabaseService {
       )
     })
   }
+
+  getGroupById(groupId: string): Observable<GroupInterface|undefined>
+  {
+    let grpDoc = doc(this.fs, `group/${groupId}`);
+
+    return new Observable<GroupInterface|undefined>(obs=>{
+      docData(grpDoc, {idField: "id"}).subscribe(data=>{
+        if (data===undefined){
+          obs.next(undefined);
+          return;
+        } 
+        obs.next(this.dbToGroupInterface(data));
+      });
+    });
+
+  }
 }
