@@ -139,4 +139,14 @@ export class LoginPageComponent {
       console.log("event removed from watchlist.");
     })
   }
+
+  updateGroupDate(){
+    let sub = this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(group=>{
+      if (group==undefined) return;
+      this.data.updateGroupDate(group,new Date()).then(_=>{
+        console.log("date updated");
+      })
+      sub.unsubscribe();
+    })
+  }
 }

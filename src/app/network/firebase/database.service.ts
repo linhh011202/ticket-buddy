@@ -18,7 +18,7 @@ export class DatabaseService {
 
   dbToGroupInterface(dbGroup: DocumentData | DocumentData & {id: string;}): GroupInterface
   {
-    return {
+    let grp: GroupInterface = {
       id: dbGroup["id"],
       name: dbGroup["name"],
       event: {id: dbGroup["event"]},
@@ -28,6 +28,10 @@ export class DatabaseService {
       booked: dbGroup["booked"],
       allUUID: dbGroup["allUUID"]
     }
+    if (dbGroup["date"])
+      grp.date = dbGroup["date"].toDate();
+
+    return grp;
   }
 
   createGroup(name: string, event: EventInterface, admin: UserInterface): Promise<void>
@@ -266,5 +270,16 @@ export class DatabaseService {
     });
   }
 
-  
+  // Confirmation
+
+  updateGroupDate(group: GroupInterface, date:Date): Promise<void>{
+    let watchDoc = doc(this.fs, `group/${group.id}`);
+    let update = {date: date};
+
+    return new Promise<void>(res=>{
+      updateDoc(watchDoc, update).then(_=>{
+        res();
+      })
+    });
+  }
 }
