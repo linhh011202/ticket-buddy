@@ -149,4 +149,16 @@ export class LoginPageComponent {
       sub.unsubscribe();
     })
   }
+
+  toggleGroupConfirmation(){
+    let user:UserInterface|undefined = this.auth.getCurrentUser();
+
+    let sub = this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(group=>{
+      if (group==undefined || user==undefined) return;
+      this.data.toggleGroupConfirmation(group,user).then(_=>{
+        console.log("toggled group confirmation");
+      })
+      sub.unsubscribe();
+    })
+  }
 }

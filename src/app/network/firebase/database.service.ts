@@ -273,13 +273,27 @@ export class DatabaseService {
   // Confirmation
 
   updateGroupDate(group: GroupInterface, date:Date): Promise<void>{
-    let watchDoc = doc(this.fs, `group/${group.id}`);
+    let grpDoc = doc(this.fs, `group/${group.id}`);
     let update = {date: date};
 
     return new Promise<void>(res=>{
-      updateDoc(watchDoc, update).then(_=>{
+      updateDoc(grpDoc, update).then(_=>{
         res();
       })
     });
+  }
+
+  toggleGroupConfirmation(group: GroupInterface, user: UserInterface): Promise<void>{
+    let grpDoc = doc(this.fs, `group/${group.id}`);
+    let update = {confirmed: arrayUnion(user.id)};
+
+    if (group.confirmed.includes(user.id))
+      update.confirmed = arrayRemove(user.id);
+
+    return new Promise<void>(res=>{
+        updateDoc(grpDoc, update).then(_=>{
+          res();
+        })
+      });
   }
 }
