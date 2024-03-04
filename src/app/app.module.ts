@@ -9,7 +9,11 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListEventsComponent } from './search-page/list-events/list-events.component';
 import { EventComponentComponent } from './search-page/event-component/event-component.component';
 
-
+// Firebase
+import { firebaseConfig } from '../environments/env-prod'
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getAuth, provideAuth } from '@angular/fire/auth';
 
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { SearchPageComponent } from './search-page/search-page.component';
@@ -51,7 +55,12 @@ import { LoginPageComponent } from './login-page/login-page.component';
         AppRoutingModule,
         NgbModule,
         NgbCarouselModule,
-        FormsModule
+        FormsModule,
+        // Firebase
+        provideFirebaseApp(() => initializeApp(firebaseConfig)),
+        provideAuth(()=>getAuth()),
+        provideFirestore(()=>getFirestore()),
+
     ]
 })
 export class AppModule { }
