@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../network/firebase/authentication.service';
 import { DatabaseService } from '../network/firebase/database.service';
-import { e1 } from '../interfaces/testdata';
+import { dates, e1 } from '../interfaces/testdata';
 import { UserInterface } from '../interfaces/user-interface';
 
 @Component({
@@ -76,6 +76,12 @@ export class LoginPageComponent {
         console.log("group left");
       });
       sub.unsubscribe();
+    })
+  }
+
+  addCalendarEvent(){
+    this.data.addCalendarEvent(dates[1]).then(_=>{
+      console.log("cal event added");
     })
   }
 }
