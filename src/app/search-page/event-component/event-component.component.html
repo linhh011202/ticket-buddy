@@ -15,6 +15,11 @@
       <h5 class="card-title">{{event.name}}</h5>
       <p class="card-text">Location: {{event.location}}</p>
       <p class="card-text">{{event.details}}</p>
+      
       <span class="muted">{{event.startDate | date:'medium'}} - {{event.endDate | date:'medium'}}</span>
-    </div>
+      <button class="btn btn-success" *ngIf="!inWatchlist" (click)="addEvent(event)">Add to watchlist</button>
+    
+        <button *ngIf="inWatchlist" class="btn btn-danger" (click)="removeEvent(event)">Remove from watchlist</button>
+      
+      </div>
   </div>
