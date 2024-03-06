@@ -23,11 +23,11 @@ export class DatabaseService {
       name: dbGroup["name"],
       event: {
         id: dbGroup["event"].id,
-        name: dbGroup["name"],
+        name: dbGroup["event"].name,
         startDate: dbGroup["event"].start.toDate(),
         endDate: dbGroup["event"].end.toDate(),
         details: dbGroup["details"],
-        image: dbGroup["imageUrls"],
+        images: dbGroup["imageUrls"],
         location: dbGroup["locations"]
       },
       admin: dbGroup["admin"],
@@ -54,7 +54,7 @@ export class DatabaseService {
         start: event.startDate,
         end: event.endDate,
         details: event.details,
-        imageUrls: event.image,
+        imageUrls: event.images,
         locations: event.location
       },
       admin: admin,
@@ -92,14 +92,14 @@ export class DatabaseService {
 
 
 
-  getGroupById(groupId: string): Observable<GroupInterface|undefined>
+  getGroupById(groupId: string): Observable<GroupInterface>
   {
     let grpDoc = doc(this.fs, `group/${groupId}`);
 
-    return new Observable<GroupInterface|undefined>(obs=>{
+    return new Observable<GroupInterface>(obs=>{
       docData(grpDoc, {idField: "id"}).subscribe(data=>{
         if (data===undefined){
-          obs.next(undefined);
+          obs.error("Group not found");
           return;
         } 
         obs.next(this.dbToGroupInterface(data));
