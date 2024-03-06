@@ -244,6 +244,21 @@ export class DatabaseService {
     })
   }
 
+  updateCalendarEvent(calendarEvent: CalanderEvent): Promise<void>{
+    let calDoc = doc(this.fs, `calendar/${calendarEvent.id}`);
+    let update = {
+      start: calendarEvent.start,
+      end: calendarEvent.end,
+      detail: calendarEvent.detail,
+      type: calendarEvent.type
+    }
+    return new Promise<void>(res=>{
+      updateDoc(calDoc, update).then(_=>{
+        res();
+      })
+    });
+  }
+  
   removeCalendarEvent(calendarEvent: CalanderEvent): Promise<void>{
     let calDoc = doc(this.fs, `calendar/${calendarEvent.id}`);
     return new Promise<void>(res=>{
@@ -254,10 +269,10 @@ export class DatabaseService {
   }
 
   // Watchlist
-  getWatchlist(user: UserInterface): Observable<string[]>{
+  getWatchlist(user: UserInterface): Observable<EventInterface[]>{
     let watchDoc = doc(this.fs, `watchlist/${user.id}`);
 
-    return new Observable<string[]>(obs=>{
+    return new Observable<EventInterface[]>(obs=>{
       docData(watchDoc).subscribe(data=>{
         if (data===undefined){
           obs.next([]);
@@ -270,7 +285,7 @@ export class DatabaseService {
 
   addWatchlistEvent(user: UserInterface, event: EventInterface): Promise<void>{
     let watchDoc = doc(this.fs, `watchlist/${user.id}`);
-    let update = {saved: arrayUnion(event.id)}
+    let update = {saved: arrayUnion(event)}
     
     // Attempt to append to document, if not found, initialise a new one.
     return new Promise<void>(res=>{
@@ -290,7 +305,7 @@ export class DatabaseService {
 
   removeWatchlistEvent(user: UserInterface, event: EventInterface): Promise<void>{
     let watchDoc = doc(this.fs, `watchlist/${user.id}`);
-    let update = {saved: arrayRemove(event.id)}
+    let update = {saved: arrayRemove(event)}
 
     return new Promise<void>(res=>{
       updateDoc(watchDoc, update).then(_=>{

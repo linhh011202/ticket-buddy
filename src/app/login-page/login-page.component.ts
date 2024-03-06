@@ -19,13 +19,7 @@ export class LoginPageComponent {
     private noti: NotificationService, // temp
     private router:Router
   ) {}
-
-  ngOnInit(){
-    this.auth.isAuthenticated().then(authenticated=>{
-      console.log(authenticated);
-    })
-  }
-
+  
   googleSignIn(){
     this.auth.loginGoogle().then(_=>{
       this.router.navigate(["search"])
