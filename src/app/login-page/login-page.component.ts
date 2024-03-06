@@ -107,7 +107,7 @@ export class LoginPageComponent {
 
     let sub = this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(group=>{
       if (group===undefined || user===undefined) return;
-      this.data.getGroupCalendar(group, start, end).subscribe(cal=>{
+      this.data.getGroupCalendar(group).subscribe(cal=>{
         console.log(cal);
       })
       sub.unsubscribe();

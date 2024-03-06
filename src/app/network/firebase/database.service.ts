@@ -21,7 +21,11 @@ export class DatabaseService {
     let grp: GroupInterface = {
       id: dbGroup["id"],
       name: dbGroup["name"],
-      event: {id: dbGroup["event"]},
+      event: {
+        id: dbGroup["event"].id,
+        startDate: dbGroup["event"].start.toDate(),
+        endDate: dbGroup["event"].end.toDate(),
+      },
       admin: dbGroup["admin"],
       members: dbGroup["members"],
       confirmed: dbGroup["confirmed"],
@@ -40,7 +44,11 @@ export class DatabaseService {
 
     let groupDoc = {
       name: name,
-      event: event.id,
+      event: {
+        id: event.id,
+        start: event.startDate,
+        end: event.endDate
+      },
       admin: admin,
       members: [],
       confirmed: [],
@@ -185,14 +193,14 @@ export class DatabaseService {
     })
   }
 
-  getGroupCalendar(group: GroupInterface, start:Date, end:Date): Observable<CalanderEvent[]>{
+  getGroupCalendar(group: GroupInterface): Observable<CalanderEvent[]>{
     let calCollection: CollectionReference = collection(this.fs, "calendar");
     let q = query(calCollection, and(
       where("uid","in",group.allUUID), //Limited to 29 members, can increase if we split the calls up.
       // inequalities on multiple fields not allowed
       // where("start", "<=", end),
       // where("end", ">=", start)
-      // pulling events that have yet to end
+      // pulling calendar events that have yet to end
       where("end", ">" , new Date())
     ));
 
@@ -207,8 +215,10 @@ export class DatabaseService {
         data=>{
           let result: CalanderEvent[] = [];
           data.forEach(cal=>{
-            result.push(this.dbToCalendarEvent(cal, allUserMap[cal["uid"]]));
-          })
+            let calEvent = this.dbToCalendarEvent(cal, allUserMap[cal["uid"]]);
+            if (calEvent.start <= group.event.endDate && calEvent.end >= group.event.startDate)
+              result.push(calEvent);
+          });
           obs.next(result);
         }
       )
