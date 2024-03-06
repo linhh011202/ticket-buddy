@@ -8,7 +8,8 @@ import { dates } from 'src/app/interfaces/testdata';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 import { AuthenticationService } from 'src/app/network/firebase/authentication.service';
 import { DatabaseService } from 'src/app/network/firebase/database.service';
-
+import {Clipboard} from '@angular/cdk/clipboard';
+import { PlatformLocation } from '@angular/common';
 @Component({
   selector: 'app-group-detail',
   templateUrl: './group-detail.component.html',
@@ -23,7 +24,10 @@ export class GroupDetailComponent implements OnInit {
   color:CalanderStatus = CalanderStatus.AllAvailable;
   //theses events are events for 
   evts:CalanderEvent[] = [];
-  constructor(private authApi:AuthenticationService, private dbApi:DatabaseService){
+  constructor(private authApi:AuthenticationService, private dbApi:DatabaseService,
+    private platformLocation: PlatformLocation,
+    private clipboard:Clipboard
+    ){
     
   }
   
@@ -34,9 +38,18 @@ export class GroupDetailComponent implements OnInit {
     });
     this.dbApi.getGroupById(this.group.id).subscribe(x=>this.group = x);
   }
+  deleteGroup(){
+    this.dbApi.deleteGroup(this.group);
+  }
   kickUser(user:UserInterface){
-    console.log("djelte user");
     this.dbApi.removeFromGroup(this.group, user).then();
+  }
+  copyInviteLink() {
+    var base_url = (this.platformLocation as any)._location.origin+"/group"+"/"+this.group.id;
+    this.clipboard.copy(base_url);
+  }
+  joinGroup(){
+    if(this.currentUser)this.dbApi.joinGroup(this.group.id, this.currentUser);
   }
   setColor(){
     if(this.events.length==0) {

@@ -6,6 +6,8 @@ import { UserInterface } from '../interfaces/user-interface';
 import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../network/firebase/authentication.service';
 import { DatabaseService } from '../network/firebase/database.service';
+import {Clipboard} from '@angular/cdk/clipboard';
+import { PlatformLocation } from '@angular/common';
 @Component({
   selector: 'app-group-page',
   templateUrl: './group-page.component.html',
@@ -22,10 +24,10 @@ export class GroupPageComponent implements OnInit, AfterViewInit{
   
   groups:GroupInterface[] = [];
   constructor(private route:ActivatedRoute, 
-    config:NgbModalConfig, 
     private modalService:NgbModal, 
     private authApi:AuthenticationService,
-    private dbApi:DatabaseService){
+    private dbApi:DatabaseService
+    ){
   
   }
   ngOnInit(): void {
@@ -37,7 +39,7 @@ export class GroupPageComponent implements OnInit, AfterViewInit{
     });
     
   }
-
+  
   joinGroup(){
     if(this.currentUser)this.dbApi.joinGroup(this.groupID,this.currentUser);
   }
@@ -46,7 +48,13 @@ export class GroupPageComponent implements OnInit, AfterViewInit{
       var id:string|null;
       id =  params.get('id');
       //should get the info here from firebase
-      if(!!id)this.modalService.open(this.content);
+      if(id) this.dbApi.getGroupById(id).subscribe({next:(x)=>{
+        this.chosen = x;
+        this.navStuff?.select(2);
+      },
+      error:(e)=>{
+        console.log("ERROR HERE:", e);
+      }});
     });
   }
   choseGroup(group:GroupInterface){

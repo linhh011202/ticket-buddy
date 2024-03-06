@@ -15,7 +15,7 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideAnimations, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { GroupPageComponent } from './group-page/group-page.component';
 import { GroupListComponent } from './group-page/group-list/group-list.component';
@@ -60,6 +60,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
         provideFirebaseApp(() => initializeApp(firebaseConfig)),
         provideAuth(()=>getAuth()),
         provideFirestore(()=>getFirestore()),
+        BrowserAnimationsModule,
 
     ]
 })
