@@ -153,6 +153,15 @@ export class DatabaseService {
     })
   }
 
+  deleteGroup(group: GroupInterface): Promise<void>{
+    let grpDoc = doc(this.fs, `group/${group.id}`);
+    return new Promise<void>(res=>{
+      deleteDoc(grpDoc).then(_=>{
+        res();
+      })
+    });
+  }
+
   // Calendar
 
   dbToCalendarEvent(dbCalEnt: DocumentData | DocumentData & {id: string;}, user: UserInterface): CalanderEvent 
