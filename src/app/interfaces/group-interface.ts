@@ -7,6 +7,8 @@ export interface GroupInterface {
     event:EventInterface;
     admin: UserInterface;
     members:UserInterface[];
-    confirmed:UserInterface[];
+    confirmed:string[];
     booked: boolean;
+    allUUID: string[]; 
+    date?: Date;
 }

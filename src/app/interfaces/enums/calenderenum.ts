@@ -6,7 +6,7 @@ export enum CalanderStatus {
 }
 
 export enum CalanderType {
-    Personal,
-    ReservedForEvent,
-    BookedForEvent
+    Personal = "Personal",
+    ReservedForEvent = "ReservedForEvent",
+    BookedForEvent = "BookedForEvent"
 }

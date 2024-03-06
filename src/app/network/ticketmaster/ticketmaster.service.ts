@@ -2,8 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse,HttpEventType, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { PlatformLocation } from '@angular/common';
+
+import { ticketMasterApi } from 'src/environments/env-prod';
 import { Observable, map, take, throwError } from 'rxjs';
 import { EventPageInterface } from 'src/app/interfaces/eventpage-interface';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,10 +24,11 @@ export class TicketmasterService {
     getEvents(pg?:number):Observable<EventPageInterface>{
       if(!pg) pg=0;
       var base_url = (this.platformLocation as any)._location.origin+"/ticketmaster";
+
       var today  =new Date();
       var str = today.toISOString();
       str = str.slice(0, str.length-5).concat("Z");
-      return this.http.get(base_url+"/events.json", {params:{page:pg,size:5, apikey:"5Jqei2SXCUbEHOfAy9F6vyC4wA8Pj6s0", startDateTime:str}}).pipe(
+      return this.http.get(base_url+"/events.json", {params:{page:pg,size:5, apikey:ticketMasterApi, startDateTime:str}}).pipe(
         map((x:any)=>{
           
           var rtn:any = {page:undefined, events:undefined};
