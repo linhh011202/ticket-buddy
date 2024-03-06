@@ -15,10 +15,22 @@
   <li [ngbNavItem]="1">
     <button ngbNavLink>Groups</button>
     <ng-template ngbNavContent>
+      <div class="d-flex flex-row justify-content-center">
+
+        <div class="p-2">
+          <input type="text" class="form-control"   placeholder="Enter groupID">
+        </div>
+        <div class="p-2">
+            <button class="btn btn-success">JOIN</button>
+        </div>
+    
+    </div>
+
       <h5>Admin</h5>
       <app-group-list (groupClicked)="choseGroup($event)" [groups]="groups|grouppipe:currentUser:true"></app-group-list>
       <h5>Member</h5>
       <app-group-list (groupClicked)="choseGroup($event)" [groups]="groups|grouppipe:currentUser:false"></app-group-list>
+
     </ng-template>
   </li>
   <li [ngbNavItem]="2" *ngIf="chosen">

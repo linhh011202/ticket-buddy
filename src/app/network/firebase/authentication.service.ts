@@ -1,16 +1,21 @@
 import { Injectable } from '@angular/core';
 
-import { Auth, GoogleAuthProvider } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, User, getAuth, onAuthStateChanged} from '@angular/fire/auth';
 import { signInWithPopup } from 'firebase/auth';
+import { Observable } from 'rxjs';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-
-  constructor(private auth: Auth) { }
-
+  
+  constructor(private auth: Auth) { 
+  
+  }
+  isAuthenticated(){
+    return true;
+  }
   loginGoogle(): Promise<void> {
     return new Promise<void>((res)=>{
       let provider = new GoogleAuthProvider();
@@ -28,7 +33,7 @@ export class AuthenticationService {
       res();
     });
   }
-
+  
   getCurrentUser():UserInterface|undefined {
     if (this.auth.currentUser == null) 
       return(undefined);
