@@ -39,7 +39,7 @@ export class GroupPageComponent implements OnInit, AfterViewInit{
   }
 
   joinGroup(){
-    this.dbApi.joinGroup(this.groupID,this.currentUser);
+    if(this.currentUser)this.dbApi.joinGroup(this.groupID,this.currentUser);
   }
   ngAfterViewInit(): void {
     this.route.paramMap.subscribe(params=>{

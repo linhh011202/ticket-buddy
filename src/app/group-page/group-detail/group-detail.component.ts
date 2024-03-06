@@ -7,6 +7,7 @@ import { GroupInterface } from 'src/app/interfaces/group-interface';
 import { dates } from 'src/app/interfaces/testdata';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 import { AuthenticationService } from 'src/app/network/firebase/authentication.service';
+import { DatabaseService } from 'src/app/network/firebase/database.service';
 
 @Component({
   selector: 'app-group-detail',
@@ -22,13 +23,20 @@ export class GroupDetailComponent implements OnInit {
   color:CalanderStatus = CalanderStatus.AllAvailable;
   //theses events are events for 
   evts:CalanderEvent[] = [];
-  constructor(private authApi:AuthenticationService){
+  constructor(private authApi:AuthenticationService, private dbApi:DatabaseService){
     
   }
   
   ngOnInit(){//given the events of that group
      this.setColor();
-    this.authApi.getCurrentUser().then((v:UserInterface|null)=>this.currentUser =v);
+    this.authApi.getCurrentUser().then((v:UserInterface)=>{
+      this.currentUser =v;
+    });
+    this.dbApi.getGroupById(this.group.id).subscribe(x=>this.group = x);
+  }
+  kickUser(user:UserInterface){
+    console.log("djelte user");
+    this.dbApi.removeFromGroup(this.group, user).then();
   }
   setColor(){
     if(this.events.length==0) {

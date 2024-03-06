@@ -2,7 +2,7 @@ export interface EventInterface {
     id: string;
     name:string;
     location:string[];
-    image:string[];
+    images:string[];
     details:string;
     startDate:Date;
     endDate:Date
