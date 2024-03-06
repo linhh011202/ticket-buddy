@@ -21,14 +21,14 @@
                 <td>{{e.start}}</td>
                 <td>{{e.end}}</td>
                 <td><button type="button" class="btn btn-info">Update</button></td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                <td><button type="button" class="btn btn-danger" (click)="deleteEvent(e)">Delete</button></td>
                 
            </tr>
            <tr>
-            <td><input type="text"></td>
-            <td><input type="datetime-local"></td>
-            <td><input type="datetime-local"></td>
-            <td><button type="button" class="btn btn-info">Add</button></td>
+            <td><input type="text"[(ngModel)]="detail"></td>
+            <td><input [(ngModel)]="start" type="datetime-local"></td>
+            <td><input [(ngModel)]="end" type="datetime-local"></td>
+            <td><button type="button" class="btn btn-info" (click)="createEvent()">Add</button></td>
             <td></td>
            </tr>
         </tbody>

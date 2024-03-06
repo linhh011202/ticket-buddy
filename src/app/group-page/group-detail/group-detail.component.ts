@@ -4,7 +4,6 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
 import { CalanderEvent } from 'src/app/interfaces/calander-interface/CalanderEvent-interface';
 import { CalanderStatus } from 'src/app/interfaces/enums/calenderenum';
 import { GroupInterface } from 'src/app/interfaces/group-interface';
-import { dates } from 'src/app/interfaces/testdata';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 import { AuthenticationService } from 'src/app/network/firebase/authentication.service';
 import { DatabaseService } from 'src/app/network/firebase/database.service';
@@ -17,7 +16,7 @@ import { PlatformLocation } from '@angular/common';
 })
 export class GroupDetailComponent implements OnInit {
   @Input() group!:GroupInterface;
-  events:CalanderEvent[] = dates;//needs to be fileter at service side
+  events:CalanderEvent[] = [];//needs to be fileter at service side
   //events: startime, endtime
   //
   currentUser:UserInterface|null = null;
@@ -36,7 +35,13 @@ export class GroupDetailComponent implements OnInit {
     this.authApi.getCurrentUser().then((v:UserInterface)=>{
       this.currentUser =v;
     });
+   
     this.dbApi.getGroupById(this.group.id).subscribe(x=>this.group = x);
+    this.dbApi.getGroupCalendar(this.group).subscribe(
+      x=>{
+        this.events = x;
+      }
+    );
   }
   deleteGroup(){
     this.dbApi.deleteGroup(this.group);
@@ -57,7 +62,7 @@ export class GroupDetailComponent implements OnInit {
       return;
     }
     var cmiCount = [...new Set(this.events.map(i=>i.user.id))].length;
-    if (cmiCount==this.group.members.length+1){
+    if (cmiCount==this.group.members.length){
       this.color = CalanderStatus.NotFreeAtAll;
     }
     this.color = CalanderStatus.SomeFree;
