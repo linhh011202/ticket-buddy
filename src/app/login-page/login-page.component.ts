@@ -18,6 +18,12 @@ export class LoginPageComponent {
     private noti: NotificationService // temp
   ) {}
 
+  ngOnInit(){
+    this.auth.isAuthenticated().then(authenticated=>{
+      console.log(authenticated);
+    })
+  }
+
   googleSignIn(){
     this.auth.loginGoogle().then(_=>{
       console.log("login success");
@@ -36,20 +42,22 @@ export class LoginPageComponent {
 
   // Dummy methods
   createGroup(){
-    let user:UserInterface|undefined = this.auth.getCurrentUser();
-    if (user == undefined) return;
+    this.auth.getCurrentUser().then(user=>{
+      if (user == undefined) return;
 
-    this.data.createGroup("test group name 1", e1, user).then(_=>{
-      console.log("grp created");
+      this.data.createGroup("test group name 1", e1, user).then(_=>{
+        console.log("grp created");
+      })
     })
   }
 
   getGroups(){
-    let user:UserInterface|undefined = this.auth.getCurrentUser();
-    if (user == undefined) return;
+    this.auth.getCurrentUser().then(user=>{
+      if (user == undefined) return;
 
-    this.data.getGroups(user).subscribe(data=>{
-      console.log(data);
+      this.data.getGroups(user).subscribe(data=>{
+        console.log(data);
+      })
     })
   }
 
@@ -61,23 +69,25 @@ export class LoginPageComponent {
 
   joinGroup(){
     let sub = this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(data=>{
-      let user = this.auth.getCurrentUser();
-      if (data===undefined || user===undefined) return;
-      this.data.joinGroup(data,user).then(_=>{
-        console.log("grp joined");
-      });
-      sub.unsubscribe();
+      this.auth.getCurrentUser().then(user=>{
+        if (data===undefined || user===null) return;
+        this.data.joinGroup(data,user).then(_=>{
+          console.log("grp joined");
+        });
+        sub.unsubscribe();
+      })
     })
   }
 
   removeFromGroup(){
     let sub = this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(data=>{
-      let user = this.auth.getCurrentUser();
-      if (data===undefined || user===undefined) return;
-      this.data.removeFromGroup(data,user).then(_=>{
-        console.log("group left");
-      });
-      sub.unsubscribe();
+      this.auth.getCurrentUser().then(user=>{
+        if (data===undefined || user===null) return;
+        this.data.removeFromGroup(data,user).then(_=>{
+          console.log("group left");
+        })
+        sub.unsubscribe();
+      })
     })
   }
 
@@ -88,58 +98,59 @@ export class LoginPageComponent {
   }
 
   getCalendar(){
-    let user:UserInterface|undefined = this.auth.getCurrentUser();
-    if (user == undefined) return;
+    this.auth.getCurrentUser().then(user=>{
+      if (user == null) return;
 
-    this.data.getCalendar(user).subscribe(data=>{
-      console.log(data);
+      this.data.getCalendar(user).subscribe(data=>{
+        console.log(data);
+      })
     })
   }
 
   // further testing required
   getGroupCalendar(){
-    let user:UserInterface|undefined = this.auth.getCurrentUser();
-    if (user == undefined) return;
+    this.auth.getCurrentUser().then(user=>{
+      if (user == null) return;
 
-    let start = new Date();
-    start.setHours(0,0,0,0);
-    let end = new Date(start.getTime() +  24*60*60*1000);
-
-    let sub = this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(group=>{
-      if (group===undefined || user===undefined) return;
-      this.data.getGroupCalendar(group, start, end).subscribe(cal=>{
-        console.log(cal);
+      let sub = this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(group=>{
+        if (group===undefined || user===null) return;
+        this.data.getGroupCalendar(group).subscribe(cal=>{
+          console.log(cal);
+        })
+        sub.unsubscribe();
       })
-      sub.unsubscribe();
     })
   }
 
   getWatchlist(){
-    let user:UserInterface|undefined = this.auth.getCurrentUser();
-    if (user == undefined) return;
+    this.auth.getCurrentUser().then(user=>{
+      if (user == null) return;
 
-    this.data.getWatchlist(user).subscribe(data=>{
-      console.log(data);
-    })
+      this.data.getWatchlist(user).subscribe(data=>{
+        console.log(data);
+      })
+    });
   }
 
   // TODO: Combine add and remove into a toggleWatchlist for convenience;
   addWatchlistEvent(){
-    let user:UserInterface|undefined = this.auth.getCurrentUser();
-    if (user == undefined) return;
+    this.auth.getCurrentUser().then(user=>{
+      if (user == null) return;
 
-    this.data.addWatchlistEvent(user,e1).then(_=>{
-      console.log("event saved to watchlist.");
-    })
+      this.data.addWatchlistEvent(user,e1).then(_=>{
+        console.log("event saved to watchlist.");
+      })
+    });
   }
 
   removeWatchlistEvent(){
-    let user:UserInterface|undefined = this.auth.getCurrentUser();
-    if (user == undefined) return;
+    this.auth.getCurrentUser().then(user=>{
+      if (user == null) return;
 
-    this.data.removeWatchlistEvent(user,e1).then(_=>{
-      console.log("event removed from watchlist.");
-    })
+      this.data.removeWatchlistEvent(user,e1).then(_=>{
+        console.log("event removed from watchlist.");
+      })
+    });
   }
 
   updateGroupDate(){
@@ -153,15 +164,16 @@ export class LoginPageComponent {
   }
 
   toggleGroupConfirmation(){
-    let user:UserInterface|undefined = this.auth.getCurrentUser();
-
-    let sub = this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(group=>{
-      if (group==undefined || user==undefined) return;
-      this.data.toggleGroupConfirmation(group,user).then(_=>{
-        console.log("toggled group confirmation");
+    this.auth.getCurrentUser().then(user=>{
+    
+      let sub = this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(group=>{
+        if (group==undefined || user==null) return;
+        this.data.toggleGroupConfirmation(group,user).then(_=>{
+          console.log("toggled group confirmation");
+        })
+        sub.unsubscribe();
       })
-      sub.unsubscribe();
-    })
+    });
   }
 
   confirmGroupBooking(){
