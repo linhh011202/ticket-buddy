@@ -109,9 +109,9 @@ export class DatabaseService {
   }
 
   // Currently does not check if user is already in group
-  joinGroup(group: GroupInterface, user:UserInterface): Promise<void>
+  joinGroup(groupId: string, user:UserInterface): Promise<void>
   {
-    let grpDoc = doc(this.fs, `group/${group.id}`);
+    let grpDoc = doc(this.fs, `group/${groupId}`);
     let update = {
       members: arrayUnion(user),
       allUUID: arrayUnion(user.id),
