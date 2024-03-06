@@ -23,7 +23,7 @@
     </form>
 </div>
 <div class="container justify-content-center">
-<app-list-events [events]="loadedEvents"></app-list-events>
+<app-list-events [watchlist]="watchlist" [events]="loadedEvents"></app-list-events>
 <div class="row  justify-content-center" >
     
 <ng-template [ngIf]="pageInfo && pageInfo.number">

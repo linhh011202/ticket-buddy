@@ -30,6 +30,7 @@ export class SearchPageComponent {
       this.dbApi.getWatchlist(x).subscribe(
         (n)=>{
           this.watchlist = n.map((e)=>e.id);
+          console.log("watlist update",this.watchlist);
         }
       )
     })  
