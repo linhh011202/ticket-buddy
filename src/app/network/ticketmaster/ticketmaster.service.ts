@@ -50,7 +50,6 @@ export class TicketmasterService {
               endDate:(!this.invalidDate(ed))? ed: undefined
             };
           });
-          console.log((rtn as EventPageInterface).events);
           return (rtn as EventPageInterface);
         
         }),

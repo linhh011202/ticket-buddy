@@ -29,7 +29,7 @@ export class SearchPageComponent {
       this.currentUser = x;
       this.dbApi.getWatchlist(x).subscribe(
         (n)=>{
-          this.watchlist = n;
+          this.watchlist = n.map((e)=>e.id);
         }
       )
     })  
