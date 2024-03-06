@@ -4,6 +4,7 @@ import { DatabaseService } from '../network/firebase/database.service';
 import { dates, e1 } from '../interfaces/testdata';
 import { UserInterface } from '../interfaces/user-interface';
 import { NotificationService } from '../network/firebase/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -15,7 +16,8 @@ export class LoginPageComponent {
   constructor(
     private auth: AuthenticationService,
     private data: DatabaseService, // temp
-    private noti: NotificationService // temp
+    private noti: NotificationService, // temp
+    private router:Router
   ) {}
 
   ngOnInit(){
@@ -26,7 +28,7 @@ export class LoginPageComponent {
 
   googleSignIn(){
     this.auth.loginGoogle().then(_=>{
-      console.log("login success");
+      this.router.navigate(["search"])
     })
   }
 
