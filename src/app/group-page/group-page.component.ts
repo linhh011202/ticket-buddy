@@ -4,6 +4,8 @@ import { NgbModal, NgbModalConfig, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import {e1, e2, user1, user2, user3, user4,g1, g2} from '../interfaces/testdata';
 import { UserInterface } from '../interfaces/user-interface';
 import { ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from '../network/firebase/authentication.service';
+import { DatabaseService } from '../network/firebase/database.service';
 @Component({
   selector: 'app-group-page',
   templateUrl: './group-page.component.html',
@@ -15,14 +17,29 @@ export class GroupPageComponent implements OnInit, AfterViewInit{
   @ViewChild(NgbNav) private navStuff: NgbNav | undefined;
   @ViewChild('content') private content:NgbModal | undefined; 
   chosen:GroupInterface | undefined;
-  currentUser:UserInterface = user1;
+  currentUser?:UserInterface;
+  groupID:string ="";
   
-  groups:GroupInterface[] = [g1, g2];
-  constructor(private route:ActivatedRoute, config:NgbModalConfig, private modalService:NgbModal){
-
+  groups:GroupInterface[] = [];
+  constructor(private route:ActivatedRoute, 
+    config:NgbModalConfig, 
+    private modalService:NgbModal, 
+    private authApi:AuthenticationService,
+    private dbApi:DatabaseService){
+  
   }
   ngOnInit(): void {
+    this.authApi.getCurrentUser().then(x=>{
+      this.currentUser=x;
+      this.dbApi.getGroups(x).subscribe(y=>{
+        this.groups = y;
+      });
+    });
     
+  }
+
+  joinGroup(){
+    this.dbApi.joinGroup(this.groupID,this.currentUser);
   }
   ngAfterViewInit(): void {
     this.route.paramMap.subscribe(params=>{

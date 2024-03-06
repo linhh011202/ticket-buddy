@@ -18,7 +18,7 @@ export class GroupDetailComponent implements OnInit {
   events:CalanderEvent[] = dates;//needs to be fileter at service side
   //events: startime, endtime
   //
-  currentUser?:UserInterface;
+  currentUser:UserInterface|null = null;
   color:CalanderStatus = CalanderStatus.AllAvailable;
   //theses events are events for 
   evts:CalanderEvent[] = [];
@@ -28,7 +28,7 @@ export class GroupDetailComponent implements OnInit {
   
   ngOnInit(){//given the events of that group
      this.setColor();
-     this.currentUser = this.authApi.getCurrentUser()
+    this.authApi.getCurrentUser().then((v:UserInterface|null)=>this.currentUser =v);
   }
   setColor(){
     if(this.events.length==0) {
