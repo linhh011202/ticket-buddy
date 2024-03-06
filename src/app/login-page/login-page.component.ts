@@ -69,17 +69,17 @@ export class LoginPageComponent {
     })
   }
 
-  joinGroup(){
-    let sub = this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(data=>{
-      this.auth.getCurrentUser().then(user=>{
-        if (data===undefined || user===null) return;
-        this.data.joinGroup(data,user).then(_=>{
-          console.log("grp joined");
-        });
-        sub.unsubscribe();
-      })
-    })
-  }
+  // joinGroup(){
+  //   let sub = this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(data=>{
+  //     this.auth.getCurrentUser().then(user=>{
+  //       if (data===undefined || user===null) return;
+  //       this.data.joinGroup(data,user).then(_=>{
+  //         console.log("grp joined");
+  //       });
+  //       sub.unsubscribe();
+  //     })
+  //   })
+  // }
 
   removeFromGroup(){
     let sub = this.data.getGroupById("VrFJqqOf0jwujA8SwN1a").subscribe(data=>{

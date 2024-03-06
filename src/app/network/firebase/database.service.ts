@@ -23,8 +23,12 @@ export class DatabaseService {
       name: dbGroup["name"],
       event: {
         id: dbGroup["event"].id,
+        name: dbGroup["name"],
         startDate: dbGroup["event"].start.toDate(),
         endDate: dbGroup["event"].end.toDate(),
+        details: dbGroup["details"],
+        image: dbGroup["imageUrls"],
+        location: dbGroup["locations"]
       },
       admin: dbGroup["admin"],
       members: dbGroup["members"],
@@ -46,8 +50,12 @@ export class DatabaseService {
       name: name,
       event: {
         id: event.id,
+        name: event.name,
         start: event.startDate,
-        end: event.endDate
+        end: event.endDate,
+        details: event.details,
+        imageUrls: event.image,
+        locations: event.location
       },
       admin: admin,
       members: [],
@@ -82,6 +90,8 @@ export class DatabaseService {
     })
   }
 
+
+
   getGroupById(groupId: string): Observable<GroupInterface|undefined>
   {
     let grpDoc = doc(this.fs, `group/${groupId}`);
@@ -99,9 +109,9 @@ export class DatabaseService {
   }
 
   // Currently does not check if user is already in group
-  joinGroup(group: GroupInterface, user:UserInterface): Promise<void>
+  joinGroup(groupId: string, user:UserInterface): Promise<void>
   {
-    let grpDoc = doc(this.fs, `group/${group.id}`);
+    let grpDoc = doc(this.fs, `group/${groupId}`);
     let update = {
       members: arrayUnion(user),
       allUUID: arrayUnion(user.id),

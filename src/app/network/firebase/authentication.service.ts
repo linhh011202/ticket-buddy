@@ -33,10 +33,10 @@ export class AuthenticationService {
 
   getCurrentUser():Promise<UserInterface>{
 
-    return new Promise<UserInterface>(res=>{
+    return new Promise<UserInterface>((res,rej)=>{
       this.auth.authStateReady().then(_=>{
         if (this.auth.currentUser === null) {
-          //throw errro instead
+          rej("eh buto login first lah cb");
           return;
         }
         let user = <UserInterface> {

@@ -1,9 +1,9 @@
 export interface EventInterface {
     id: string;
-    name?:string;
-    location?:string[];
-    images?:string[];
-    details?:string;
+    name:string;
+    location:string[];
+    image:string[];
+    details:string;
     startDate:Date;
     endDate:Date
 }
