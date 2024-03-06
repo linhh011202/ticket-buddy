@@ -16,7 +16,7 @@ export class DatabaseService {
 
   // Group
 
-  dbToGroupInterface(dbGroup: DocumentData | DocumentData & {id: string;}): GroupInterface
+  private dbToGroupInterface(dbGroup: DocumentData | DocumentData & {id: string;}): GroupInterface
   {
     let grp: GroupInterface = {
       id: dbGroup["id"],
@@ -164,7 +164,7 @@ export class DatabaseService {
 
   // Calendar
 
-  dbToCalendarEvent(dbCalEnt: DocumentData | DocumentData & {id: string;}, user: UserInterface): CalanderEvent 
+  private dbToCalendarEvent(dbCalEnt: DocumentData | DocumentData & {id: string;}, user: UserInterface): CalanderEvent 
   { 
     return { 
       id: dbCalEnt["id"],
@@ -269,15 +269,53 @@ export class DatabaseService {
   }
 
   // Watchlist
+
+  private eventToDbWatchlist(event:EventInterface): any{
+    let watchListEvent: any = {id: event.id}
+
+    if (event.name !== undefined)
+      watchListEvent.name = event.name
+    if (event.location !== undefined)
+      watchListEvent.location = event.location
+    if (event.images !== undefined)
+      watchListEvent.images = event.images
+    if (event.details !== undefined)
+      watchListEvent.details = event.details
+    if (event.startDate !== undefined)
+      watchListEvent.startDate = event.startDate
+    if (event.endDate !== undefined)
+      watchListEvent.endDate = event.endDate
+
+    return watchListEvent;
+  }
+
+  private dbwatchlistToEvent(dbEvent: DocumentData ): EventInterface{
+    let event: EventInterface = {
+      id: dbEvent['id'],
+      name: dbEvent['name'],
+      location: dbEvent['location'],
+      images: dbEvent['images'],
+      details: dbEvent['details'],
+      startDate: dbEvent['startDate']?.toDate(),
+      endDate: dbEvent['endDate']?.toDate()
+    }
+    console.log(event)
+    return event
+  }
+
   getWatchlist(user: UserInterface): Observable<EventInterface[]>{
     let watchDoc = doc(this.fs, `watchlist/${user.id}`);
 
     return new Observable<EventInterface[]>(obs=>{
       docData(watchDoc).subscribe(data=>{
+        let watchlist:EventInterface[] = [];
         if (data===undefined){
-          obs.next([]);
+          obs.next(watchlist);
           return;
         } 
+        data['saved'].forEach((event: DocumentData)=>{
+          watchlist.push(this.dbwatchlistToEvent(event))
+        })
         obs.next(data["saved"]);
       });
     });
@@ -285,7 +323,8 @@ export class DatabaseService {
 
   addWatchlistEvent(user: UserInterface, event: EventInterface): Promise<void>{
     let watchDoc = doc(this.fs, `watchlist/${user.id}`);
-    let update = {saved: arrayUnion(event)}
+    
+    let update = {saved: arrayUnion(this.eventToDbWatchlist(event))}
     
     // Attempt to append to document, if not found, initialise a new one.
     return new Promise<void>(res=>{
@@ -305,7 +344,7 @@ export class DatabaseService {
 
   removeWatchlistEvent(user: UserInterface, event: EventInterface): Promise<void>{
     let watchDoc = doc(this.fs, `watchlist/${user.id}`);
-    let update = {saved: arrayRemove(event)}
+    let update = {saved: arrayRemove(this.eventToDbWatchlist(event))}
 
     return new Promise<void>(res=>{
       updateDoc(watchDoc, update).then(_=>{
