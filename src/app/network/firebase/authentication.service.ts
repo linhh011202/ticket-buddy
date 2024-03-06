@@ -50,12 +50,11 @@ export class AuthenticationService {
    
   }
 
-  isAuthenticated(): Promise<boolean>{
-    return new Promise<boolean>(res=>{
-      this.auth.authStateReady().then(_=>{
-        res(this.auth.currentUser !== null);
+  isAuthenticated(): Observable<boolean>{
+    return new Observable<boolean>(obs=>{
+      this.auth.onAuthStateChanged((user)=>{
+        obs.next(user!==null);
       })
     })
-    
   }
 }
