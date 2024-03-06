@@ -1,13 +1,11 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { GroupInterface } from '../interfaces/group-interface';
-import { NgbModal, NgbModalConfig, NgbNav } from '@ng-bootstrap/ng-bootstrap';
-import {e1, e2, user1, user2, user3, user4,g1, g2} from '../interfaces/testdata';
+import { NgbModal, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { UserInterface } from '../interfaces/user-interface';
 import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../network/firebase/authentication.service';
 import { DatabaseService } from '../network/firebase/database.service';
-import {Clipboard} from '@angular/cdk/clipboard';
-import { PlatformLocation } from '@angular/common';
+
 @Component({
   selector: 'app-group-page',
   templateUrl: './group-page.component.html',
@@ -24,7 +22,6 @@ export class GroupPageComponent implements OnInit, AfterViewInit{
   
   groups:GroupInterface[] = [];
   constructor(private route:ActivatedRoute, 
-    private modalService:NgbModal, 
     private authApi:AuthenticationService,
     private dbApi:DatabaseService
     ){
