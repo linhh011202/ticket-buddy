@@ -29,6 +29,8 @@ import { CalanderComponent } from './common/calander/calander.component';
 import { GroupmemberPipePipe } from './group-page/groupmember-pipe.pipe';
 import { NavigationComponent } from './common/navigation/navigation.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { GroupCreateComponent } from './group-page/group-create/group-create.component';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -44,7 +46,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
         GroupmemberPipePipe,
         CalanderComponent,
         NavigationComponent,
-        LoginPageComponent
+        LoginPageComponent,
+        GroupCreateComponent
     ],
     providers: [provideAnimations()],
     bootstrap: [AppComponent],

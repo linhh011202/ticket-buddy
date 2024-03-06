@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { GroupInterface } from '../interfaces/group-interface';
 import { NgbModal, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { UserInterface } from '../interfaces/user-interface';
@@ -16,6 +16,7 @@ export class GroupPageComponent implements OnInit, AfterViewInit{
   
   @ViewChild(NgbNav) private navStuff: NgbNav | undefined;
   @ViewChild('content') private content:NgbModal | undefined; 
+  openModalEmitter = new EventEmitter<void>();
   chosen:GroupInterface | undefined;
   currentUser?:UserInterface;
   groupID:string ="";
