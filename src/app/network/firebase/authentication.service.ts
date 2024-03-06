@@ -29,15 +29,32 @@ export class AuthenticationService {
     });
   }
 
-  getCurrentUser():UserInterface|undefined {
-    if (this.auth.currentUser == null) 
-      return(undefined);
+  getCurrentUser():Promise<UserInterface|null>{
+
+    return new Promise<UserInterface|null>(res=>{
+      this.auth.authStateReady().then(_=>{
+        if (this.auth.currentUser === null) {
+          res(null);
+          return;
+        }
+          
+        let user = <UserInterface> {
+          id: this.auth.currentUser?.uid,
+          name: this.auth.currentUser?.displayName,
+          email: this.auth.currentUser?.email
+        };
+        res(user);
+      })
+    })
+   
+  }
+
+  isAuthenticated(): Promise<boolean>{
+    return new Promise<boolean>(res=>{
+      this.auth.authStateReady().then(_=>{
+        res(this.auth.currentUser !== null);
+      })
+    })
     
-    let user = <UserInterface> {
-      id: this.auth.currentUser?.uid,
-      name: this.auth.currentUser?.displayName,
-      email: this.auth.currentUser?.email
-    };
-    return(user);
   }
 }
