@@ -244,6 +244,21 @@ export class DatabaseService {
     })
   }
 
+  updateCalendarEvent(calendarEvent: CalanderEvent): Promise<void>{
+    let calDoc = doc(this.fs, `calendar/${calendarEvent.id}`);
+    let update = {
+      start: calendarEvent.start,
+      end: calendarEvent.end,
+      detail: calendarEvent.detail,
+      type: calendarEvent.type
+    }
+    return new Promise<void>(res=>{
+      updateDoc(calDoc, update).then(_=>{
+        res();
+      })
+    });
+  }
+
   removeCalendarEvent(calendarEvent: CalanderEvent): Promise<void>{
     let calDoc = doc(this.fs, `calendar/${calendarEvent.id}`);
     return new Promise<void>(res=>{
