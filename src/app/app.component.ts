@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Data, NavigationEnd, Router, Event, EventType } from '@angular/router';
-import { filter } from 'rxjs';
 import { AuthenticationService } from './network/firebase/authentication.service';
 
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Auth, GoogleAuthProvider, User, getAuth, onAuthStateChanged} from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider} from '@angular/fire/auth';
 import { signInWithPopup } from 'firebase/auth';
 import { Observable } from 'rxjs';
 import { UserInterface } from 'src/app/interfaces/user-interface';
