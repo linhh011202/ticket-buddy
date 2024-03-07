@@ -8,8 +8,6 @@ export const authGuard: CanActivateFn = (route, state) => {
   const router:Router = inject(Router);
   return authApi.isAuthenticated().pipe(
     tap((x:boolean)=>{
-      console.log("helwrodl");
-      console.log("authenticated? ", x);
       if(!x){
         router.navigate(['login'], {queryParams: {returnUrl: state.url }});
         

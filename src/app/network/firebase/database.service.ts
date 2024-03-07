@@ -66,7 +66,7 @@ export class DatabaseService {
 
     return new Promise<void>(res=>{
       addDoc(grpCollection, groupDoc).then((docRef: DocumentReference)=>{
-        console.log(docRef);
+        
         res();
       });
     })
@@ -130,14 +130,14 @@ export class DatabaseService {
     
     // Protection against display name change
     let toRemove: UserInterface|undefined = undefined;
-    console.log(group);
+
     group.members.forEach(member=>{
       if (member.id === user.id){
         toRemove = member;
         return;
       }
     })
-    console.log("01")
+
 
     return new Promise<void>(res=>{
       // Check if user is a member in group
@@ -189,7 +189,7 @@ export class DatabaseService {
 
     return new Promise<void>(res=>{
       addDoc(calCollection, calDoc).then((docRef: DocumentReference)=>{
-        console.log(docRef);
+       
         res();
       });
     })
@@ -299,7 +299,7 @@ export class DatabaseService {
       startDate: dbEvent['startDate']?.toDate(),
       endDate: dbEvent['endDate']?.toDate()
     }
-    console.log(event)
+
     return event
   }
 
