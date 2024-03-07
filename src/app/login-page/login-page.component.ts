@@ -4,7 +4,7 @@ import { DatabaseService } from '../network/firebase/database.service';
 import { dates, e1 } from '../interfaces/testdata';
 import { UserInterface } from '../interfaces/user-interface';
 import { NotificationService } from '../network/firebase/notification.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -17,12 +17,13 @@ export class LoginPageComponent {
     private auth: AuthenticationService,
     private data: DatabaseService, // temp
     private noti: NotificationService, // temp
-    private router:Router
+    private router:Router,
+    private route:ActivatedRoute
   ) {}
   
   googleSignIn(){
     this.auth.loginGoogle().then(_=>{
-      this.router.navigate(["search"])
+      this.router.navigateByUrl( this.route.snapshot.queryParams['returnUrl'] || '/');
     })
   }
 
