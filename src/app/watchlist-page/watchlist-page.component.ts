@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { EventInterface } from '../interfaces/event-interface';
 import { e1, e2, watchlist } from '../interfaces/testdata';
+import { AuthenticationService } from '../network/firebase/authentication.service';
+import { DatabaseService } from '../network/firebase/database.service';
 
 @Component({
   selector: 'app-watchlist-page',
@@ -10,15 +12,19 @@ import { e1, e2, watchlist } from '../interfaces/testdata';
 })
 export class WatchlistPageComponent {
   events:EventInterface[] = [];
-  constructor(){
-  
+  watchlist:string[] = [];
+  constructor(private authApi:AuthenticationService, private dbApi:DatabaseService){
+    
   }
   ngOnInit(){
-    of(watchlist).subscribe({
-      next:(n:EventInterface[])=>{
-        this.events = n;
+    this.authApi.getCurrentUser().then(
+      u=>{
+        this.dbApi.getWatchlist(u).subscribe(l=>{
+          this.events=l;
+          this.watchlist = l.map(e=>e.id);
+        });
       }
-    })
+    )
   }
   
 
