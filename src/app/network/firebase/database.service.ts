@@ -235,7 +235,8 @@ export class DatabaseService {
           let result: CalanderEvent[] = [];
           data.forEach(cal=>{
             let calEvent = this.dbToCalendarEvent(cal, allUserMap[cal["uid"]]);
-            if (calEvent.start <= group.event.endDate && calEvent.end >= group.event.startDate)
+            if(!group.event.endDate || !group.event.startDate) return;
+            if (calEvent.start <= group.event!.endDate && calEvent.end >= group.event.startDate)
               result.push(calEvent);
           });
           obs.next(result);
@@ -296,9 +297,10 @@ export class DatabaseService {
       location: dbEvent['location'],
       images: dbEvent['images'],
       details: dbEvent['details'],
-      startDate: dbEvent['startDate']?.toDate(),
-      endDate: dbEvent['endDate']?.toDate()
+      startDate: dbEvent['startDate']? new Date(dbEvent['startDate']?.toDate()): undefined,
+      endDate: dbEvent['endDate']? new Date(dbEvent['endDate']?.toDate()): undefined
     }
+    
 
     return event
   }
@@ -314,9 +316,10 @@ export class DatabaseService {
           return;
         } 
         data['saved'].forEach((event: DocumentData)=>{
+          
           watchlist.push(this.dbwatchlistToEvent(event))
         })
-        obs.next(data["saved"]);
+        obs.next(watchlist);
       });
     });
   }
