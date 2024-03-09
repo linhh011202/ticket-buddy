@@ -4,7 +4,6 @@ import { EventInterface } from '../interfaces/event-interface';
 import { PageInterface } from '../interfaces/page-interface';
 import { AuthenticationService } from '../network/firebase/authentication.service';
 import { DatabaseService } from '../network/firebase/database.service';
-import { UserInfo } from '@angular/fire/auth';
 import { UserInterface } from '../interfaces/user-interface';
 
 @Component({
