@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListEventsComponent } from './search-page/list-events/list-events.component';
 import { EventComponentComponent } from './search-page/event-component/event-component.component';
@@ -59,6 +59,7 @@ import { GroupCreateComponent } from './group-page/group-create/group-create.com
         NgbModule,
         NgbCarouselModule,
         FormsModule,
+        ReactiveFormsModule,
         // Firebase
         provideFirebaseApp(() => initializeApp(firebaseConfig)),
         provideAuth(()=>getAuth()),

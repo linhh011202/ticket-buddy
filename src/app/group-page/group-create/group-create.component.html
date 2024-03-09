@@ -1,17 +1,57 @@
 <ng-template #content let-c="close" let-d="dismiss">
 	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
-		<button type="button" class="btn-close" aria-label="Close"></button>
+		<h4 class="modal-title" id="modal-basic-title">New Group</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
 	</div>
 	<div class="modal-body">
-		<p>Hello, World!</p>
+		<form [formGroup]="newGroupForm" (ngSubmit)="createGroup()">
+			<div class="form-group row">
+			  <label class="col-sm-2 col-form-label">Group Name</label>
+			  <div class="col-sm-10">
+				<input  type="text" formControlName="name">
+			  </div>
+			</div>
+			<div class="form-group row">
+				<label  class="col-sm-2 col-form-label">Chooose Event</label>
+				<div class="col-sm-10">
+				<select class="custom-select" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedEvent" (ngModelChange)="updateForm($event)">
+					<option *ngFor="let evt of watchlist" [ngValue]="evt">{{evt.name}}</option>
+					</select>
+				</div>
+			  </div>
+			  
+			<fieldset class="form-group" formGroupName="event">
+				<legend class="row">Event Details</legend>
+				<div disabled class="form-group row">
+					<label for="groupName" class="col-sm-2 col-form-label">Event Name</label>
+					<div class="col-sm-10">
+					  <input class="form-control" type="text" formControlName="name" readonly>
+					</div>
+				  </div>
+				  <div class="form-group row">
+					<label  class="col-sm-2 col-form-label">Event details</label>
+					<div class="col-sm-10">
+					  <input class="form-control" type="text" formControlName="details">
+					</div>
+				  </div>
+				  <div class="form-group row">
+					<label class="col-sm-2 col-form-label">Start Date</label>
+					<div class="col-sm-10">
+					  <input class="form-control" type="datetime-local" formControlName="startDate">
+					</div>
+				  </div>
+				  <div class="form-group row">
+					<label  class="col-sm-2 col-form-label">End Date</label>
+					<div class="col-sm-10">
+					  <input class="form-control" type="datetime-local" formControlName="endDate">
+					</div>
+				  </div>
+			</fieldset>
+		  </form>
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn btn-outline-dark" >Save</button>
+		<button type="submit" class="btn btn-outline-dark" (click)="createGroup()"  [disabled]="!newGroupForm.valid">Save</button>
 	</div>
 </ng-template>
 
 
-<hr />
-
-<pre>{{ closeResult }}</pre>

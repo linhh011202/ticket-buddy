@@ -30,6 +30,10 @@
     </ng-template>
   </li>
 </ul>
-<div class="btn btn-success" (click)="openModalEmitter.emit()">Create Group</div>
-<app-group-create [em] = "openModalEmitter"></app-group-create>
+<div class="d-flex justify-content-center p-2">
+  <div class="btn btn-primary" (click)="openModalEmitter.emit()">Create Group</div>
+</div>
+
 <div [ngbNavOutlet]="nav" class="container p-2"></div>
+
+<app-group-create [em] = "openModalEmitter"></app-group-create>
