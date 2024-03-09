@@ -30,6 +30,7 @@ import { GroupmemberPipePipe } from './group-page/groupmember-pipe.pipe';
 import { NavigationComponent } from './common/navigation/navigation.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { GroupCreateComponent } from './group-page/group-create/group-create.component';
+import { ClassificationComponentComponent } from './search-page/classification-component/classification-component.component';
 
 @NgModule({
     declarations: [
@@ -47,7 +48,8 @@ import { GroupCreateComponent } from './group-page/group-create/group-create.com
         CalanderComponent,
         NavigationComponent,
         LoginPageComponent,
-        GroupCreateComponent
+        GroupCreateComponent,
+        ClassificationComponentComponent
     ],
     providers: [provideAnimations()],
     bootstrap: [AppComponent],

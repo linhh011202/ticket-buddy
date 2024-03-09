@@ -1,0 +1,5 @@
+<div *ngIf="cats.segment.length>0||cats.subGenre.length>0 ||cats.genre.length>0" class=" overflow-x-scroll p-2 mb-2">
+    <div *ngFor="let c of cats.segment" class="d-inline badge badge-secondary mr-2" (click)="onSegment(c)">{{c.name}}</div>
+    <div *ngFor="let c of cats.genre" class="d-inline badge badge-secondary mr-2" (click)="onGenre(c)">{{c.name}}</div>
+    <div *ngFor="let c of cats.subGenre" class="d-inline badge badge-secondary mr-2" (click)="onSubGenre(c)">{{c.name}}</div>
+</div>

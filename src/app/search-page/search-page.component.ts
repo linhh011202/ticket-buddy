@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { TicketmasterService } from '../network/ticketmaster/ticketmaster.service';
 import { EventInterface } from '../interfaces/event-interface';
 import { PageInterface } from '../interfaces/page-interface';
 import { AuthenticationService } from '../network/firebase/authentication.service';
 import { DatabaseService } from '../network/firebase/database.service';
 import { UserInterface } from '../interfaces/user-interface';
+import { ClassType, IdClassType } from '../interfaces/clasification-interface';
 
 @Component({
   selector: 'app-search-page',
@@ -16,11 +17,24 @@ export class SearchPageComponent {
   pageInfo?:PageInterface;
   currentUser?:UserInterface;
   watchlist:string[]= []
+  classInput:string = "";
+  eventInput:string = "";
+  cId:IdClassType[] = []
+  classificationEmitter:EventEmitter<string> = new EventEmitter();
+  pressSearch:EventEmitter<number> = new EventEmitter();
   constructor(private tmApi: TicketmasterService,
     private authApi:AuthenticationService,
     private dbApi:DatabaseService
     ){
     
+  }
+ 
+  onAddClassification(ie:IdClassType){
+    //code here
+    if(this.cId.filter((c)=>c.id==ie.id).length == 0)this.cId.push(ie);
+  }
+  onRemoveClassfication(ie:IdClassType){
+    this.cId = this.cId.filter((c)=>c.id != ie.id);
   }
   ngOnInit(){
     this.getEvents();
@@ -33,17 +47,6 @@ export class SearchPageComponent {
       )
     })  
   }
-  changePage(pgNum:number){
-    
-    this.tmApi.getEvents(pgNum-1).subscribe({
-      next:(n)=>{
-        this.pageInfo = n.page;
-        this.pageInfo!.number+=1;
-        this.loadedEvents = n.events;   
-      }
-    });
-  }
-  
   getEvents(){
     this.tmApi.getEvents().subscribe({
       next:(n)=>{
@@ -57,5 +60,31 @@ export class SearchPageComponent {
       }
     });
   }
+  changePage(pgNum:number){
+    //must retain same query
+    this.tmApi.getEvents().subscribe({
+      next:(n)=>{
+        this.pageInfo = n.page;
+        this.pageInfo!.number+=1;
+        this.loadedEvents = n.events;   
+      }
+    });
+  }
+  searchEvent(){//this one got the queries
+    var query = {
+      segmentId:this.cId.filter((c)=>c.type==ClassType.Segment).map((x)=>x.id), 
+      genreId:this.cId.filter((c)=>c.type==ClassType.Genre).map((x)=>x.id), 
+      subGenreId:this.cId.filter((c)=>c.type==ClassType.Subgenre).map((x)=>x.id)
+      ,keyword:this.eventInput
+    };
+    
+    this.tmApi.getEventsQuery(query).subscribe((x)=>{
+      console.log(x.page);
+      this.pageInfo = x.page;
+      this.pageInfo!.number +=1;
+      this.loadedEvents = x.events;
+    });
+  }
+  
 
 }
