@@ -4,6 +4,12 @@
     <h1 class="d-inline-flex justify-content-center">{{group.name}}</h1><br/>
 </div>
 <div class="d-flex flex-row justify-content-center">
+    <h2 class="d-inline-flex justify-content-center">{{group.event.name}}</h2><br/>
+</div>
+<div class="d-flex flex-row justify-content-center">
+    <h2 class="d-inline-flex justify-content-center">{{group.event.startDate}} - {{group.event.endDate}}</h2><br/>
+</div>
+<div class="d-flex flex-row justify-content-center">
 <p><a class="link-opacity-100" (click)="copyInviteLink()">Invite Link</a></p>
 </div>
 <ng-template [ngIf]="currentUser && currentUser.id == group.admin.id">
@@ -29,9 +35,8 @@
         </div>
     </div>
 </ng-template>
-
 <div class="d-flex flex-row justify-content-center">
-    <app-calander [events]="events" (clickedDate)="evts = $event" [color]="color"></app-calander>
+    <app-calander [events]="events" [dateColor]="dateColor" [navigateTo]="startDate"></app-calander>
 </div>
 
 <div class="row pt-2">

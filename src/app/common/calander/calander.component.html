@@ -1,14 +1,12 @@
 
 
-<ngb-datepicker #dp (dateSelect)="onClickDate($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" />
+<ngb-datepicker #dp (dateSelect)="onClickDate($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [startDate]="navigateTo"/>
 
 <ng-template #t let-date let-focused="focused">
 	<span
 		class="custom-day" placement="bottom" ngbTooltip="Tooltip on bottom"
 		[style.backgroundColor]="setBGColor(date)"
-		
 	>
 		{{ date.day }}
-		
 	</span>
 </ng-template>
