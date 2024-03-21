@@ -7,6 +7,7 @@ import { DatabaseService } from '../network/firebase/database.service';
 import { AuthenticationService } from '../network/firebase/authentication.service';
 import { UserInterface } from '../interfaces/user-interface';
 import { CalanderColor, CalanderType, CalanderTypeColor, CalanderTypePriority } from '../interfaces/enums/calenderenum';
+import { CalendarService } from '../network/firebase/calendar.service';
 
 
 @Component({
@@ -28,12 +29,13 @@ export class PersonalCalenderPageComponent implements OnInit{
   end?:string;
   detail?:string;
   
-  constructor(private dbApi:DatabaseService, private authApi:AuthenticationService){
-
-  }
+  constructor(
+    private authApi:AuthenticationService,
+    private calSvc: CalendarService
+  ){}
   
   deleteEvent(e:CalanderEvent){
-    this.dbApi.removeCalendarEvent(e);
+    this.calSvc.removeCalendarEvent(e);
   }
   createEvent(){
     if(this.currentUser && this.start && this.end && this.detail){
@@ -46,13 +48,13 @@ export class PersonalCalenderPageComponent implements OnInit{
         type:CalanderType.Personal
       };
       console.log("DDDED EVENT");
-      this.dbApi.addCalendarEvent(e);
+      this.calSvc.addCalendarEvent(e);
     }
   }
   ngOnInit(): void {
     this.authApi.getCurrentUser().then((x)=>{
       this.currentUser  = x;
-      this.dbApi.getCalendar(x).subscribe(
+      this.calSvc.getCalendar(x).subscribe(
         (n)=>{
           this.events = n;
           this.events.sort((a,b)=>{//sort by time then sort by calanderType, Booked for event is the highest priority

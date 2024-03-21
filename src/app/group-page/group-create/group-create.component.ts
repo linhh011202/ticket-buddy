@@ -7,6 +7,8 @@ import { EventInterface } from 'src/app/interfaces/event-interface';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 import { AuthenticationService } from 'src/app/network/firebase/authentication.service';
 import { DatabaseService } from 'src/app/network/firebase/database.service';
+import { GroupService } from 'src/app/network/firebase/group.service';
+import { WatchlistService } from 'src/app/network/firebase/watchlist.service';
 
 @Component({
   selector: 'app-group-create',
@@ -35,15 +37,20 @@ export class GroupCreateComponent implements OnInit{
 	});
 	
 	
-	constructor(private formBuilder:FormBuilder, private modalService:NgbModal, private dbApi:DatabaseService,private authApi:AuthenticationService){
-
-	}
+	constructor(
+		private authApi:AuthenticationService,
+		private formBuilder:FormBuilder,
+		private grpSvc: GroupService,
+		private modalService:NgbModal,
+		private watchlistSvc: WatchlistService
+	){}
+	
 	ngOnInit(){
 		this.em.subscribe(()=>this.open());
 		this.authApi.getCurrentUser().then(
 			(u:UserInterface)=>{
 				this.currentUser = u;
-				this.dbApi.getWatchlist(u).subscribe((es:EventInterface[])=>{
+				this.watchlistSvc.getWatchlist(u).subscribe((es:EventInterface[])=>{
 					this.watchlist = es;
 					
 				});
@@ -78,7 +85,7 @@ export class GroupCreateComponent implements OnInit{
 			return;
 		}
 		if(this.currentUser) {
-			this.dbApi.createGroup(grp.name, grp.event as EventInterface, this.currentUser);
+			this.grpSvc.createGroup(grp.name, grp.event as EventInterface, this.currentUser);
 		}
 	}
 	
