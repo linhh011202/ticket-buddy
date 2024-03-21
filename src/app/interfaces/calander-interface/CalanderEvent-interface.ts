@@ -1,5 +1,4 @@
-import { NgbDate } from "@ng-bootstrap/ng-bootstrap/datepicker/ngb-date";
-import { CalanderStatus, CalanderType } from "../enums/calenderenum";
+import { CalanderColor, CalanderType } from "../enums/calenderenum";
 import { UserInterface } from "../user-interface";
 
 export interface CalanderEvent {
@@ -11,3 +10,7 @@ export interface CalanderEvent {
     type: CalanderType
 }
 
+export interface CalanderEventColor{
+    event:CalanderEvent,
+    bgColor:CalanderColor
+}

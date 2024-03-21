@@ -5,34 +5,30 @@
     <button ngbNavLink>Groups</button>
     <ng-template ngbNavContent>
       <div class="d-flex flex-row justify-content-center">
-
         <div class="p-2">
           <input type="text" class="form-control" placeholder="Enter groupID"  [(ngModel)]="groupID">
         </div>
         <div class="p-2">
             <button class="btn btn-success"(click)="joinGroup()">JOIN</button>
         </div>
-    
-    </div>
-
+      </div>
+      <div class="d-flex justify-content-center p-2">
+        <div class="btn btn-primary" (click)="openModalEmitter.emit()">Create Group</div>
+      </div>
       <h5>Admin</h5>
       <app-group-list *ngIf="!!currentUser" (groupClicked)="choseGroup($event)" [groups]="groups|grouppipe:currentUser:true"></app-group-list>
       <h5>Member</h5>
       <app-group-list *ngIf="!!currentUser" (groupClicked)="choseGroup($event)" [groups]="groups|grouppipe:currentUser:false"></app-group-list>
-
     </ng-template>
   </li>
   <li [ngbNavItem]="2" *ngIf="chosen">
     <button ngbNavLink >{{chosen.name}}</button>
     <ng-template ngbNavContent>
       <app-group-detail [group]="chosen"></app-group-detail>
-
     </ng-template>
   </li>
 </ul>
-<div class="d-flex justify-content-center p-2">
-  <div class="btn btn-primary" (click)="openModalEmitter.emit()">Create Group</div>
-</div>
+
 
 <div [ngbNavOutlet]="nav" class="container p-2"></div>
 
