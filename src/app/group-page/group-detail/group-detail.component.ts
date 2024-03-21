@@ -1,17 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
-
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { CalanderEvent } from 'src/app/interfaces/calander-interface/CalanderEvent-interface';
-
 import { GroupInterface } from 'src/app/interfaces/group-interface';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 import { AuthenticationService } from 'src/app/network/firebase/authentication.service';
-import { DatabaseService } from 'src/app/network/firebase/database.service';
 import {Clipboard} from '@angular/cdk/clipboard';
 import { PlatformLocation } from '@angular/common';
-import { CalanderColor, CalanderTypeColor, CalanderTypePriority } from 'src/app/interfaces/enums/calenderenum';
+import { CalanderColor, CalanderTypePriority } from 'src/app/interfaces/enums/calenderenum';
 import { GroupService } from 'src/app/network/firebase/group.service';
 import { CalendarService } from 'src/app/network/firebase/calendar.service';
+
 @Component({
   selector: 'app-group-detail',
   templateUrl: './group-detail.component.html',

@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { EventInterface } from '../interfaces/event-interface';
-import { e1, e2, watchlist } from '../interfaces/testdata';
 import { AuthenticationService } from '../network/firebase/authentication.service';
-import { DatabaseService } from '../network/firebase/database.service';
 import { WatchlistService } from '../network/firebase/watchlist.service';
 
 @Component({

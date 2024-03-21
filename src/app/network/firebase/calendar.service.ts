@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { UserInterface } from 'src/app/interfaces/user-interface';
-
 import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData, updateDoc, arrayUnion, arrayRemove, and, deleteDoc, setDoc} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { CalanderEvent } from 'src/app/interfaces/calander-interface/CalanderEvent-interface';

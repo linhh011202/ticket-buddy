@@ -1,12 +1,9 @@
-import { JsonPipe } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, TemplateRef, ViewChild, inject } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { ModalDismissReasons, NgbActiveModal, NgbModal, NgbModalConfig, NgbNav } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
+import { Component, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { NgbModal, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { EventInterface } from 'src/app/interfaces/event-interface';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 import { AuthenticationService } from 'src/app/network/firebase/authentication.service';
-import { DatabaseService } from 'src/app/network/firebase/database.service';
 import { GroupService } from 'src/app/network/firebase/group.service';
 import { WatchlistService } from 'src/app/network/firebase/watchlist.service';
 

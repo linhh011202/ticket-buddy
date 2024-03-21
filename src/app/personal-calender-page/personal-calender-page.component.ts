@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { CalanderEvent } from '../interfaces/calander-interface/CalanderEvent-interface';
 
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { DatabaseService } from '../network/firebase/database.service';
 import { AuthenticationService } from '../network/firebase/authentication.service';
 import { UserInterface } from '../interfaces/user-interface';
 import { CalanderColor, CalanderType, CalanderTypeColor, CalanderTypePriority } from '../interfaces/enums/calenderenum';

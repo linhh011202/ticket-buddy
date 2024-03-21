@@ -1,10 +1,9 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { GroupInterface } from '../interfaces/group-interface';
 import { NgbModal, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { UserInterface } from '../interfaces/user-interface';
 import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../network/firebase/authentication.service';
-import { DatabaseService } from '../network/firebase/database.service';
 import { GroupService } from '../network/firebase/group.service';
 
 @Component({
@@ -22,7 +21,7 @@ export class GroupPageComponent implements OnInit, AfterViewInit{
   currentUser?:UserInterface;
   groupID:string ="";
   groups:GroupInterface[] = [];
-  
+
   constructor(
     private authApi:AuthenticationService,
     private grpSvc: GroupService,

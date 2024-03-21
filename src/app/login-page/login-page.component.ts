@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../network/firebase/authentication.service';
-import { DatabaseService } from '../network/firebase/database.service';
-import { dates, e1 } from '../interfaces/testdata';
-import { UserInterface } from '../interfaces/user-interface';
-import { NotificationService } from '../network/firebase/notification.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

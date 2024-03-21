@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable, debounce, debounceTime, switchMap } from 'rxjs';
+import { debounceTime, switchMap } from 'rxjs';
 import { ClassType, ClassificationInterface, IdClassType, IdName } from 'src/app/interfaces/clasification-interface';
 import { TicketmasterService } from 'src/app/network/ticketmaster/ticketmaster.service';
 

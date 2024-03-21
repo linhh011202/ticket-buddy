@@ -3,7 +3,6 @@ import { TicketmasterService } from '../network/ticketmaster/ticketmaster.servic
 import { EventInterface } from '../interfaces/event-interface';
 import { PageInterface } from '../interfaces/page-interface';
 import { AuthenticationService } from '../network/firebase/authentication.service';
-import { DatabaseService } from '../network/firebase/database.service';
 import { UserInterface } from '../interfaces/user-interface';
 import { ClassType, IdClassType } from '../interfaces/clasification-interface';
 import { WatchlistService } from '../network/firebase/watchlist.service';
