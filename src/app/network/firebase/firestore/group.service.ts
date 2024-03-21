@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { EventInterface } from 'src/app/interfaces/event-interface';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 
-import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData, updateDoc, arrayUnion, arrayRemove, deleteDoc} from '@angular/fire/firestore';
+import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData, updateDoc, arrayUnion, arrayRemove, deleteDoc, FirestoreError} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { GroupInterface } from 'src/app/interfaces/group-interface';
 import { NotificationService } from './notification.service';
@@ -62,11 +62,14 @@ export class GroupService {
       allUUID: [admin.id]
     }
 
-    return new Promise<void>(res=>{
+    return new Promise<void>((res,rej)=>{
       addDoc(grpCollection, groupDoc).then((docRef: DocumentReference)=>{
         
         res();
-      });
+      }).catch(err =>{
+        if (err.code === "permission-denied")
+          rej("group-name-taken");
+      })
     })
   }
 

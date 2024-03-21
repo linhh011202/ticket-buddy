@@ -82,7 +82,13 @@ export class GroupCreateComponent implements OnInit{
 			return;
 		}
 		if(this.currentUser) {
-			this.grpSvc.createGroup(grp.name, grp.event as EventInterface, this.currentUser);
+			this.grpSvc.createGroup(grp.name, grp.event as EventInterface, this.currentUser).then(_=>{
+				// group creation success.
+			}).catch(err=>{
+				if (err==="group-name-taken"){
+					// group name taken.
+				}
+			})
 		}
 	}
 	
