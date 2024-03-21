@@ -1,5 +1,5 @@
 import { CanActivateFn, Router } from '@angular/router';
-import { AuthenticationService } from '../network/firebase/authentication.service';
+import { AuthenticationService } from '../network/firebase/authentication/authentication.service';
 import { inject } from '@angular/core';
 import {tap } from 'rxjs';
 //https://angular.io/api/router/CanActivateFn

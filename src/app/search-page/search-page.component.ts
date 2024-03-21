@@ -2,10 +2,10 @@ import { Component, EventEmitter } from '@angular/core';
 import { TicketmasterService } from '../network/ticketmaster/ticketmaster.service';
 import { EventInterface } from '../interfaces/event-interface';
 import { PageInterface } from '../interfaces/page-interface';
-import { AuthenticationService } from '../network/firebase/authentication.service';
+import { AuthenticationService } from '../network/firebase/authentication/authentication.service';
 import { UserInterface } from '../interfaces/user-interface';
 import { ClassType, IdClassType } from '../interfaces/clasification-interface';
-import { WatchlistService } from '../network/firebase/watchlist.service';
+import { WatchlistService } from '../network/firebase/firestore/watchlist.service';
 
 @Component({
   selector: 'app-search-page',

@@ -3,9 +3,9 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { NgbModal, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { EventInterface } from 'src/app/interfaces/event-interface';
 import { UserInterface } from 'src/app/interfaces/user-interface';
-import { AuthenticationService } from 'src/app/network/firebase/authentication.service';
-import { GroupService } from 'src/app/network/firebase/group.service';
-import { WatchlistService } from 'src/app/network/firebase/watchlist.service';
+import { AuthenticationService } from 'src/app/network/firebase/authentication/authentication.service';
+import { GroupService } from 'src/app/network/firebase/firestore/group.service';
+import { WatchlistService } from 'src/app/network/firebase/firestore/watchlist.service';
 
 @Component({
   selector: 'app-group-create',

@@ -3,12 +3,12 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { CalanderEvent } from 'src/app/interfaces/calander-interface/CalanderEvent-interface';
 import { GroupInterface } from 'src/app/interfaces/group-interface';
 import { UserInterface } from 'src/app/interfaces/user-interface';
-import { AuthenticationService } from 'src/app/network/firebase/authentication.service';
+import { AuthenticationService } from 'src/app/network/firebase/authentication/authentication.service';
 import {Clipboard} from '@angular/cdk/clipboard';
 import { PlatformLocation } from '@angular/common';
 import { CalanderColor, CalanderTypePriority } from 'src/app/interfaces/enums/calenderenum';
-import { GroupService } from 'src/app/network/firebase/group.service';
-import { CalendarService } from 'src/app/network/firebase/calendar.service';
+import { GroupService } from 'src/app/network/firebase/firestore/group.service';
+import { CalendarService } from 'src/app/network/firebase/firestore/calendar.service';
 
 @Component({
   selector: 'app-group-detail',

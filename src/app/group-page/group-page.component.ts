@@ -3,8 +3,8 @@ import { GroupInterface } from '../interfaces/group-interface';
 import { NgbModal, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { UserInterface } from '../interfaces/user-interface';
 import { ActivatedRoute } from '@angular/router';
-import { AuthenticationService } from '../network/firebase/authentication.service';
-import { GroupService } from '../network/firebase/group.service';
+import { AuthenticationService } from '../network/firebase/authentication/authentication.service';
+import { GroupService } from '../network/firebase/firestore/group.service';
 
 @Component({
   selector: 'app-group-page',

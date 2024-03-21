@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { EventInterface } from '../../interfaces/event-interface';
-import { AuthenticationService } from 'src/app/network/firebase/authentication.service';
-import { WatchlistService } from 'src/app/network/firebase/watchlist.service';
+import { AuthenticationService } from 'src/app/network/firebase/authentication/authentication.service';
+import { WatchlistService } from 'src/app/network/firebase/firestore/watchlist.service';
 
 @Component({
   selector: 'app-event-component',
