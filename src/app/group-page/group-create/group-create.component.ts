@@ -2,10 +2,8 @@ import { Component, EventEmitter, Input, OnInit, ViewChild } from '@angular/core
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { NgbModal, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { EventInterface } from 'src/app/interfaces/event-interface';
-import { UserInterface } from 'src/app/interfaces/user-interface';
-import { AuthenticationService } from 'src/app/network/firebase/authentication/authentication.service';
-import { GroupService } from 'src/app/network/firebase/firestore/group.service';
-import { WatchlistService } from 'src/app/network/firebase/firestore/watchlist.service';
+import { GroupFacade } from 'src/app/.Facade/GroupFacade';
+
 
 @Component({
   selector: 'app-group-create',
@@ -17,79 +15,47 @@ export class GroupCreateComponent implements OnInit{
 	@ViewChild('content') private content:NgbModal | undefined; 
 		closeResult = '';
 	@Input() em!:EventEmitter<void>;
-	watchlist:EventInterface[] = [];
-	currentUser?:UserInterface;
+
+
 	selectedEvent?:EventInterface;
-	newGroupForm = this.formBuilder.group({
-		name:['rrr', Validators.required],
-		event:this.formBuilder.group({
-			id:["",Validators.required],
-			location:this.formBuilder.array([]),
-			images:this.formBuilder.array([]),
-			name:['rrr', Validators.required],
-			details:new FormControl(""),
-			startDate:new FormControl("", Validators.required),
-			endDate:new FormControl("", Validators.required)
-		})
-	});
+	
 	
 	
 	constructor(
-		private authApi:AuthenticationService,
-		private formBuilder:FormBuilder,
-		private grpSvc: GroupService,
+
+		
+
 		private modalService:NgbModal,
-		private watchlistSvc: WatchlistService
+		public grp: GroupFacade
 	){}
 	
 	ngOnInit(){
 		this.em.subscribe(()=>this.open());
-		this.authApi.getCurrentUser().then(
-			(u:UserInterface)=>{
-				this.currentUser = u;
-				this.watchlistSvc.getWatchlist(u).subscribe((es:EventInterface[])=>{
-					this.watchlist = es;
-					
-				});
-			}
-		)
 	}
+
+	createGroup(){
+		this.grp.createGroup().then(_=>{
+			console.log("group create success");
+		}).catch(err=>{
+			if (err.message === "user-not-signed-in")
+				console.log("user not signed in");
+			else if (err.message === "group-name-taken")
+				console.log("group name taken");
+			else if (err.message === "group-date-incompatible")
+				console.log("group date invalid");
+			else
+				console.log(err);
+		})
+	}
+
+
 	open() {
 		this.modalService.open(this.content,{centered:true, fullscreen:true});
 	}
-	updateForm(evt:EventInterface){
-		
-		
-		var n:any = structuredClone(evt);
 
-		if(evt.startDate) n.startDate = evt.startDate.toISOString().slice(0,-8);
-		if(evt.endDate) n.startDate = evt.endDate.toISOString().slice(0,-8);
-		
-		this.newGroupForm.patchValue(
-		{
-			event:n
-		});
-	}
 	close(){
 		this.modalService.dismissAll();
 	}
-	createGroup(){
-		var grp:any = this.newGroupForm.value;
-		grp.event.startDate = new Date(grp.event.startDate);
-		grp.event.endDate = new Date(grp.event.endDate);
-		if(grp.event.startDate>=grp.event.endDate){
-			console.log("GOT ERROR");
-			return;
-		}
-		if(this.currentUser) {
-			this.grpSvc.createGroup(grp.name, grp.event as EventInterface, this.currentUser).then(_=>{
-				// group creation success.
-			}).catch(err=>{
-				if (err==="group-name-taken"){
-					// group name taken.
-				}
-			})
-		}
-	}
+	
 	
 }

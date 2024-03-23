@@ -4,7 +4,7 @@
 		<button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
 	</div>
 	<div class="modal-body">
-		<form [formGroup]="newGroupForm" (ngSubmit)="createGroup()">
+		<form [formGroup]="grp.newGroupForm" (ngSubmit)="createGroup()">
 			<div class="form-group row">
 			  <label class="col-sm-2 col-form-label">Group Name</label>
 			  <div class="col-sm-10">
@@ -14,8 +14,8 @@
 			<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">Chooose Event</label>
 				<div class="col-sm-10">
-				<select class="custom-select" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedEvent" (ngModelChange)="updateForm($event)">
-					<option *ngFor="let evt of watchlist" [ngValue]="evt">{{evt.name}}</option>
+				<select class="custom-select" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedEvent" (ngModelChange)="grp.updateForm($event)">
+					<option *ngFor="let evt of (grp.watchlist$|async)!" [ngValue]="evt">{{evt.name}}</option>
 					</select>
 				</div>
 			  </div>
@@ -50,7 +50,7 @@
 		  </form>
 	</div>
 	<div class="modal-footer">
-		<button type="submit" class="btn btn-outline-dark" (click)="createGroup()"  [disabled]="!newGroupForm.valid">Save</button>
+		<button type="submit" class="btn btn-outline-dark" (click)="createGroup()"  [disabled]="!grp.newGroupForm.valid">Save</button>
 	</div>
 </ng-template>
 
