@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { debounceTime, switchMap } from 'rxjs';
-import { SearchFacadeService } from 'src/app/.Facade/search-facade.service';
+import { SearchFacadeService } from 'src/app/facade/search-facade.service';
 import { ClassType, ClassificationInterface, IdClassType, IdName } from 'src/app/interfaces/clasification-interface';
 import { TicketmasterService } from 'src/app/network/ticketmaster/ticketmaster.service';
 

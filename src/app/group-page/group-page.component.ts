@@ -3,7 +3,7 @@ import { GroupInterface } from '../interfaces/group-interface';
 import { NgbModal, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { UserInterface } from '../interfaces/user-interface';
 import { ActivatedRoute } from '@angular/router';
-import { ViewGroupFacade } from '../.Facade/ViewGroupFacade';
+import { ViewGroupFacade } from '../facade/ViewGroupFacade';
 
 @Component({
   selector: 'app-group-page',
@@ -49,7 +49,7 @@ export class GroupPageComponent implements OnInit, AfterViewInit{
       if (id){
         this.grp.getGrpById(id).subscribe({
           next: (group) => this.choseGroup(group),
-          error: (err) => console.log("test")
+          error: (err) => console.log(err)
         })
       }
     });

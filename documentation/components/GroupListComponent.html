@@ -195,6 +195,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
                                 <a href="#onClick" >onClick</a>
                             </li>
                         </ul>
@@ -297,6 +300,43 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="16"
+                                    class="link-to-prism">src/app/group-page/group-list/group-list.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="onClick"></a>
                     <span class="name">
                         <span ><b>onClick</b></span>
@@ -379,6 +419,11 @@ export class GroupListComponent {
   @Output() groupClicked &#x3D; new EventEmitter&lt;GroupInterface&gt;();
   onClick(group:GroupInterface){
     this.groupClicked.emit(group);
+  }
+
+  ngOnInit(){
+    console.log(&quot;dasdas&quot;)
+    console.log(this.groups);
   }
 }
 </code></pre>

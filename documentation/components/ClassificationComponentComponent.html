@@ -200,7 +200,8 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#cats" >cats</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#searchFacade" >searchFacade</a>
                             </li>
                         </ul>
                     </td>
@@ -218,7 +219,13 @@
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
+                                <a href="#onAddClassification" >onAddClassification</a>
+                            </li>
+                            <li>
                                 <a href="#onGenre" >onGenre</a>
+                            </li>
+                            <li>
+                                <a href="#onRemoveClassfication" >onRemoveClassfication</a>
                             </li>
                             <li>
                                 <a href="#onSegment" >onSegment</a>
@@ -245,20 +252,6 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Outputs</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#addClassification" >addClassification</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
 
@@ -272,12 +265,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(tmApi: <a href="../injectables/TicketmasterService.html" target="_self">TicketmasterService</a>)</code>
+<code>constructor(searchFacade: <a href="../injectables/SearchFacadeService.html" target="_self">SearchFacadeService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/search-page/classification-component/classification-component.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/search-page/classification-component/classification-component.component.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -295,10 +288,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>tmApi</td>
+                                                        <td>searchFacade</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/TicketmasterService.html" target="_self" >TicketmasterService</a></code>
+                                                                        <code><a href="../injectables/SearchFacadeService.html" target="_self" >SearchFacadeService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -338,36 +331,13 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/search-page/classification-component/classification-component.component.ts:12</a></div>
-                            </td>
-                        </tr>
-            </tbody>
-        </table>
-</section>
-    <section data-compodoc="block-outputs">
-    <h3 id="outputs">Outputs</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="addClassification"></a>
-                        <b>addClassification</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/IdClassType.html" target="_self" >EventEmitter&lt;IdClassType&gt;</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/search-page/classification-component/classification-component.component.ts:13</a></div>
                             </td>
                         </tr>
             </tbody>
         </table>
 </section>
+
 
 
     <section data-compodoc="block-methods">
@@ -395,8 +365,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="18"
-                                    class="link-to-prism">src/app/search-page/classification-component/classification-component.component.ts:18</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="19"
+                                    class="link-to-prism">src/app/search-page/classification-component/classification-component.component.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -408,6 +378,73 @@
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onAddClassification"></a>
+                    <span class="name">
+                        <span ><b>onAddClassification</b></span>
+                        <a href="#onAddClassification"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onAddClassification(ie: <a href="../interfaces/IdClassType.html" target="_self">IdClassType</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/app/search-page/classification-component/classification-component.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ie</td>
+                                            <td>
+                                                            <code><a href="../interfaces/IdClassType.html" target="_self" >IdClassType</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -432,8 +469,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="31"
-                                    class="link-to-prism">src/app/search-page/classification-component/classification-component.component.ts:31</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/app/search-page/classification-component/classification-component.component.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -483,6 +520,73 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="onRemoveClassfication"></a>
+                    <span class="name">
+                        <span ><b>onRemoveClassfication</b></span>
+                        <a href="#onRemoveClassfication"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onRemoveClassfication(ie: <a href="../interfaces/IdClassType.html" target="_self">IdClassType</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="39"
+                                    class="link-to-prism">src/app/search-page/classification-component/classification-component.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ie</td>
+                                            <td>
+                                                            <code><a href="../interfaces/IdClassType.html" target="_self" >IdClassType</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="onSegment"></a>
                     <span class="name">
                         <span ><b>onSegment</b></span>
@@ -499,8 +603,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/app/search-page/classification-component/classification-component.component.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="26"
+                                    class="link-to-prism">src/app/search-page/classification-component/classification-component.component.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -566,8 +670,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="34"
-                                    class="link-to-prism">src/app/search-page/classification-component/classification-component.component.ts:34</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/app/search-page/classification-component/classification-component.component.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -623,27 +727,23 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="cats"></a>
+                    <a name="searchFacade"></a>
                     <span class="name">
-                        <span ><b>cats</b></span>
-                        <a href="#cats"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Public</span>
+                        <span ><b>searchFacade</b></span>
+                        <a href="#searchFacade"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/ClassificationInterface.html" target="_self" >ClassificationInterface</a></code>
+                        <i>Type : </i>        <code><a href="../injectables/SearchFacadeService.html" target="_self" >SearchFacadeService</a></code>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>{segment:[], genre:[], subGenre:[]}</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/search-page/classification-component/classification-component.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/search-page/classification-component/classification-component.component.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -658,6 +758,7 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, OnInit, Output } from &#x27;@angular/core&#x27;;
 import { debounceTime, switchMap } from &#x27;rxjs&#x27;;
+import { SearchFacadeService } from &#x27;src/app/facade/search-facade.service&#x27;;
 import { ClassType, ClassificationInterface, IdClassType, IdName } from &#x27;src/app/interfaces/clasification-interface&#x27;;
 import { TicketmasterService } from &#x27;src/app/network/ticketmaster/ticketmaster.service&#x27;;
 
@@ -668,29 +769,34 @@ import { TicketmasterService } from &#x27;src/app/network/ticketmaster/ticketmas
 })
 export class ClassificationComponentComponent implements OnInit{
   @Input() classification:EventEmitter&lt;string&gt; &#x3D; new EventEmitter();
-  @Output() addClassification:EventEmitter&lt;IdClassType&gt; &#x3D; new EventEmitter();
-  cats:ClassificationInterface &#x3D; {segment:[], genre:[], subGenre:[]};
-  constructor(private tmApi:TicketmasterService){
+  
+  
+  constructor(public searchFacade:SearchFacadeService){
     
   }
   ngOnInit(){
     this.classification.pipe(
       debounceTime(500),
-      switchMap((x:string)&#x3D;&gt;{
-        return this.tmApi.getClassification(x);
-      })
-    ).subscribe((x)&#x3D;&gt;{
-      this.cats &#x3D; x;
-    });
+      switchMap((x:string)&#x3D;&gt; this.searchFacade.getClassification(x)
+      )
+    ).subscribe();
   }
   onSegment(e:IdName){
-    this.addClassification.emit({id:e.id, name:e.name, type:ClassType.Segment});
+    this.onAddClassification({id:e.id, name:e.name, type:ClassType.Segment});
   }
   onGenre(e:IdName){
-    this.addClassification.emit({id:e.id, name:e.name,type:ClassType.Genre});
+    this.onAddClassification({id:e.id, name:e.name,type:ClassType.Genre});
   }
   onSubGenre(e:IdName){
-    this.addClassification.emit({id:e.id, name:e.name,type:ClassType.Subgenre});
+    this.onAddClassification({id:e.id, name:e.name,type:ClassType.Subgenre});
+  }
+  onAddClassification(ie:IdClassType){
+    //code here
+    this.searchFacade.addClassification(ie);
+  }
+  onRemoveClassfication(ie:IdClassType){
+    console.log(&quot;REMOE INGHS&quot;);
+    this.searchFacade.removeClassification(ie);
   }
 
 }
@@ -698,10 +804,16 @@ export class ClassificationComponentComponent implements OnInit{
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;cats.segment.length&gt;0||cats.subGenre.length&gt;0 ||cats.genre.length&gt;0&quot; class&#x3D;&quot; overflow-x-scroll p-2 mb-2&quot;&gt;
-    &lt;div *ngFor&#x3D;&quot;let c of cats.segment&quot; class&#x3D;&quot;d-inline badge badge-secondary mr-2&quot; (click)&#x3D;&quot;onSegment(c)&quot;&gt;{{c.name}}&lt;/div&gt;
-    &lt;div *ngFor&#x3D;&quot;let c of cats.genre&quot; class&#x3D;&quot;d-inline badge badge-secondary mr-2&quot; (click)&#x3D;&quot;onGenre(c)&quot;&gt;{{c.name}}&lt;/div&gt;
-    &lt;div *ngFor&#x3D;&quot;let c of cats.subGenre&quot; class&#x3D;&quot;d-inline badge badge-secondary mr-2&quot; (click)&#x3D;&quot;onSubGenre(c)&quot;&gt;{{c.name}}&lt;/div&gt;
+        <pre class="line-numbers"><code class="language-html">
+
+&lt;div  class&#x3D;&quot; overflow-x-scroll p-2 mb-2&quot;&gt;
+    &lt;div *ngFor&#x3D;&quot;let c of (searchFacade.cat$|async)!.segment&quot; class&#x3D;&quot;d-inline badge badge-secondary mr-2&quot; (click)&#x3D;&quot;onSegment(c)&quot;&gt;{{c.name}}&lt;/div&gt;
+    &lt;div *ngFor&#x3D;&quot;let c of (searchFacade.cat$|async)!.genre&quot; class&#x3D;&quot;d-inline badge badge-secondary mr-2&quot; (click)&#x3D;&quot;onGenre(c)&quot;&gt;{{c.name}}&lt;/div&gt;
+    &lt;div *ngFor&#x3D;&quot;let c of (searchFacade.cat$|async)!.subGenre&quot; class&#x3D;&quot;d-inline badge badge-secondary mr-2&quot; (click)&#x3D;&quot;onSubGenre(c)&quot;&gt;{{c.name}}&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div  class&#x3D;&quot; overflow-x-scroll p-2 mb-2&quot;&gt;
+    &lt;div *ngFor&#x3D;&quot;let c of (searchFacade.cid$|async)&quot; class&#x3D;&quot;d-inline badge badge-success mr-2&quot; (click)&#x3D;&quot;onRemoveClassfication(c)&quot;&gt;{{c.name}}&lt;/div&gt;
 &lt;/div&gt;</code></pre>
     </div>
 
@@ -737,7 +849,7 @@ export class ClassificationComponentComponent implements OnInit{
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div *ngIf="cats.segment.length>0||cats.subGenre.length>0 ||cats.genre.length>0" class=" overflow-x-scroll p-2 mb-2">    <div *ngFor="let c of cats.segment" class="d-inline badge badge-secondary mr-2" (click)="onSegment(c)">{{c.name}}</div>    <div *ngFor="let c of cats.genre" class="d-inline badge badge-secondary mr-2" (click)="onGenre(c)">{{c.name}}</div>    <div *ngFor="let c of cats.subGenre" class="d-inline badge badge-secondary mr-2" (click)="onSubGenre(c)">{{c.name}}</div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div  class=" overflow-x-scroll p-2 mb-2">    <div *ngFor="let c of (searchFacade.cat$|async)!.segment" class="d-inline badge badge-secondary mr-2" (click)="onSegment(c)">{{c.name}}</div>    <div *ngFor="let c of (searchFacade.cat$|async)!.genre" class="d-inline badge badge-secondary mr-2" (click)="onGenre(c)">{{c.name}}</div>    <div *ngFor="let c of (searchFacade.cat$|async)!.subGenre" class="d-inline badge badge-secondary mr-2" (click)="onSubGenre(c)">{{c.name}}</div></div><div  class=" overflow-x-scroll p-2 mb-2">    <div *ngFor="let c of (searchFacade.cid$|async)" class="d-inline badge badge-success mr-2" (click)="onRemoveClassfication(c)">{{c.name}}</div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalanderComponent', 'selector': 'app-calander'},{'name': 'ClassificationComponentComponent', 'selector': 'app-classification-component'},{'name': 'EventComponentComponent', 'selector': 'app-event-component'},{'name': 'GroupCreateComponent', 'selector': 'app-group-create'},{'name': 'GroupDetailComponent', 'selector': 'app-group-detail'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupPageComponent', 'selector': 'app-group-page'},{'name': 'ListEventsComponent', 'selector': 'app-list-events'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'PersonalCalenderPageComponent', 'selector': 'app-personal-calender-page'},{'name': 'SearchPageComponent', 'selector': 'app-search-page'},{'name': 'WatchlistPageComponent', 'selector': 'app-watchlist-page'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ClassificationComponentComponent'};

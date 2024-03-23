@@ -7,7 +7,7 @@ import { CalanderColor, CalanderType, CalanderTypeColor, CalanderTypePriority } 
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject, Subject } from 'rxjs';
 
-import { NewCalendarEvent } from "../.Class/NewCalendarEvent"
+import { NewCalendarEvent } from "../class/NewCalendarEvent"
 
 
 @Injectable({
