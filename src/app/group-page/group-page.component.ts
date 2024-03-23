@@ -3,8 +3,7 @@ import { GroupInterface } from '../interfaces/group-interface';
 import { NgbModal, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { UserInterface } from '../interfaces/user-interface';
 import { ActivatedRoute } from '@angular/router';
-import { AuthenticationService } from '../network/firebase/authentication/authentication.service';
-import { GroupService } from '../network/firebase/firestore/group.service';
+import { ViewGroupFacade } from '../.Facade/ViewGroupFacade';
 
 @Component({
   selector: 'app-group-page',
@@ -20,40 +19,42 @@ export class GroupPageComponent implements OnInit, AfterViewInit{
   chosen:GroupInterface | undefined;
   currentUser?:UserInterface;
   groupID:string ="";
-  groups:GroupInterface[] = [];
+
 
   constructor(
-    private authApi:AuthenticationService,
-    private grpSvc: GroupService,
+    public grp: ViewGroupFacade,
     private route:ActivatedRoute, 
   ){}
 
   ngOnInit(): void {
-    this.authApi.getCurrentUser().then(x=>{
-      this.currentUser=x;
-      this.grpSvc.getGroups(x).subscribe(y=>{
-        this.groups = y;
-      });
-    });
-    
+
   }
   
   joinGroup(){
-    if(this.currentUser)this.grpSvc.joinGroup(this.groupID,this.currentUser);
+    this.grp.joinGroup(this.groupID);
   }
   ngAfterViewInit(): void {
     this.route.paramMap.subscribe(params=>{
       var id:string|null;
       id =  params.get('id');
       //should get the info here from firebase
-      if(id) this.grpSvc.getGroupById(id).subscribe({next:(x)=>{
-        this.chosen = x;
-        this.navStuff?.select(2);
-      },
-      error:(e)=>{
-        console.log("ERROR HERE:", e);
-      }});
+      // if(id) this.grp.get.getGroupById(id).subscribe({next:(x)=>{
+      //   this.chosen = x;
+      //   this.navStuff?.select(2);
+      // },
+      // error:(e)=>{
+      //   console.log("ERROR HERE:", e);
+      // }});
+
+      if (id){
+        this.grp.getGrpById(id).subscribe({
+          next: (group) => this.choseGroup(group),
+          error: (err) => console.log("test")
+        })
+      }
     });
+
+
   }
   choseGroup(group:GroupInterface){
     this.chosen = group;

@@ -12,4 +12,9 @@ export class GroupListComponent {
   onClick(group:GroupInterface){
     this.groupClicked.emit(group);
   }
+
+  ngOnInit(){
+    console.log("dasdas")
+    console.log(this.groups);
+  }
 }

@@ -1,18 +1,18 @@
 
 
 <div class="d-flex flex-row justify-content-center">
-    <h1 class="d-inline-flex justify-content-center">{{group.name}}</h1><br/>
+    <h1 class="d-inline-flex justify-content-center">{{grp.group$.value?.name}}</h1><br/>
 </div>
 <div class="d-flex flex-row justify-content-center">
-    <h2 class="d-inline-flex justify-content-center">{{group.event.name}}</h2><br/>
+    <h2 class="d-inline-flex justify-content-center">{{grp.group$.value?.event?.name}}</h2><br/>
 </div>
 <div class="d-flex flex-row justify-content-center">
-    <h2 class="d-inline-flex justify-content-center">{{group.event.startDate}} - {{group.event.endDate}}</h2><br/>
+    <h2 class="d-inline-flex justify-content-center">{{grp.group$.value?.event?.startDate}} - {{grp.group$.value?.event?.endDate}}</h2><br/>
 </div>
 <div class="d-flex flex-row justify-content-center">
-<p><a class="link-opacity-100" (click)="copyInviteLink()">Invite Link</a></p>
+<p><a class="link-opacity-100 invite" (click)="copyInviteLink()">Invite Link</a></p>
 </div>
-<ng-template [ngIf]="currentUser && currentUser.id == group.admin.id">
+<ng-template [ngIf]="grp.currentUser && grp.currentUser.id == grp.group$.value?.admin?.id">
     <div class="container p-2">
         <div class="d-flex flex-row justify-content-center">
             <table class="table">
@@ -23,7 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr  *ngFor="let m of group.members">
+                    <tr  *ngFor="let m of grp.group$.value!.members">
                         <td>{{ m.name }} </td>
                         <td><button type="button" class="btn btn-danger" (click)="kickUser(m)">Kick</button></td>
                     </tr>      
@@ -36,7 +36,7 @@
     </div>
 </ng-template>
 <div class="d-flex flex-row justify-content-center">
-    <app-calander [events]="events" [dateColor]="dateColor" [navigateTo]="startDate"></app-calander>
+    <app-calander [events]="(grp.groupCalendar$|async)!" [dateColor]="(grp.dateColor$|async)!" [navigateTo]="grp.getStartDate(grp.group$.value?.event?.startDate)"></app-calander>
 </div>
 
 <div class="row pt-2">
@@ -50,7 +50,7 @@
             </tr>
         </thead>
         <tbody>
-           <tr *ngFor="let e of evts">
+           <tr *ngFor="let e of grp.groupCalendar$|async">
                 <td>{{e.user.name}}</td>
                 <td>{{e.detail}}</td>
                 <td>{{e.start}}</td>
@@ -60,7 +60,7 @@
         </tbody>
     </table>
 </div>
-<ng-template [ngIf]="currentUser && !group.allUUID.includes(currentUser.id)">
+<ng-template [ngIf]="grp.currentUser && !(grp.group$|async)?.allUUID?.includes(grp.currentUser.id)">
 <div class="d-flex flex-row justify-content-center">
     <div class="btn btn-success" (click)="joinGroup()">JOIN GROUP</div>
 </div>
