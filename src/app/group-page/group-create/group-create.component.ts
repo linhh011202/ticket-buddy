@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { NgbModal, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { EventInterface } from 'src/app/interfaces/event-interface';
-import { GroupFacade } from 'src/app/.Facade/GroupFacade';
+import { CreateGroupFacade } from 'src/app/.Facade/CreateGroupFacade';
 
 
 @Component({
@@ -19,14 +18,9 @@ export class GroupCreateComponent implements OnInit{
 
 	selectedEvent?:EventInterface;
 	
-	
-	
 	constructor(
-
-		
-
 		private modalService:NgbModal,
-		public grp: GroupFacade
+		public grp: CreateGroupFacade
 	){}
 	
 	ngOnInit(){

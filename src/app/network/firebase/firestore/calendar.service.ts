@@ -69,7 +69,7 @@ export class CalendarService {
       // where("start", "<=", end),
       // where("end", ">=", start)
       // pulling calendar events that have yet to end
-      where("end", ">" , new Date())
+      where("end", ">" , group.event.startDate)
     ));
 
     let allUserMap:any = {}
@@ -84,7 +84,12 @@ export class CalendarService {
           let result: CalanderEvent[] = [];
           data.forEach(cal=>{
             let calEvent = this.dbToCalendarEvent(cal, allUserMap[cal["uid"]]);
-            if(!group.event.endDate || !group.event.startDate) return;
+
+            if(!group.event.endDate || !group.event.startDate) {
+              console.log("return")
+              return
+            };
+
             if (calEvent.start <= group.event!.endDate && calEvent.end >= group.event.startDate)
               result.push(calEvent);
           });
