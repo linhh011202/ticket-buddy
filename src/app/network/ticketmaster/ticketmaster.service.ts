@@ -90,7 +90,11 @@ export class TicketmasterService {
           //here check that the page.totalElements if ==0 throw error
           var rtn:any = {page:undefined, events:undefined};
           rtn.page = x.page;
+          if(rtn.page.totalElements==0){
+            return {page:rtn.page, events:[]}
+          }
           x = x._embedded;
+        
           rtn.events = x.events.map((e:any)=>{
             var sd = new Date(e.dates?.start.dateTime);
             var ed:Date = new Date(e.dates?.end);

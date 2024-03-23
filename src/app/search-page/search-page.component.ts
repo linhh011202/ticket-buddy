@@ -6,6 +6,7 @@ import { AuthenticationService } from '../network/firebase/authentication/authen
 import { UserInterface } from '../interfaces/user-interface';
 import { ClassType, IdClassType } from '../interfaces/clasification-interface';
 import { WatchlistService } from '../network/firebase/firestore/watchlist.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-search-page',
@@ -28,7 +29,8 @@ export class SearchPageComponent {
 
     private authApi:AuthenticationService,
     private tmApi: TicketmasterService,
-    private watchlistSvc: WatchlistService
+    private watchlistSvc: WatchlistService,
+    private toastr:ToastrService
   ){}
  
   onAddClassification(ie:IdClassType){
@@ -58,14 +60,7 @@ export class SearchPageComponent {
         this.pageInfo = n.page;
         this.pageInfo!.number = pgNum ;
         this.loadedEvents = n.events;   
-      }, error:(e)=>{
-        console.log("Catch eher");
-        console.log(e);
-        console.log("helworld");
-        this.loadedEvents = [];
-        this.pageInfo!.totalElements = 0;
       }
-    
     });
   }
   searchEvent(){//this one got the queries
@@ -79,6 +74,9 @@ export class SearchPageComponent {
       this.pageInfo = x.page;
       this.pageInfo!.number +=1;
       this.loadedEvents = x.events;
+      if(this.loadedEvents.length == 0){
+        this.toastr.error("No events fit this query","Error");
+      }
     });
   }
   

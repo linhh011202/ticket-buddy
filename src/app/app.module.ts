@@ -9,6 +9,9 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListEventsComponent } from './search-page/list-events/list-events.component';
 import { EventComponentComponent } from './search-page/event-component/event-component.component';
 
+
+import { ToastrModule } from 'ngx-toastr';
+
 // Firebase
 import { firebaseConfig } from '../environments/env-prod'
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
@@ -66,7 +69,9 @@ import { ClassificationComponentComponent } from './search-page/classification-c
         provideFirebaseApp(() => initializeApp(firebaseConfig)),
         provideAuth(()=>getAuth()),
         provideFirestore(()=>getFirestore()),
+        
         BrowserAnimationsModule,
+        ToastrModule.forRoot()
 
     ]
 })
