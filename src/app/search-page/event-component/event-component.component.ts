@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { EventInterface } from '../../interfaces/event-interface';
 import { AuthenticationService } from 'src/app/network/firebase/authentication/authentication.service';
 import { WatchlistService } from 'src/app/network/firebase/firestore/watchlist.service';
+import { SearchFacadeService } from 'src/app/.Facade/search-facade.service';
 
 @Component({
   selector: 'app-event-component',
@@ -12,19 +13,14 @@ export class EventComponentComponent {
   @Input() inWatchlist!:boolean;
   @Input() event!:EventInterface;
   constructor(
-    private authApi:AuthenticationService, 
-    private watchlistSvc: WatchlistService
+    public searchFacade:SearchFacadeService
   ){}
   
   removeEvent(event:EventInterface){
-    this.authApi.getCurrentUser().then((u)=>{
-      this.watchlistSvc.removeWatchlistEvent(u,event);
-    });
+    this.searchFacade.removeFromWatchList(event);
   }
 
   addEvent(event:EventInterface){
-    this.authApi.getCurrentUser().then((u)=>{
-      this.watchlistSvc.addWatchlistEvent(u,event);
-    });
+    this.searchFacade.addToWatchList(event);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { debounceTime, switchMap } from 'rxjs';
+import { SearchFacadeService } from 'src/app/.Facade/search-facade.service';
 import { ClassType, ClassificationInterface, IdClassType, IdName } from 'src/app/interfaces/clasification-interface';
 import { TicketmasterService } from 'src/app/network/ticketmaster/ticketmaster.service';
 
@@ -10,29 +11,34 @@ import { TicketmasterService } from 'src/app/network/ticketmaster/ticketmaster.s
 })
 export class ClassificationComponentComponent implements OnInit{
   @Input() classification:EventEmitter<string> = new EventEmitter();
-  @Output() addClassification:EventEmitter<IdClassType> = new EventEmitter();
-  cats:ClassificationInterface = {segment:[], genre:[], subGenre:[]};
-  constructor(private tmApi:TicketmasterService){
+  
+  
+  constructor(public searchFacade:SearchFacadeService){
     
   }
   ngOnInit(){
     this.classification.pipe(
       debounceTime(500),
-      switchMap((x:string)=>{
-        return this.tmApi.getClassification(x);
-      })
-    ).subscribe((x)=>{
-      this.cats = x;
-    });
+      switchMap((x:string)=> this.searchFacade.getClassification(x)
+      )
+    ).subscribe();
   }
   onSegment(e:IdName){
-    this.addClassification.emit({id:e.id, name:e.name, type:ClassType.Segment});
+    this.onAddClassification({id:e.id, name:e.name, type:ClassType.Segment});
   }
   onGenre(e:IdName){
-    this.addClassification.emit({id:e.id, name:e.name,type:ClassType.Genre});
+    this.onAddClassification({id:e.id, name:e.name,type:ClassType.Genre});
   }
   onSubGenre(e:IdName){
-    this.addClassification.emit({id:e.id, name:e.name,type:ClassType.Subgenre});
+    this.onAddClassification({id:e.id, name:e.name,type:ClassType.Subgenre});
+  }
+  onAddClassification(ie:IdClassType){
+    //code here
+    this.searchFacade.addClassification(ie);
+  }
+  onRemoveClassfication(ie:IdClassType){
+    console.log("REMOE INGHS");
+    this.searchFacade.removeClassification(ie);
   }
 
 }

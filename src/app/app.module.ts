@@ -34,6 +34,7 @@ import { NavigationComponent } from './common/navigation/navigation.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { GroupCreateComponent } from './group-page/group-create/group-create.component';
 import { ClassificationComponentComponent } from './search-page/classification-component/classification-component.component';
+import { InwatchlistPipe } from './search-page/list-events/inwatchlist.pipe';
 
 @NgModule({
     declarations: [
@@ -52,7 +53,8 @@ import { ClassificationComponentComponent } from './search-page/classification-c
         NavigationComponent,
         LoginPageComponent,
         GroupCreateComponent,
-        ClassificationComponentComponent
+        ClassificationComponentComponent,
+        InwatchlistPipe
     ],
     providers: [provideAnimations()],
     bootstrap: [AppComponent],

@@ -2,6 +2,6 @@
       <div class="row">
           <div class="col-md-4" *ngFor="let e of events">
                   
-                <app-event-component [event]="e" [inWatchlist]="watchlist.includes(e.id)"></app-event-component>    
+                <app-event-component [event]="e" [inWatchlist]="e|inwatchlist:watchlist"></app-event-component>    
           </div>
       </div>

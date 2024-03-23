@@ -7,5 +7,6 @@ import {EventInterface} from '../../interfaces/event-interface';
 })
 export class ListEventsComponent {
   @Input() events:EventInterface[]=[];
-  @Input() watchlist:string[] = [];
+  @Input() watchlist:EventInterface[] = [];
+  
 }
