@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from './network/firebase/authentication.service';
+import { AuthenticationService } from './network/firebase/authentication/authentication.service';
 
 
 @Component({

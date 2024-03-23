@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { EventInterface } from '../../interfaces/event-interface';
-import { AuthenticationService } from 'src/app/network/firebase/authentication.service';
-import { DatabaseService } from 'src/app/network/firebase/database.service';
+import { AuthenticationService } from 'src/app/network/firebase/authentication/authentication.service';
+import { WatchlistService } from 'src/app/network/firebase/firestore/watchlist.service';
 
 @Component({
   selector: 'app-event-component',
@@ -11,19 +11,20 @@ import { DatabaseService } from 'src/app/network/firebase/database.service';
 export class EventComponentComponent {
   @Input() inWatchlist!:boolean;
   @Input() event!:EventInterface;
-  constructor(private authApi:AuthenticationService, private dbApi:DatabaseService){
-
-  }
+  constructor(
+    private authApi:AuthenticationService, 
+    private watchlistSvc: WatchlistService
+  ){}
   
   removeEvent(event:EventInterface){
     this.authApi.getCurrentUser().then((u)=>{
-      this.dbApi.removeWatchlistEvent(u,event);
+      this.watchlistSvc.removeWatchlistEvent(u,event);
     });
   }
 
   addEvent(event:EventInterface){
     this.authApi.getCurrentUser().then((u)=>{
-      this.dbApi.addWatchlistEvent(u,event);
+      this.watchlistSvc.addWatchlistEvent(u,event);
     });
   }
 }

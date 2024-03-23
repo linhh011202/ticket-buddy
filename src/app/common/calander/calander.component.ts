@@ -1,10 +1,8 @@
-import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild, inject} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild, inject} from '@angular/core';
 import { NgbCalendar, NgbDate, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { ReplaySubject, take } from 'rxjs';
-import { CalanderEvent, CalanderEventColor } from 'src/app/interfaces/calander-interface/CalanderEvent-interface';
-import { CalanderColor, CalanderType } from 'src/app/interfaces/enums/calenderenum';
-
-
+import { CalanderEvent } from 'src/app/interfaces/calander-interface/CalanderEvent-interface';
+import { CalanderColor } from 'src/app/interfaces/enums/calenderenum';
 
 @Component({
   selector: 'app-calander',

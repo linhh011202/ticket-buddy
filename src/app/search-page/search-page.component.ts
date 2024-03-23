@@ -2,10 +2,10 @@ import { Component, EventEmitter } from '@angular/core';
 import { TicketmasterService } from '../network/ticketmaster/ticketmaster.service';
 import { EventInterface } from '../interfaces/event-interface';
 import { PageInterface } from '../interfaces/page-interface';
-import { AuthenticationService } from '../network/firebase/authentication.service';
-import { DatabaseService } from '../network/firebase/database.service';
+import { AuthenticationService } from '../network/firebase/authentication/authentication.service';
 import { UserInterface } from '../interfaces/user-interface';
 import { ClassType, IdClassType } from '../interfaces/clasification-interface';
+import { WatchlistService } from '../network/firebase/firestore/watchlist.service';
 
 @Component({
   selector: 'app-search-page',
@@ -22,12 +22,13 @@ export class SearchPageComponent {
   cId:IdClassType[] = []
   classificationEmitter:EventEmitter<string> = new EventEmitter();
   pressSearch:EventEmitter<number> = new EventEmitter();
-  constructor(private tmApi: TicketmasterService,
+
+  constructor(
+
     private authApi:AuthenticationService,
-    private dbApi:DatabaseService
-    ){
-    
-  }
+    private tmApi: TicketmasterService,
+    private watchlistSvc: WatchlistService
+  ){}
  
   onAddClassification(ie:IdClassType){
     //code here
@@ -40,7 +41,7 @@ export class SearchPageComponent {
     this.getEvents();
     this.authApi.getCurrentUser().then((x)=>{
       this.currentUser = x;
-      this.dbApi.getWatchlist(x).subscribe(
+      this.watchlistSvc.getWatchlist(x).subscribe(
         (n)=>{
           this.watchlist = n.map((e)=>e.id);
         }

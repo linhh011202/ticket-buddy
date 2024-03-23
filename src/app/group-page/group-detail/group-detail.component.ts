@@ -1,15 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
-
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { CalanderEvent } from 'src/app/interfaces/calander-interface/CalanderEvent-interface';
-
 import { GroupInterface } from 'src/app/interfaces/group-interface';
 import { UserInterface } from 'src/app/interfaces/user-interface';
-import { AuthenticationService } from 'src/app/network/firebase/authentication.service';
-import { DatabaseService } from 'src/app/network/firebase/database.service';
+import { AuthenticationService } from 'src/app/network/firebase/authentication/authentication.service';
 import {Clipboard} from '@angular/cdk/clipboard';
 import { PlatformLocation } from '@angular/common';
-import { CalanderColor, CalanderTypeColor, CalanderTypePriority } from 'src/app/interfaces/enums/calenderenum';
+import { CalanderColor, CalanderTypePriority } from 'src/app/interfaces/enums/calenderenum';
+import { GroupService } from 'src/app/network/firebase/firestore/group.service';
+import { CalendarService } from 'src/app/network/firebase/firestore/calendar.service';
+
 @Component({
   selector: 'app-group-detail',
   templateUrl: './group-detail.component.html',
@@ -28,12 +28,14 @@ export class GroupDetailComponent implements OnInit {
   //theses events are events for 
   
   
-  constructor(private authApi:AuthenticationService, private dbApi:DatabaseService,
+  constructor(
+    private authApi:AuthenticationService, 
+    private calSvc: CalendarService,
+    private clipboard:Clipboard,
+    private grpSvc: GroupService,
     private platformLocation: PlatformLocation,
-    private clipboard:Clipboard
-    ){
-    
-  }
+  ){}
+
   convertToNgbDate(d:Date):NgbDate{
     return new NgbDate(d.getFullYear(), d.getMonth()+1, d.getDate());
   }
@@ -43,9 +45,9 @@ export class GroupDetailComponent implements OnInit {
       this.currentUser =v;
     });
    
-    this.dbApi.getGroupById(this.group.id).subscribe(x=>this.group = x);
+    this.grpSvc.getGroupById(this.group.id).subscribe(x=>this.group = x);
     if(this.group.event.startDate)this.startDate = this.convertToNgbDate(this.group.event.startDate);
-    this.dbApi.getGroupCalendar(this.group).subscribe(
+    this.calSvc.getGroupCalendar(this.group).subscribe(
       x=>{
         this.events = x;
         this.events.sort((a,b)=>{//sort by time then sort by calanderType, Booked for event is the highest priority
@@ -67,17 +69,17 @@ export class GroupDetailComponent implements OnInit {
     );
   }
   deleteGroup(){
-    this.dbApi.deleteGroup(this.group);
+    this.grpSvc.deleteGroup(this.group);
   }
   kickUser(user:UserInterface){
-    this.dbApi.removeFromGroup(this.group, user).then();
+    this.grpSvc.removeFromGroup(this.group, user).then();
   }
   copyInviteLink() {
     var base_url = (this.platformLocation as any)._location.origin+"/group"+"/"+this.group.id;
     this.clipboard.copy(base_url);
   }
   joinGroup(){
-    if(this.currentUser)this.dbApi.joinGroup(this.group.id, this.currentUser);
+    if(this.currentUser)this.grpSvc.joinGroup(this.group.id, this.currentUser);
   }
   
   setColor():CalanderColor{

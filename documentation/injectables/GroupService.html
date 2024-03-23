@@ -1,0 +1,1283 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ticketbuddy documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">ticketbuddy documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >GroupService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/network/firebase/firestore/group.service.ts</code>
+        </p>
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#confirmGroupBooking" >confirmGroupBooking</a>
+                            </li>
+                            <li>
+                                <a href="#createGroup" >createGroup</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#dbToGroupInterface" >dbToGroupInterface</a>
+                            </li>
+                            <li>
+                                <a href="#deleteGroup" >deleteGroup</a>
+                            </li>
+                            <li>
+                                <a href="#getGroupById" >getGroupById</a>
+                            </li>
+                            <li>
+                                <a href="#getGroups" >getGroups</a>
+                            </li>
+                            <li>
+                                <a href="#joinGroup" >joinGroup</a>
+                            </li>
+                            <li>
+                                <a href="#removeFromGroup" >removeFromGroup</a>
+                            </li>
+                            <li>
+                                <a href="#toggleGroupConfirmation" >toggleGroupConfirmation</a>
+                            </li>
+                            <li>
+                                <a href="#updateGroupDate" >updateGroupDate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fs: Firestore, noti: <a href="../injectables/NotificationService.html" target="_self">NotificationService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:13</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fs</td>
+                                                  
+                                                        <td>
+                                                                    <code>Firestore</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>noti</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/NotificationService.html" target="_self" >NotificationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmGroupBooking"></a>
+                    <span class="name">
+                        <span ><b>confirmGroupBooking</b></span>
+                        <a href="#confirmGroupBooking"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>confirmGroupBooking(group: <a href="../interfaces/GroupInterface.html" target="_self">GroupInterface</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="194"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:194</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>group</td>
+                                            <td>
+                                                            <code><a href="../interfaces/GroupInterface.html" target="_self" >GroupInterface</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createGroup"></a>
+                    <span class="name">
+                        <span ><b>createGroup</b></span>
+                        <a href="#createGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createGroup(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, event: <a href="../interfaces/EventInterface.html" target="_self">EventInterface</a>, admin: <a href="../interfaces/UserInterface.html" target="_self">UserInterface</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>name</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EventInterface.html" target="_self" >EventInterface</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>admin</td>
+                                            <td>
+                                                            <code><a href="../interfaces/UserInterface.html" target="_self" >UserInterface</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dbToGroupInterface"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>dbToGroupInterface</b></span>
+                        <a href="#dbToGroupInterface"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>dbToGroupInterface(dbGroup: DocumentData | )</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="17"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>dbGroup</td>
+                                            <td>
+                                                        <code>DocumentData | </code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/GroupInterface.html" target="_self" >GroupInterface</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteGroup"></a>
+                    <span class="name">
+                        <span ><b>deleteGroup</b></span>
+                        <a href="#deleteGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteGroup(group: <a href="../interfaces/GroupInterface.html" target="_self">GroupInterface</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:157</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>group</td>
+                                            <td>
+                                                            <code><a href="../interfaces/GroupInterface.html" target="_self" >GroupInterface</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getGroupById"></a>
+                    <span class="name">
+                        <span ><b>getGroupById</b></span>
+                        <a href="#getGroupById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getGroupById(groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>groupId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/GroupInterface.html" target="_self" >Observable&lt;GroupInterface&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getGroups"></a>
+                    <span class="name">
+                        <span ><b>getGroups</b></span>
+                        <a href="#getGroups"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getGroups(user: <a href="../interfaces/UserInterface.html" target="_self">UserInterface</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>user</td>
+                                            <td>
+                                                            <code><a href="../interfaces/UserInterface.html" target="_self" >UserInterface</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/GroupInterface.html" target="_self" >Observable&lt;GroupInterface[]&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="joinGroup"></a>
+                    <span class="name">
+                        <span ><b>joinGroup</b></span>
+                        <a href="#joinGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>joinGroup(groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, user: <a href="../interfaces/UserInterface.html" target="_self">UserInterface</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:113</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>groupId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>user</td>
+                                            <td>
+                                                            <code><a href="../interfaces/UserInterface.html" target="_self" >UserInterface</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeFromGroup"></a>
+                    <span class="name">
+                        <span ><b>removeFromGroup</b></span>
+                        <a href="#removeFromGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeFromGroup(group: <a href="../interfaces/GroupInterface.html" target="_self">GroupInterface</a>, user: <a href="../interfaces/UserInterface.html" target="_self">UserInterface</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="128"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:128</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>group</td>
+                                            <td>
+                                                            <code><a href="../interfaces/GroupInterface.html" target="_self" >GroupInterface</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>user</td>
+                                            <td>
+                                                            <code><a href="../interfaces/UserInterface.html" target="_self" >UserInterface</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleGroupConfirmation"></a>
+                    <span class="name">
+                        <span ><b>toggleGroupConfirmation</b></span>
+                        <a href="#toggleGroupConfirmation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleGroupConfirmation(group: <a href="../interfaces/GroupInterface.html" target="_self">GroupInterface</a>, user: <a href="../interfaces/UserInterface.html" target="_self">UserInterface</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="180"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:180</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>group</td>
+                                            <td>
+                                                            <code><a href="../interfaces/GroupInterface.html" target="_self" >GroupInterface</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>user</td>
+                                            <td>
+                                                            <code><a href="../interfaces/UserInterface.html" target="_self" >UserInterface</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateGroupDate"></a>
+                    <span class="name">
+                        <span ><b>updateGroupDate</b></span>
+                        <a href="#updateGroupDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateGroupDate(group: <a href="../interfaces/GroupInterface.html" target="_self">GroupInterface</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="166"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:166</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>group</td>
+                                            <td>
+                                                            <code><a href="../interfaces/GroupInterface.html" target="_self" >GroupInterface</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { EventInterface } from &#x27;src/app/interfaces/event-interface&#x27;;
+import { UserInterface } from &#x27;src/app/interfaces/user-interface&#x27;;
+
+import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData, updateDoc, arrayUnion, arrayRemove, deleteDoc, FirestoreError} from &#x27;@angular/fire/firestore&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { GroupInterface } from &#x27;src/app/interfaces/group-interface&#x27;;
+import { NotificationService } from &#x27;./notification.service&#x27;;
+
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class GroupService {
+
+  constructor(private fs: Firestore, private noti: NotificationService) { }
+
+  private dbToGroupInterface(dbGroup: DocumentData | DocumentData &amp; {id: string;}): GroupInterface
+  {
+    let grp: GroupInterface &#x3D; {
+      id: dbGroup[&quot;id&quot;],
+      name: dbGroup[&quot;name&quot;],
+      event: {
+        id: dbGroup[&quot;event&quot;].id,
+        name: dbGroup[&quot;event&quot;].name,
+        startDate: dbGroup[&quot;event&quot;].start.toDate(),
+        endDate: dbGroup[&quot;event&quot;].end.toDate(),
+        details: dbGroup[&quot;details&quot;],
+        images: dbGroup[&quot;imageUrls&quot;],
+        location: dbGroup[&quot;locations&quot;]
+      },
+      admin: dbGroup[&quot;admin&quot;],
+      members: dbGroup[&quot;members&quot;],
+      confirmed: dbGroup[&quot;confirmed&quot;],
+      booked: dbGroup[&quot;booked&quot;],
+      allUUID: dbGroup[&quot;allUUID&quot;]
+    }
+    if (dbGroup[&quot;date&quot;])
+      grp.date &#x3D; dbGroup[&quot;date&quot;].toDate();
+
+    return grp;
+  }
+
+  createGroup(name: string, event: EventInterface, admin: UserInterface): Promise&lt;void&gt;
+  {
+    let grpCollection: CollectionReference &#x3D; collection(this.fs, &quot;group&quot;);
+
+    let groupDoc &#x3D; {
+      name: name,
+      event: {
+        id: event.id,
+        name: event.name,
+        start: event.startDate,
+        end: event.endDate,
+        details: event.details,
+        imageUrls: event.images,
+        locations: event.location
+      },
+      admin: admin,
+      members: [],
+      confirmed: [],
+      booked: false,
+      allUUID: [admin.id]
+    }
+
+    return new Promise&lt;void&gt;((res,rej)&#x3D;&gt;{
+      addDoc(grpCollection, groupDoc).then((docRef: DocumentReference)&#x3D;&gt;{
+        
+        res();
+      }).catch(err &#x3D;&gt;{
+        if (err.code &#x3D;&#x3D;&#x3D; &quot;permission-denied&quot;)
+          rej(&quot;group-name-taken&quot;);
+      })
+    })
+  }
+
+  getGroups(user: UserInterface): Observable&lt;GroupInterface[]&gt;
+  {
+    let grpCollection: CollectionReference &#x3D; collection(this.fs, &quot;group&quot;);
+    let q &#x3D; query(grpCollection, where(&quot;allUUID&quot;,&quot;array-contains&quot;,user.id));
+
+    return new Observable&lt;GroupInterface[]&gt;(obs&#x3D;&gt;{
+      collectionData(q, {idField: &#x27;id&#x27;}).subscribe(
+        data&#x3D;&gt;{
+          let result: GroupInterface[] &#x3D; [];
+          data.forEach(grp&#x3D;&gt;{
+            result.push(this.dbToGroupInterface(grp));
+          })
+          obs.next(result);
+        }
+      )
+    })
+  }
+
+
+
+  getGroupById(groupId: string): Observable&lt;GroupInterface&gt;
+  {
+    let grpDoc &#x3D; doc(this.fs, &#x60;group/${groupId}&#x60;);
+
+    return new Observable&lt;GroupInterface&gt;(obs&#x3D;&gt;{
+      docData(grpDoc, {idField: &quot;id&quot;}).subscribe(data&#x3D;&gt;{
+        if (data&#x3D;&#x3D;&#x3D;undefined){
+          obs.error(&quot;Group not found&quot;);
+          return;
+        } 
+        obs.next(this.dbToGroupInterface(data));
+      });
+    });
+
+  }
+
+  // Currently does not check if user is already in group
+  joinGroup(groupId: string, user:UserInterface): Promise&lt;void&gt;
+  {
+    let grpDoc &#x3D; doc(this.fs, &#x60;group/${groupId}&#x60;);
+    let update &#x3D; {
+      members: arrayUnion(user),
+      allUUID: arrayUnion(user.id),
+    }
+    
+    return new Promise&lt;void&gt;(res&#x3D;&gt;{
+      updateDoc(grpDoc, update).then(_&#x3D;&gt;{
+        res();
+      })
+    })
+  }
+
+  removeFromGroup(group: GroupInterface, user: UserInterface): Promise&lt;void&gt;
+  {
+    let grpDoc &#x3D; doc(this.fs, &#x60;group/${group.id}&#x60;);
+    
+    // Protection against display name change
+    let toRemove: UserInterface|undefined &#x3D; undefined;
+
+    group.members.forEach(member&#x3D;&gt;{
+      if (member.id &#x3D;&#x3D;&#x3D; user.id){
+        toRemove &#x3D; member;
+        return;
+      }
+    })
+
+
+    return new Promise&lt;void&gt;(res&#x3D;&gt;{
+      // Check if user is a member in group
+      if (toRemove &#x3D;&#x3D;&#x3D; undefined) res();
+      
+      let update &#x3D; {
+        members: arrayRemove(toRemove),
+        allUUID: arrayRemove(user.id)
+      }
+      updateDoc(grpDoc, update).then(_&#x3D;&gt;{
+        res();
+      })
+    })
+  }
+
+  deleteGroup(group: GroupInterface): Promise&lt;void&gt;{
+    let grpDoc &#x3D; doc(this.fs, &#x60;group/${group.id}&#x60;);
+    return new Promise&lt;void&gt;(res&#x3D;&gt;{
+      deleteDoc(grpDoc).then(_&#x3D;&gt;{
+        res();
+      })
+    });
+  }
+
+  updateGroupDate(group: GroupInterface): Promise&lt;void&gt;{
+    let grpDoc &#x3D; doc(this.fs, &#x60;group/${group.id}&#x60;);
+    group.date &#x3D; group.event.startDate;
+    let update &#x3D; {date: group.date};
+
+    return new Promise&lt;void&gt;(res&#x3D;&gt;{
+      updateDoc(grpDoc, update).then(_&#x3D;&gt;{
+        this.noti.sendConfirmationRequest(group).then(_&#x3D;&gt;{
+          res();
+        });
+      });
+    });
+  }
+
+  toggleGroupConfirmation(group: GroupInterface, user: UserInterface): Promise&lt;void&gt;{
+    let grpDoc &#x3D; doc(this.fs, &#x60;group/${group.id}&#x60;);
+    let update &#x3D; {confirmed: arrayUnion(user.id)};
+
+    if (group.confirmed.includes(user.id))
+      update.confirmed &#x3D; arrayRemove(user.id);
+
+    return new Promise&lt;void&gt;(res&#x3D;&gt;{
+        updateDoc(grpDoc, update).then(_&#x3D;&gt;{
+          res();
+        })
+      });
+  }
+
+  confirmGroupBooking(group: GroupInterface): Promise&lt;void&gt;{
+    let grpDoc &#x3D; doc(this.fs, &#x60;group/${group.id}&#x60;);
+    let update &#x3D; {booked: true};
+
+    return new Promise&lt;void&gt;(res&#x3D;&gt;{
+
+      let updatePromise &#x3D; updateDoc(grpDoc, update);
+
+      // Do both at same time
+      // let notiPromise &#x3D; this.noti.sendConfirmation(group);
+      // Promise.all([updatePromise, notiPromise]).then(_&#x3D;&gt;{
+      //   res();
+      // })
+
+      // Ensure database is properly updated, then send notification
+      updatePromise.then(_&#x3D;&gt;{
+        this.noti.sendConfirmation(group).then(_&#x3D;&gt;{
+          res();
+        });
+      });
+    });
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'GroupService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

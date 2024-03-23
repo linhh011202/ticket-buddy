@@ -1,40 +1,9 @@
-<p>login-page works!</p>
 
-<div>
-    <button (click)="googleSignIn()">login</button>
+<img class="bgImg" src="../../assets/welcome.png">
+<img class="bgImgStrip bgLeft" src="../../assets/welcome-strip-L.png">
+<img class="bgImgStrip bgRight" src="../../assets/welcome-strip-R.png">
 
-    <button (click)="getUser()">get user</button>
-    
-    <button (click)="logOut()">log out</button>
-</div>
-
-<div>
-    <button (click)="createGroup()">create group</button>
-    <button (click)="getGroups()">get groups</button>
-    <button (click)="getGroupById()">get group id</button>
-    <!--<button (click)="joinGroup()">join group</button>-->
-    <button (click)="removeFromGroup()">leave group</button>
-</div>
-
-<div>
-    <button (click)="addCalendarEvent()">add calendar event</button>
-    <button (click)="getCalendar()">get calendar</button>
-    <button (click)="getGroupCalendar()">get group calendar</button>
-</div>
-
-<div>
-    <button (click)="getWatchlist()">get watchlist</button>
-    <button (click)="addWatchlistEvent()">add watchlist event</button>
-    <button (click)="removeWatchlistEvent()">remove watchlist event</button>
-</div>
-
-<div>
-    <button (click)="updateGroupDate()">update group date</button>
-    <button (click)="toggleGroupConfirmation()">toggle confirmation</button>
-    <button (click)="confirmGroupBooking()">confirm group booking</button>
-</div>
-
-<div>
-    <button (click)="sendConfirmationRequest()">send confirmation request email</button>
-    <button (click)="sendConfirmation()">send confirmation email</button>
+<div class="loginBtn" tabindex="0" (click)="googleSignIn()">
+    <img class="googleImg" src="../../assets/google.png">
+    <b>Sign in with Google</b>
 </div>

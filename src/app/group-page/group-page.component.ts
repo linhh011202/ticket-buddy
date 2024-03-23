@@ -1,10 +1,10 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { GroupInterface } from '../interfaces/group-interface';
 import { NgbModal, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { UserInterface } from '../interfaces/user-interface';
 import { ActivatedRoute } from '@angular/router';
-import { AuthenticationService } from '../network/firebase/authentication.service';
-import { DatabaseService } from '../network/firebase/database.service';
+import { AuthenticationService } from '../network/firebase/authentication/authentication.service';
+import { GroupService } from '../network/firebase/firestore/group.service';
 
 @Component({
   selector: 'app-group-page',
@@ -20,18 +20,18 @@ export class GroupPageComponent implements OnInit, AfterViewInit{
   chosen:GroupInterface | undefined;
   currentUser?:UserInterface;
   groupID:string ="";
-  
   groups:GroupInterface[] = [];
-  constructor(private route:ActivatedRoute, 
+
+  constructor(
     private authApi:AuthenticationService,
-    private dbApi:DatabaseService
-    ){
-  
-  }
+    private grpSvc: GroupService,
+    private route:ActivatedRoute, 
+  ){}
+
   ngOnInit(): void {
     this.authApi.getCurrentUser().then(x=>{
       this.currentUser=x;
-      this.dbApi.getGroups(x).subscribe(y=>{
+      this.grpSvc.getGroups(x).subscribe(y=>{
         this.groups = y;
       });
     });
@@ -39,14 +39,14 @@ export class GroupPageComponent implements OnInit, AfterViewInit{
   }
   
   joinGroup(){
-    if(this.currentUser)this.dbApi.joinGroup(this.groupID,this.currentUser);
+    if(this.currentUser)this.grpSvc.joinGroup(this.groupID,this.currentUser);
   }
   ngAfterViewInit(): void {
     this.route.paramMap.subscribe(params=>{
       var id:string|null;
       id =  params.get('id');
       //should get the info here from firebase
-      if(id) this.dbApi.getGroupById(id).subscribe({next:(x)=>{
+      if(id) this.grpSvc.getGroupById(id).subscribe({next:(x)=>{
         this.chosen = x;
         this.navStuff?.select(2);
       },
