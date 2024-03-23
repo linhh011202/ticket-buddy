@@ -4,9 +4,8 @@ import { CalanderEvent } from '../interfaces/calander-interface/CalanderEvent-in
 
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarFacade } from '../.Facade/PersonalCalendarFacade';
-import { CalanderColor } from '../interfaces/enums/calenderenum';
 import { NewCalendarEvent } from '../.Class/NewCalendarEvent';
-import { BehaviorSubject, tap } from 'rxjs';
+
 
 @Component({
   selector: 'app-personal-calender-page',
