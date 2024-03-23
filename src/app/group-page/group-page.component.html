@@ -16,9 +16,9 @@
         <div class="btn btn-primary" (click)="openModalEmitter.emit()">Create Group</div>
       </div>
       <h5>Admin</h5>
-      <app-group-list *ngIf="!!currentUser" (groupClicked)="choseGroup($event)" [groups]="groups|grouppipe:currentUser:true"></app-group-list>
+      <app-group-list *ngIf="!!grp.currentUser" (groupClicked)="choseGroup($event)" [groups]="grp.adminGroups$.value"></app-group-list>
       <h5>Member</h5>
-      <app-group-list *ngIf="!!currentUser" (groupClicked)="choseGroup($event)" [groups]="groups|grouppipe:currentUser:false"></app-group-list>
+      <app-group-list *ngIf="!!grp.currentUser" (groupClicked)="choseGroup($event)" [groups]="grp.memberGroups$.value"></app-group-list>
     </ng-template>
   </li>
   <li [ngbNavItem]="2" *ngIf="chosen">

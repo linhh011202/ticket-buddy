@@ -34,9 +34,8 @@ export class GroupDetailComponent implements OnInit {
     this.grp.copyInviteLink();
   }
   joinGroup(){
-    this.grp.joinGroup().then(_=>{
+    this.grp.joinGroup(this.grp.group$.value!.id).then(_=>{
       console.log("group join success");
     })
   }
-   
 }

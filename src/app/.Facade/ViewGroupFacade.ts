@@ -5,7 +5,7 @@ import { UserInterface } from "../interfaces/user-interface"
 import { GroupInterface } from "../interfaces/group-interface"
 import { CalendarService } from '../network/firebase/firestore/calendar.service';
 import { PlatformLocation } from '@angular/common';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { CalanderEvent } from "../interfaces/calander-interface/CalanderEvent-interface"
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { CalanderColor, CalanderType, CalanderTypeColor, CalanderTypePriority } from '../interfaces/enums/calenderenum';
@@ -20,6 +20,9 @@ export class ViewGroupFacade {
     group$: BehaviorSubject<GroupInterface|undefined> = new BehaviorSubject<GroupInterface|undefined>(undefined);
     dateColor$: BehaviorSubject<[[NgbDate,NgbDate], CalanderColor][]> = new BehaviorSubject<[[NgbDate,NgbDate], CalanderColor][]>([]); //should be date range better // wtf does this mean
     groupCalendar$: BehaviorSubject<CalanderEvent[]> = new BehaviorSubject<CalanderEvent[]>([]);
+    adminGroups$: BehaviorSubject<GroupInterface[]> = new BehaviorSubject<GroupInterface[]>([]);
+    memberGroups$: BehaviorSubject<GroupInterface[]> = new BehaviorSubject<GroupInterface[]>([]);
+    groupById$: BehaviorSubject<GroupInterface|undefined> = new BehaviorSubject<GroupInterface|undefined>(undefined);
 
     constructor(
         private authSvc:AuthenticationService, 
@@ -31,6 +34,20 @@ export class ViewGroupFacade {
 
     this.authSvc.getCurrentUser().then(user=>{
 		this.currentUser = user;
+
+        this.grpSvc.getGroups(user).subscribe(grps=>{
+            let adm: GroupInterface[] = [];
+            let nadm: GroupInterface[] = [];
+            grps.forEach(grp=>{
+                if (grp.admin.id === user.id)
+                    adm.push(grp);
+                else 
+                    nadm.push(grp);
+            });
+            
+            this.adminGroups$.next(adm);
+            this.memberGroups$.next(nadm);
+        })
     });
   }
 
@@ -83,14 +100,22 @@ export class ViewGroupFacade {
         return this.grpSvc.removeFromGroup(this.group$.value!, user);
     }
 
-    joinGroup(): Promise<void> {
-        return this.grpSvc.joinGroup(this.group$.value!.id, this.currentUser!);
+    joinGroup(id: string): Promise<void> {
+        return this.grpSvc.joinGroup(id, this.currentUser!);
     }
 
     getStartDate(d?: Date): NgbDate{
         if (!d)
             d = new Date();
         return new NgbDate(d.getFullYear(), d.getMonth()+1, d.getDate());
+    }
+
+    getGrpById(id: string): Observable<GroupInterface>{
+        let obs: Observable<GroupInterface> = this.grpSvc.getGroupById(id);
+        obs.subscribe(grp=>{
+            this.groupById$.next(grp);
+        });
+        return obs;
     }
 	
 }
