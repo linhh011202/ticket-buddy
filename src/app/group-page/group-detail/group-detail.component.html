@@ -36,7 +36,7 @@
     </div>
 </ng-template>
 <div class="d-flex flex-row justify-content-center">
-    <app-calander [events]="(grp.groupCalendar$|async)!" [dateColor]="(grp.dateColor$|async)!" [navigateTo]="startDate"></app-calander>
+    <app-calander [events]="(grp.groupCalendar$|async)!" [dateColor]="(grp.dateColor$|async)!" [navigateTo]="grp.getStartDate(grp.group$.value?.event?.startDate)"></app-calander>
 </div>
 
 <div class="row pt-2">

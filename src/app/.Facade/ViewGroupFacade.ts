@@ -86,5 +86,11 @@ export class ViewGroupFacade {
     joinGroup(): Promise<void> {
         return this.grpSvc.joinGroup(this.group$.value!.id, this.currentUser!);
     }
+
+    getStartDate(d?: Date): NgbDate{
+        if (!d)
+            d = new Date();
+        return new NgbDate(d.getFullYear(), d.getMonth()+1, d.getDate());
+    }
 	
 }
