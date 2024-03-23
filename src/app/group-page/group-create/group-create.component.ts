@@ -18,23 +18,12 @@ export class GroupCreateComponent implements OnInit{
 
 
 	selectedEvent?:EventInterface;
-	newGroupForm = this.formBuilder.group({
-		name:['rrr', Validators.required],
-		event:this.formBuilder.group({
-			id:["",Validators.required],
-			location:this.formBuilder.array([]),
-			images:this.formBuilder.array([]),
-			name:['rrr', Validators.required],
-			details:new FormControl(""),
-			startDate:new FormControl("", Validators.required),
-			endDate:new FormControl("", Validators.required)
-		})
-	});
+	
 	
 	
 	constructor(
 
-		private formBuilder:FormBuilder,
+		
 
 		private modalService:NgbModal,
 		public grp: GroupFacade
@@ -42,24 +31,28 @@ export class GroupCreateComponent implements OnInit{
 	
 	ngOnInit(){
 		this.em.subscribe(()=>this.open());
-		
 	}
+
+	createGroup(){
+		this.grp.createGroup().then(_=>{
+			console.log("group create success");
+		}).catch(err=>{
+			if (err.message === "user-not-signed-in")
+				console.log("user not signed in");
+			else if (err.message === "group-name-taken")
+				console.log("group name taken");
+			else if (err.message === "group-date-incompatible")
+				console.log("group date invalid");
+			else
+				console.log(err);
+		})
+	}
+
+
 	open() {
 		this.modalService.open(this.content,{centered:true, fullscreen:true});
 	}
-	updateForm(evt:EventInterface){
-		
-		
-		var n:any = structuredClone(evt);
 
-		if(evt.startDate) n.startDate = evt.startDate.toISOString().slice(0,-8);
-		if(evt.endDate) n.startDate = evt.endDate.toISOString().slice(0,-8);
-		
-		this.newGroupForm.patchValue(
-		{
-			event:n
-		});
-	}
 	close(){
 		this.modalService.dismissAll();
 	}
