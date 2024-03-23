@@ -20,10 +20,10 @@ export class CalendarFacade {
     dateColor$: BehaviorSubject<[[NgbDate,NgbDate], CalanderColor][]> = new BehaviorSubject<[[NgbDate,NgbDate], CalanderColor][]>([]); //should be date range better // wtf does this mean
 
     constructor(
-        private authApi:AuthenticationService,
+        private authSvc:AuthenticationService,
         private calSvc: CalendarService
     ) {
-        this.authApi.getCurrentUser().then(user=>{
+        this.authSvc.getCurrentUser().then(user=>{
             this.currentUser  = user;
             this.calSvc.getCalendar(user).subscribe(
             calEvents=>{
