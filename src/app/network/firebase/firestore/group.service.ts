@@ -57,7 +57,7 @@ export class GroupService {
       },
       admin: admin,
       members: [],
-      confirmed: [],
+      confirmed: [admin.id],
       booked: false,
       allUUID: [admin.id]
     }
@@ -163,18 +163,8 @@ export class GroupService {
     });
   }
 
-  updateGroupDate(group: GroupInterface): Promise<void>{
-    let grpDoc = doc(this.fs, `group/${group.id}`);
-    group.date = group.event.startDate;
-    let update = {date: group.date};
-
-    return new Promise<void>(res=>{
-      updateDoc(grpDoc, update).then(_=>{
-        this.noti.sendConfirmationRequest(group).then(_=>{
-          res();
-        });
-      });
-    });
+  sendGroupConfirmation(group: GroupInterface): Promise<void>{
+    return this.noti.sendConfirmationRequest(group);
   }
 
   toggleGroupConfirmation(group: GroupInterface, user: UserInterface): Promise<void>{
@@ -207,7 +197,7 @@ export class GroupService {
 
       // Ensure database is properly updated, then send notification
       updatePromise.then(_=>{
-        this.noti.sendConfirmation(group).then(_=>{
+        this.noti.sendBookingConfirmation(group).then(_=>{
           res();
         });
       });

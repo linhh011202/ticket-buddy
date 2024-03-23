@@ -30,20 +30,20 @@ export class NotificationService {
   sendConfirmationRequest(group: GroupInterface): Promise<void>{
     let emailList: string[] = [];
     group.members.forEach(member=>{
-      emailList.push(member.email);
+      if (!group.confirmed.includes(member.id))
+        emailList.push(member.email);
     });
 
     let content = `
-    <h2>Date has been decided for ${group.event.name||'the concert'}!</h2>
-    <p>Good news! ${group.name} has decided <b>${group.date?.toDateString()}</b> for ${group.event.name||'the concert'}.</p>
+    <p>Hello! ${group.admin.name} is asking for your confirmation to go to ${group.event.name||'the concert'} with ${group.name} on ${group.date?.toDateString()}.</p>
     <p>Please click <a href='google.com'>here</a> to confirm your availability before ${group.admin.name} books the tickets!</p>
-    <p><i>Ticket Buddy</i></p>
+    <p><i>-Ticket Buddy</i></p>
     `
 
-    return this.sendEmail(emailList,{subject: `${group.event.name||'Concert'} Date Confirmation`, html: content})
+    return this.sendEmail(emailList,{subject: `${group.event.name||'Concert'} Confirmation`, html: content})
   }
 
-  sendConfirmation(group: GroupInterface): Promise<void>{
+  sendBookingConfirmation(group: GroupInterface): Promise<void>{
     let emailList: string[] = [];
     group.members.forEach(member=>{
       if (group.confirmed.includes(member.id))
@@ -51,12 +51,12 @@ export class NotificationService {
     });
 
     let content = `
-    <h2>Date confirmed for ${group.event.name||'the concert'}!</h2>
-    <p>Congratulations! ${group.name} has confirmed <b>${group.date?.toDateString()}</b> for ${group.event.name||'the concert'}.</p>
+    <h2>Booking confirmed for ${group.event.name||'the concert'}!</h2>
+    <p>Congratulations! ${group.name} has booked the tickets for ${group.event.name||'the concert'}.</p>
     <p>Contact ${group.admin.name} for details regarding the booking!</p>
-    <p><i>Ticket Buddy</i></p>
+    <p><i>-Ticket Buddy</i></p>
     `
 
-    return this.sendEmail(emailList,{subject: `${group.event.name||'Concert'} Date Confirmed!`, html: content})
+    return this.sendEmail(emailList,{subject: `${group.event.name||'Concert'} Booking Confirmed!`, html: content})
   }
 }
