@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { EventInterface } from 'src/app/interfaces/event-interface';
-import { CreateGroupFacade } from 'src/app/.Facade/CreateGroupFacade';
+import { CreateGroupFacade } from 'src/app/facade/CreateGroupFacade';
 
 
 @Component({

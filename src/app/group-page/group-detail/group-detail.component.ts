@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { GroupInterface } from 'src/app/interfaces/group-interface';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 
-import { ViewGroupFacade } from 'src/app/.Facade/ViewGroupFacade'
+import { ViewGroupFacade } from 'src/app/facade/ViewGroupFacade'
 
 
 @Component({

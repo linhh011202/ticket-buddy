@@ -529,8 +529,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="112"
-                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:112</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="117"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:117</a></div>
                         </td>
                     </tr>
 
@@ -596,8 +596,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="97"
-                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:97</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="102"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:102</a></div>
                         </td>
                     </tr>
 
@@ -720,7 +720,7 @@ export class CalendarService {
       // where(&quot;start&quot;, &quot;&lt;&#x3D;&quot;, end),
       // where(&quot;end&quot;, &quot;&gt;&#x3D;&quot;, start)
       // pulling calendar events that have yet to end
-      where(&quot;end&quot;, &quot;&gt;&quot; , new Date())
+      where(&quot;end&quot;, &quot;&gt;&quot; , group.event.startDate)
     ));
 
     let allUserMap:any &#x3D; {}
@@ -735,7 +735,12 @@ export class CalendarService {
           let result: CalanderEvent[] &#x3D; [];
           data.forEach(cal&#x3D;&gt;{
             let calEvent &#x3D; this.dbToCalendarEvent(cal, allUserMap[cal[&quot;uid&quot;]]);
-            if(!group.event.endDate || !group.event.startDate) return;
+
+            if(!group.event.endDate || !group.event.startDate) {
+              console.log(&quot;return&quot;)
+              return
+            };
+
             if (calEvent.start &lt;&#x3D; group.event!.endDate &amp;&amp; calEvent.end &gt;&#x3D; group.event.startDate)
               result.push(calEvent);
           });

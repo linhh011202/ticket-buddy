@@ -453,8 +453,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="114"
-                                    class="link-to-prism">src/app/network/ticketmaster/ticketmaster.service.ts:114</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/app/network/ticketmaster/ticketmaster.service.ts:116</a></div>
                         </td>
                     </tr>
 
@@ -572,7 +572,7 @@ import { Router } from &#x27;@angular/router&#x27;;
 import { PlatformLocation } from &#x27;@angular/common&#x27;;
 
 import { ticketMasterApi } from &#x27;src/environments/env-prod&#x27;;
-import { Observable, filter, map, take, throwError } from &#x27;rxjs&#x27;;
+import { Observable, concatMap, filter, iif, map, mergeMap, of, take, throwError } from &#x27;rxjs&#x27;;
 import { EventPageInterface } from &#x27;src/app/interfaces/eventpage-interface&#x27;;
 import { ClassificationInterface } from &#x27;src/app/interfaces/clasification-interface&#x27;;
 
@@ -651,19 +651,21 @@ export class TicketmasterService {
     }
     getEventsQuery(query:any):Observable&lt;EventPageInterface&gt;{
       query.apikey &#x3D; ticketMasterApi;
+      console.log(query);
+      //.pipe(mergeMap(v &#x3D;&gt; iif(() &#x3D;&gt; v % 4 &#x3D;&#x3D;&#x3D; 0, r$, x$)))
       return this.http.get(this.baseurl+&quot;/events.json&quot;, {params:query}).pipe(
         map((x:any)&#x3D;&gt;{
-          console.log(x);
+          //here check that the page.totalElements if &#x3D;&#x3D;0 throw error
           var rtn:any &#x3D; {page:undefined, events:undefined};
           rtn.page &#x3D; x.page;
-
+          if(rtn.page.totalElements&#x3D;&#x3D;0){
+            return {page:rtn.page, events:[]}
+          }
           x &#x3D; x._embedded;
-          
+        
           rtn.events &#x3D; x.events.map((e:any)&#x3D;&gt;{
             var sd &#x3D; new Date(e.dates?.start.dateTime);
             var ed:Date &#x3D; new Date(e.dates?.end);
-            
-            
             return {
               id:e.id, details:e.description, 
               images:e.images.map((img:any)&#x3D;&gt;img.url),
@@ -673,11 +675,11 @@ export class TicketmasterService {
               endDate:(!this.invalidDate(ed))? ed: undefined
             };
           });
-          return (rtn as EventPageInterface);
-        
-        }),
-        take(1)
-      )
+          var rtnn:EventPageInterface &#x3D; rtn as EventPageInterface;
+          rtnn.page.totalElements &#x3D; Math.min(20*20, rtnn.page.totalElements)
+          return rtnn;
+        }), 
+        take(1))
     }
     invalidDate(d:Date){
       return Number.isNaN(d.valueOf());

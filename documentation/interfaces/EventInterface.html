@@ -457,7 +457,28 @@
     startDate?:Date;
     endDate?:Date
 }
-</code></pre>
+export class EventClass {
+    id: string&#x3D;&quot;&quot;;
+    name:string&#x3D;&quot;&quot;;
+    location:string[]&#x3D;[];
+    images:string[]&#x3D;[];
+    details:string&#x3D;&quot;&quot;;
+    startDate?:Date;
+    endDate?:Date;
+    constructor(e:EventInterface){
+        this.id &#x3D; e.id;
+        this.name &#x3D; e.id;
+        this.location &#x3D; e.location;
+        this.images &#x3D; e.images;
+        this.details &#x3D; e.details;
+        this.startDate &#x3D; e?.startDate;
+        this.endDate &#x3D; e?.endDate;
+    }
+    isEquals(other:EventClass):boolean{
+        return other.id &#x3D;&#x3D; this.id;
+    }
+
+}</code></pre>
     </div>
 </div>
 

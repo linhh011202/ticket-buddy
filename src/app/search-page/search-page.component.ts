@@ -1,7 +1,7 @@
 import { Component, EventEmitter } from '@angular/core';
 
 import { ToastrService } from 'ngx-toastr';
-import { SearchFacadeService } from '../.Facade/search-facade.service';
+import { SearchFacadeService } from '../facade/search-facade.service';
 
 @Component({
   selector: 'app-search-page',

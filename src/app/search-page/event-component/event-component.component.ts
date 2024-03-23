@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { EventInterface } from '../../interfaces/event-interface';
 import { AuthenticationService } from 'src/app/network/firebase/authentication/authentication.service';
 import { WatchlistService } from 'src/app/network/firebase/firestore/watchlist.service';
-import { SearchFacadeService } from 'src/app/.Facade/search-facade.service';
+import { SearchFacadeService } from 'src/app/facade/search-facade.service';
 
 @Component({
   selector: 'app-event-component',

@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { CalanderEvent } from '../interfaces/calander-interface/CalanderEvent-interface';
 
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { CalendarFacade } from '../.Facade/PersonalCalendarFacade';
-import { NewCalendarEvent } from '../.Class/NewCalendarEvent';
+import { CalendarFacade } from '../facade/PersonalCalendarFacade';
+import { NewCalendarEvent } from '../class/NewCalendarEvent';
 
 
 @Component({
