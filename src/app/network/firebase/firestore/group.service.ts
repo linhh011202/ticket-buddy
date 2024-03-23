@@ -57,7 +57,7 @@ export class GroupService {
       },
       admin: admin,
       members: [],
-      confirmed: [],
+      confirmed: [admin.id],
       booked: false,
       allUUID: [admin.id]
     }
