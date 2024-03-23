@@ -1,7 +1,7 @@
 
 <div class="row">
     <div class="d-flex justify-content-center">
-        <app-calander [dateColor]="dateColor" [events]="events" (clickedDate)="dateClicked($event)"></app-calander>
+        <app-calander [dateColor]="(cal.dateColor$|async)!" [events]="(cal.calendar$|async)!" (clickedDate)="dateClicked($event)"></app-calander>
     </div>
 </div>
 <div class="row pt-2">
@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-           <tr *ngFor="let e of evts">
+           <tr *ngFor="let e of calendarOnDisplay">
                 <td>{{e.detail}}</td>
                 <td>{{e.start}}</td>
                 <td>{{e.end}}</td>
@@ -25,9 +25,9 @@
                 
            </tr>
            <tr>
-            <td><input type="text"[(ngModel)]="detail"></td>
-            <td><input [(ngModel)]="start" type="datetime-local"></td>
-            <td><input [(ngModel)]="end" type="datetime-local"></td>
+            <td><input type="text"[(ngModel)]="newEvent.detail"></td>
+            <td><input [(ngModel)]="newEvent.start" type="datetime-local"></td>
+            <td><input [(ngModel)]="newEvent.end" type="datetime-local"></td>
             <td><button type="button" class="btn btn-info" (click)="createEvent()">Add</button></td>
             <td></td>
            </tr>
