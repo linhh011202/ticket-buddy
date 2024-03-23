@@ -7,7 +7,10 @@
     <h2 class="d-inline-flex justify-content-center">{{grp.group$.value?.event?.name}}</h2><br/>
 </div>
 <div class="d-flex flex-row justify-content-center">
-    <h2 class="d-inline-flex justify-content-center">{{grp.group$.value?.event?.startDate}} - {{grp.group$.value?.event?.endDate}}</h2><br/>
+    <h3 class="d-inline-flex justify-content-center"></h3>{{grp.group$.value?.event?.location}}<br/>
+</div>
+<div class="d-flex flex-row justify-content-center">
+    <p class="d-inline-flex justify-content-center">{{grp.group$.value?.event?.startDate|date:'medium'}} - {{grp.group$.value?.event?.endDate|date:'medium'}}</p><br/>
 </div>
 <div class="d-flex flex-row justify-content-center">
 <p><a class="link-opacity-100 invite" (click)="copyInviteLink()">Invite Link</a></p>
@@ -20,18 +23,28 @@
                     <tr>
                         <th scope="col">Username</th>
                         <th scope="col">Kick</th>
+                        <th scope="col">Status</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td>{{(grp.group$|async)!.admin.name}}</td>
+                        <td></td>
+                        <td>{{(grp.group$|async)!.confirmed.includes((grp.group$|async)!.admin.id)?"Going":"Not Going" }}</td>
+                    </tr>
                     <tr  *ngFor="let m of grp.group$.value!.members">
                         <td>{{ m.name }} </td>
                         <td><button type="button" class="btn btn-danger" (click)="kickUser(m)">Kick</button></td>
+                        <td>{{(grp.group$|async)!.confirmed.includes(m.id)?"Going":"Not Going" }}</td>
                     </tr>      
                 </tbody>
             </table>
         </div>
         <div class="d-flex flex-row justify-content-center">
-            <div type="button" class="btn btn-danger" (click)="deleteGroup()">Delete Group</div>
+            <div type="button" class="btn btn-danger m-1" (click)="deleteGroup()">Delete Group</div>
+            <div type="button" class="btn btn-success m-1" *ngIf="!(grp.group$|async)!.booked" (click)="deleteGroup()">Request confirmation</div>
+            <div type="button" class="btn btn-success m-1" *ngIf="!(grp.group$|async)!.booked" (click)="deleteGroup()">Confirm book</div>
         </div>
     </div>
 </ng-template>
@@ -53,8 +66,8 @@
            <tr *ngFor="let e of grp.groupCalendar$|async">
                 <td>{{e.user.name}}</td>
                 <td>{{e.detail}}</td>
-                <td>{{e.start}}</td>
-                <td>{{e.end}}</td>     
+                <td>{{e.start|date:"medium"}}</td>
+                <td>{{e.end|date:"medium"}}</td>     
            </tr>
            
         </tbody>
