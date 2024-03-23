@@ -10,7 +10,7 @@ import { WatchlistService } from '../network/firebase/firestore/watchlist.servic
 })
 export class WatchlistPageComponent {
   events:EventInterface[] = [];
-  watchlist:string[] = [];
+  watchlist:EventInterface[] = [];
   constructor(
     private authApi:AuthenticationService, 
     private watchlistSvc: WatchlistService){}
@@ -20,7 +20,7 @@ export class WatchlistPageComponent {
       u=>{
         this.watchlistSvc.getWatchlist(u).subscribe(l=>{
           this.events=l;
-          this.watchlist = l.map(e=>e.id);
+          this.watchlist = l;
         });
       }
     )
