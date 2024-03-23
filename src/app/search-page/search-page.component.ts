@@ -20,6 +20,7 @@ export class SearchPageComponent {
   classInput:string = "";
   eventInput:string = "";
   cId:IdClassType[] = []
+  query:any={};
   classificationEmitter:EventEmitter<string> = new EventEmitter();
   pressSearch:EventEmitter<number> = new EventEmitter();
 
@@ -38,7 +39,7 @@ export class SearchPageComponent {
     this.cId = this.cId.filter((c)=>c.id != ie.id);
   }
   ngOnInit(){
-    this.getEvents();
+    this.searchEvent();//query should be a a generic one
     this.authApi.getCurrentUser().then((x)=>{
       this.currentUser = x;
       this.watchlistSvc.getWatchlist(x).subscribe(
@@ -46,41 +47,35 @@ export class SearchPageComponent {
           this.watchlist = n.map((e)=>e.id);
         }
       )
-    })  
+    })
   }
-  getEvents(){
-    this.tmApi.getEvents().subscribe({
-      next:(n)=>{
-        
-        this.pageInfo = n.page
-        this.pageInfo!.number+=1;        
-        this.loadedEvents = n.events;   
-      },
-      error:(e)=>{
-
-      }
-    });
-  }
+  
   changePage(pgNum:number){
     //must retain same query
-    this.tmApi.getEvents().subscribe({
+    this.query.page = pgNum-1;
+    this.tmApi.getEventsQuery(this.query).subscribe({
       next:(n)=>{
         this.pageInfo = n.page;
-        this.pageInfo!.number+=1;
+        this.pageInfo!.number = pgNum ;
         this.loadedEvents = n.events;   
+      }, error:(e)=>{
+        console.log("Catch eher");
+        console.log(e);
+        console.log("helworld");
+        this.loadedEvents = [];
+        this.pageInfo!.totalElements = 0;
       }
+    
     });
   }
   searchEvent(){//this one got the queries
-    var query = {
-      segmentId:this.cId.filter((c)=>c.type==ClassType.Segment).map((x)=>x.id), 
-      genreId:this.cId.filter((c)=>c.type==ClassType.Genre).map((x)=>x.id), 
-      subGenreId:this.cId.filter((c)=>c.type==ClassType.Subgenre).map((x)=>x.id)
-      ,keyword:this.eventInput
-    };
+    this.query.segmentId = this.cId.filter((c)=>c.type==ClassType.Segment).map((x)=>x.id);
+    this.query.genreId = this.cId.filter((c)=>c.type==ClassType.Genre).map((x)=>x.id);
+    this.query.subGenreId = this.cId.filter((c)=>c.type==ClassType.Subgenre).map((x)=>x.id);
+    this.query.keyword = this.eventInput;
+    this.query.page = 0;
     
-    this.tmApi.getEventsQuery(query).subscribe((x)=>{
-      console.log(x.page);
+    this.tmApi.getEventsQuery(this.query).subscribe((x)=>{
       this.pageInfo = x.page;
       this.pageInfo!.number +=1;
       this.loadedEvents = x.events;
