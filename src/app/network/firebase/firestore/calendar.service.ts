@@ -99,11 +99,14 @@ export class CalendarService {
           data.forEach(cal=>{
             let calEvent = this.dbToCalendarEvent(cal, allUserMap[cal["uid"]]);
 
-            if(!group.event.endDate || !group.event.startDate) {
-              console.log("return")
-              return
-            };
+            if(!group.event.endDate || !group.event.startDate)
+              return;
 
+            // Reserved/Booked for the group
+            if ((calEvent.type==CalanderType.ReservedForEvent || calEvent.type==CalanderType.BookedForEvent) && calEvent.groupId == group.id)
+              return;
+
+            // Clash with group date
             if (calEvent.start <= group.event!.endDate && calEvent.end >= group.event.startDate)
               result.push(calEvent);
           });
