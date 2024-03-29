@@ -27,11 +27,11 @@ export class GroupPageComponent implements OnInit, AfterViewInit{
   ){}
 
   ngOnInit(): void {
-
+    this.grp.getGroups();
   }
   
   joinGroup(){
-    this.grp.joinGroup(this.groupID);
+    this.grp.joinGroup(this.groupID).subscribe();
   }
   ngAfterViewInit(): void {
     this.route.paramMap.subscribe(params=>{

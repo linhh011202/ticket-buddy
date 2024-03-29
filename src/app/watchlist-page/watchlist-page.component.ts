@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { EventInterface } from '../interfaces/event-interface';
-import { AuthenticationService } from '../network/firebase/authentication/authentication.service';
-import { WatchlistService } from '../network/firebase/firestore/watchlist.service';
+import { SearchFacadeService } from '../facade/search-facade.service';
 
 @Component({
   selector: 'app-watchlist-page',
@@ -9,20 +7,10 @@ import { WatchlistService } from '../network/firebase/firestore/watchlist.servic
   styleUrls: ['./watchlist-page.component.css']
 })
 export class WatchlistPageComponent {
-  events:EventInterface[] = [];
-  watchlist:EventInterface[] = [];
   constructor(
-    private authApi:AuthenticationService, 
-    private watchlistSvc: WatchlistService){}
+    public searchFacade:SearchFacadeService){}
 
   ngOnInit(){
-    this.authApi.getCurrentUser().then(
-      u=>{
-        this.watchlistSvc.getWatchlist(u).subscribe(l=>{
-          this.events=l;
-          this.watchlist = l;
-        });
-      }
-    )
+    this.searchFacade.getWatchList();  
   }
 }

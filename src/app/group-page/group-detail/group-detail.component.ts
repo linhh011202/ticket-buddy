@@ -17,11 +17,19 @@ export class GroupDetailComponent implements OnInit {
   constructor(
     public grp: ViewGroupFacade
   ){}
-
+  
   ngOnInit(){//given the events of that group
-    this.grp.init(this.group);
+    this.grp.getCurrentUser();
+    this.grp.getGroup(this.group.id);
+    this.grp.getGroupCalander(this.group);
   }
+  copyInviteLink(){
 
+  }
+  joinGroup(){
+
+  }
+/*
   deleteGroup(){
     this.grp.deleteGroup();
   }
