@@ -25,7 +25,9 @@ export class GroupDetailComponent implements OnInit {
   }
 
   deleteGroup(){
-    this.grp.deleteGroup();
+    this.grp.deleteGroup().then(_=>{
+      console.log("group deleted");
+    })
   }
   kickUser(user:UserInterface){
     this.grp.kickUser(user).then(_=>{
