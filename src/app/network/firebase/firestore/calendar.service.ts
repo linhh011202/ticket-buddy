@@ -139,4 +139,31 @@ export class CalendarService {
       })
     });
   }
+
+	// 1. Pull all "Reserved" calendar event of all who has confirmed
+	// 2. Change type from "ReservedForEvent" to "BookedForEvent" & update detail
+  convertReservedToBooked(grp: GroupInterface): Promise<void>{
+    return new Promise<void>(res=>{
+      let calCollection: CollectionReference = collection(this.fs, "calendar");
+      let q = query(calCollection, and(
+        where("uid","in", grp.confirmed),
+        where("grp.id", "==" , grp.id)
+      ));
+      let temp = collectionData(q, {idField: 'id'}).subscribe(data=>{
+				temp.unsubscribe();
+				let allProm: Promise<any>[] = [];
+				data.forEach(cal=>{
+					let calDoc = doc(this.fs, `calendar/${cal.id}`);
+					let update = {
+						type: CalanderType.BookedForEvent,
+						detail: `Going to ${grp.event.name} with ${grp.name}.`
+					}
+					allProm.push(updateDoc(calDoc, update));
+				});
+				Promise.all(allProm).then(_=>{
+					return res();
+				});
+			});
+    });
+  }
 }

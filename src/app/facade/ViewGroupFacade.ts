@@ -117,14 +117,58 @@ export class ViewGroupFacade {
         });
         return obs;
     }
-    sendGroupConfirmation(){
+    sendGroupConfirmation(): Promise<void>{
         //groupInterface
-        this.grpSvc.sendGroupConfirmation(this.group$.value!);
-    
+        return new Promise<void>((res,rej)=>{
+            if (!this.group$.value)
+                return rej(new Error("Group invalid."));
+            if (this.group$.value.confirmed.length === this.group$.value.allUUID.length)
+                return rej(new Error("Group all members confirmed"));
+            this.grpSvc.sendGroupConfirmation(this.group$.value!).then(_=>{
+                return res();
+            });
+        });
     }   
-    confirmGroupbooking(){
+    confirmGroupbooking(): Promise<void>{
         //groupInterface
-        this.grpSvc.confirmGroupBooking(this.group$.value!);
+        return new Promise<void>((res,rej)=>{
+            if (!this.group$.value)
+                return rej(new Error("Group invalid."));
+            if (this.group$.value.confirmed.length === 0)
+                return rej(new Error("Group no members confirmed"));
+            let calUpdateProm = this.calSvc.convertReservedToBooked(this.group$.value);
+            let grpUpdateProm = this.grpSvc.confirmGroupBooking(this.group$.value!)
+
+            Promise.all([calUpdateProm,grpUpdateProm]).then(_=>{
+                return res();
+            })
+        });
+        
+    }
+
+    confirmGroupEvent(): Promise<void>{
+        return new Promise<void>((res,rej)=>{
+            if (!this.group$.value || !this.currentUser)
+                return rej(new Error("Group or User invalid."));
+
+            let cfrmGrpEvntProm = this.grpSvc.confirmGroupEvent(this.group$.value, this.currentUser)
+            let calEvntProm = this.calSvc.addCalendarEvent({
+                user: this.currentUser,
+                start: this.group$.value.event.startDate!,
+                end: this.group$.value.event.endDate!,
+                detail: `Reserved for ${this.group$.value.name}.`,
+                type: CalanderType.ReservedForEvent,
+                groupId: this.group$.value.id,
+                groupName: this.group$.value.name
+            });
+
+            Promise.all([cfrmGrpEvntProm,calEvntProm]).then(_=>{
+                res();
+            });
+        });
+        
+
+        
     }
 	
 }

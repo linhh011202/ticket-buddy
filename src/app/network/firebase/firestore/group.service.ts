@@ -34,8 +34,6 @@ export class GroupService {
       booked: dbGroup["booked"],
       allUUID: dbGroup["allUUID"]
     }
-    if (dbGroup["date"])
-      grp.date = dbGroup["date"].toDate();
 
     return grp;
   }
@@ -57,7 +55,7 @@ export class GroupService {
       },
       admin: admin,
       members: [],
-      confirmed: [admin.id],
+      confirmed: [],
       booked: false,
       allUUID: [admin.id]
     }
@@ -131,7 +129,6 @@ export class GroupService {
     
     // Protection against display name change
     let toRemove: UserInterface|undefined = undefined;
-
     group.members.forEach(member=>{
       if (member.id === user.id){
         toRemove = member;
@@ -139,15 +136,18 @@ export class GroupService {
       }
     })
 
-
     return new Promise<void>(res=>{
       // Check if user is a member in group
       if (toRemove === undefined) res();
       
-      let update = {
+      let update: any = {
         members: arrayRemove(toRemove),
-        allUUID: arrayRemove(user.id)
+        allUUID: arrayRemove(user.id),
       }
+
+      if (group.confirmed.includes(user.id))
+        update["confirmed"] = arrayRemove(user.id);
+
       updateDoc(grpDoc, update).then(_=>{
         res();
       })
@@ -167,18 +167,20 @@ export class GroupService {
     return this.noti.sendConfirmationRequest(group);
   }
 
-  toggleGroupConfirmation(group: GroupInterface, user: UserInterface): Promise<void>{
+  confirmGroupEvent(group: GroupInterface, user: UserInterface): Promise<void>{
     let grpDoc = doc(this.fs, `group/${group.id}`);
     let update = {confirmed: arrayUnion(user.id)};
 
-    if (group.confirmed.includes(user.id))
-      update.confirmed = arrayRemove(user.id);
+    // if (group.confirmed.includes(user.id))
+    //   update.confirmed = arrayRemove(user.id);
 
-    return new Promise<void>(res=>{
-        updateDoc(grpDoc, update).then(_=>{
-          res();
-        })
-      });
+    return new Promise<void>((res,rej)=>{
+      if (group.confirmed.includes(user.id))
+        return rej(new Error("User already confirmed."));
+      updateDoc(grpDoc, update).then(_=>{
+        res();
+      })
+    });
   }
 
   confirmGroupBooking(group: GroupInterface): Promise<void>{
