@@ -52,6 +52,39 @@
         </div>
     </div>
 </ng-template>
+<ng-template [ngIf]="grp.group$.value && grp.currentUser$.value.id != group.admin.id">
+    <div class="container p-2">
+        <div class="d-flex flex-row justify-content-center">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Username</th>
+                        <th scope="col">Status</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{(grp.group$|async)!.admin.name}}</td>
+                        
+                        <td>{{(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)?"Going":"Not Going" }}</td>
+                    </tr>
+                    <tr  *ngFor="let m of grp.group$.value!.members">
+                        <td>{{ m.name }} </td>
+                        
+                        <td>{{(grp.group$.value)!.confirmed.includes(m.id)?"Going":"Not Going" }}</td>
+                    </tr>      
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex flex-row justify-content-center" *ngIf="!grp.group$.value.booked && !grp.group$.value.confirmed.includes(grp.currentUser$.value.id)">
+            <div (click)="confirmGoing()" type="button" class="btn btn-success m-1" >Confirm going</div>
+            
+        </div>
+    </div>
+</ng-template>
+
+
 
 
 <div class="d-flex flex-row justify-content-center">
@@ -80,7 +113,7 @@
     </table>
 </div>
 
-<ng-template [ngIf]="grp.group$.value?.allUUID?.includes(grp.currentUser$.value.id)">
+<ng-template [ngIf]="!grp.group$.value?.allUUID?.includes(grp.currentUser$.value.id)">
 <div class="d-flex flex-row justify-content-center">
     <div class="btn btn-success" (click)="joinGroup()">JOIN GROUP</div>
 </div>

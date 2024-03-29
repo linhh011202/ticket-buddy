@@ -53,5 +53,8 @@ export class GroupDetailComponent implements OnInit {
       console.log("group booking confirm success")
     })
   }
+  confirmGoing(){
+    this.grp.confirmGroupEvent();
+  }
 
 }
