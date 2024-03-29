@@ -54,7 +54,14 @@ export class GroupDetailComponent implements OnInit {
     })
   }
   confirmGoing(){
-    this.grp.confirmGroupEvent();
+    this.grp.confirmGroupEvent().subscribe({
+      next:()=>{
+        console.log("SJUCCES");
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    })
   }
 
 }

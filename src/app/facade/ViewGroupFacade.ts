@@ -167,18 +167,9 @@ export class ViewGroupFacade {
         
     }
 
-    confirmGroupEvent(): Promise<void>{
-        return new Promise<void>((res,rej)=>{
-            // throw error if 
-            if (!this.group$.value || !this.currentUser$.value)
-                return rej(new Error("Group or User invalid."));
-
-            let cfrmGrpEvntProm = this.grpSvc.confirmGroupEvent(this.group$.value, this.currentUser$.value, this.groupCalendar$.value)
-
-            cfrmGrpEvntProm.then(_=>{
-                res();
-            });
-        });
+    confirmGroupEvent(): Observable<any>{
+        return this.grpSvc.confirmGroupEvent(this.group$.value!, this.currentUser$.value);
+       
     }
 	
 }

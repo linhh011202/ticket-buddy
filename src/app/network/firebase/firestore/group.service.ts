@@ -3,7 +3,7 @@ import { EventInterface } from 'src/app/interfaces/event-interface';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 
 import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData, updateDoc, arrayUnion, arrayRemove, deleteDoc, FirestoreError} from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin, iif, switchMap, take, throwError } from 'rxjs';
 import { GroupInterface } from 'src/app/interfaces/group-interface';
 import { NotificationService } from './notification.service';
 import { CalanderType } from 'src/app/interfaces/enums/calenderenum';
@@ -170,36 +170,25 @@ export class GroupService {
     return this.noti.sendConfirmationRequest(group);
   }
 
-  confirmGroupEvent(group: GroupInterface, user: UserInterface, grpCal: CalanderEvent[]): Promise<void>{
+  confirmGroupEvent(group: GroupInterface, user: UserInterface): Observable<{first:void, second:void}>{
     let grpDoc = doc(this.fs, `group/${group.id}`);
     let update = {confirmed: arrayUnion(user.id)};
+    return this.calSvc.getGroupCalendar(group).pipe(
+      take(1),
+      switchMap((grpCal:CalanderEvent[])=>
+      iif(()=>grpCal.map(e=>e.user.id).includes(user.id) , throwError(()=>"User not available at that time"), 
+      forkJoin({first:this.calSvc.addCalendarEvent({
+        user: user,
+        start: group.event.startDate!,
+        end: group.event.endDate!,
+        detail: `Reserved for ${group.name}.`,
+        type: CalanderType.ReservedForEvent,
+        groupId: group.id,
+        groupName: group.name
+    }), second:updateDoc(grpDoc, update)}),
+      ))
+    );
 
-    return new Promise<void>((res,rej)=>{
-        if (group.confirmed.includes(user.id))
-          return rej(new Error("User already confirmed."));
-
-        grpCal.forEach(cal=>{
-          if (cal.user.id !== user.id)
-            return
-          if (this.calSvc.clash(group.event,cal))
-            return rej(new Error("User not available"));
-        });
-
-        let updateProm = updateDoc(grpDoc, update);
-        let calEvntProm = this.calSvc.addCalendarEvent({
-          user: user,
-          start: group.event.startDate!,
-          end: group.event.endDate!,
-          detail: `Reserved for ${group.name}.`,
-          type: CalanderType.ReservedForEvent,
-          groupId: group.id,
-          groupName: group.name
-      });
-
-        Promise.all([updateProm,calEvntProm]).then(_=>{
-          res();
-        })
-    })
 
     // Check if can confirm
 
