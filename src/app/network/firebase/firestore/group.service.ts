@@ -192,7 +192,7 @@ export class GroupService {
       mergeMap((grpCal:CalanderEvent[])=>
         iif(
           ()=> grpCal.map(e=>e.user.id).includes(user.id), 
-          throwError(()=>"User not available at that time").pipe(tap(()=>console.log("GOT ERROR"))), 
+          throwError(()=>"User not available at that time"), 
           of(1).pipe(switchMap(()=>forkJoin(
             {first:from(this.calSvc.addCalendarEvent({
               user: user,
