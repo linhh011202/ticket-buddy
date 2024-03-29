@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { EventInterface } from '../interfaces/event-interface';
-import { AuthenticationService } from '../network/firebase/authentication/authentication.service';
-import { WatchlistService } from '../network/firebase/firestore/watchlist.service';
 import { SearchFacadeService } from '../facade/search-facade.service';
 
 @Component({
