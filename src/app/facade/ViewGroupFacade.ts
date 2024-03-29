@@ -169,12 +169,12 @@ export class ViewGroupFacade {
 
     confirmGroupEvent(): Promise<void>{
         return new Promise<void>((res,rej)=>{
-            if (!this.group$.value || !this.currentUser)
+            if (!this.group$.value || !this.currentUser$.value)
                 return rej(new Error("Group or User invalid."));
 
-            let cfrmGrpEvntProm = this.grpSvc.confirmGroupEvent(this.group$.value, this.currentUser)
+            let cfrmGrpEvntProm = this.grpSvc.confirmGroupEvent(this.group$.value, this.currentUser$.value)
             let calEvntProm = this.calSvc.addCalendarEvent({
-                user: this.currentUser,
+                user: this.currentUser$.value,
                 start: this.group$.value.event.startDate!,
                 end: this.group$.value.event.endDate!,
                 detail: `Reserved for ${this.group$.value.name}.`,

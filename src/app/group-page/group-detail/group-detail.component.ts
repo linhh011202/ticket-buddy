@@ -23,13 +23,7 @@ export class GroupDetailComponent implements OnInit {
     this.grp.getGroup(this.group.id);
     this.grp.getGroupCalander(this.group);
   }
-  copyInviteLink(){
 
-  }
-  joinGroup(){
-
-  }
-/*
   deleteGroup(){
     this.grp.deleteGroup();
   }
@@ -42,8 +36,8 @@ export class GroupDetailComponent implements OnInit {
     this.grp.copyInviteLink();
   }
   joinGroup(){
-    this.grp.joinGroup(this.grp.group$.value!.id).then(_=>{
-      console.log("group join success");
+    this.grp.joinGroup(this.grp.group$.value!.id).subscribe(_=>{
+      console.log("join grp success");
     })
   }
   sendGroupConfirmation(){
