@@ -117,5 +117,14 @@ export class ViewGroupFacade {
         });
         return obs;
     }
+    sendGroupConfirmation(){
+        //groupInterface
+        this.grpSvc.sendGroupConfirmation(this.group$.value!);
+    
+    }   
+    confirmGroupbooking(){
+        //groupInterface
+        this.grpSvc.confirmGroupBooking(this.group$.value!);
+    }
 	
 }

@@ -38,4 +38,12 @@ export class GroupDetailComponent implements OnInit {
       console.log("group join success");
     })
   }
+  sendGroupConfirmation(){
+    this.grp.sendGroupConfirmation();
+  }
+  confirmGroupbooking(){
+    //calaa fascase
+    this.grp.confirmGroupbooking();
+  }
+
 }

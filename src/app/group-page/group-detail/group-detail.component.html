@@ -43,8 +43,8 @@
         </div>
         <div class="d-flex flex-row justify-content-center">
             <div type="button" class="btn btn-danger m-1" (click)="deleteGroup()">Delete Group</div>
-            <div type="button" class="btn btn-success m-1" *ngIf="!(grp.group$|async)!.booked" (click)="deleteGroup()">Request confirmation</div>
-            <div type="button" class="btn btn-success m-1" *ngIf="!(grp.group$|async)!.booked" (click)="deleteGroup()">Confirm book</div>
+            <div type="button" class="btn btn-success m-1" *ngIf="!(grp.group$|async)!.booked" (click)="sendGroupConfirmation()">Request confirmation</div>
+            <div type="button" class="btn btn-success m-1" *ngIf="!(grp.group$|async)!.booked" (click)="confirmGroupbooking()">Confirm book</div>
         </div>
     </div>
 </ng-template>
