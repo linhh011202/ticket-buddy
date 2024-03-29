@@ -3,7 +3,7 @@ import { EventInterface } from 'src/app/interfaces/event-interface';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 
 import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData, updateDoc, arrayUnion, arrayRemove, deleteDoc, FirestoreError} from '@angular/fire/firestore';
-import { Observable, forkJoin, iif, switchMap, take, throwError } from 'rxjs';
+import { Observable, forkJoin, from, iif, mergeMap, of, switchMap, take, tap, throwError } from 'rxjs';
 import { GroupInterface } from 'src/app/interfaces/group-interface';
 import { NotificationService } from './notification.service';
 import { CalanderType } from 'src/app/interfaces/enums/calenderenum';
@@ -169,24 +169,47 @@ export class GroupService {
   sendGroupConfirmation(group: GroupInterface): Promise<void>{
     return this.noti.sendConfirmationRequest(group);
   }
-
-  confirmGroupEvent(group: GroupInterface, user: UserInterface): Observable<{first:void, second:void}>{
+  /*
+  forkJoin(
+    {first:from(this.calSvc.addCalendarEvent({
+            user: user,
+            start: group.event.startDate!,
+            end: group.event.endDate!,
+            detail: `Reserved for ${group.name}.`,
+            type: CalanderType.ReservedForEvent,
+            groupId: group.id,
+            groupName: group.name
+          })).pipe(tap(()=>console.log("GOT NO ERROR"))), second:from(updateDoc(grpDoc, update))})
+  
+  */
+//grpCal.map(e=>e.user.id).includes(user.id)
+  confirmGroupEvent(group: GroupInterface, user: UserInterface): Observable<void>{
+    
     let grpDoc = doc(this.fs, `group/${group.id}`);
     let update = {confirmed: arrayUnion(user.id)};
     return this.calSvc.getGroupCalendar(group).pipe(
       take(1),
-      switchMap((grpCal:CalanderEvent[])=>
-      iif(()=>grpCal.map(e=>e.user.id).includes(user.id) , throwError(()=>"User not available at that time"), 
-      forkJoin({first:this.calSvc.addCalendarEvent({
-        user: user,
-        start: group.event.startDate!,
-        end: group.event.endDate!,
-        detail: `Reserved for ${group.name}.`,
-        type: CalanderType.ReservedForEvent,
-        groupId: group.id,
-        groupName: group.name
-    }), second:updateDoc(grpDoc, update)}),
-      ))
+      mergeMap((grpCal:CalanderEvent[])=>
+        iif(
+          ()=> grpCal.map(e=>e.user.id).includes(user.id), 
+          throwError(()=>"User not available at that time").pipe(tap(()=>console.log("GOT ERROR"))), 
+          of(1).pipe(switchMap(()=>forkJoin(
+            {first:from(this.calSvc.addCalendarEvent({
+              user: user,
+              start: group.event.startDate!,
+              end: group.event.endDate!,
+              detail: `Reserved for ${group.name}.`,
+              type: CalanderType.ReservedForEvent,
+              groupId: group.id,
+              groupName: group.name
+            })), second:from(updateDoc(grpDoc, update))}
+
+          ).pipe(switchMap(()=>of(void 0))))
+          
+          )
+          ,
+        )
+      )
     );
 
 
