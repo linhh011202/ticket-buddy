@@ -8,7 +8,8 @@ export interface CalanderEvent {
     end: Date,
     detail: string,
     type: CalanderType
-    groupId?:string
+    groupId?: string,
+    groupName?: string
 }
 
 export interface CalanderEventColor{

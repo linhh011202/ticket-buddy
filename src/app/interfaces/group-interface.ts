@@ -10,5 +10,4 @@ export interface GroupInterface {
     confirmed:string[];
     booked: boolean;
     allUUID: string[]; 
-    date?: Date;
 }

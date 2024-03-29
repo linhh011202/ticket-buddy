@@ -15,7 +15,8 @@ export class CalendarService {
 
   private dbToCalendarEvent(dbCalEnt: DocumentData | DocumentData & {id: string;}, user: UserInterface): CalanderEvent 
   { 
-    return { 
+
+    let calEvent: CalanderEvent = { 
       id: dbCalEnt["id"],
       user: user, 
       start: dbCalEnt["start"].toDate(), 
@@ -23,12 +24,19 @@ export class CalendarService {
       detail: dbCalEnt["detail"], 
       type: CalanderType[dbCalEnt["type"] as keyof typeof CalanderType] 
     } 
+    
+    if (calEvent.type == CalanderType.ReservedForEvent || calEvent.type == CalanderType.BookedForEvent){
+      calEvent.groupId = dbCalEnt["grp"]["id"];
+      calEvent.groupName = dbCalEnt["grp"]["name"];
+    }
+
+    return calEvent;
   } 
 
   addCalendarEvent(calendarEvent: CalanderEvent): Promise<void>{
     let calCollection: CollectionReference = collection(this.fs, "calendar");
 
-    let calDoc = {
+    let calDoc: any = {
       uid: calendarEvent.user.id,
       start: calendarEvent.start,
       end: calendarEvent.end,
@@ -36,9 +44,15 @@ export class CalendarService {
       type: calendarEvent.type
     }
 
+    if (calendarEvent.type == CalanderType.ReservedForEvent || calendarEvent.type == CalanderType.BookedForEvent){
+      calDoc["grp"] = {
+        id: calendarEvent.groupId,
+        name: calendarEvent.groupName
+      };
+    }
+
     return new Promise<void>(res=>{
       addDoc(calCollection, calDoc).then((docRef: DocumentReference)=>{
-       
         res();
       });
     })
@@ -85,11 +99,14 @@ export class CalendarService {
           data.forEach(cal=>{
             let calEvent = this.dbToCalendarEvent(cal, allUserMap[cal["uid"]]);
 
-            if(!group.event.endDate || !group.event.startDate) {
-              console.log("return")
-              return
-            };
+            if(!group.event.endDate || !group.event.startDate)
+              return;
 
+            // Reserved/Booked for the group
+            if ((calEvent.type==CalanderType.ReservedForEvent || calEvent.type==CalanderType.BookedForEvent) && calEvent.groupId == group.id)
+              return;
+
+            // Clash with group date
             if (calEvent.start <= group.event!.endDate && calEvent.end >= group.event.startDate)
               result.push(calEvent);
           });
@@ -120,6 +137,33 @@ export class CalendarService {
       deleteDoc(calDoc).then(birdbird=>{
         res();
       })
+    });
+  }
+
+	// 1. Pull all "Reserved" calendar event of all who has confirmed
+	// 2. Change type from "ReservedForEvent" to "BookedForEvent" & update detail
+  convertReservedToBooked(grp: GroupInterface): Promise<void>{
+    return new Promise<void>(res=>{
+      let calCollection: CollectionReference = collection(this.fs, "calendar");
+      let q = query(calCollection, and(
+        where("uid","in", grp.confirmed),
+        where("grp.id", "==" , grp.id)
+      ));
+      let temp = collectionData(q, {idField: 'id'}).subscribe(data=>{
+				temp.unsubscribe();
+				let allProm: Promise<any>[] = [];
+				data.forEach(cal=>{
+					let calDoc = doc(this.fs, `calendar/${cal.id}`);
+					let update = {
+						type: CalanderType.BookedForEvent,
+						detail: `Going to ${grp.event.name} with ${grp.name}.`
+					}
+					allProm.push(updateDoc(calDoc, update));
+				});
+				Promise.all(allProm).then(_=>{
+					return res();
+				});
+			});
     });
   }
 }

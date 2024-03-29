@@ -47,11 +47,15 @@ export class GroupDetailComponent implements OnInit {
     })
   }
   sendGroupConfirmation(){
-    this.grp.sendGroupConfirmation();
+    this.grp.sendGroupConfirmation().then(_=>{
+      console.log("group confirmation email success");
+    })
   }
   confirmGroupbooking(){
     //calaa fascase
-    this.grp.confirmGroupbooking();
-  }*/
+    this.grp.confirmGroupbooking().then(_=>{
+      console.log("group booking confirm success")
+    })
+  }
 
 }
