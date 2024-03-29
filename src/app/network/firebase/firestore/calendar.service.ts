@@ -15,7 +15,8 @@ export class CalendarService {
 
   private dbToCalendarEvent(dbCalEnt: DocumentData | DocumentData & {id: string;}, user: UserInterface): CalanderEvent 
   { 
-    return { 
+
+    let calEvent: CalanderEvent = { 
       id: dbCalEnt["id"],
       user: user, 
       start: dbCalEnt["start"].toDate(), 
@@ -23,12 +24,19 @@ export class CalendarService {
       detail: dbCalEnt["detail"], 
       type: CalanderType[dbCalEnt["type"] as keyof typeof CalanderType] 
     } 
+    
+    if (calEvent.type == CalanderType.ReservedForEvent || calEvent.type == CalanderType.BookedForEvent){
+      calEvent.groupId = dbCalEnt["grp"]["id"];
+      calEvent.groupName = dbCalEnt["grp"]["name"];
+    }
+
+    return calEvent;
   } 
 
   addCalendarEvent(calendarEvent: CalanderEvent): Promise<void>{
     let calCollection: CollectionReference = collection(this.fs, "calendar");
 
-    let calDoc = {
+    let calDoc: any = {
       uid: calendarEvent.user.id,
       start: calendarEvent.start,
       end: calendarEvent.end,
@@ -36,9 +44,15 @@ export class CalendarService {
       type: calendarEvent.type
     }
 
+    if (calendarEvent.type == CalanderType.ReservedForEvent || calendarEvent.type == CalanderType.BookedForEvent){
+      calDoc["grp"] = {
+        id: calendarEvent.groupId,
+        name: calendarEvent.groupName
+      };
+    }
+
     return new Promise<void>(res=>{
       addDoc(calCollection, calDoc).then((docRef: DocumentReference)=>{
-       
         res();
       });
     })
