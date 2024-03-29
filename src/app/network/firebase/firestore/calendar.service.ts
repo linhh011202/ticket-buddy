@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { CalanderEvent } from 'src/app/interfaces/calander-interface/CalanderEvent-interface';
 import { CalanderType } from 'src/app/interfaces/enums/calenderenum';
 import { GroupInterface } from 'src/app/interfaces/group-interface';
+import { EventInterface } from 'src/app/interfaces/event-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +76,10 @@ export class CalendarService {
     })
   }
 
+	clash(event: EventInterface, calEvent: CalanderEvent): boolean {
+		return calEvent.start <= event.endDate! && calEvent.end >= event.startDate!;
+	}
+
   getGroupCalendar(group: GroupInterface): Observable<CalanderEvent[]>{
     let calCollection: CollectionReference = collection(this.fs, "calendar");
     let q = query(calCollection, and(
@@ -107,7 +112,7 @@ export class CalendarService {
               return;
 
             // Clash with group date
-            if (calEvent.start <= group.event!.endDate && calEvent.end >= group.event.startDate)
+						if (this.clash(group.event,calEvent))
               result.push(calEvent);
           });
           obs.next(result);

@@ -6,13 +6,16 @@ import { DocumentReference, Firestore, collection, addDoc, CollectionReference, 
 import { Observable } from 'rxjs';
 import { GroupInterface } from 'src/app/interfaces/group-interface';
 import { NotificationService } from './notification.service';
+import { CalanderType } from 'src/app/interfaces/enums/calenderenum';
+import { CalendarService } from './calendar.service';
+import { CalanderEvent } from 'src/app/interfaces/calander-interface/CalanderEvent-interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GroupService {
 
-  constructor(private fs: Firestore, private noti: NotificationService) { }
+  constructor(private calSvc: CalendarService, private fs: Firestore, private noti: NotificationService) { }
 
   private dbToGroupInterface(dbGroup: DocumentData | DocumentData & {id: string;}): GroupInterface
   {
@@ -167,20 +170,44 @@ export class GroupService {
     return this.noti.sendConfirmationRequest(group);
   }
 
-  confirmGroupEvent(group: GroupInterface, user: UserInterface): Promise<void>{
+  confirmGroupEvent(group: GroupInterface, user: UserInterface, grpCal: CalanderEvent[]): Promise<void>{
     let grpDoc = doc(this.fs, `group/${group.id}`);
     let update = {confirmed: arrayUnion(user.id)};
 
-    // if (group.confirmed.includes(user.id))
-    //   update.confirmed = arrayRemove(user.id);
-
     return new Promise<void>((res,rej)=>{
-      if (group.confirmed.includes(user.id))
-        return rej(new Error("User already confirmed."));
-      updateDoc(grpDoc, update).then(_=>{
-        res();
-      })
-    });
+        if (group.confirmed.includes(user.id))
+          return rej(new Error("User already confirmed."));
+
+        grpCal.forEach(cal=>{
+          if (cal.user.id !== user.id)
+            return
+          if (this.calSvc.clash(group.event,cal))
+            return rej(new Error("User not available"));
+        });
+
+        let updateProm = updateDoc(grpDoc, update);
+        let calEvntProm = this.calSvc.addCalendarEvent({
+          user: user,
+          start: group.event.startDate!,
+          end: group.event.endDate!,
+          detail: `Reserved for ${group.name}.`,
+          type: CalanderType.ReservedForEvent,
+          groupId: group.id,
+          groupName: group.name
+      });
+
+        Promise.all([updateProm,calEvntProm]).then(_=>{
+          res();
+        })
+    })
+
+    // Check if can confirm
+
+    // Update user calendar
+
+    // Update group
+
+
   }
 
   confirmGroupBooking(group: GroupInterface): Promise<void>{

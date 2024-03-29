@@ -169,27 +169,16 @@ export class ViewGroupFacade {
 
     confirmGroupEvent(): Promise<void>{
         return new Promise<void>((res,rej)=>{
+            // throw error if 
             if (!this.group$.value || !this.currentUser$.value)
                 return rej(new Error("Group or User invalid."));
 
-            let cfrmGrpEvntProm = this.grpSvc.confirmGroupEvent(this.group$.value, this.currentUser$.value)
-            let calEvntProm = this.calSvc.addCalendarEvent({
-                user: this.currentUser$.value,
-                start: this.group$.value.event.startDate!,
-                end: this.group$.value.event.endDate!,
-                detail: `Reserved for ${this.group$.value.name}.`,
-                type: CalanderType.ReservedForEvent,
-                groupId: this.group$.value.id,
-                groupName: this.group$.value.name
-            });
+            let cfrmGrpEvntProm = this.grpSvc.confirmGroupEvent(this.group$.value, this.currentUser$.value, this.groupCalendar$.value)
 
-            Promise.all([cfrmGrpEvntProm,calEvntProm]).then(_=>{
+            cfrmGrpEvntProm.then(_=>{
                 res();
             });
         });
-        
-
-        
     }
 	
 }
