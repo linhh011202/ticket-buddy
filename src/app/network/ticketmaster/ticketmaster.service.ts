@@ -17,6 +17,8 @@ export class TicketmasterService {
     private platformLocation: PlatformLocation,
     private router: Router) {
       this.baseurl = (this.platformLocation as any)._location.origin+"/ticketmaster";
+      // uncomment for production build
+      // this.baseurl = "https://app.ticketmaster.com/discovery/v2";
     }
     
     header = 
