@@ -91,16 +91,51 @@
 
 <h1>Ticketbuddy</h1>
 <p>This project was generated with <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 16.1.5.</p>
-<h2>Development server</h2>
-<p>Run <code>ng serve</code> for a dev server. Navigate to <code>http://localhost:4200/</code>. The application will automatically reload if you change any of the source files.</p>
-<h2>Code scaffolding</h2>
-<p>Run <code>ng generate component component-name</code> to generate a new component. You can also use <code>ng generate directive|pipe|service|class|guard|interface|enum|module</code>.</p>
-<h2>Build</h2>
-<p>Run <code>ng build</code> to build the project. The build artifacts will be stored in the <code>dist/</code> directory.</p>
-<h2>Running unit tests</h2>
-<p>Run <code>ng test</code> to execute the unit tests via <a href="https://karma-runner.github.io">Karma</a>.</p>
-<h2>Running end-to-end tests</h2>
-<p>Run <code>ng e2e</code> to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.</p>
+<h2>Installation</h2>
+<ol start="0">
+<li><a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm" title="Downloading and installing Node.js and npm">Download and install Node.js and npm</a>.</li>
+<li>Clone the project.</li>
+<li>Install libraries using <code>npm install</code></li>
+</ol>
+<h2>Set up</h2>
+<p>Create a file &#39;env-prod.ts&#39; under &#39;./src/environments&#39;.</p>
+<h4>1. Ticketmaster</h4>
+<ol>
+<li><a href="https://developer.ticketmaster.com/products-and-docs/apis/getting-started/" title="The Ticketmaster Developer Portal">Get an API key from Ticketmaster</a>.</li>
+<li>Add the following line into <code>env-prod.ts</code> with the ticket master api key.
+<code>export const ticketMasterApi = &quot;your-ticket-master-api-key&quot;;</code></li>
+</ol>
+<h4>2. Firebase config</h4>
+<ol>
+<li><a href="console.firebase.google.com" title="Firebase console">Create a new Firebase project</a>.</li>
+<li>Add Firebase to your Web App.</li>
+<li>Ignore any npm install commands, this is already completed earlier.</li>
+<li>Copy the <code>firebaseConfig</code> provided.</li>
+<li>Paste the config into <code>env-prod.ts</code> with the <code>export</code> keyword. It should look like the following.
+<code>export const firebaseConfig = {</code>
+<code> apiKey: &quot;your-proj-api-key&quot;,</code>
+<code> authDomain: &quot;your-proj-id.firebaseapp.com&quot;,</code>
+<code>  projectId: &quot;your-proj-id&quot;,</code>
+<code>  storageBucket: &quot;your-proj-id.appspot.com&quot;,</code>
+<code>  messagingSenderId: &quot;XXXXXXXXXXXX&quot;,</code>
+<code>  appId: &quot;1:XXXXXXXXXXXX:web:XXXXXXXXXXXXXXXXXXXXXXXX&quot;,</code>
+<code>  measurementId: &quot;G-XXXXX&quot;</code>
+<code>};</code></li>
+</ol>
+<h4>3. Firebase Authentication set up</h4>
+<ol>
+<li><a href="console.firebase.google.com" title="Firebase console">Open firebase console</a>, navigate to the project created earlier.</li>
+<li>Select Authentication. </li>
+<li>Enable Google as a sign-in provider.</li>
+</ol>
+<h4>4. Firebase Firestore set up</h4>
+<ol>
+<li><a href="console.firebase.google.com" title="Firebase console">Open firebase console</a>, navigate to the project created earlier.</li>
+<li>Create Cloud Firestore database in test mode.</li>
+<li>Under Extensions, install the &quot;Trigger Email from Firestore&quot; extension.</li>
+</ol>
+<h2>Running the project</h2>
+<p>Run the project using <code>npm start</code></p>
 <h2>Further help</h2>
 <p>To get more help on the Angular CLI use <code>ng help</code> or go check out the <a href="https://angular.io/cli">Angular CLI Overview and Command Reference</a> page.</p>
 

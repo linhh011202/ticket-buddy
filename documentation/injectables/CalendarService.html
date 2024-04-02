@@ -146,6 +146,12 @@
                                 <a href="#addCalendarEvent" >addCalendarEvent</a>
                             </li>
                             <li>
+                                <a href="#clash" >clash</a>
+                            </li>
+                            <li>
+                                <a href="#convertReservedToBooked" >convertReservedToBooked</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#dbToCalendarEvent" >dbToCalendarEvent</a>
                             </li>
@@ -184,7 +190,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -247,8 +253,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -298,6 +304,152 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="clash"></a>
+                    <span class="name">
+                        <span ><b>clash</b></span>
+                        <a href="#clash"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clash(event: <a href="../interfaces/EventInterface.html" target="_self">EventInterface</a>, calEvent: <a href="../interfaces/CalanderEvent.html" target="_self">CalanderEvent</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EventInterface.html" target="_self" >EventInterface</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>calEvent</td>
+                                            <td>
+                                                            <code><a href="../interfaces/CalanderEvent.html" target="_self" >CalanderEvent</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertReservedToBooked"></a>
+                    <span class="name">
+                        <span ><b>convertReservedToBooked</b></span>
+                        <a href="#convertReservedToBooked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>convertReservedToBooked(grp: <a href="../interfaces/GroupInterface.html" target="_self">GroupInterface</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="150"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:150</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>grp</td>
+                                            <td>
+                                                            <code><a href="../interfaces/GroupInterface.html" target="_self" >GroupInterface</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="dbToCalendarEvent"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -316,8 +468,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="17"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -395,8 +547,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:62</a></div>
                         </td>
                     </tr>
 
@@ -462,8 +614,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="64"
-                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:64</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -529,8 +681,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="117"
-                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:117</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="139"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:139</a></div>
                         </td>
                     </tr>
 
@@ -596,8 +748,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="102"
-                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:102</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:124</a></div>
                         </td>
                     </tr>
 
@@ -656,6 +808,7 @@ import { Observable } from &#x27;rxjs&#x27;;
 import { CalanderEvent } from &#x27;src/app/interfaces/calander-interface/CalanderEvent-interface&#x27;;
 import { CalanderType } from &#x27;src/app/interfaces/enums/calenderenum&#x27;;
 import { GroupInterface } from &#x27;src/app/interfaces/group-interface&#x27;;
+import { EventInterface } from &#x27;src/app/interfaces/event-interface&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;
@@ -666,7 +819,8 @@ export class CalendarService {
 
   private dbToCalendarEvent(dbCalEnt: DocumentData | DocumentData &amp; {id: string;}, user: UserInterface): CalanderEvent 
   { 
-    return { 
+
+    let calEvent: CalanderEvent &#x3D; { 
       id: dbCalEnt[&quot;id&quot;],
       user: user, 
       start: dbCalEnt[&quot;start&quot;].toDate(), 
@@ -674,12 +828,19 @@ export class CalendarService {
       detail: dbCalEnt[&quot;detail&quot;], 
       type: CalanderType[dbCalEnt[&quot;type&quot;] as keyof typeof CalanderType] 
     } 
+    
+    if (calEvent.type &#x3D;&#x3D; CalanderType.ReservedForEvent || calEvent.type &#x3D;&#x3D; CalanderType.BookedForEvent){
+      calEvent.groupId &#x3D; dbCalEnt[&quot;grp&quot;][&quot;id&quot;];
+      calEvent.groupName &#x3D; dbCalEnt[&quot;grp&quot;][&quot;name&quot;];
+    }
+
+    return calEvent;
   } 
 
   addCalendarEvent(calendarEvent: CalanderEvent): Promise&lt;void&gt;{
     let calCollection: CollectionReference &#x3D; collection(this.fs, &quot;calendar&quot;);
 
-    let calDoc &#x3D; {
+    let calDoc: any &#x3D; {
       uid: calendarEvent.user.id,
       start: calendarEvent.start,
       end: calendarEvent.end,
@@ -687,9 +848,15 @@ export class CalendarService {
       type: calendarEvent.type
     }
 
+    if (calendarEvent.type &#x3D;&#x3D; CalanderType.ReservedForEvent || calendarEvent.type &#x3D;&#x3D; CalanderType.BookedForEvent){
+      calDoc[&quot;grp&quot;] &#x3D; {
+        id: calendarEvent.groupId,
+        name: calendarEvent.groupName
+      };
+    }
+
     return new Promise&lt;void&gt;(res&#x3D;&gt;{
       addDoc(calCollection, calDoc).then((docRef: DocumentReference)&#x3D;&gt;{
-       
         res();
       });
     })
@@ -711,6 +878,10 @@ export class CalendarService {
       )
     })
   }
+
+	clash(event: EventInterface, calEvent: CalanderEvent): boolean {
+		return calEvent.start &lt;&#x3D; event.endDate! &amp;&amp; calEvent.end &gt;&#x3D; event.startDate!;
+	}
 
   getGroupCalendar(group: GroupInterface): Observable&lt;CalanderEvent[]&gt;{
     let calCollection: CollectionReference &#x3D; collection(this.fs, &quot;calendar&quot;);
@@ -736,12 +907,15 @@ export class CalendarService {
           data.forEach(cal&#x3D;&gt;{
             let calEvent &#x3D; this.dbToCalendarEvent(cal, allUserMap[cal[&quot;uid&quot;]]);
 
-            if(!group.event.endDate || !group.event.startDate) {
-              console.log(&quot;return&quot;)
-              return
-            };
+            if(!group.event.endDate || !group.event.startDate)
+              return;
 
-            if (calEvent.start &lt;&#x3D; group.event!.endDate &amp;&amp; calEvent.end &gt;&#x3D; group.event.startDate)
+            // Reserved/Booked for the group
+            if ((calEvent.type&#x3D;&#x3D;CalanderType.ReservedForEvent || calEvent.type&#x3D;&#x3D;CalanderType.BookedForEvent) &amp;&amp; calEvent.groupId &#x3D;&#x3D; group.id)
+              return;
+
+            // Clash with group date
+						if (this.clash(group.event,calEvent))
               result.push(calEvent);
           });
           obs.next(result);
@@ -771,6 +945,33 @@ export class CalendarService {
       deleteDoc(calDoc).then(birdbird&#x3D;&gt;{
         res();
       })
+    });
+  }
+
+	// 1. Pull all &quot;Reserved&quot; calendar event of all who has confirmed
+	// 2. Change type from &quot;ReservedForEvent&quot; to &quot;BookedForEvent&quot; &amp; update detail
+  convertReservedToBooked(grp: GroupInterface): Promise&lt;void&gt;{
+    return new Promise&lt;void&gt;(res&#x3D;&gt;{
+      let calCollection: CollectionReference &#x3D; collection(this.fs, &quot;calendar&quot;);
+      let q &#x3D; query(calCollection, and(
+        where(&quot;uid&quot;,&quot;in&quot;, grp.confirmed),
+        where(&quot;grp.id&quot;, &quot;&#x3D;&#x3D;&quot; , grp.id)
+      ));
+      let temp &#x3D; collectionData(q, {idField: &#x27;id&#x27;}).subscribe(data&#x3D;&gt;{
+				temp.unsubscribe();
+				let allProm: Promise&lt;any&gt;[] &#x3D; [];
+				data.forEach(cal&#x3D;&gt;{
+					let calDoc &#x3D; doc(this.fs, &#x60;calendar/${cal.id}&#x60;);
+					let update &#x3D; {
+						type: CalanderType.BookedForEvent,
+						detail: &#x60;Going to ${grp.event.name} with ${grp.name}.&#x60;
+					}
+					allProm.push(updateDoc(calDoc, update));
+				});
+				Promise.all(allProm).then(_&#x3D;&gt;{
+					return res();
+				});
+			});
     });
   }
 }

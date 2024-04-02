@@ -143,7 +143,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#sendConfirmation" >sendConfirmation</a>
+                                <a href="#sendBookingConfirmation" >sendBookingConfirmation</a>
                             </li>
                             <li>
                                 <a href="#sendConfirmationRequest" >sendConfirmationRequest</a>
@@ -222,24 +222,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="sendConfirmation"></a>
+                    <a name="sendBookingConfirmation"></a>
                     <span class="name">
-                        <span ><b>sendConfirmation</b></span>
-                        <a href="#sendConfirmation"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>sendBookingConfirmation</b></span>
+                        <a href="#sendBookingConfirmation"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>sendConfirmation(group: <a href="../interfaces/GroupInterface.html" target="_self">GroupInterface</a>)</code>
+<code>sendBookingConfirmation(group: <a href="../interfaces/GroupInterface.html" target="_self">GroupInterface</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="46"
-                                    class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:46</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -305,8 +305,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="30"
-                                    class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:30</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -463,6 +463,8 @@ export class NotificationService {
         return;
       }
       addDoc(mailCol, mailDoc).then((docRef: DocumentReference)&#x3D;&gt;{
+        // technically this is not success yet
+        // this means &quot;request to send email has been successfully sent&quot;
         res();
       });
     })
@@ -471,20 +473,20 @@ export class NotificationService {
   sendConfirmationRequest(group: GroupInterface): Promise&lt;void&gt;{
     let emailList: string[] &#x3D; [];
     group.members.forEach(member&#x3D;&gt;{
-      emailList.push(member.email);
+      if (!group.confirmed.includes(member.id))
+        emailList.push(member.email);
     });
 
     let content &#x3D; &#x60;
-    &lt;h2&gt;Date has been decided for ${group.event.name||&#x27;the concert&#x27;}!&lt;/h2&gt;
-    &lt;p&gt;Good news! ${group.name} has decided &lt;b&gt;${group.date?.toDateString()}&lt;/b&gt; for ${group.event.name||&#x27;the concert&#x27;}.&lt;/p&gt;
+    &lt;p&gt;Hello! ${group.admin.name} is asking for your confirmation to go to &lt;u&gt;${group.event.name||&#x27;the concert&#x27;}&lt;/u&gt; with ${group.name} on ${group.event.startDate!.toDateString()}.&lt;/p&gt;
     &lt;p&gt;Please click &lt;a href&#x3D;&#x27;google.com&#x27;&gt;here&lt;/a&gt; to confirm your availability before ${group.admin.name} books the tickets!&lt;/p&gt;
-    &lt;p&gt;&lt;i&gt;Ticket Buddy&lt;/i&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;i&gt;-Ticket Buddy&lt;/i&gt;&lt;/p&gt;
     &#x60;
 
-    return this.sendEmail(emailList,{subject: &#x60;${group.event.name||&#x27;Concert&#x27;} Date Confirmation&#x60;, html: content})
+    return this.sendEmail(emailList,{subject: &#x60;${group.event.name||&#x27;Concert&#x27;} Confirmation&#x60;, html: content})
   }
 
-  sendConfirmation(group: GroupInterface): Promise&lt;void&gt;{
+  sendBookingConfirmation(group: GroupInterface): Promise&lt;void&gt;{
     let emailList: string[] &#x3D; [];
     group.members.forEach(member&#x3D;&gt;{
       if (group.confirmed.includes(member.id))
@@ -492,13 +494,13 @@ export class NotificationService {
     });
 
     let content &#x3D; &#x60;
-    &lt;h2&gt;Date confirmed for ${group.event.name||&#x27;the concert&#x27;}!&lt;/h2&gt;
-    &lt;p&gt;Congratulations! ${group.name} has confirmed &lt;b&gt;${group.date?.toDateString()}&lt;/b&gt; for ${group.event.name||&#x27;the concert&#x27;}.&lt;/p&gt;
+    &lt;h2&gt;Booking confirmed for ${group.event.name||&#x27;the concert&#x27;}!&lt;/h2&gt;
+    &lt;p&gt;Congratulations! ${group.name} has booked the tickets for &lt;u&gt;${group.event.name||&#x27;the concert&#x27;}&lt;/u&gt;.&lt;/p&gt;
     &lt;p&gt;Contact ${group.admin.name} for details regarding the booking!&lt;/p&gt;
-    &lt;p&gt;&lt;i&gt;Ticket Buddy&lt;/i&gt;&lt;/p&gt;
+    &lt;p&gt;- &lt;i&gt;Ticket Buddy&lt;/i&gt;&lt;/p&gt;
     &#x60;
 
-    return this.sendEmail(emailList,{subject: &#x60;${group.event.name||&#x27;Concert&#x27;} Date Confirmed!&#x60;, html: content})
+    return this.sendEmail(emailList,{subject: &#x60;${group.event.name||&#x27;Concert&#x27;} Booking Confirmed!&#x60;, html: content})
   }
 }
 </code></pre>

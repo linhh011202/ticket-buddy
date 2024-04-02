@@ -147,6 +147,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <li class="link">
                                 <a href="classes/EventClass.html" data-type="entity-link" >EventClass</a>
                             </li>
+                            <li class="link">
+                                <a href="classes/NewCalendarEvent.html" data-type="entity-link" >NewCalendarEvent</a>
+                            </li>
                         </ul>
                     </li>
                         <li class="chapter">
