@@ -36,7 +36,7 @@ export class GroupCreateComponent implements OnInit, OnDestroy{
 	}
 
 	createGroup(){
-		this.grp.createGroup().then(_=>{
+		this.grp.createGroup(this.selectedEvent!).then(_=>{
 			this.toastr.success(this.grp.newGroupForm.value.name?this.grp.newGroupForm.value.name:"","Group Created");
 			this.close();
 		}).catch((err:Error)=>{

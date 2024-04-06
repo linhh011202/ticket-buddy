@@ -27,9 +27,9 @@ export class GroupService {
         name: dbGroup["event"].name,
         startDate: dbGroup["event"].start.toDate(),
         endDate: dbGroup["event"].end.toDate(),
-        details: dbGroup["details"],
-        images: dbGroup["imageUrls"],
-        location: dbGroup["locations"]
+        details: dbGroup["event"]["details"],
+        images: dbGroup["event"]["imageUrls"],
+        location: dbGroup["event"]["locations"]
       },
       admin: dbGroup["admin"],
       members: dbGroup["members"],
@@ -62,6 +62,8 @@ export class GroupService {
       booked: false,
       allUUID: [admin.id]
     }
+
+    
 
     return new Promise<void>((res,rej)=>{
       addDoc(grpCollection, groupDoc).then((docRef: DocumentReference)=>{

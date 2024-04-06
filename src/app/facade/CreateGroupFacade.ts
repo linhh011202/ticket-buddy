@@ -64,11 +64,13 @@ export class CreateGroupFacade {
 		});
 	}
 
-  	createGroup(): Promise<void>{
+  	createGroup(selectedEvent: EventInterface): Promise<void>{
 		return this.authSvc.getCurrentUser().then((u:UserInterface)=>new Promise<void>((res,rej)=>{
 			var grp:any = this.newGroupForm.value;
 			grp.event.startDate = new Date(grp.event.startDate);
 			grp.event.endDate = new Date(grp.event.endDate);
+			grp.event.location = selectedEvent.location;
+			grp.event.images = selectedEvent.images;
 			if(grp.event.startDate>=grp.event.endDate) return rej(new Error("group-date-incompatible"));			
 			this.grpSvc.createGroup(grp.name, grp.event as EventInterface, u).then(_=>{
 
