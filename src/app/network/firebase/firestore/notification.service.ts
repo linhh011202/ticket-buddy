@@ -40,6 +40,8 @@ export class NotificationService {
     });
     var url = (this.platformLocation as any)._location.origin+"/group"+"/"+group.id;
     let content = `
+    <h2>Requesting confirmation for ${group.event.name||'the concert'}!</h2>
+    <img src="${group.event.images[0]}">
     <p>Hello! ${group.admin.name} is asking for your confirmation to go to <u>${group.event.name||'the concert'}</u> with ${group.name} on ${group.event.startDate!.toDateString()}.</p>
     <p>Please click <a href='${url}'>here</a> to confirm your availability before ${group.admin.name} books the tickets!</p>
     <p><i>-Ticket Buddy</i></p>
@@ -57,6 +59,7 @@ export class NotificationService {
 
     let content = `
     <h2>Booking confirmed for ${group.event.name||'the concert'}!</h2>
+    <img src="${group.event.images[0]}">
     <p>Congratulations! ${group.name} has booked the tickets for <u>${group.event.name||'the concert'}</u>.</p>
     <p>Contact ${group.admin.name} for details regarding the booking!</p>
     <p>- <i>Ticket Buddy</i></p>
