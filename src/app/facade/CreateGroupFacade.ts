@@ -23,7 +23,7 @@ export class CreateGroupFacade {
 			location:this.formBuilder.array([]),
 			images:this.formBuilder.array([]),
 			name:['', Validators.required],
-			details:new FormControl(""),
+			details:new FormControl("", Validators.required),
 			startDate:new FormControl("", Validators.required),
 			endDate:new FormControl("", Validators.required)
 		})
@@ -71,8 +71,10 @@ export class CreateGroupFacade {
 			grp.event.endDate = new Date(grp.event.endDate);
 			if(grp.event.startDate>=grp.event.endDate) return rej(new Error("group-date-incompatible"));			
 			this.grpSvc.createGroup(grp.name, grp.event as EventInterface, u).then(_=>{
+
 				return res(); // Group creation success;
 			}).catch(err=>{
+
 				if (err==="group-name-taken"){
 					return rej(new Error("group-name-taken"));
 				}
