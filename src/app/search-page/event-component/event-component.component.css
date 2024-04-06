@@ -1,0 +1,9 @@
+.watchlistBtn{
+    cursor: pointer;
+    top: 0;
+}
+
+
+.watchlistBtnPositive {
+    color: gold;
+}
