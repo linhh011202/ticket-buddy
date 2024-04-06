@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
 import { GroupInterface } from 'src/app/interfaces/group-interface';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 
 import { ViewGroupFacade } from 'src/app/facade/ViewGroupFacade'
+import { take } from 'rxjs';
 
 
 @Component({
@@ -11,12 +12,15 @@ import { ViewGroupFacade } from 'src/app/facade/ViewGroupFacade'
   templateUrl: './group-detail.component.html',
   styleUrls: ['./group-detail.component.css']
 })
-export class GroupDetailComponent implements OnInit {
+export class GroupDetailComponent implements OnInit, OnDestroy{
   @Input() group!:GroupInterface;
 
   constructor(
     public grp: ViewGroupFacade
   ){}
+  ngOnDestroy(): void {
+    this.grp.destroy();
+  }
   
   ngOnInit(){//given the events of that group
     this.grp.getCurrentUser();
@@ -54,7 +58,7 @@ export class GroupDetailComponent implements OnInit {
     })
   }
   confirmGoing(){
-    this.grp.confirmGroupEvent().subscribe({
+    this.grp.confirmGroupEvent().pipe(take(1)).subscribe({
       next:()=>{
         console.log("SJUCCES");
       },

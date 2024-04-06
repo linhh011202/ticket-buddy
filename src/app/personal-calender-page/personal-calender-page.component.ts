@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { CalanderEvent } from '../interfaces/calander-interface/CalanderEvent-interface';
 
@@ -13,7 +13,7 @@ import { NewCalendarEvent } from '../class/NewCalendarEvent';
   styleUrls: ['./personal-calender-page.component.css'],
 
 })
-export class PersonalCalenderPageComponent implements OnInit{
+export class PersonalCalenderPageComponent implements OnInit, OnDestroy{
 
   calendarOnDisplay: CalanderEvent[] = [];
 
@@ -24,7 +24,10 @@ export class PersonalCalenderPageComponent implements OnInit{
   ){}
   
   ngOnInit(): void {
-  
+    this.cal.initializeCalender();
+  }
+  ngOnDestroy(): void {
+    this.cal.destroy();
   }
   
   isBetween(a:number, b:number, c:number):boolean{

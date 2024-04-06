@@ -5,7 +5,7 @@ import { UserInterface } from "../interfaces/user-interface"
 import { GroupInterface } from "../interfaces/group-interface"
 import { CalendarService } from '../network/firebase/firestore/calendar.service';
 import { PlatformLocation } from '@angular/common';
-import { BehaviorSubject, Observable, from, iif, map, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, from, iif, map, of, switchMap, tap } from 'rxjs';
 import { CalanderEvent } from "../interfaces/calander-interface/CalanderEvent-interface"
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { CalanderColor, CalanderType, CalanderTypeColor, CalanderTypePriority } from '../interfaces/enums/calenderenum';
@@ -16,7 +16,7 @@ import { Clipboard } from '@angular/cdk/clipboard';
 })
 export class ViewGroupFacade {
 
-  	
+  	private subs:Subscription[] = [];
     group$: BehaviorSubject<GroupInterface|undefined> = new BehaviorSubject<GroupInterface|undefined>(undefined);
     dateColor$: BehaviorSubject<[[NgbDate,NgbDate], CalanderColor][]> = new BehaviorSubject<[[NgbDate,NgbDate], CalanderColor][]>([]); //should be date range better // wtf does this mean
     groupCalendar$: BehaviorSubject<CalanderEvent[]> = new BehaviorSubject<CalanderEvent[]>([]);
@@ -34,17 +34,24 @@ export class ViewGroupFacade {
 
     
   }
+    destroy(){
+        this.subs.forEach((e)=>e.unsubscribe());
+    }
     getCurrentUser(){
         return this.authSvc.getCurrentUser().then(u=>this.currentUser$.next(u));
     }
-    getGroup(id:string){        
-        return this.grpSvc.getGroupById(id).subscribe(group=>{
-            this.group$.next(group);
-        });    
+    getGroup(id:string){       
+        this.subs.push(
+            this.grpSvc.getGroupById(id).subscribe(group=>{
+                this.group$.next(group);
+            })
+        ); 
+            
     }
     getGroups(){
         this.authSvc.getCurrentUser().then(user=>{
-            this.grpSvc.getGroups(user).subscribe(grps=>{
+            
+            var rtn:Subscription = this.grpSvc.getGroups(user).subscribe(grps=>{
                 let adm: GroupInterface[] = [];
                 let nadm: GroupInterface[] = [];
                 grps.forEach(grp=>{
@@ -56,11 +63,12 @@ export class ViewGroupFacade {
                 this.adminGroups$.next(adm);
                 this.memberGroups$.next(nadm);
             })
+            this.subs.push(rtn);
         });
     }
     getGroupCalander(g:GroupInterface){
         // Get latest group
-        this.grpSvc.getGroupById(g.id).pipe(
+        var rtn:Subscription = this.grpSvc.getGroupById(g.id).pipe(
             switchMap((group:GroupInterface)=>this.calSvc.getGroupCalendar(group).pipe(
                 tap((grpCal:CalanderEvent[])=>{
                     grpCal.sort((a,b)=>{//sort by time then sort by calanderType, Booked for event is the highest priority
@@ -81,19 +89,10 @@ export class ViewGroupFacade {
                 })
             )),
         ).subscribe()
+        this.subs.push(rtn);
     }
     
-    isInGroup(group:GroupInterface):Observable<boolean>{
-
-        return from(this.authSvc.getCurrentUser()).pipe(
-            switchMap(u=>this.grpSvc.getGroupById(group.id).pipe(
-                switchMap((grp:GroupInterface)=>{
-                    return iif(()=>grp.allUUID.includes(u.id), of(true), of(false))
-                })
-
-            ))
-        );
-    }
+   
 
     private setGroupCalanderColor(grpCal:CalanderEvent[],group:GroupInterface):CalanderColor{
         if(grpCal.length==0) return CalanderColor.AllAvailable;
@@ -133,9 +132,10 @@ export class ViewGroupFacade {
 
     getGrpById(id: string): Observable<GroupInterface>{
         let obs: Observable<GroupInterface> = this.grpSvc.getGroupById(id);
-        obs.subscribe(grp=>{
+        var rtn:Subscription = obs.subscribe(grp=>{
             this.groupById$.next(grp);
         });
+        this.subs.push(rtn);
         return obs;
     }
     sendGroupConfirmation(): Promise<void>{

@@ -7,14 +7,14 @@ import { UserInterface } from "../interfaces/user-interface"
 import { EventInterface } from "../interfaces/event-interface"
 import { BehaviorSubject } from 'rxjs';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { CalendarService } from '../network/firebase/firestore/calendar.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CreateGroupFacade {
 
-  	currentUser?: UserInterface;
+  	
     watchlist$: BehaviorSubject<EventInterface[]> = new BehaviorSubject<EventInterface[]>([]);
 	newGroupForm = this.formBuilder.group({
 		name:['', Validators.required],
@@ -35,15 +35,15 @@ export class CreateGroupFacade {
         private grpSvc: GroupService,
         private watchlistSvc: WatchlistService
     ) {
-
-    this.authSvc.getCurrentUser().then(user=>{
-		this.currentUser = user;
-		this.watchlistSvc.getWatchlist(user).subscribe(watchlist=>{
-			this.watchlist$.next(watchlist);
-		})
-    });
-  }
-
+  	}
+  	initialize(){
+		this.authSvc.getCurrentUser().then(user=>{
+		
+			this.watchlistSvc.getWatchlist(user).subscribe(watchlist=>{
+				this.watchlist$.next(watchlist);
+			})
+		});
+	}
 	updateForm(evt:EventInterface){
 		var n:any = structuredClone(evt);
 
@@ -56,23 +56,19 @@ export class CreateGroupFacade {
 	}
 
   	createGroup(): Promise<void>{
-		return new Promise<void>((res,rej)=>{
+		return this.authSvc.getCurrentUser().then((u:UserInterface)=>new Promise<void>((res,rej)=>{
 			var grp:any = this.newGroupForm.value;
 			grp.event.startDate = new Date(grp.event.startDate);
 			grp.event.endDate = new Date(grp.event.endDate);
-			if(grp.event.startDate>=grp.event.endDate)
-				return rej(new Error("group-date-incompatible"));
-			if(this.currentUser) {
-				this.grpSvc.createGroup(grp.name, grp.event as EventInterface, this.currentUser).then(_=>{
-					return res(); // Group creation success;
-				}).catch(err=>{
-					if (err==="group-name-taken"){
-						return rej(new Error("group-name-taken"));
-					}
-				})
-			} else {
-				return rej(new Error("user-not-signed-in"));
-			}
-		});
+			if(grp.event.startDate>=grp.event.endDate) return rej(new Error("group-date-incompatible"));			
+			this.grpSvc.createGroup(grp.name, grp.event as EventInterface, u).then(_=>{
+				return res(); // Group creation success;
+			}).catch(err=>{
+				if (err==="group-name-taken"){
+					return rej(new Error("group-name-taken"));
+				}
+			})
+		}))
+
 	}
 }

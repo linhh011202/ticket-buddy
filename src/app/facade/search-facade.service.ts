@@ -7,13 +7,13 @@ import { TicketmasterService } from '../network/ticketmaster/ticketmaster.servic
 import { WatchlistService } from '../network/firebase/firestore/watchlist.service';
 import { PageInterface } from '../interfaces/page-interface';
 import { UserInterface } from '../interfaces/user-interface';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, Subscription, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class SearchFacadeService {
   private query:any = {};
-  
+  private subs:Subscription[] = [];
   public eventInput$:BehaviorSubject<string> = new BehaviorSubject<string>("");
   public loadedEvents$:BehaviorSubject<EventInterface[]> = new BehaviorSubject<EventInterface[]>([]);
   public watchlist$:BehaviorSubject<EventInterface[]> = new BehaviorSubject<EventInterface[]>([]);
@@ -29,11 +29,15 @@ export class SearchFacadeService {
   updateEventInput(s:string){
     this.eventInput$.next(s);
   }
+  destroy(){
+    this.subs.forEach((x)=>x.unsubscribe());
+  }
   getWatchList(){
     this.authApi.getCurrentUser().then((x:UserInterface)=>{
-      this.watchlistSvc.getWatchlist(x).subscribe(
+      var rtn:Subscription = this.watchlistSvc.getWatchlist(x).subscribe(
         (n)=> this.watchlist$.next(n)
-      )
+      );
+      this.subs.push(rtn);
     });
   }
   getClassification(kw:string){

@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgbModal, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { EventInterface } from 'src/app/interfaces/event-interface';
 import { CreateGroupFacade } from 'src/app/facade/CreateGroupFacade';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,7 +10,8 @@ import { CreateGroupFacade } from 'src/app/facade/CreateGroupFacade';
   templateUrl: './group-create.component.html',
   styleUrls: ['./group-create.component.css']
 })
-export class GroupCreateComponent implements OnInit{
+export class GroupCreateComponent implements OnInit, OnDestroy{
+	private subs:Subscription[] = [];
 	@ViewChild(NgbNav) private navStuff: NgbNav | undefined;
 	@ViewChild('content') private content:NgbModal | undefined; 
 		closeResult = '';
@@ -22,9 +24,12 @@ export class GroupCreateComponent implements OnInit{
 		private modalService:NgbModal,
 		public grp: CreateGroupFacade
 	){}
+	ngOnDestroy(): void {
+		
+	}
 	
 	ngOnInit(){
-		this.em.subscribe(()=>this.open());
+		this.subs.push(this.em.subscribe(()=>this.open()));
 	}
 
 	createGroup(){

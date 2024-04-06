@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { GroupInterface } from '../interfaces/group-interface';
 import { NgbModal, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { UserInterface } from '../interfaces/user-interface';
@@ -11,7 +11,7 @@ import { ViewGroupFacade } from '../facade/ViewGroupFacade';
   styleUrls: ['./group-page.component.css']
 })
 
-export class GroupPageComponent implements OnInit, AfterViewInit{
+export class GroupPageComponent implements OnInit, AfterViewInit,OnDestroy{
   
   @ViewChild(NgbNav) private navStuff: NgbNav | undefined;
   @ViewChild('content') private content:NgbModal | undefined; 
@@ -25,6 +25,9 @@ export class GroupPageComponent implements OnInit, AfterViewInit{
     public grp: ViewGroupFacade,
     private route:ActivatedRoute, 
   ){}
+  ngOnDestroy(): void {
+    this.grp.destroy();
+  }
 
   ngOnInit(): void {
     this.grp.getGroups();
@@ -37,15 +40,6 @@ export class GroupPageComponent implements OnInit, AfterViewInit{
     this.route.paramMap.subscribe(params=>{
       var id:string|null;
       id =  params.get('id');
-      //should get the info here from firebase
-      // if(id) this.grp.get.getGroupById(id).subscribe({next:(x)=>{
-      //   this.chosen = x;
-      //   this.navStuff?.select(2);
-      // },
-      // error:(e)=>{
-      //   console.log("ERROR HERE:", e);
-      // }});
-
       if (id){
         this.grp.getGrpById(id).subscribe({
           next: (group) => this.choseGroup(group),
