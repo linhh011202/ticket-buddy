@@ -10,82 +10,132 @@
     <h2 class="d-inline-flex justify-content-center text-success" >BOOKED</h2><br/>
 </div>
 <div class="d-flex flex-row justify-content-center">
-    <h3 class="d-inline-flex justify-content-center"></h3>{{grp.group$.value?.event?.location}}<br/>
+    <h5 class="d-inline-flex justify-content-center">{{grp.group$.value?.event?.location}}</h5><br/>
+</div>
+<div class="d-flex flex-row justify-content-center">
+    <h6 class="d-inline-flex justify-content-center"><i>{{grp.group$.value?.event?.details}}</i></h6><br/>
 </div>
 <div class="d-flex flex-row justify-content-center">
     <p class="d-inline-flex justify-content-center">{{grp.group$.value?.event?.startDate|date:'medium'}} - {{grp.group$.value?.event?.endDate|date:'medium'}}</p><br/>
 </div>
 <div class="d-flex flex-row justify-content-center">
-<p><a class="link-opacity-100 invite" (click)="copyInviteLink()">Invite Link</a></p>
+<p><a class="link-opacity-100 invite" (click)="copyInviteLink()" title="Copy the invite link to clipboard">Invite Link</a></p>
 </div>
 
 
 
 
 <ng-template [ngIf]="grp.group$.value && grp.currentUser$.value.id == group.admin.id">
+    <div class="d-flex flex-row justify-content-center" *ngIf="!grp.group$.value.booked && !grp.group$.value.confirmed.includes(grp.currentUser$.value.id)">
+        <div (click)="confirmGoing()" type="button" class="btn btn-success m-1" title="Confirm you are going">I will be going!</div>
+    </div>
     <div class="container p-2">
         <div class="d-flex flex-row justify-content-center">
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Username</th>
-                        <th scope="col">Kick</th>
-                        <th scope="col">Status</th>
-                        
+                        <th scope="col">Name</th>
+                        <th scope="col">Going</th>
+                        <th scope="col" *ngIf = "!grp.group$.value!.booked && grp.group$.value!.members.length>0">Kick</th>
                     </tr>
                 </thead>
                 <tbody>
+                     <!-- ADMIN -->
                     <tr>
+                        <!-- NAME -->
                         <td>{{(grp.group$|async)!.admin.name}}</td>
-                        <td></td>
-                        <td>{{(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)?"Going":"Not Going" }}</td>
+                        <!-- GOING -->
+                        <td>
+                            <svg *ngIf="!(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" style="color:red;">
+                                <title>{{(grp.group$|async)!.admin.name}} has not confirmed that they are going.</title>
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                            </svg>
+                            <svg *ngIf="(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" style="color:green;">
+                                <title>{{(grp.group$|async)!.admin.name}} is going!</title>
+                                <path *ngIf="!(grp.group$.value)!.booked" d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
+                                <path *ngIf="(grp.group$.value)!.booked" d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z"/>
+                            </svg>
+                        </td>
+                        <!-- EMPTY CELL -->
+                        <td *ngIf = "!grp.group$.value!.booked && grp.group$.value!.members.length>0"></td>
                     </tr>
-                    <tr  *ngFor="let m of grp.group$.value!.members">
+                     <!-- MEMBERS -->
+                    <tr *ngFor="let m of grp.group$.value!.members">
+                        <!-- NAME -->
                         <td>{{ m.name }} </td>
-                        <td><button (click)="kickUser(m)" type="button" class="btn btn-danger" >Kick</button></td>
-                        <td>{{(grp.group$.value)!.confirmed.includes(m.id)?"Going":"Not Going" }}</td>
+                        <!-- GOING -->
+                        <td>
+                            <svg *ngIf="!(grp.group$.value)!.confirmed.includes(m.id)" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" style="color:red;">
+                                <title>{{m.name}} has not confirmed that they are going.</title>
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                            </svg>
+                            <svg *ngIf="(grp.group$.value)!.confirmed.includes(m.id)" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" style="color:green;">
+                                <title>{{m.name}} is going!</title>
+                                <path *ngIf="!(grp.group$.value)!.booked" d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
+                                <path *ngIf="(grp.group$.value)!.booked" d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z"/>
+                            </svg>
+                        </td>
+                        <!-- KICK -->
+                        <td *ngIf = "!grp.group$.value!.booked && grp.group$.value!.members.length>0"><button (click)="kickUser(m)" type="button" class="btn btn-danger" title="Remove {{m.name}} from the group">Kick</button></td>
                     </tr>      
                 </tbody>
             </table>
         </div>
         <div class="d-flex flex-row justify-content-center">
-            <div (click)="deleteGroup()" type="button" class="btn btn-danger m-1" >Delete Group</div>
-            <div (click)="sendGroupConfirmation()" type="button" class="btn btn-success m-1" *ngIf="!(grp.group$|async)!.booked">Request confirmation</div>
-            <div (click)="confirmGroupbooking()" type="button" class="btn btn-success m-1" *ngIf="!(grp.group$|async)!.booked" >Confirm booking</div>
-        </div>
-        <div class="d-flex flex-row justify-content-center" *ngIf="!grp.group$.value.booked && !grp.group$.value.confirmed.includes(grp.currentUser$.value.id)">
-            <div (click)="confirmGoing()" type="button" class="btn btn-success m-1" >Confirm going</div>
-            
+            <div *ngIf="!grp.group$.value!.booked" (click)="deleteGroup()" type="button" class="btn btn-danger m-1" title="Deletes the group!!!">Delete Group</div>
+            <div (click)="sendGroupConfirmation()" type="button" class="btn btn-success m-1" *ngIf="!(grp.group$|async)!.booked && (grp.group$.value.confirmed.length - ((grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)?1:0)) < grp.group$.value!.members.length" title="Send an email to member(s) who have not confirmed">Request confirmation</div>
+            <div (click)="confirmGroupbooking()" type="button" class="btn btn-success m-1" *ngIf="!(grp.group$|async)!.booked && grp.group$.value.confirmed.length > 0" title="Tickets bought for all members who have confirmed! No further changes will be allowed.">Confirm booking</div>
         </div>
     </div>
 </ng-template>
 <ng-template [ngIf]="grp.group$.value && grp.currentUser$.value.id != group.admin.id">
+    <div class="d-flex flex-row justify-content-center" *ngIf="!grp.group$.value.booked && !grp.group$.value.confirmed.includes(grp.currentUser$.value.id) && grp.group$.value.allUUID.includes(grp.currentUser$.value.id)">
+        <div (click)="confirmGoing()" type="button" class="btn btn-success m-1" title="Confirm you are going">I will be going!</div>
+    </div>
     <div class="container p-2">
         <div class="d-flex flex-row justify-content-center">
             <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Username</th>
-                        <th scope="col">Status</th>
-                        
+                        <th scope="col">Going</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
+                        <!-- NAME -->
                         <td>{{(grp.group$|async)!.admin.name}}</td>
-                        
-                        <td>{{(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)?"Going":"Not Going" }}</td>
+                        <!-- GOING -->
+                        <td>
+                            <svg *ngIf="!(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" style="color:red;">
+                                <title>{{(grp.group$|async)!.admin.name}} has not confirmed that they are going.</title>
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                            </svg>
+                            <svg *ngIf="(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" style="color:green;">
+                                <title>{{(grp.group$|async)!.admin.name}} is going!</title>
+                                <path *ngIf="!(grp.group$.value)!.booked" d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
+                                <path *ngIf="(grp.group$.value)!.booked" d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z"/>
+                            </svg>
+                        </td>
                     </tr>
                     <tr  *ngFor="let m of grp.group$.value!.members">
+                        <!-- NAME -->
                         <td>{{ m.name }} </td>
-                        
-                        <td>{{(grp.group$.value)!.confirmed.includes(m.id)?"Going":"Not Going" }}</td>
+                        <!-- GOING -->
+                        <td>
+                            <svg *ngIf="!(grp.group$.value)!.confirmed.includes(m.id)" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" style="color:red;">
+                                <title>{{m.name}} has not confirmed that they are going.</title>
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                            </svg>
+                            <svg *ngIf="(grp.group$.value)!.confirmed.includes(m.id)" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" style="color:green;">
+                                <title>{{m.name}} is going!</title>
+                                <path *ngIf="!(grp.group$.value)!.booked" d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
+                                <path *ngIf="(grp.group$.value)!.booked" d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z"/>
+                            </svg>
+                        </td>
                     </tr>      
                 </tbody>
             </table>
-        </div>
-        <div class="d-flex flex-row justify-content-center" *ngIf="!grp.group$.value.booked && !grp.group$.value.confirmed.includes(grp.currentUser$.value.id) && grp.group$.value.allUUID.includes(grp.currentUser$.value.id)">
-            <div (click)="confirmGoing()" type="button" class="btn btn-success m-1" >Confirm going</div>
         </div>
     </div>
 </ng-template>
@@ -98,13 +148,14 @@
 </div>
 
 <div class="row pt-2">
-    <table class="table ">
+    <h5 *ngIf="(grp.groupCalendar$|async)!.length == 0" style="text-align:center;">Everyone is available!</h5>
+    <table class="table " *ngIf="(grp.groupCalendar$|async)!.length > 0">
         <thead>
             <tr>
-                <th scope="col">Username</th>
-                <th scope="col">Event Detail</th>
-                <th scope="col">Start Time</th>
-                <th scope="col">End Time</th>
+                <th scope="col">Name</th>
+                <th scope="col">Unavailable because</th>
+                <th scope="col">Start</th>
+                <th scope="col">End</th>
             </tr>
         </thead>
         <tbody>
@@ -119,7 +170,7 @@
     </table>
 </div>
 
-<ng-template [ngIf]="!grp.group$.value?.allUUID?.includes(grp.currentUser$.value.id)">
+<ng-template [ngIf]="!grp.group$.value?.allUUID?.includes(grp.currentUser$.value.id) && !grp.group$.value?.booked">
 <div class="d-flex flex-row justify-content-center">
     <div class="btn btn-success" (click)="joinGroup()">JOIN GROUP</div>
 </div>

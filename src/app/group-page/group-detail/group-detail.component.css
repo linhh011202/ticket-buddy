@@ -1,4 +1,5 @@
 .invite{
     cursor: pointer;
     user-select: none;
+    text-decoration: underline;
 }

@@ -15,13 +15,8 @@
     width: 50vw;
 }
 
-.bgLeft {
-    left:0;
-}
-
-.bgRight {
-    right:0;
-}
+.bgLeft {left:0;}
+.bgRight {right:0;}
 
 .loginBtn{
     background-color: #2A2568;
@@ -43,4 +38,30 @@
 
 .googleImg {
     height: 2em;
+}
+
+.version {
+    /* Position*/
+    position: absolute;
+    top: 31.5vh;
+    width: 5vh;
+    height: 5vh;
+    left: calc(50% - 7vh);
+    transform: translate(-50%);
+
+    /* Style */
+    text-align: center;
+    line-height: 5vh;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.5vh;
+    background: radial-gradient(#ffff75,#ffff99,#ddff00);
+    box-shadow: 0 0 50px 15px #ddff00;
+    opacity: 0;
+    cursor: pointer;
+    user-select: none;
+}
+
+.version:hover {
+    opacity: 100%;
 }

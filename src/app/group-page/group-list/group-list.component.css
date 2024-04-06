@@ -1,0 +1,9 @@
+.event-row {
+    cursor:pointer;
+    background-color: var(--bs-white);
+}
+
+
+.event-row:hover {
+    filter: brightness(95%);
+}

@@ -1,5 +1,7 @@
 
 <div class="row">
+    <h3 style="text-align:center">Personal Calendar</h3>
+    <h6 style="text-align:center">(Click on a day to look at events on that day.)</h6>
     <div class="d-flex justify-content-center">
         <app-calander [dateColor]="(cal.dateColor$|async)!" [events]="(cal.calendar$|async)!" (clickedDate)="dateClicked($event)"></app-calander>
     </div>
@@ -9,10 +11,9 @@
         <thead>
             <tr>
                 <th scope="col">Event Detail</th>
-                <th scope="col">Start Time</th>
-                <th scope="col">End Time</th>
+                <th scope="col">Start</th>
+                <th scope="col">End</th>
                 <th scope="col">Action</th>
-                <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -20,15 +21,14 @@
                 <td>{{e.detail}}</td>
                 <td>{{e.start}}</td>
                 <td>{{e.end}}</td>
-                <td><button type="button" class="btn btn-info">Update</button></td>
                 <td><button type="button" class="btn btn-danger" (click)="deleteEvent(e)" [disabled]="e.type!=personal">Delete</button></td>
                 
            </tr>
            <tr>
-            <td><input type="text"[(ngModel)]="newEvent.detail"></td>
+            <td><input type="text"[(ngModel)]="newEvent.detail" placeholder="Title" style="width:95%;"></td>
             <td><input [(ngModel)]="newEvent.start" type="datetime-local"></td>
             <td><input [(ngModel)]="newEvent.end" type="datetime-local"></td>
-            <td><button type="button" class="btn btn-info" (click)="createEvent()">Add</button></td>
+            <td><button type="button" class="btn btn-success" (click)="createEvent()">Add</button></td>
             <td></td>
            </tr>
         </tbody>

@@ -103,9 +103,9 @@ export class ViewGroupFacade {
         
     }
 
-    copyInviteLink() {
+    copyInviteLink(): boolean {
         var base_url = (this.platformLocation as any)._location.origin+"/group"+"/"+this.group$.value!.id;
-        this.clipboard.copy(base_url);
+        return this.clipboard.copy(base_url);
     }
 
     deleteGroup(): Promise<void> {
