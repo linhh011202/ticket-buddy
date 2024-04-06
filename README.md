@@ -22,14 +22,14 @@ Create a file 'env-prod.ts' under './src/environments'.
 4. Copy the `firebaseConfig` provided.
 5. Paste the config into `env-prod.ts` with the `export` keyword. It should look like the following.\
 `export const firebaseConfig = {`\
-` apiKey: "your-proj-api-key",`\
-` authDomain: "your-proj-id.firebaseapp.com",`\
+`  apiKey: "your-proj-api-key",`\
+`  authDomain: "your-proj-id.firebaseapp.com",`\
 `  projectId: "your-proj-id",`\
 `  storageBucket: "your-proj-id.appspot.com",`\
 `  messagingSenderId: "XXXXXXXXXXXX",`\
 `  appId: "1:XXXXXXXXXXXX:web:XXXXXXXXXXXXXXXXXXXXXXXX",`\
 `  measurementId: "G-XXXXX"`\
-`};`\
+`};`
 
 #### 3. Firebase Authentication set up
 1. [Open firebase console](console.firebase.google.com "Firebase console"), navigate to the project created earlier.
