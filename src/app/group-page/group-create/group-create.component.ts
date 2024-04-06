@@ -52,6 +52,7 @@ export class GroupCreateComponent implements OnInit, OnDestroy{
 
 	close(){
 		this.modalService.dismissAll();
+		this.grp.destroy();
 	}
 	
 	

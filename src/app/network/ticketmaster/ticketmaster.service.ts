@@ -54,7 +54,7 @@ export class TicketmasterService {
       var today  =new Date();
       var str = today.toISOString();
       str = str.slice(0, str.length-5).concat("Z");
-      return this.http.get(this.baseurl+"/events.json", {params:{apikey:ticketMasterApi, startDateTime:str}}).pipe(
+      return this.http.get(this.baseurl+"/events.json", {params:{apikey:ticketMasterApi}}).pipe(
         map((x:any)=>{
           
           var rtn:any = {page:undefined, events:undefined};

@@ -5,7 +5,7 @@ import { WatchlistService } from "../network/firebase/firestore/watchlist.servic
 
 import { UserInterface } from "../interfaces/user-interface"
 import { EventInterface } from "../interfaces/event-interface"
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { AbstractControl, FormBuilder, FormControl, ValidationErrors, Validators } from '@angular/forms';
 
 
@@ -14,7 +14,7 @@ import { AbstractControl, FormBuilder, FormControl, ValidationErrors, Validators
 })
 export class CreateGroupFacade {
 
-  	
+	private subs:Subscription[] = [];
     watchlist$: BehaviorSubject<EventInterface[]> = new BehaviorSubject<EventInterface[]>([]);
 	newGroupForm = this.formBuilder.group({
 		name:['', Validators.required],
@@ -38,19 +38,27 @@ export class CreateGroupFacade {
   	}
   	initialize(){
 		this.authSvc.getCurrentUser().then(user=>{
-		
-			this.watchlistSvc.getWatchlist(user).subscribe(watchlist=>{
+			this.subs.push(this.watchlistSvc.getWatchlist(user).subscribe(watchlist=>{
 				this.watchlist$.next(watchlist);
 				console.log(watchlist);
-			})
+			}));
 		});
+	}
+	destroy(){
+		this.subs.forEach((e)=>e.unsubscribe());
 	}
 	updateForm(evt:EventInterface){
 		var n:any = structuredClone(evt);
-
-		if(evt.startDate) n.startDate = evt.startDate.toISOString().slice(0,-8);
-		if(evt.endDate) n.startDate = evt.endDate.toISOString().slice(0,-8);
+		var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds 
 		
+		if(evt.startDate){
+			let d:Date = evt.startDate;
+			n.startDate = (new Date(d.getTime() - tzoffset)).toISOString().slice(0, -8);
+		} 
+		if(evt.endDate){
+			let d:Date = evt.endDate;
+			n.startDate = (new Date(d.getTime() - tzoffset)).toISOString().slice(0, -8);
+		} 
 		this.newGroupForm.patchValue({
 			event:n
 		});
