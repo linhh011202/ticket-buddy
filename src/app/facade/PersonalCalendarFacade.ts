@@ -35,13 +35,9 @@ export class CalendarFacade {
             calEvents=>{
                 
                 calEvents.sort((a,b)=>{//sort by time then sort by calanderType, Booked for event is the highest priority
-                    if(a.start < b.start) return -1;
-                    else if(a.start==b.start){
-                        var aNum:number = CalanderTypePriority.get(a.type)||0;
-                        var bNum:number = CalanderTypePriority.get(b.type)||0;
-                        return bNum-aNum;
-                    }
-                    return 1;
+                    var aNum:number = CalanderTypePriority.get(a.type)||0;
+                    var bNum:number = CalanderTypePriority.get(b.type)||0;
+                    return aNum-bNum;
                 });
                 
                 let dateColor: [[NgbDate,NgbDate], CalanderColor][] = calEvents.map(
