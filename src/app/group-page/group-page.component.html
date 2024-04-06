@@ -15,10 +15,17 @@
       <div class="d-flex justify-content-center p-2">
         <div class="btn btn-primary" (click)="openModalEmitter.emit()">Create Group</div>
       </div>
-      <h5>Admin</h5>
-      <app-group-list  (groupClicked)="choseGroup($event)" [groups]="(grp.adminGroups$|async)!"></app-group-list>
-      <h5>Member</h5>
-      <app-group-list  (groupClicked)="choseGroup($event)" [groups]="(grp.memberGroups$|async)!"></app-group-list>
+      <div *ngIf="(grp.adminGroups$|async)!.length>0">
+        <h5>Group(s) you made</h5>
+        <app-group-list  (groupClicked)="choseGroup($event)" [groups]="(grp.adminGroups$|async)!"></app-group-list>
+      </div>
+      <div *ngIf="(grp.memberGroups$|async)!.length>0">
+        <h5>Group(s) you joined</h5>
+        <app-group-list  (groupClicked)="choseGroup($event)" [groups]="(grp.memberGroups$|async)!"></app-group-list>
+      </div>
+      <div *ngIf="(grp.adminGroups$|async)!.length + (grp.memberGroups$|async)!.length == 0" style="text-align:center; padding-top:5em;">
+        <h5>You are not in any groups, <span>create</span> one now!</h5>
+      </div>
     </ng-template>
   </li>
   <li [ngbNavItem]="2" *ngIf="chosen">
