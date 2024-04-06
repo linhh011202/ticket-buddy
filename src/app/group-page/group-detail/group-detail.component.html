@@ -119,7 +119,7 @@
     </table>
 </div>
 
-<ng-template [ngIf]="!grp.group$.value?.allUUID?.includes(grp.currentUser$.value.id)">
+<ng-template [ngIf]="!grp.group$.value?.allUUID?.includes(grp.currentUser$.value.id) && !grp.group$.value?.booked">
 <div class="d-flex flex-row justify-content-center">
     <div class="btn btn-success" (click)="joinGroup()">JOIN GROUP</div>
 </div>
