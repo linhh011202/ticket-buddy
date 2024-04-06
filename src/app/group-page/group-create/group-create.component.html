@@ -15,7 +15,7 @@
 				<label  class="col-sm-2 col-form-label">Chooose Event</label>
 				<div class="col-sm-10">
 				<select class="custom-select" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedEvent" (ngModelChange)="grp.updateForm($event)">
-					<option *ngFor="let evt of (grp.watchlist$|async)!" [ngValue]="evt">{{evt.name}}</option>
+					<option *ngFor="let evt of grp.watchlist$.value" [ngValue]="evt">{{evt.name}}</option>
 					</select>
 				</div>
 			  </div>
