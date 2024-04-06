@@ -54,8 +54,8 @@ export class CalendarService {
     return new Promise<void>((res,rej)=>{
       let sub = this.getCalendar(calendarEvent.user).subscribe(cal=>{
         sub.unsubscribe();
-        // check clash
-        const clash = cal.some(c => calendarEvent.start <= c.end && calendarEvent.end >= c.start);
+        // check clash with events
+        const clash = cal.some(c => (c.type!==CalanderType.Personal && calendarEvent.start <= c.end && calendarEvent.end >= c.start));
         if (clash)
           return rej(new Error("cal-event-clash"));
   
