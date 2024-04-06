@@ -35,8 +35,9 @@ export class CalendarService {
   } 
 
   addCalendarEvent(calendarEvent: CalanderEvent): Promise<void>{
-    let calCollection: CollectionReference = collection(this.fs, "calendar");
 
+    // Initialise
+    let calCollection: CollectionReference = collection(this.fs, "calendar");
     let calDoc: any = {
       uid: calendarEvent.user.id,
       start: calendarEvent.start,
@@ -44,19 +45,26 @@ export class CalendarService {
       detail: calendarEvent.detail,
       type: calendarEvent.type
     }
-
-    if (calendarEvent.type == CalanderType.ReservedForEvent || calendarEvent.type == CalanderType.BookedForEvent){
+    if (calendarEvent.type == CalanderType.ReservedForEvent || calendarEvent.type == CalanderType.BookedForEvent)
       calDoc["grp"] = {
         id: calendarEvent.groupId,
         name: calendarEvent.groupName
       };
-    }
 
-    return new Promise<void>(res=>{
-      addDoc(calCollection, calDoc).then((docRef: DocumentReference)=>{
-        res();
+    return new Promise<void>((res,rej)=>{
+      let sub = this.getCalendar(calendarEvent.user).subscribe(cal=>{
+        sub.unsubscribe();
+        // check clash
+        const clash = cal.some(c => calendarEvent.start <= c.end && calendarEvent.end >= c.start);
+        if (clash)
+          return rej(new Error("cal-event-clash"));
+  
+        // no clash carry on
+        addDoc(calCollection, calDoc)
+        .then(doc => res()).
+        catch(err => rej(err));
       });
-    })
+    });
   }
 
   getCalendar(user: UserInterface): Observable<CalanderEvent[]>{
@@ -87,7 +95,7 @@ export class CalendarService {
       // inequalities on multiple fields not allowed
       // where("start", "<=", end),
       // where("end", ">=", start)
-      // pulling calendar events that have yet to end
+      // pulling only calendar events that ends after the start of the event
       where("end", ">" , group.event.startDate)
     ));
 

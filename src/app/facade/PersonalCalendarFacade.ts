@@ -68,10 +68,15 @@ export class CalendarFacade {
         return new Promise<void>((res,rej)=>{
             if(this.currentUser && newCalEvent.isValid()){
                 let calEvent = newCalEvent.toCalendarevent(this.currentUser);
-                this.calSvc.addCalendarEvent(calEvent).then(_=>res());
+
+                this.calSvc.addCalendarEvent(calEvent)
+                    .then(_=>res())
+                    .catch(err=>rej(err));
+
+                
             }
             else {
-                rej(new Error("Invalid-Parameter"));
+                rej(new Error("invalid-parameter"));
             }
         })
     }
