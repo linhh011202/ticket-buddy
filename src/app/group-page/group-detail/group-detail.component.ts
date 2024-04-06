@@ -5,6 +5,7 @@ import { UserInterface } from 'src/app/interfaces/user-interface';
 
 import { ViewGroupFacade } from 'src/app/facade/ViewGroupFacade'
 import { take } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class GroupDetailComponent implements OnInit, OnDestroy{
   @Input() group!:GroupInterface;
 
   constructor(
-    public grp: ViewGroupFacade
+    public grp: ViewGroupFacade,
+    private toastr:ToastrService
   ){}
   ngOnDestroy(): void {
     this.grp.destroy();
@@ -30,12 +32,12 @@ export class GroupDetailComponent implements OnInit, OnDestroy{
 
   deleteGroup(){
     this.grp.deleteGroup().then(_=>{
-      console.log("group deleted");
+      this.toastr.success(this.group.name,"Delete Group");
     })
   }
   kickUser(user:UserInterface){
     this.grp.kickUser(user).then(_=>{
-      console.log("group kick success")
+      this.toastr.success(user.name,"Kicked User");
     })
   }
   copyInviteLink() {
@@ -43,27 +45,28 @@ export class GroupDetailComponent implements OnInit, OnDestroy{
   }
   joinGroup(){
     this.grp.joinGroup(this.grp.group$.value!.id).subscribe(_=>{
-      console.log("join grp success");
+      this.toastr.success(this.group.name,"Joined Group");
     })
   }
   sendGroupConfirmation(){
     this.grp.sendGroupConfirmation().then(_=>{
-      console.log("group confirmation email success");
+      this.toastr.success("Email Sent to Members","Group Confirmation");
     })
   }
   confirmGroupbooking(){
     //calaa fascase
     this.grp.confirmGroupbooking().then(_=>{
-      console.log("group booking confirm success")
+      this.toastr.success("You have updated the status of this event to booked", "Booked");
     })
   }
   confirmGoing(){
     this.grp.confirmGroupEvent().pipe(take(1)).subscribe({
       next:()=>{
-        console.log("SJUCCES");
+        this.toastr.success("Going for this event waiting for admin to book","Confirm Going");
       },
       error:(err)=>{
-        console.log(err);
+        this.toastr.error(err,"Cannot got for event");
+        
       }
     })
   }

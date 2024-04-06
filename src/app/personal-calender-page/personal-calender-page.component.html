@@ -21,7 +21,7 @@
                 <td>{{e.start}}</td>
                 <td>{{e.end}}</td>
                 <td><button type="button" class="btn btn-info">Update</button></td>
-                <td><button type="button" class="btn btn-danger" (click)="deleteEvent(e)">Delete</button></td>
+                <td><button type="button" class="btn btn-danger" (click)="deleteEvent(e)" [disabled]="e.type!=personal">Delete</button></td>
                 
            </tr>
            <tr>

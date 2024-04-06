@@ -3,6 +3,7 @@ import { NgbModal, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { EventInterface } from 'src/app/interfaces/event-interface';
 import { CreateGroupFacade } from 'src/app/facade/CreateGroupFacade';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class GroupCreateComponent implements OnInit, OnDestroy{
 	selectedEvent?:EventInterface;
 	
 	constructor(
+		private toastr:ToastrService,
 		private modalService:NgbModal,
 		public grp: CreateGroupFacade
 	){}
@@ -29,26 +31,22 @@ export class GroupCreateComponent implements OnInit, OnDestroy{
 	}
 	
 	ngOnInit(){
+		
 		this.subs.push(this.em.subscribe(()=>this.open()));
 	}
 
 	createGroup(){
 		this.grp.createGroup().then(_=>{
-			console.log("group create success");
-		}).catch(err=>{
-			if (err.message === "user-not-signed-in")
-				console.log("user not signed in");
-			else if (err.message === "group-name-taken")
-				console.log("group name taken");
-			else if (err.message === "group-date-incompatible")
-				console.log("group date invalid");
-			else
-				console.log(err);
+			this.toastr.success(this.grp.newGroupForm.value.name?this.grp.newGroupForm.value.name:"","Group Created");
+			this.close();
+		}).catch((err:Error)=>{
+			this.toastr.error(err.message,"Group Creation Error");
 		})
 	}
 
 
 	open() {
+		this.grp.initialize();
 		this.modalService.open(this.content,{centered:true, fullscreen:true});
 	}
 

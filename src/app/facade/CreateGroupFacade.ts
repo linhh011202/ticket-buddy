@@ -6,7 +6,7 @@ import { WatchlistService } from "../network/firebase/firestore/watchlist.servic
 import { UserInterface } from "../interfaces/user-interface"
 import { EventInterface } from "../interfaces/event-interface"
 import { BehaviorSubject } from 'rxjs';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, ValidationErrors, Validators } from '@angular/forms';
 
 
 @Injectable({
@@ -41,6 +41,7 @@ export class CreateGroupFacade {
 		
 			this.watchlistSvc.getWatchlist(user).subscribe(watchlist=>{
 				this.watchlist$.next(watchlist);
+				console.log(watchlist);
 			})
 		});
 	}

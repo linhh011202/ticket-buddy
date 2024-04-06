@@ -4,7 +4,7 @@
 		<button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
 	</div>
 	<div class="modal-body">
-		<form [formGroup]="grp.newGroupForm" (ngSubmit)="createGroup()">
+		<form [formGroup]="grp.newGroupForm" >
 			<div class="form-group row">
 			  <label class="col-sm-2 col-form-label">Group Name</label>
 			  <div class="col-sm-10">
@@ -47,11 +47,10 @@
 					</div>
 				  </div>
 			</fieldset>
+			<button type="submit" class="btn btn-outline-dark"  [disabled]="!grp.newGroupForm.valid" (click)="createGroup()">Save</button>
 		  </form>
 	</div>
-	<div class="modal-footer">
-		<button type="submit" class="btn btn-outline-dark" (click)="createGroup()"  [disabled]="!grp.newGroupForm.valid">Save</button>
-	</div>
+	
 </ng-template>
 
 
