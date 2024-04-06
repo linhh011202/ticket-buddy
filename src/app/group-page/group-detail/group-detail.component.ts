@@ -41,7 +41,8 @@ export class GroupDetailComponent implements OnInit, OnDestroy{
     })
   }
   copyInviteLink() {
-    this.grp.copyInviteLink();
+    if (this.grp.copyInviteLink())
+      this.toastr.info("Link copied!");
   }
   joinGroup(){
     this.grp.joinGroup(this.grp.group$.value!.id).subscribe(_=>{
