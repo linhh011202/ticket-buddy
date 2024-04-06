@@ -3,20 +3,16 @@
 <table class="table">
 	<thead>
 		<tr>
-
 			<th scope="col">Name</th>
 			<th scope="col">Event</th>
 			<th scope="col">Members</th>
 		</tr>
 	</thead>
 	<tbody>
-        
-			<tr (click)="onClick(g)" *ngFor="let g of groups">
-				<td>
-					{{ g.name }}
-				</td>
-				<td>{{ g.event.name }}</td>
-				<td>{{ g.members |groupmemberPipe}}</td>
+			<tr (click)="onClick(g)" *ngFor="let g of groups" class="event-row">
+				<td style="background-color:inherit">{{ g.name }}</td>
+				<td style="background-color:inherit">{{ g.event.name }}</td>
+				<td style="background-color:inherit">{{ g.members |groupmemberPipe}}</td>
 			</tr>
 		
 	</tbody>
