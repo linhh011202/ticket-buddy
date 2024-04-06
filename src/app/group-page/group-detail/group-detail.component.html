@@ -6,6 +6,9 @@
 <div class="d-flex flex-row justify-content-center">
     <h2 class="d-inline-flex justify-content-center">{{grp.group$.value?.event?.name}}</h2><br/>
 </div>
+<div class="d-flex flex-row justify-content-center" *ngIf="grp.group$.value && grp.group$.value.booked">
+    <h2 class="d-inline-flex justify-content-center text-success" >BOOKED</h2><br/>
+</div>
 <div class="d-flex flex-row justify-content-center">
     <h3 class="d-inline-flex justify-content-center"></h3>{{grp.group$.value?.event?.location}}<br/>
 </div>
@@ -49,6 +52,10 @@
             <div (click)="deleteGroup()" type="button" class="btn btn-danger m-1" >Delete Group</div>
             <div (click)="sendGroupConfirmation()" type="button" class="btn btn-success m-1" *ngIf="!(grp.group$|async)!.booked">Request confirmation</div>
             <div (click)="confirmGroupbooking()" type="button" class="btn btn-success m-1" *ngIf="!(grp.group$|async)!.booked" >Confirm booking</div>
+        </div>
+        <div class="d-flex flex-row justify-content-center" *ngIf="!grp.group$.value.booked && !grp.group$.value.confirmed.includes(grp.currentUser$.value.id)">
+            <div (click)="confirmGoing()" type="button" class="btn btn-success m-1" >Confirm going</div>
+            
         </div>
     </div>
 </ng-template>

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { CalanderEvent } from '../interfaces/calander-interface/CalanderEvent-interface';
-
+import {CalanderType} from "../interfaces/enums/calenderenum";
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarFacade } from '../facade/PersonalCalendarFacade';
 import { NewCalendarEvent } from '../class/NewCalendarEvent';
@@ -16,7 +16,7 @@ import { NewCalendarEvent } from '../class/NewCalendarEvent';
 export class PersonalCalenderPageComponent implements OnInit, OnDestroy{
 
   calendarOnDisplay: CalanderEvent[] = [];
-
+  personal:CalanderType = CalanderType.Personal;
   newEvent: NewCalendarEvent = new NewCalendarEvent();
   
   constructor(
