@@ -5,7 +5,7 @@ import { UserInterface } from '../interfaces/user-interface';
 import { CalanderEvent } from '../interfaces/calander-interface/CalanderEvent-interface';
 import { CalanderColor, CalanderType, CalanderTypeColor, CalanderTypePriority } from '../interfaces/enums/calenderenum';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 
 import { NewCalendarEvent } from "../class/NewCalendarEvent"
 
@@ -14,7 +14,7 @@ import { NewCalendarEvent } from "../class/NewCalendarEvent"
   providedIn: 'root'
 })
 export class CalendarFacade {
-
+    private subs:Subscription[] = [];
     currentUser?: UserInterface;
     calendar$: BehaviorSubject<CalanderEvent[]> = new BehaviorSubject<CalanderEvent[]>([]);
     dateColor$: BehaviorSubject<[[NgbDate,NgbDate], CalanderColor][]> = new BehaviorSubject<[[NgbDate,NgbDate], CalanderColor][]>([]); //should be date range better // wtf does this mean
@@ -23,9 +23,15 @@ export class CalendarFacade {
         private authSvc:AuthenticationService,
         private calSvc: CalendarService
     ) {
+        
+    }
+    destroy(){
+        this.subs.forEach((e)=>e.unsubscribe());
+    }
+    initializeCalender(){
         this.authSvc.getCurrentUser().then(user=>{
             this.currentUser  = user;
-            this.calSvc.getCalendar(user).subscribe(
+            var rtn:Subscription = this.calSvc.getCalendar(user).subscribe(
             calEvents=>{
                 
                 calEvents.sort((a,b)=>{//sort by time then sort by calanderType, Booked for event is the highest priority
@@ -48,7 +54,10 @@ export class CalendarFacade {
                 this.calendar$.next(calEvents);
                 this.dateColor$.next(dateColor);
             });
+            
+            this.subs.push(rtn);
         });
+
     }
 
     deleteEvent(e:CalanderEvent): Promise<void>{
