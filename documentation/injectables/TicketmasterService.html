@@ -282,8 +282,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="27"
-                                    class="link-to-prism">src/app/network/ticketmaster/ticketmaster.service.ts:27</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/app/network/ticketmaster/ticketmaster.service.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -349,8 +349,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="51"
-                                    class="link-to-prism">src/app/network/ticketmaster/ticketmaster.service.ts:51</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/app/network/ticketmaster/ticketmaster.service.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -386,8 +386,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="84"
-                                    class="link-to-prism">src/app/network/ticketmaster/ticketmaster.service.ts:84</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="86"
+                                    class="link-to-prism">src/app/network/ticketmaster/ticketmaster.service.ts:86</a></div>
                         </td>
                     </tr>
 
@@ -453,8 +453,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="116"
-                                    class="link-to-prism">src/app/network/ticketmaster/ticketmaster.service.ts:116</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="118"
+                                    class="link-to-prism">src/app/network/ticketmaster/ticketmaster.service.ts:118</a></div>
                         </td>
                     </tr>
 
@@ -553,7 +553,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/network/ticketmaster/ticketmaster.service.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/network/ticketmaster/ticketmaster.service.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -585,6 +585,8 @@ export class TicketmasterService {
     private platformLocation: PlatformLocation,
     private router: Router) {
       this.baseurl &#x3D; (this.platformLocation as any)._location.origin+&quot;/ticketmaster&quot;;
+      // uncomment for production build
+      // this.baseurl &#x3D; &quot;https://app.ticketmaster.com/discovery/v2&quot;;
     }
     
     header &#x3D; 

@@ -146,6 +146,9 @@
                                 <a href="#confirmGroupBooking" >confirmGroupBooking</a>
                             </li>
                             <li>
+                                <a href="#confirmGroupEvent" >confirmGroupEvent</a>
+                            </li>
+                            <li>
                                 <a href="#createGroup" >createGroup</a>
                             </li>
                             <li>
@@ -168,10 +171,7 @@
                                 <a href="#removeFromGroup" >removeFromGroup</a>
                             </li>
                             <li>
-                                <a href="#toggleGroupConfirmation" >toggleGroupConfirmation</a>
-                            </li>
-                            <li>
-                                <a href="#updateGroupDate" >updateGroupDate</a>
+                                <a href="#sendGroupConfirmation" >sendGroupConfirmation</a>
                             </li>
                         </ul>
                     </td>
@@ -191,12 +191,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(fs: Firestore, noti: <a href="../injectables/NotificationService.html" target="_self">NotificationService</a>)</code>
+<code>constructor(calSvc: <a href="../injectables/CalendarService.html" target="_self">CalendarService</a>, fs: Firestore, noti: <a href="../injectables/NotificationService.html" target="_self">NotificationService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -213,6 +213,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>calSvc</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CalendarService.html" target="_self" >CalendarService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                                 <tr>
                                                         <td>fs</td>
                                                   
@@ -271,8 +283,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="194"
-                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:194</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="225"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:225</a></div>
                         </td>
                     </tr>
 
@@ -322,6 +334,85 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="confirmGroupEvent"></a>
+                    <span class="name">
+                        <span ><b>confirmGroupEvent</b></span>
+                        <a href="#confirmGroupEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>confirmGroupEvent(group: <a href="../interfaces/GroupInterface.html" target="_self">GroupInterface</a>, user: <a href="../interfaces/UserInterface.html" target="_self">UserInterface</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="186"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:186</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>group</td>
+                                            <td>
+                                                            <code><a href="../interfaces/GroupInterface.html" target="_self" >GroupInterface</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>user</td>
+                                            <td>
+                                                            <code><a href="../interfaces/UserInterface.html" target="_self" >UserInterface</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="createGroup"></a>
                     <span class="name">
                         <span ><b>createGroup</b></span>
@@ -338,8 +429,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="43"
-                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:43</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="44"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -431,8 +522,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="20"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -498,8 +589,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="157"
-                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:157</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="160"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:160</a></div>
                         </td>
                     </tr>
 
@@ -565,8 +656,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="96"
-                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:96</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="97"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:97</a></div>
                         </td>
                     </tr>
 
@@ -632,8 +723,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="76"
-                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:76</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:77</a></div>
                         </td>
                     </tr>
 
@@ -699,8 +790,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="113"
-                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:113</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="114"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:114</a></div>
                         </td>
                     </tr>
 
@@ -778,8 +869,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="128"
-                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:128</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:129</a></div>
                         </td>
                     </tr>
 
@@ -841,103 +932,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="toggleGroupConfirmation"></a>
+                    <a name="sendGroupConfirmation"></a>
                     <span class="name">
-                        <span ><b>toggleGroupConfirmation</b></span>
-                        <a href="#toggleGroupConfirmation"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>sendGroupConfirmation</b></span>
+                        <a href="#sendGroupConfirmation"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>toggleGroupConfirmation(group: <a href="../interfaces/GroupInterface.html" target="_self">GroupInterface</a>, user: <a href="../interfaces/UserInterface.html" target="_self">UserInterface</a>)</code>
+<code>sendGroupConfirmation(group: <a href="../interfaces/GroupInterface.html" target="_self">GroupInterface</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="180"
-                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:180</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>group</td>
-                                            <td>
-                                                            <code><a href="../interfaces/GroupInterface.html" target="_self" >GroupInterface</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>user</td>
-                                            <td>
-                                                            <code><a href="../interfaces/UserInterface.html" target="_self" >UserInterface</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="updateGroupDate"></a>
-                    <span class="name">
-                        <span ><b>updateGroupDate</b></span>
-                        <a href="#updateGroupDate"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>updateGroupDate(group: <a href="../interfaces/GroupInterface.html" target="_self">GroupInterface</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="166"
-                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:166</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="169"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:169</a></div>
                         </td>
                     </tr>
 
@@ -994,16 +1006,19 @@ import { EventInterface } from &#x27;src/app/interfaces/event-interface&#x27;;
 import { UserInterface } from &#x27;src/app/interfaces/user-interface&#x27;;
 
 import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData, updateDoc, arrayUnion, arrayRemove, deleteDoc, FirestoreError} from &#x27;@angular/fire/firestore&#x27;;
-import { Observable } from &#x27;rxjs&#x27;;
+import { Observable, forkJoin, from, iif, mergeMap, of, switchMap, take, tap, throwError } from &#x27;rxjs&#x27;;
 import { GroupInterface } from &#x27;src/app/interfaces/group-interface&#x27;;
 import { NotificationService } from &#x27;./notification.service&#x27;;
+import { CalanderType } from &#x27;src/app/interfaces/enums/calenderenum&#x27;;
+import { CalendarService } from &#x27;./calendar.service&#x27;;
+import { CalanderEvent } from &#x27;src/app/interfaces/calander-interface/CalanderEvent-interface&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class GroupService {
 
-  constructor(private fs: Firestore, private noti: NotificationService) { }
+  constructor(private calSvc: CalendarService, private fs: Firestore, private noti: NotificationService) { }
 
   private dbToGroupInterface(dbGroup: DocumentData | DocumentData &amp; {id: string;}): GroupInterface
   {
@@ -1025,8 +1040,6 @@ export class GroupService {
       booked: dbGroup[&quot;booked&quot;],
       allUUID: dbGroup[&quot;allUUID&quot;]
     }
-    if (dbGroup[&quot;date&quot;])
-      grp.date &#x3D; dbGroup[&quot;date&quot;].toDate();
 
     return grp;
   }
@@ -1122,7 +1135,6 @@ export class GroupService {
     
     // Protection against display name change
     let toRemove: UserInterface|undefined &#x3D; undefined;
-
     group.members.forEach(member&#x3D;&gt;{
       if (member.id &#x3D;&#x3D;&#x3D; user.id){
         toRemove &#x3D; member;
@@ -1130,15 +1142,18 @@ export class GroupService {
       }
     })
 
-
     return new Promise&lt;void&gt;(res&#x3D;&gt;{
       // Check if user is a member in group
       if (toRemove &#x3D;&#x3D;&#x3D; undefined) res();
       
-      let update &#x3D; {
+      let update: any &#x3D; {
         members: arrayRemove(toRemove),
-        allUUID: arrayRemove(user.id)
+        allUUID: arrayRemove(user.id),
       }
+
+      if (group.confirmed.includes(user.id))
+        update[&quot;confirmed&quot;] &#x3D; arrayRemove(user.id);
+
       updateDoc(grpDoc, update).then(_&#x3D;&gt;{
         res();
       })
@@ -1154,32 +1169,60 @@ export class GroupService {
     });
   }
 
-  updateGroupDate(group: GroupInterface): Promise&lt;void&gt;{
-    let grpDoc &#x3D; doc(this.fs, &#x60;group/${group.id}&#x60;);
-    group.date &#x3D; group.event.startDate;
-    let update &#x3D; {date: group.date};
-
-    return new Promise&lt;void&gt;(res&#x3D;&gt;{
-      updateDoc(grpDoc, update).then(_&#x3D;&gt;{
-        this.noti.sendConfirmationRequest(group).then(_&#x3D;&gt;{
-          res();
-        });
-      });
-    });
+  sendGroupConfirmation(group: GroupInterface): Promise&lt;void&gt;{
+    return this.noti.sendConfirmationRequest(group);
   }
-
-  toggleGroupConfirmation(group: GroupInterface, user: UserInterface): Promise&lt;void&gt;{
+  /*
+  forkJoin(
+    {first:from(this.calSvc.addCalendarEvent({
+            user: user,
+            start: group.event.startDate!,
+            end: group.event.endDate!,
+            detail: &#x60;Reserved for ${group.name}.&#x60;,
+            type: CalanderType.ReservedForEvent,
+            groupId: group.id,
+            groupName: group.name
+          })).pipe(tap(()&#x3D;&gt;console.log(&quot;GOT NO ERROR&quot;))), second:from(updateDoc(grpDoc, update))})
+  
+  */
+//grpCal.map(e&#x3D;&gt;e.user.id).includes(user.id)
+  confirmGroupEvent(group: GroupInterface, user: UserInterface): Observable&lt;void&gt;{
+    
     let grpDoc &#x3D; doc(this.fs, &#x60;group/${group.id}&#x60;);
     let update &#x3D; {confirmed: arrayUnion(user.id)};
+    return this.calSvc.getGroupCalendar(group).pipe(
+      take(1),
+      mergeMap((grpCal:CalanderEvent[])&#x3D;&gt;
+        iif(
+          ()&#x3D;&gt; grpCal.map(e&#x3D;&gt;e.user.id).includes(user.id), 
+          throwError(()&#x3D;&gt;&quot;User not available at that time&quot;), 
+          of(1).pipe(switchMap(()&#x3D;&gt;forkJoin(
+            {first:from(this.calSvc.addCalendarEvent({
+              user: user,
+              start: group.event.startDate!,
+              end: group.event.endDate!,
+              detail: &#x60;Reserved for ${group.name}.&#x60;,
+              type: CalanderType.ReservedForEvent,
+              groupId: group.id,
+              groupName: group.name
+            })), second:from(updateDoc(grpDoc, update))}
 
-    if (group.confirmed.includes(user.id))
-      update.confirmed &#x3D; arrayRemove(user.id);
+          ).pipe(switchMap(()&#x3D;&gt;of(void 0))))
+          
+          )
+          ,
+        )
+      )
+    );
 
-    return new Promise&lt;void&gt;(res&#x3D;&gt;{
-        updateDoc(grpDoc, update).then(_&#x3D;&gt;{
-          res();
-        })
-      });
+
+    // Check if can confirm
+
+    // Update user calendar
+
+    // Update group
+
+
   }
 
   confirmGroupBooking(group: GroupInterface): Promise&lt;void&gt;{
@@ -1198,7 +1241,7 @@ export class GroupService {
 
       // Ensure database is properly updated, then send notification
       updatePromise.then(_&#x3D;&gt;{
-        this.noti.sendConfirmation(group).then(_&#x3D;&gt;{
+        this.noti.sendBookingConfirmation(group).then(_&#x3D;&gt;{
           res();
         });
       });

@@ -51,12 +51,16 @@ export class PersonalCalenderPageComponent implements OnInit, OnDestroy{
   }
 
   createEvent(){
+    
     this.cal.createEvent(this.newEvent).then(_=>{
       console.log("create event successs");
     }).catch(err=>{
-      if (err.message === "Invalid-Parameter"){
+      if (err.message === "invalid-parameter"){
         // TODO: Handle Error
         console.log("invalid parameter")
+      } else if (err.message === "cal-event-clash"){
+        // TODO: Handle Error
+        console.log("calendar event clash");
       }
     })
   }

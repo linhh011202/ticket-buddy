@@ -832,11 +832,11 @@ export class GroupPageComponent implements OnInit, AfterViewInit{
   ){}
 
   ngOnInit(): void {
-
+    this.grp.getGroups();
   }
   
   joinGroup(){
-    this.grp.joinGroup(this.groupID);
+    this.grp.joinGroup(this.groupID).subscribe();
   }
   ngAfterViewInit(): void {
     this.route.paramMap.subscribe(params&#x3D;&gt;{
@@ -894,9 +894,9 @@ export class GroupPageComponent implements OnInit, AfterViewInit{
         &lt;div class&#x3D;&quot;btn btn-primary&quot; (click)&#x3D;&quot;openModalEmitter.emit()&quot;&gt;Create Group&lt;/div&gt;
       &lt;/div&gt;
       &lt;h5&gt;Admin&lt;/h5&gt;
-      &lt;app-group-list *ngIf&#x3D;&quot;!!grp.currentUser&quot; (groupClicked)&#x3D;&quot;choseGroup($event)&quot; [groups]&#x3D;&quot;grp.adminGroups$.value&quot;&gt;&lt;/app-group-list&gt;
+      &lt;app-group-list  (groupClicked)&#x3D;&quot;choseGroup($event)&quot; [groups]&#x3D;&quot;(grp.adminGroups$|async)!&quot;&gt;&lt;/app-group-list&gt;
       &lt;h5&gt;Member&lt;/h5&gt;
-      &lt;app-group-list *ngIf&#x3D;&quot;!!grp.currentUser&quot; (groupClicked)&#x3D;&quot;choseGroup($event)&quot; [groups]&#x3D;&quot;grp.memberGroups$.value&quot;&gt;&lt;/app-group-list&gt;
+      &lt;app-group-list  (groupClicked)&#x3D;&quot;choseGroup($event)&quot; [groups]&#x3D;&quot;(grp.memberGroups$|async)!&quot;&gt;&lt;/app-group-list&gt;
     &lt;/ng-template&gt;
   &lt;/li&gt;
   &lt;li [ngbNavItem]&#x3D;&quot;2&quot; *ngIf&#x3D;&quot;chosen&quot;&gt;
@@ -945,7 +945,7 @@ export class GroupPageComponent implements OnInit, AfterViewInit{
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ul ngbNav #nav="ngbNav" class="nav-tabs">  <li [ngbNavItem]="1">    <button ngbNavLink>Groups</button>    <ng-template ngbNavContent>      <div class="d-flex flex-row justify-content-center">        <div class="p-2">          <input type="text" class="form-control" placeholder="Enter groupID"  [(ngModel)]="groupID">        </div>        <div class="p-2">            <button class="btn btn-success"(click)="joinGroup()">JOIN</button>        </div>      </div>      <div class="d-flex justify-content-center p-2">        <div class="btn btn-primary" (click)="openModalEmitter.emit()">Create Group</div>      </div>      <h5>Admin</h5>      <app-group-list *ngIf="!!grp.currentUser" (groupClicked)="choseGroup($event)" [groups]="grp.adminGroups$.value"></app-group-list>      <h5>Member</h5>      <app-group-list *ngIf="!!grp.currentUser" (groupClicked)="choseGroup($event)" [groups]="grp.memberGroups$.value"></app-group-list>    </ng-template>  </li>  <li [ngbNavItem]="2" *ngIf="chosen">    <button ngbNavLink >{{chosen.name}}</button>    <ng-template ngbNavContent>      <app-group-detail [group]="chosen"></app-group-detail>    </ng-template>  </li></ul><div [ngbNavOutlet]="nav" class="container p-2"></div><app-group-create [em] = "openModalEmitter"></app-group-create></div>'
+        var COMPONENT_TEMPLATE = '<div><ul ngbNav #nav="ngbNav" class="nav-tabs">  <li [ngbNavItem]="1">    <button ngbNavLink>Groups</button>    <ng-template ngbNavContent>      <div class="d-flex flex-row justify-content-center">        <div class="p-2">          <input type="text" class="form-control" placeholder="Enter groupID"  [(ngModel)]="groupID">        </div>        <div class="p-2">            <button class="btn btn-success"(click)="joinGroup()">JOIN</button>        </div>      </div>      <div class="d-flex justify-content-center p-2">        <div class="btn btn-primary" (click)="openModalEmitter.emit()">Create Group</div>      </div>      <h5>Admin</h5>      <app-group-list  (groupClicked)="choseGroup($event)" [groups]="(grp.adminGroups$|async)!"></app-group-list>      <h5>Member</h5>      <app-group-list  (groupClicked)="choseGroup($event)" [groups]="(grp.memberGroups$|async)!"></app-group-list>    </ng-template>  </li>  <li [ngbNavItem]="2" *ngIf="chosen">    <button ngbNavLink >{{chosen.name}}</button>    <ng-template ngbNavContent>      <app-group-detail [group]="chosen"></app-group-detail>    </ng-template>  </li></ul><div [ngbNavOutlet]="nav" class="container p-2"></div><app-group-create [em] = "openModalEmitter"></app-group-create></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalanderComponent', 'selector': 'app-calander'},{'name': 'ClassificationComponentComponent', 'selector': 'app-classification-component'},{'name': 'EventComponentComponent', 'selector': 'app-event-component'},{'name': 'GroupCreateComponent', 'selector': 'app-group-create'},{'name': 'GroupDetailComponent', 'selector': 'app-group-detail'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupPageComponent', 'selector': 'app-group-page'},{'name': 'ListEventsComponent', 'selector': 'app-list-events'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'PersonalCalenderPageComponent', 'selector': 'app-personal-calender-page'},{'name': 'SearchPageComponent', 'selector': 'app-search-page'},{'name': 'WatchlistPageComponent', 'selector': 'app-watchlist-page'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'GroupPageComponent'};
