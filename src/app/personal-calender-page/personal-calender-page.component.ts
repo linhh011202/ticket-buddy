@@ -5,6 +5,7 @@ import {CalanderType} from "../interfaces/enums/calenderenum";
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarFacade } from '../facade/PersonalCalendarFacade';
 import { NewCalendarEvent } from '../class/NewCalendarEvent';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class PersonalCalenderPageComponent implements OnInit, OnDestroy{
   newEvent: NewCalendarEvent = new NewCalendarEvent();
   
   constructor(
+    private toastr:ToastrService,
     public cal: CalendarFacade
   ){}
   
@@ -46,22 +48,16 @@ export class PersonalCalenderPageComponent implements OnInit, OnDestroy{
 
   deleteEvent(e: CalanderEvent){
     this.cal.deleteEvent(e).then(_=>{
-      console.log("delete event success");
+      this.toastr.success("delete event success","Calender Event Success");
     })
   }
 
   createEvent(){
     
     this.cal.createEvent(this.newEvent).then(_=>{
-      console.log("create event successs");
+      this.toastr.success("Created Personal Event","Calender Event Success");
     }).catch(err=>{
-      if (err.message === "invalid-parameter"){
-        // TODO: Handle Error
-        console.log("invalid parameter")
-      } else if (err.message === "cal-event-clash"){
-        // TODO: Handle Error
-        console.log("calendar event clash");
-      }
+      this.toastr.error(err.message,"Calender Event Error");
     })
   }
 }
