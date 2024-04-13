@@ -19,7 +19,7 @@
 </div>
 
 <app-classification-component [classification]="classificationEmitter"></app-classification-component>
-<div class="container justify-content-center">
+<div class="container justify-content-center" style="position: relative;">
 <app-list-events [watchlist]="(searchFacade.watchlist$|async)!" [events]="(searchFacade.loadedEvents$|async)!"></app-list-events>
 <div class="row  justify-content-center" >
    
@@ -36,7 +36,7 @@
     </div>
 </ng-template>
 
-<div *ngIf="(searchFacade.loadingEvents$|async)" style="text-align:center;margin-top: 5em;">
+<div *ngIf="(searchFacade.loadingEvents$|async)" class="loading-container">
     <span class="loading-spinner"></span>
     <h3>Loading...</h3>
 </div>

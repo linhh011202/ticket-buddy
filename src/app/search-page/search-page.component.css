@@ -36,6 +36,16 @@
     }
 }
 
+.loading-container {
+    text-align:center;
+    padding-top: 5em;
+    position: fixed;
+    width: 100vw;
+    height: 100%;
+    top: 0;
+    backdrop-filter: blur(5px);
+}
+
 .loading-spinner {
     width: 48px;
     height: 48px;
