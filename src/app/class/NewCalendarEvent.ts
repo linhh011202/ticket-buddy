@@ -14,7 +14,9 @@ export class NewCalendarEvent{
     }
 
     isValid() {
-        return this.start && this.end && this.detail;
+        if (this.start && this.end && this.detail)
+            return new Date(this.start) < new Date(this.end);
+        return false;
     }
 
     toCalendarevent(user: UserInterface): CalanderEvent {
