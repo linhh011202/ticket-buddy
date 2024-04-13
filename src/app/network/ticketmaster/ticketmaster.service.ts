@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { PlatformLocation } from '@angular/common';
 
 import { ticketMasterApi } from 'src/environments/env-prod';
-import { Observable, concatMap, filter, iif, map, mergeMap, of, take, throwError } from 'rxjs';
+import { Observable, concatMap, filter, iif, map, mergeMap, of, switchMap, take, throwError, timeout } from 'rxjs';
 import { EventPageInterface } from 'src/app/interfaces/eventpage-interface';
 import { ClassificationInterface } from 'src/app/interfaces/clasification-interface';
 
@@ -50,70 +50,38 @@ export class TicketmasterService {
         })
       );
     }
-    getEvents():Observable<EventPageInterface>{
-      var today  =new Date();
-      var str = today.toISOString();
-      str = str.slice(0, str.length-5).concat("Z");
-      return this.http.get(this.baseurl+"/events.json", {params:{apikey:ticketMasterApi}}).pipe(
-        map((x:any)=>{
-          
-          var rtn:any = {page:undefined, events:undefined};
-          rtn.page = x.page;
+    private returnEvents(x:any):Observable<EventPageInterface>{
+      var rtn:any = {page:undefined, events:undefined};
+      rtn.page = x.page;
+      console.log(x);
+      if (x.page.totalElements == 0){
 
-          x = x._embedded;
-          
-          rtn.events = x.events.map((e:any)=>{
-            var sd = new Date(e.dates?.start.dateTime);
-            var ed:Date = new Date(e.dates?.end);
-            
-            
-            return {
-              id:e.id, details:e.description, 
-              images:e.images.map((img:any)=>img.url),
-              location:e._embedded?.venues.map((v:any)=>v.name), 
-              name:e.name, 
-              startDate: (!this.invalidDate(sd))? sd: undefined, 
-              endDate:(!this.invalidDate(ed))? ed: undefined
-            };
-          });
-          return (rtn as EventPageInterface);
+        return throwError("No events that fit this query")
+      }
+      x = x._embedded;
+      rtn.events = x.events.map((e:any)=>{
         
-        }),
-        take(1)
-        
-        );
+        return {
+          id:e.id, details:e.description, 
+          images:e.images.map((img:any)=>img.url),
+          location:e._embedded?.venues.map((v:any)=>v.name), 
+          name:e.name
+        };
+      });
+      
+      return of(rtn as EventPageInterface)
+    }
+    getEvents():Observable<EventPageInterface>{
+      return this.http.get(this.baseurl+"/events.json", {params:{apikey:ticketMasterApi}}).pipe(
+        //timeout(5000),
+        switchMap(this.returnEvents))
     }
     getEventsQuery(query:any):Observable<EventPageInterface>{
       query.apikey = ticketMasterApi;
-      console.log(query);
-      //.pipe(mergeMap(v => iif(() => v % 4 === 0, r$, x$)))
       return this.http.get(this.baseurl+"/events.json", {params:query}).pipe(
-        map((x:any)=>{
-          //here check that the page.totalElements if ==0 throw error
-          var rtn:any = {page:undefined, events:undefined};
-          rtn.page = x.page;
-          if(rtn.page.totalElements==0){
-            return {page:rtn.page, events:[]}
-          }
-          x = x._embedded;
-        
-          rtn.events = x.events.map((e:any)=>{
-            var sd = new Date(e.dates?.start.dateTime);
-            var ed:Date = new Date(e.dates?.end);
-            return {
-              id:e.id, details:e.description, 
-              images:e.images.map((img:any)=>img.url),
-              location:e._embedded?.venues.map((v:any)=>v.name), 
-              name:e.name, 
-              startDate: (!this.invalidDate(sd))? sd: undefined, 
-              endDate:(!this.invalidDate(ed))? ed: undefined
-            };
-          });
-          var rtnn:EventPageInterface = rtn as EventPageInterface;
-          rtnn.page.totalElements = Math.min(20*20, rtnn.page.totalElements)
-          return rtnn;
-        }), 
-        take(1))
+        timeout(5000),
+        switchMap(this.returnEvents)
+      )
     }
     invalidDate(d:Date){
       return Number.isNaN(d.valueOf());
