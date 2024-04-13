@@ -5,6 +5,7 @@ import { UserInterface } from '../interfaces/user-interface';
 import { ActivatedRoute } from '@angular/router';
 import { ViewGroupFacade } from '../facade/ViewGroupFacade';
 import { ToastrService } from 'ngx-toastr';
+import { GrouppageFacadeService } from '../facade/grouppage-facade.service';
 
 @Component({
   selector: 'app-group-page',
@@ -23,16 +24,17 @@ export class GroupPageComponent implements OnInit, AfterViewInit,OnDestroy{
 
 
   constructor(
-    public grp: ViewGroupFacade,
+    public grp: GrouppageFacadeService,
     private route:ActivatedRoute,
     private toastr:ToastrService 
   ){}
   ngOnDestroy(): void {
+    
     this.grp.destroy();
   }
 
   ngOnInit(): void {
-    this.grp.getGroups();
+    this.grp.initialise();
   }
   
   joinGroup(){

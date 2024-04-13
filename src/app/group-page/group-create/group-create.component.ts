@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './group-create.component.html',
   styleUrls: ['./group-create.component.css']
 })
-export class GroupCreateComponent implements OnInit, OnDestroy{
+export class GroupCreateComponent implements OnInit{
 	private subs:Subscription[] = [];
 	@ViewChild(NgbNav) private navStuff: NgbNav | undefined;
 	@ViewChild('content') private content:NgbModal | undefined; 
@@ -26,9 +26,7 @@ export class GroupCreateComponent implements OnInit, OnDestroy{
 		private modalService:NgbModal,
 		public grp: CreateGroupFacade
 	){}
-	ngOnDestroy(): void {
-		
-	}
+
 	
 	ngOnInit(){
 		
@@ -53,6 +51,7 @@ export class GroupCreateComponent implements OnInit, OnDestroy{
 	close(){
 		this.modalService.dismissAll();
 		this.grp.destroy();
+		this.selectedEvent = undefined;
 	}
 	
 	

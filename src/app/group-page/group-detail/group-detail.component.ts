@@ -6,6 +6,7 @@ import { UserInterface } from 'src/app/interfaces/user-interface';
 import { ViewGroupFacade } from 'src/app/facade/ViewGroupFacade'
 import { take } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -18,21 +19,22 @@ export class GroupDetailComponent implements OnInit, OnDestroy{
 
   constructor(
     public grp: ViewGroupFacade,
-    private toastr:ToastrService
+    private toastr:ToastrService,
+    private router:Router
   ){}
   ngOnDestroy(): void {
     this.grp.destroy();
   }
   
   ngOnInit(){//given the events of that group
-    this.grp.getCurrentUser();
-    this.grp.getGroup(this.group.id);
-    this.grp.getGroupCalander(this.group);
+    this.grp.initialise(this.group.id, this.group);
   }
 
   deleteGroup(){
     this.grp.deleteGroup().then(_=>{
       this.toastr.success(this.group.name,"Delete Group");
+      this.router.navigate(['/group'])
+      location.reload();
     })
   }
   kickUser(user:UserInterface){

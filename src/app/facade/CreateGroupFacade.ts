@@ -46,6 +46,18 @@ export class CreateGroupFacade {
 	}
 	destroy(){
 		this.subs.forEach((e)=>e.unsubscribe());
+		this.newGroupForm = this.formBuilder.group({
+			name:['', Validators.required],
+			event:this.formBuilder.group({
+				id:["",Validators.required],
+				location:this.formBuilder.array([]),
+				images:this.formBuilder.array([]),
+				name:['', Validators.required],
+				details:new FormControl("", Validators.required),
+				startDate:new FormControl("", Validators.required),
+				endDate:new FormControl("", Validators.required)
+			})
+		});
 	}
 	updateForm(evt:EventInterface){
 		var n:any = structuredClone(evt);

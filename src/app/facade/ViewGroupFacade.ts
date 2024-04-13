@@ -34,6 +34,11 @@ export class ViewGroupFacade {
 
     
   }
+    initialise(id:string, group:GroupInterface){
+        this.getCurrentUser();
+    this.getGroup(id);
+    this.getGroupCalander(group);
+    }
     destroy(){
         this.subs.forEach((e)=>e.unsubscribe());
     }
