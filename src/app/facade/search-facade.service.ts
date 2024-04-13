@@ -65,26 +65,7 @@ export class SearchFacadeService {
     var n:IdClassType[] = this.cid$.value;
     this.cid$.next(n.filter((c)=>c.id!=ie.id));
   }
-  getEvents(){//this one no queryies
-    this.tmApi.getEvents().pipe(startWith(undefined)).subscribe(
-      {next:(x)=>{
-        if(x){
-          var p:PageInterface = x.page;
-          p.number +=1;
-          this.pageInfo$.next(p);
-          this.loadedEvents$.next(x.events);
-        }else{
-          this.loadingEvents$.next(true);
-        }
-      },
-      error:(err)=>{
-        this.error$.next(err);
-      },
-      complete:()=>{
-        this.loadingEvents$.next(false);
-      }
-    });
-  }
+ 
   searchEvent(){//this one got the queries
     this.query.segmentId = this.cid$.value.filter((c)=>c.type==ClassType.Segment).map((x)=>x.id);
     this.query.genreId = this.cid$.value.filter((c)=>c.type==ClassType.Genre).map((x)=>x.id);
@@ -104,9 +85,9 @@ export class SearchFacadeService {
           this.loadingEvents$.next(true);
         }
       },
-      error:(err)=>{
+      /*error:(err)=>{
         this.error$.next(err);
-      },
+      },*/
       complete:()=>{
         this.loadingEvents$.next(false);
         

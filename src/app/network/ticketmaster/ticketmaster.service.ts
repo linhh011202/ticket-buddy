@@ -60,12 +60,16 @@ export class TicketmasterService {
       }
       x = x._embedded;
       rtn.events = x.events.map((e:any)=>{
+        var sd = new Date(e.dates?.start.dateTime);
+        var ed:Date = new Date(e.dates?.end);
         
         return {
           id:e.id, details:e.description, 
           images:e.images.map((img:any)=>img.url),
           location:e._embedded?.venues.map((v:any)=>v.name), 
-          name:e.name
+          name:e.name,
+          startDate: (!Number.isNaN(sd.valueOf()))? sd: undefined, 
+          endDate:(!Number.isNaN(ed.valueOf()))? ed: undefined
         };
       });
       
@@ -83,7 +87,5 @@ export class TicketmasterService {
         switchMap(this.returnEvents)
       )
     }
-    invalidDate(d:Date){
-      return Number.isNaN(d.valueOf());
-    }
+    
 }
