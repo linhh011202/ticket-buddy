@@ -121,9 +121,12 @@ export class GroupService {
       allUUID: arrayUnion(user.id),
     }
     
-    return new Promise<void>(res=>{
+    return new Promise<void>((res,rej)=>{
       updateDoc(grpDoc, update).then(_=>{
         res();
+      }).catch(err =>{
+        if (err.code === "permission-denied")
+          rej("Group Not Found");
       })
     })
   }
@@ -171,20 +174,7 @@ export class GroupService {
   sendGroupConfirmation(group: GroupInterface): Promise<void>{
     return this.noti.sendConfirmationRequest(group);
   }
-  /*
-  forkJoin(
-    {first:from(this.calSvc.addCalendarEvent({
-            user: user,
-            start: group.event.startDate!,
-            end: group.event.endDate!,
-            detail: `Reserved for ${group.name}.`,
-            type: CalanderType.ReservedForEvent,
-            groupId: group.id,
-            groupName: group.name
-          })).pipe(tap(()=>console.log("GOT NO ERROR"))), second:from(updateDoc(grpDoc, update))})
-  
-  */
-//grpCal.map(e=>e.user.id).includes(user.id)
+
   confirmGroupEvent(group: GroupInterface, user: UserInterface): Observable<void>{
     
     let grpDoc = doc(this.fs, `group/${group.id}`);
@@ -215,11 +205,6 @@ export class GroupService {
     );
 
 
-    // Check if can confirm
-
-    // Update user calendar
-
-    // Update group
 
 
   }
@@ -232,13 +217,7 @@ export class GroupService {
 
       let updatePromise = updateDoc(grpDoc, update);
 
-      // Do both at same time
-      // let notiPromise = this.noti.sendConfirmation(group);
-      // Promise.all([updatePromise, notiPromise]).then(_=>{
-      //   res();
-      // })
 
-      // Ensure database is properly updated, then send notification
       updatePromise.then(_=>{
         this.noti.sendBookingConfirmation(group).then(_=>{
           res();

@@ -4,6 +4,7 @@ import { NgbModal, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { UserInterface } from '../interfaces/user-interface';
 import { ActivatedRoute } from '@angular/router';
 import { ViewGroupFacade } from '../facade/ViewGroupFacade';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-group-page',
@@ -23,7 +24,8 @@ export class GroupPageComponent implements OnInit, AfterViewInit,OnDestroy{
 
   constructor(
     public grp: ViewGroupFacade,
-    private route:ActivatedRoute, 
+    private route:ActivatedRoute,
+    private toastr:ToastrService 
   ){}
   ngOnDestroy(): void {
     this.grp.destroy();
@@ -34,7 +36,7 @@ export class GroupPageComponent implements OnInit, AfterViewInit,OnDestroy{
   }
   
   joinGroup(){
-    this.grp.joinGroup(this.groupID).subscribe();
+    this.grp.joinGroup(this.groupID).subscribe({error:(err)=>this.toastr.error(err,"Join Group Error")});
   }
   ngAfterViewInit(): void {
     this.route.paramMap.subscribe(params=>{
@@ -43,7 +45,7 @@ export class GroupPageComponent implements OnInit, AfterViewInit,OnDestroy{
       if (id){
         this.grp.getGrpById(id).subscribe({
           next: (group) => this.choseGroup(group),
-          error: (err) => console.log(err)
+          error: (err) => this.toastr.error(err,"Group ID Error")
         })
       }
     });
