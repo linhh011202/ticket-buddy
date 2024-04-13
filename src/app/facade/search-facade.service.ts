@@ -7,13 +7,15 @@ import { TicketmasterService } from '../network/ticketmaster/ticketmaster.servic
 import { WatchlistService } from '../network/firebase/firestore/watchlist.service';
 import { PageInterface } from '../interfaces/page-interface';
 import { UserInterface } from '../interfaces/user-interface';
-import { BehaviorSubject, Subscription, tap } from 'rxjs';
+import { BehaviorSubject, Subscription, map, of, startWith, tap } from 'rxjs';
+import { EventPageInterface } from '../interfaces/eventpage-interface';
 @Injectable({
   providedIn: 'root'
 })
 export class SearchFacadeService {
   private query:any = {};
   private subs:Subscription[] = [];
+  public loadingEvents$:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public eventInput$:BehaviorSubject<string> = new BehaviorSubject<string>("");
   public loadedEvents$:BehaviorSubject<EventInterface[]> = new BehaviorSubject<EventInterface[]>([]);
   public watchlist$:BehaviorSubject<EventInterface[]> = new BehaviorSubject<EventInterface[]>([]);
@@ -58,7 +60,26 @@ export class SearchFacadeService {
   removeClassification(ie:IdClassType){
     var n:IdClassType[] = this.cid$.value;
     this.cid$.next(n.filter((c)=>c.id!=ie.id));
-      
+  }
+  getEvents(){//this one no queryies
+    this.tmApi.getEvents().pipe(startWith(undefined)).subscribe(
+      {next:(x)=>{
+        if(x){
+          var p:PageInterface = x.page;
+          p.number +=1;
+          this.pageInfo$.next(p);
+          this.loadedEvents$.next(x.events);
+        }else{
+          this.loadingEvents$.next(true);
+        }
+      },
+      error:(err)=>{
+        this.error$.next(err);
+      },
+      complete:()=>{
+        this.loadingEvents$.next(false);
+      }
+    });
   }
   searchEvent(){//this one got the queries
     this.query.segmentId = this.cid$.value.filter((c)=>c.type==ClassType.Segment).map((x)=>x.id);
@@ -66,28 +87,61 @@ export class SearchFacadeService {
     this.query.subGenreId = this.cid$.value.filter((c)=>c.type==ClassType.Subgenre).map((x)=>x.id);
     this.query.keyword = this.eventInput$.value;
     this.query.page = 0;
-    
-    this.tmApi.getEventsQuery(this.query).subscribe((x)=>{
-      
-      var p:PageInterface = x.page;
-      p.number +=1;
-      this.pageInfo$.next(p);
-      this.loadedEvents$.next(x.events); 
-      if(x.events.length == 0){
-        this.error$.emit("No events fit that query");
+    this.tmApi.getEventsQuery(this.query).pipe(
+      startWith(undefined)
+    ).subscribe(
+      {next:(x)=>{
+        if(x){
+          var p:PageInterface = x.page;
+          p.number +=1;
+          this.pageInfo$.next(p);
+          this.loadedEvents$.next(x.events);
+        }else{
+          this.loadingEvents$.next(true);
+        }
+      },
+      error:(err)=>{
+        this.error$.next(err);
+      },
+      complete:()=>{
+        this.loadingEvents$.next(false);
+        
       }
-    });
+  });
+ 
   }
   changePage(pgNum:number){
     this.query.page = pgNum-1;
-    this.tmApi.getEventsQuery(this.query).subscribe({
+    this.tmApi.getEventsQuery(this.query).pipe(startWith(undefined)).subscribe({
+      next:(n)=>{
+        if(n){
+          var p:PageInterface = n.page;
+          p.number = pgNum;
+          this.pageInfo$.next(p);
+          this.loadedEvents$.next(n.events);
+        }else{
+          
+          this.loadingEvents$.next(true);
+        }          
+      },
+      error:(err)=>{
+        this.error$.next(err);
+      },
+      complete:()=>{
+        this.loadingEvents$.next(false);
+      }
+    });
+
+    /*
+    {
       next:(n)=>{
         var p:PageInterface = n.page;
         p.number = pgNum;
         this.pageInfo$.next(p);
         this.loadedEvents$.next(n.events);   
       }
-    });
+    }
+    */
   }
   removeFromWatchList(event:EventInterface){
     this.authApi.getCurrentUser().then((u)=>{

@@ -36,7 +36,7 @@
     </div>
 </ng-template>
 
-<div *ngIf="(searchFacade.pageInfo$|async)!.number == 0" style="text-align:center;margin-top: 5em;">
+<div *ngIf="(searchFacade.loadingEvents$|async)" style="text-align:center;margin-top: 5em;">
     <span class="loading-spinner"></span>
     <h3>Loading...</h3>
 </div>

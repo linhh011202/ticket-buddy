@@ -28,12 +28,12 @@ export class SearchPageComponent implements OnInit, OnDestroy{
   }
   ngOnInit(){
     
-    this.searchEvent();  
+    this.searchFacade.searchEvent();
     this.searchFacade.getWatchList();
     this.subscriptions.push(
       this.searchFacade.error$.subscribe(
         (n)=>{
-          this.toastr.error("No events fit this query","Error");
+          console.log(n);
         }
       )
     );

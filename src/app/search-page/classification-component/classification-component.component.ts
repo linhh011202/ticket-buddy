@@ -37,7 +37,7 @@ export class ClassificationComponentComponent implements OnInit{
     this.searchFacade.addClassification(ie);
   }
   onRemoveClassfication(ie:IdClassType){
-    console.log("REMOE INGHS");
+    
     this.searchFacade.removeClassification(ie);
   }
 
