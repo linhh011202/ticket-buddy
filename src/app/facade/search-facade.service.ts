@@ -31,6 +31,10 @@ export class SearchFacadeService {
   updateEventInput(s:string){
     this.eventInput$.next(s);
   }
+  initialise(){
+    this.searchEvent();
+    this.getWatchList();
+  }
   destroy(){
     this.subs.forEach((x)=>x.unsubscribe());
   }
@@ -131,17 +135,6 @@ export class SearchFacadeService {
         this.loadingEvents$.next(false);
       }
     });
-
-    /*
-    {
-      next:(n)=>{
-        var p:PageInterface = n.page;
-        p.number = pgNum;
-        this.pageInfo$.next(p);
-        this.loadedEvents$.next(n.events);   
-      }
-    }
-    */
   }
   removeFromWatchList(event:EventInterface){
     this.authApi.getCurrentUser().then((u)=>{

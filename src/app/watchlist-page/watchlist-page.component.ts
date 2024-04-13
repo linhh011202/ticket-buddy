@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SearchFacadeService } from '../facade/search-facade.service';
+import { WatchlistFacadeService } from '../facade/watchlist-facade.service';
 
 @Component({
   selector: 'app-watchlist-page',
@@ -8,12 +9,12 @@ import { SearchFacadeService } from '../facade/search-facade.service';
 })
 export class WatchlistPageComponent implements OnDestroy, OnInit{
   constructor(
-    public searchFacade:SearchFacadeService){}
+    public watchlistFacade:WatchlistFacadeService){}
   ngOnDestroy(): void {
-      this.searchFacade.destroy();
+      this.watchlistFacade.destroy();
   }
 
   ngOnInit(){
-    this.searchFacade.getWatchList();  
+    this.watchlistFacade.initialise();  
   }
 }
