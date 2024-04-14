@@ -37,8 +37,11 @@
 </ng-template>
 
 <div *ngIf="(searchFacade.loadingEvents$|async)" class="loading-container">
-    <span class="loading-spinner"></span>
-    <h3>Loading...</h3>
+    <div class="loading">
+        <span class="loading-spinner"></span>
+        <h3>Loading...</h3>
+    </div>
+
 </div>
 
 
