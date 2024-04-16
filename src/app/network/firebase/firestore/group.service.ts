@@ -115,6 +115,7 @@ export class GroupService {
   // Currently does not check if user is already in group
   joinGroup(groupId: string, user:UserInterface): Promise<void>
   {
+
     let grpDoc = doc(this.fs, `group/${groupId}`);
     let update = {
       members: arrayUnion(user),
@@ -122,11 +123,20 @@ export class GroupService {
     }
     
     return new Promise<void>((res,rej)=>{
-      updateDoc(grpDoc, update).then(_=>{
-        res();
-      }).catch(err =>{
-        if (err.code === "permission-denied")
-          rej("Group Not Found");
+
+      let sub = this.getGroupById(groupId).subscribe(grp=>{
+        sub.unsubscribe();
+        if (grp.allUUID.includes(user.id))
+          return rej("User already in group");
+        if (grp.booked)
+          return rej("Group is already booked");
+
+        updateDoc(grpDoc, update).then(_=>{
+          res();
+        }).catch(err =>{
+          if (err.code === "permission-denied")
+            rej("Group Not Found");
+        })
       })
     })
   }

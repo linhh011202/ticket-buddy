@@ -114,11 +114,35 @@ export class ViewGroupFacade {
     }
 
     deleteGroup(): Promise<void> {
-        return this.grpSvc.deleteGroup(this.group$.value!);
+        return new Promise<void>(res=>{
+            let allProm:Promise<void>[] = [];
+            // Remove cal events if they are confirm
+            (this.group$.value!).confirmed.forEach(userID=>{
+                let user: UserInterface = {id: userID, email: "", name: ""}
+                allProm.push(this.calSvc.removeReservedCalEvent(this.group$.value!, user));
+            })
+
+            Promise.all(allProm).then(_=>{
+                console.log("all del");
+                this.grpSvc.deleteGroup(this.group$.value!).then(_=>{
+                    return res();
+                })
+            });
+        })
     }
 
     kickUser(user: UserInterface): Promise<void> {
-        return this.grpSvc.removeFromGroup(this.group$.value!, user);
+        let allProm = [
+            this.calSvc.removeReservedCalEvent(this.group$.value!, user),
+            this.grpSvc.removeFromGroup(this.group$.value!, user)
+        ]
+        return new Promise<void>(res=>{
+            Promise.all(allProm).then(_=>{
+                return res();
+            })
+        })
+
+
     }
 
     joinGroup(id: string): Observable<void> {
