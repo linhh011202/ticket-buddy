@@ -47,9 +47,13 @@ export class GroupDetailComponent implements OnInit, OnDestroy{
       this.toastr.info("Link copied!");
   }
   joinGroup(){
-    this.grp.joinGroup(this.grp.group$.value!.id).subscribe(_=>{
+    this.grp.joinGroup(this.grp.group$.value!.id).subscribe({
+     next:()=>{
       this.toastr.success(this.group.name,"Joined Group");
-    })
+     },error:(err)=>{
+      this.toastr.error(err,"Joined Group Error");
+     } 
+    }) 
   }
   sendGroupConfirmation(){
     this.grp.sendGroupConfirmation().then(_=>{
