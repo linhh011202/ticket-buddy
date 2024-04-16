@@ -36,9 +36,14 @@ export class SearchFacadeService {
     this.getWatchList();
   }
   destroy(){
+    this.query = {};
+    this.cat$.next({segment:[], genre:[], subGenre:[]});
+    this.eventInput$.next("");
+    this.cid$.next([]);
+
     this.subs.forEach((x)=>x.unsubscribe());
   }
-  getWatchList(){
+  private getWatchList(){
     this.authApi.getCurrentUser().then((x:UserInterface)=>{
       var rtn:Subscription = this.watchlistSvc.getWatchlist(x).subscribe(
         (n)=> this.watchlist$.next(n)
@@ -86,7 +91,7 @@ export class SearchFacadeService {
         }
       },
       error:(err)=>{
-        this.error$.next({error:err,title:"Ticket Master Network Error"});
+        this.error$.next({error:err,title:"Ticket Master Error"});
         this.loadingEvents$.next(false);
       },
       complete:()=>{

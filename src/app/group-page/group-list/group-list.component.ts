@@ -13,8 +13,5 @@ export class GroupListComponent {
     this.groupClicked.emit(group);
   }
 
-  ngOnInit(){
-    console.log("dasdas")
-    console.log(this.groups);
-  }
+  
 }

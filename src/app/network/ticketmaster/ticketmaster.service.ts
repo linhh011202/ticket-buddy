@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { PlatformLocation } from '@angular/common';
 
 import { ticketMasterApi } from 'src/environments/env-prod';
-import { Observable, concatMap, delay, filter, iif, map, mergeMap, of, switchMap, take, throwError, timeout } from 'rxjs';
+import { Observable, catchError, concatMap, delay, filter, iif, map, mergeMap, of, switchMap, take, throwError, timeout } from 'rxjs';
 import { EventPageInterface } from 'src/app/interfaces/eventpage-interface';
 import { ClassificationInterface } from 'src/app/interfaces/clasification-interface';
 
@@ -78,8 +78,9 @@ export class TicketmasterService {
     getEventsQuery(query:any):Observable<EventPageInterface>{
       query.apikey = ticketMasterApi;
       return this.http.get(this.baseurl+"/events.json", {params:query}).pipe(
-        delay(2000),//delete this after testing, this is to trigger error
-        timeout(1000),//change this to timeout(5000) after testing
+        //delete this after testing, this is to trigger error
+        timeout(5000),
+        catchError((err)=>throwError("network error")),
         switchMap(this.returnEvents)
       )
     }
