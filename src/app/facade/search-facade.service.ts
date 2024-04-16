@@ -20,7 +20,7 @@ export class SearchFacadeService {
   public loadedEvents$:BehaviorSubject<EventInterface[]> = new BehaviorSubject<EventInterface[]>([]);
   public watchlist$:BehaviorSubject<EventInterface[]> = new BehaviorSubject<EventInterface[]>([]);
   public cid$:BehaviorSubject<IdClassType[]> = new BehaviorSubject<IdClassType[]>([]); 
-  public error$:EventEmitter<string> = new EventEmitter<string>();
+  public error$:EventEmitter<{error:string, title:string}> = new EventEmitter<{error:string, title:string}>();
   public cat$:BehaviorSubject<ClassificationInterface> = new BehaviorSubject<ClassificationInterface>({segment:[], genre:[], subGenre:[]});
   public pageInfo$:BehaviorSubject<PageInterface> = new BehaviorSubject<PageInterface>({size:20, totalElements:0, number:0});
   
@@ -81,13 +81,14 @@ export class SearchFacadeService {
           p.number +=1;
           this.pageInfo$.next(p);
           this.loadedEvents$.next(x.events);
-        }else{
+        } else {
           this.loadingEvents$.next(true);
         }
       },
-      /*error:(err)=>{
-        this.error$.next(err);
-      },*/
+      error:(err)=>{
+        this.error$.next({error:err,title:"Ticket Master Network Error"});
+        this.loadingEvents$.next(false);
+      },
       complete:()=>{
         this.loadingEvents$.next(false);
         
@@ -110,7 +111,8 @@ export class SearchFacadeService {
         }          
       },
       error:(err)=>{
-        this.error$.next(err);
+        this.error$.next({error:err,title:"Ticket Master Network Error"});
+        this.loadingEvents$.next(false);
       },
       complete:()=>{
         this.loadingEvents$.next(false);

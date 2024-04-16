@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { PlatformLocation } from '@angular/common';
 
 import { ticketMasterApi } from 'src/environments/env-prod';
-import { Observable, concatMap, filter, iif, map, mergeMap, of, switchMap, take, throwError, timeout } from 'rxjs';
+import { Observable, concatMap, delay, filter, iif, map, mergeMap, of, switchMap, take, throwError, timeout } from 'rxjs';
 import { EventPageInterface } from 'src/app/interfaces/eventpage-interface';
 import { ClassificationInterface } from 'src/app/interfaces/clasification-interface';
 
@@ -75,15 +75,11 @@ export class TicketmasterService {
       
       return of(rtn as EventPageInterface)
     }
-    getEvents():Observable<EventPageInterface>{
-      return this.http.get(this.baseurl+"/events.json", {params:{apikey:ticketMasterApi}}).pipe(
-        //timeout(5000),
-        switchMap(this.returnEvents))
-    }
     getEventsQuery(query:any):Observable<EventPageInterface>{
       query.apikey = ticketMasterApi;
       return this.http.get(this.baseurl+"/events.json", {params:query}).pipe(
-        timeout(5000),
+        delay(2000),//delete this after testing, this is to trigger error
+        timeout(1000),//change this to timeout(5000) after testing
         switchMap(this.returnEvents)
       )
     }

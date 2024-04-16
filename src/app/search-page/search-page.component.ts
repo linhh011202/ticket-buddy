@@ -32,7 +32,7 @@ export class SearchPageComponent implements OnInit, OnDestroy{
     this.subscriptions.push(
       this.searchFacade.error$.subscribe(
         (n)=>{
-          this.toastr.error(n,"Error")
+          this.toastr.error(n.error,n.title)
         }
       )
     );
