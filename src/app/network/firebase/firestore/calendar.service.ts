@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserInterface } from 'src/app/interfaces/user-interface';
 import { DocumentReference, Firestore, collection, addDoc, CollectionReference, query, where, collectionData, docData, doc, DocumentData, updateDoc, arrayUnion, arrayRemove, and, deleteDoc, setDoc} from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { CalanderEvent } from 'src/app/interfaces/calander-interface/CalanderEvent-interface';
 import { CalanderType } from 'src/app/interfaces/enums/calenderenum';
 import { GroupInterface } from 'src/app/interfaces/group-interface';
@@ -52,8 +52,7 @@ export class CalendarService {
       };
 
     return new Promise<void>((res,rej)=>{
-      let sub = this.getCalendar(calendarEvent.user).subscribe(cal=>{
-        sub.unsubscribe();
+      this.getCalendar(calendarEvent.user).pipe(take(1)).subscribe(cal=>{
         // check clash with events
         const clash = cal.some(c => (c.type!==CalanderType.Personal && calendarEvent.start < c.end && calendarEvent.end > c.start));
         if (clash)

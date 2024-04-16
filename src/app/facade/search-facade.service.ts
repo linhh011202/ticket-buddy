@@ -8,7 +8,7 @@ import { WatchlistService } from '../network/firebase/firestore/watchlist.servic
 import { PageInterface } from '../interfaces/page-interface';
 import { UserInterface } from '../interfaces/user-interface';
 import { BehaviorSubject, Subscription, map, of, startWith, tap } from 'rxjs';
-import { EventPageInterface } from '../interfaces/eventpage-interface';
+
 @Injectable({
   providedIn: 'root'
 })
