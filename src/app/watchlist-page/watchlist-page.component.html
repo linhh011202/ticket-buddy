@@ -2,7 +2,10 @@
     <app-list-events [events]="(watchlistFacade.watchlist$|async)!" [watchlist]="(watchlistFacade.watchlist$|async)!"></app-list-events>
     <div class="row  justify-content-center" >
         
-    
+
     
     </div>
-    </div>
+    <h2 *ngIf="((watchlistFacade.watchlist$|async)!).length == 0" style="text-align:center; padding-top:5em;">
+        You have no events added to your watchlist.
+    </h2>
+</div>
