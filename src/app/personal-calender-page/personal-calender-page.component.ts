@@ -32,17 +32,19 @@ export class PersonalCalenderPageComponent implements OnInit, OnDestroy{
     this.cal.destroy();
   }
   
-  isBetween(a:number, b:number, c:number):boolean{
-		return a<=b && b<=c;
+  private isInside(start:NgbDate, date:NgbDate, end:NgbDate):boolean{
+		var startDate:Date = new Date(start.year, start.month - 1, start.day);
+		var dateDate:Date = new Date(date.year, date.month - 1, date.day);
+		var endDate:Date = new Date(end.year, end.month - 1, end.day);
+		
+		return startDate<= dateDate && dateDate<=endDate;
 	}
 
   dateClicked(date:NgbDate){
     this.calendarOnDisplay = this.cal.calendar$.value.filter((x:CalanderEvent)=>{
       var start:NgbDate = new NgbDate(x.start.getFullYear() , x.start.getMonth()+1,x.start.getDate());
       var end:NgbDate = new NgbDate(x.end.getFullYear() , x.end.getMonth()+1,x.end.getDate());
-      return this.isBetween(start.year, date.year, end.year) && 
-        this.isBetween(start.month, date.month, end.month) && 
-        this.isBetween(start.day, date.day, end.day)
+      return this.isInside(start,date,end);
     });
   }
 

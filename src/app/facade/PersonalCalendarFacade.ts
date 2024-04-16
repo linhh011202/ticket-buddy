@@ -47,6 +47,8 @@ export class CalendarFacade {
                         return [[start,endDate], CalanderTypeColor.get(e.type)||CalanderColor.Default]
                     }
                 );
+                
+                
                 this.calendar$.next(calEvents);
                 this.dateColor$.next(dateColor);
             });
@@ -55,7 +57,7 @@ export class CalendarFacade {
         });
 
     }
-
+ 
     deleteEvent(e:CalanderEvent): Promise<void>{
         return this.calSvc.removeCalendarEvent(e);
     }
