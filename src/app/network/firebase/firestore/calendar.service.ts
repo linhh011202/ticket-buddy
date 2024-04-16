@@ -178,4 +178,22 @@ export class CalendarService {
 			});
     });
   }
+
+
+  removeReservedCalEvent(grp: GroupInterface, user: UserInterface): Promise<void>{
+    return new Promise<void>(res=>{
+      let calCollection: CollectionReference = collection(this.fs, "calendar");
+      let q = query(calCollection, and(
+        where("uid","==", user.id),
+        where("grp.id", "==" , grp.id)
+      ));
+      let temp = collectionData(q, {idField: 'id'}).subscribe(data=>{
+				temp.unsubscribe();
+	
+        this.removeCalendarEvent(this.dbToCalendarEvent(data[0], user)).then(_=>{
+          return res();
+        });
+			});
+    });
+  }
 }
