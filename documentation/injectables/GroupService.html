@@ -283,8 +283,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="225"
-                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:225</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="222"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:222</a></div>
                         </td>
                     </tr>
 
@@ -350,8 +350,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="186"
-                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:186</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="188"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:188</a></div>
                         </td>
                     </tr>
 
@@ -589,8 +589,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="160"
-                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:160</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="175"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:175</a></div>
                         </td>
                     </tr>
 
@@ -656,8 +656,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="97"
-                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:97</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:99</a></div>
                         </td>
                     </tr>
 
@@ -723,8 +723,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="77"
-                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:77</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:79</a></div>
                         </td>
                     </tr>
 
@@ -790,8 +790,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="114"
-                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:114</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:116</a></div>
                         </td>
                     </tr>
 
@@ -869,8 +869,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="129"
-                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:129</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="144"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:144</a></div>
                         </td>
                     </tr>
 
@@ -948,8 +948,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="169"
-                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:169</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="184"
+                                    class="link-to-prism">src/app/network/firebase/firestore/group.service.ts:184</a></div>
                         </td>
                     </tr>
 
@@ -1030,9 +1030,9 @@ export class GroupService {
         name: dbGroup[&quot;event&quot;].name,
         startDate: dbGroup[&quot;event&quot;].start.toDate(),
         endDate: dbGroup[&quot;event&quot;].end.toDate(),
-        details: dbGroup[&quot;details&quot;],
-        images: dbGroup[&quot;imageUrls&quot;],
-        location: dbGroup[&quot;locations&quot;]
+        details: dbGroup[&quot;event&quot;][&quot;details&quot;],
+        images: dbGroup[&quot;event&quot;][&quot;imageUrls&quot;],
+        location: dbGroup[&quot;event&quot;][&quot;locations&quot;]
       },
       admin: dbGroup[&quot;admin&quot;],
       members: dbGroup[&quot;members&quot;],
@@ -1065,6 +1065,8 @@ export class GroupService {
       booked: false,
       allUUID: [admin.id]
     }
+
+    
 
     return new Promise&lt;void&gt;((res,rej)&#x3D;&gt;{
       addDoc(grpCollection, groupDoc).then((docRef: DocumentReference)&#x3D;&gt;{
@@ -1116,15 +1118,28 @@ export class GroupService {
   // Currently does not check if user is already in group
   joinGroup(groupId: string, user:UserInterface): Promise&lt;void&gt;
   {
+
     let grpDoc &#x3D; doc(this.fs, &#x60;group/${groupId}&#x60;);
     let update &#x3D; {
       members: arrayUnion(user),
       allUUID: arrayUnion(user.id),
     }
     
-    return new Promise&lt;void&gt;(res&#x3D;&gt;{
-      updateDoc(grpDoc, update).then(_&#x3D;&gt;{
-        res();
+    return new Promise&lt;void&gt;((res,rej)&#x3D;&gt;{
+
+      let sub &#x3D; this.getGroupById(groupId).subscribe(grp&#x3D;&gt;{
+        sub.unsubscribe();
+        if (grp.allUUID.includes(user.id))
+          return rej(&quot;User already in group&quot;);
+        if (grp.booked)
+          return rej(&quot;Group is already booked&quot;);
+
+        updateDoc(grpDoc, update).then(_&#x3D;&gt;{
+          res();
+        }).catch(err &#x3D;&gt;{
+          if (err.code &#x3D;&#x3D;&#x3D; &quot;permission-denied&quot;)
+            rej(&quot;Group Not Found&quot;);
+        })
       })
     })
   }
@@ -1172,20 +1187,7 @@ export class GroupService {
   sendGroupConfirmation(group: GroupInterface): Promise&lt;void&gt;{
     return this.noti.sendConfirmationRequest(group);
   }
-  /*
-  forkJoin(
-    {first:from(this.calSvc.addCalendarEvent({
-            user: user,
-            start: group.event.startDate!,
-            end: group.event.endDate!,
-            detail: &#x60;Reserved for ${group.name}.&#x60;,
-            type: CalanderType.ReservedForEvent,
-            groupId: group.id,
-            groupName: group.name
-          })).pipe(tap(()&#x3D;&gt;console.log(&quot;GOT NO ERROR&quot;))), second:from(updateDoc(grpDoc, update))})
-  
-  */
-//grpCal.map(e&#x3D;&gt;e.user.id).includes(user.id)
+
   confirmGroupEvent(group: GroupInterface, user: UserInterface): Observable&lt;void&gt;{
     
     let grpDoc &#x3D; doc(this.fs, &#x60;group/${group.id}&#x60;);
@@ -1216,11 +1218,6 @@ export class GroupService {
     );
 
 
-    // Check if can confirm
-
-    // Update user calendar
-
-    // Update group
 
 
   }
@@ -1233,13 +1230,7 @@ export class GroupService {
 
       let updatePromise &#x3D; updateDoc(grpDoc, update);
 
-      // Do both at same time
-      // let notiPromise &#x3D; this.noti.sendConfirmation(group);
-      // Promise.all([updatePromise, notiPromise]).then(_&#x3D;&gt;{
-      //   res();
-      // })
 
-      // Ensure database is properly updated, then send notification
       updatePromise.then(_&#x3D;&gt;{
         this.noti.sendBookingConfirmation(group).then(_&#x3D;&gt;{
           res();

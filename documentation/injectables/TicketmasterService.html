@@ -164,13 +164,11 @@
                                 <a href="#getClassification" >getClassification</a>
                             </li>
                             <li>
-                                <a href="#getEvents" >getEvents</a>
-                            </li>
-                            <li>
                                 <a href="#getEventsQuery" >getEventsQuery</a>
                             </li>
                             <li>
-                                <a href="#invalidDate" >invalidDate</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#returnEvents" >returnEvents</a>
                             </li>
                         </ul>
                     </td>
@@ -333,43 +331,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getEvents"></a>
-                    <span class="name">
-                        <span ><b>getEvents</b></span>
-                        <a href="#getEvents"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getEvents()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="53"
-                                    class="link-to-prism">src/app/network/ticketmaster/ticketmaster.service.ts:53</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>Observable&lt;EventPageInterface&gt;</code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="getEventsQuery"></a>
                     <span class="name">
                         <span ><b>getEventsQuery</b></span>
@@ -386,8 +347,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="86"
-                                    class="link-to-prism">src/app/network/ticketmaster/ticketmaster.service.ts:86</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/app/network/ticketmaster/ticketmaster.service.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -437,24 +398,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="invalidDate"></a>
+                    <a name="returnEvents"></a>
                     <span class="name">
-                        <span ><b>invalidDate</b></span>
-                        <a href="#invalidDate"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Private</span>
+                        <span ><b>returnEvents</b></span>
+                        <a href="#returnEvents"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>invalidDate(d: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>returnEvents(x: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="118"
-                                    class="link-to-prism">src/app/network/ticketmaster/ticketmaster.service.ts:118</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/app/network/ticketmaster/ticketmaster.service.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -475,9 +438,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>d</td>
+                                                <td>x</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                             </td>
 
                                             <td>
@@ -490,7 +453,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                            <b>Returns : </b>    <code>Observable&lt;EventPageInterface&gt;</code>
 
                         </div>
                             <div class="io-description">
@@ -572,7 +535,7 @@ import { Router } from &#x27;@angular/router&#x27;;
 import { PlatformLocation } from &#x27;@angular/common&#x27;;
 
 import { ticketMasterApi } from &#x27;src/environments/env-prod&#x27;;
-import { Observable, concatMap, filter, iif, map, mergeMap, of, take, throwError } from &#x27;rxjs&#x27;;
+import { Observable, catchError, concatMap, delay, filter, iif, map, mergeMap, of, switchMap, take, throwError, timeout } from &#x27;rxjs&#x27;;
 import { EventPageInterface } from &#x27;src/app/interfaces/eventpage-interface&#x27;;
 import { ClassificationInterface } from &#x27;src/app/interfaces/clasification-interface&#x27;;
 
@@ -618,74 +581,41 @@ export class TicketmasterService {
         })
       );
     }
-    getEvents():Observable&lt;EventPageInterface&gt;{
-      var today  &#x3D;new Date();
-      var str &#x3D; today.toISOString();
-      str &#x3D; str.slice(0, str.length-5).concat(&quot;Z&quot;);
-      return this.http.get(this.baseurl+&quot;/events.json&quot;, {params:{apikey:ticketMasterApi, startDateTime:str}}).pipe(
-        map((x:any)&#x3D;&gt;{
-          
-          var rtn:any &#x3D; {page:undefined, events:undefined};
-          rtn.page &#x3D; x.page;
+    private returnEvents(x:any):Observable&lt;EventPageInterface&gt;{
+      var rtn:any &#x3D; {page:undefined, events:undefined};
+      rtn.page &#x3D; x.page;
+      console.log(x);
+      if (x.page.totalElements &#x3D;&#x3D; 0){
 
-          x &#x3D; x._embedded;
-          
-          rtn.events &#x3D; x.events.map((e:any)&#x3D;&gt;{
-            var sd &#x3D; new Date(e.dates?.start.dateTime);
-            var ed:Date &#x3D; new Date(e.dates?.end);
-            
-            
-            return {
-              id:e.id, details:e.description, 
-              images:e.images.map((img:any)&#x3D;&gt;img.url),
-              location:e._embedded?.venues.map((v:any)&#x3D;&gt;v.name), 
-              name:e.name, 
-              startDate: (!this.invalidDate(sd))? sd: undefined, 
-              endDate:(!this.invalidDate(ed))? ed: undefined
-            };
-          });
-          return (rtn as EventPageInterface);
+        return throwError(&quot;No events that fit this query&quot;)
+      }
+      x &#x3D; x._embedded;
+      rtn.events &#x3D; x.events.map((e:any)&#x3D;&gt;{
+        var sd &#x3D; new Date(e.dates?.start.dateTime);
+        var ed:Date &#x3D; new Date(e.dates?.end);
         
-        }),
-        take(1)
-        
-        );
+        return {
+          id:e.id, details:e.description, 
+          images:e.images.map((img:any)&#x3D;&gt;img.url),
+          location:e._embedded?.venues.map((v:any)&#x3D;&gt;v.name), 
+          name:e.name,
+          startDate: (!Number.isNaN(sd.valueOf()))? sd: undefined, 
+          endDate:(!Number.isNaN(ed.valueOf()))? ed: undefined
+        };
+      });
+      
+      return of(rtn as EventPageInterface)
     }
     getEventsQuery(query:any):Observable&lt;EventPageInterface&gt;{
       query.apikey &#x3D; ticketMasterApi;
-      console.log(query);
-      //.pipe(mergeMap(v &#x3D;&gt; iif(() &#x3D;&gt; v % 4 &#x3D;&#x3D;&#x3D; 0, r$, x$)))
       return this.http.get(this.baseurl+&quot;/events.json&quot;, {params:query}).pipe(
-        map((x:any)&#x3D;&gt;{
-          //here check that the page.totalElements if &#x3D;&#x3D;0 throw error
-          var rtn:any &#x3D; {page:undefined, events:undefined};
-          rtn.page &#x3D; x.page;
-          if(rtn.page.totalElements&#x3D;&#x3D;0){
-            return {page:rtn.page, events:[]}
-          }
-          x &#x3D; x._embedded;
-        
-          rtn.events &#x3D; x.events.map((e:any)&#x3D;&gt;{
-            var sd &#x3D; new Date(e.dates?.start.dateTime);
-            var ed:Date &#x3D; new Date(e.dates?.end);
-            return {
-              id:e.id, details:e.description, 
-              images:e.images.map((img:any)&#x3D;&gt;img.url),
-              location:e._embedded?.venues.map((v:any)&#x3D;&gt;v.name), 
-              name:e.name, 
-              startDate: (!this.invalidDate(sd))? sd: undefined, 
-              endDate:(!this.invalidDate(ed))? ed: undefined
-            };
-          });
-          var rtnn:EventPageInterface &#x3D; rtn as EventPageInterface;
-          rtnn.page.totalElements &#x3D; Math.min(20*20, rtnn.page.totalElements)
-          return rtnn;
-        }), 
-        take(1))
+        //delete this after testing, this is to trigger error
+        timeout(5000),
+        catchError((err)&#x3D;&gt;throwError(&quot;network error&quot;)),
+        switchMap(this.returnEvents)
+      )
     }
-    invalidDate(d:Date){
-      return Number.isNaN(d.valueOf());
-    }
+    
 }
 </code></pre>
     </div>

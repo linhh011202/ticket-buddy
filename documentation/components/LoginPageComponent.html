@@ -415,6 +415,10 @@ export class LoginPageComponent {
 &lt;div class&#x3D;&quot;loginBtn&quot; tabindex&#x3D;&quot;0&quot; (click)&#x3D;&quot;googleSignIn()&quot;&gt;
     &lt;img class&#x3D;&quot;googleImg&quot; src&#x3D;&quot;../../assets/google.png&quot;&gt;
     &lt;b&gt;Sign in with Google&lt;/b&gt;
+&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;version&quot;&gt;
+    4.16.4
 &lt;/div&gt;</code></pre>
     </div>
 
@@ -439,13 +443,8 @@ export class LoginPageComponent {
     width: 50vw;
 }
 
-.bgLeft {
-    left:0;
-}
-
-.bgRight {
-    right:0;
-}
+.bgLeft {left:0;}
+.bgRight {right:0;}
 
 .loginBtn{
     background-color: #2A2568;
@@ -467,6 +466,32 @@ export class LoginPageComponent {
 
 .googleImg {
     height: 2em;
+}
+
+.version {
+    /* Position*/
+    position: absolute;
+    top: 31.5vh;
+    width: 5vh;
+    height: 5vh;
+    left: calc(50% - 7vh);
+    transform: translate(-50%);
+
+    /* Style */
+    text-align: center;
+    line-height: 5vh;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.5vh;
+    background: radial-gradient(#ffff75,#ffff99,#ddff00);
+    box-shadow: 0 0 50px 15px #ddff00;
+    opacity: 0;
+    cursor: pointer;
+    user-select: none;
+}
+
+.version:hover {
+    opacity: 100%;
 }</code></pre>
     </div>
 
@@ -495,7 +520,7 @@ export class LoginPageComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><img class="bgImg" src="../../assets/welcome.png"><img class="bgImgStrip bgLeft" src="../../assets/welcome-strip-L.png"><img class="bgImgStrip bgRight" src="../../assets/welcome-strip-R.png"><div class="loginBtn" tabindex="0" (click)="googleSignIn()">    <img class="googleImg" src="../../assets/google.png">    <b>Sign in with Google</b></div></div>'
+        var COMPONENT_TEMPLATE = '<div><img class="bgImg" src="../../assets/welcome.png"><img class="bgImgStrip bgLeft" src="../../assets/welcome-strip-L.png"><img class="bgImgStrip bgRight" src="../../assets/welcome-strip-R.png"><div class="loginBtn" tabindex="0" (click)="googleSignIn()">    <img class="googleImg" src="../../assets/google.png">    <b>Sign in with Google</b></div><div class="version">    4.16.4</div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalanderComponent', 'selector': 'app-calander'},{'name': 'ClassificationComponentComponent', 'selector': 'app-classification-component'},{'name': 'EventComponentComponent', 'selector': 'app-event-component'},{'name': 'GroupCreateComponent', 'selector': 'app-group-create'},{'name': 'GroupDetailComponent', 'selector': 'app-group-detail'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupPageComponent', 'selector': 'app-group-page'},{'name': 'ListEventsComponent', 'selector': 'app-list-events'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'PersonalCalenderPageComponent', 'selector': 'app-personal-calender-page'},{'name': 'SearchPageComponent', 'selector': 'app-search-page'},{'name': 'WatchlistPageComponent', 'selector': 'app-watchlist-page'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LoginPageComponent'};

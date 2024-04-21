@@ -138,6 +138,7 @@
     </p>
     <p class="comment">
                 <code>OnInit</code>
+                <code>OnDestroy</code>
     </p>
 
 
@@ -234,6 +235,9 @@
                                 <a href="#kickUser" >kickUser</a>
                             </li>
                             <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
@@ -271,12 +275,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(grp: <a href="../injectables/ViewGroupFacade.html" target="_self">ViewGroupFacade</a>)</code>
+<code>constructor(grp: <a href="../injectables/ViewGroupFacade.html" target="_self">ViewGroupFacade</a>, toastr: ToastrService, router: Router)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -298,6 +302,30 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/ViewGroupFacade.html" target="_self" >ViewGroupFacade</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>toastr</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastrService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
                                                         </td>
                                                   
                                                     <td>
@@ -332,7 +360,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:18</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -366,8 +394,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="56"
-                                    class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:56</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -403,8 +431,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="50"
-                                    class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:50</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -440,8 +468,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="37"
-                                    class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:37</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -477,8 +505,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="27"
-                                    class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:27</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="33"
+                                    class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -514,8 +542,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="40"
-                                    class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:40</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -551,8 +579,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="32"
-                                    class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:32</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -602,6 +630,43 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="25"
+                                    class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <span ><b>ngOnInit</b></span>
@@ -618,8 +683,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="21"
-                                    class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:21</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -655,8 +720,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="45"
-                                    class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:45</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -698,7 +763,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/group-page/group-detail/group-detail.component.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -711,12 +776,15 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
 
 import { GroupInterface } from &#x27;src/app/interfaces/group-interface&#x27;;
 import { UserInterface } from &#x27;src/app/interfaces/user-interface&#x27;;
 
 import { ViewGroupFacade } from &#x27;src/app/facade/ViewGroupFacade&#x27;
+import { take } from &#x27;rxjs&#x27;;
+import { ToastrService } from &#x27;ngx-toastr&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
 
 
 @Component({
@@ -724,55 +792,66 @@ import { ViewGroupFacade } from &#x27;src/app/facade/ViewGroupFacade&#x27;
   templateUrl: &#x27;./group-detail.component.html&#x27;,
   styleUrls: [&#x27;./group-detail.component.css&#x27;]
 })
-export class GroupDetailComponent implements OnInit {
+export class GroupDetailComponent implements OnInit, OnDestroy{
   @Input() group!:GroupInterface;
 
   constructor(
-    public grp: ViewGroupFacade
+    public grp: ViewGroupFacade,
+    private toastr:ToastrService,
+    private router:Router
   ){}
+  ngOnDestroy(): void {
+    this.grp.destroy();
+  }
   
   ngOnInit(){//given the events of that group
-    this.grp.getCurrentUser();
-    this.grp.getGroup(this.group.id);
-    this.grp.getGroupCalander(this.group);
+    this.grp.initialise(this.group.id, this.group);
   }
 
   deleteGroup(){
     this.grp.deleteGroup().then(_&#x3D;&gt;{
-      console.log(&quot;group deleted&quot;);
+      this.toastr.success(this.group.name,&quot;Delete Group&quot;);
+      this.router.navigate([&#x27;/group&#x27;])
+      location.reload();
     })
   }
   kickUser(user:UserInterface){
     this.grp.kickUser(user).then(_&#x3D;&gt;{
-      console.log(&quot;group kick success&quot;)
+      this.toastr.success(user.name,&quot;Kicked User&quot;);
     })
   }
   copyInviteLink() {
-    this.grp.copyInviteLink();
+    if (this.grp.copyInviteLink())
+      this.toastr.info(&quot;Link copied!&quot;);
   }
   joinGroup(){
-    this.grp.joinGroup(this.grp.group$.value!.id).subscribe(_&#x3D;&gt;{
-      console.log(&quot;join grp success&quot;);
-    })
+    this.grp.joinGroup(this.grp.group$.value!.id).subscribe({
+     next:()&#x3D;&gt;{
+      this.toastr.success(this.group.name,&quot;Joined Group&quot;);
+     },error:(err)&#x3D;&gt;{
+      this.toastr.error(err,&quot;Joined Group Error&quot;);
+     } 
+    }) 
   }
   sendGroupConfirmation(){
     this.grp.sendGroupConfirmation().then(_&#x3D;&gt;{
-      console.log(&quot;group confirmation email success&quot;);
+      this.toastr.success(&quot;Email Sent to Members&quot;,&quot;Group Confirmation&quot;);
     })
   }
   confirmGroupbooking(){
     //calaa fascase
     this.grp.confirmGroupbooking().then(_&#x3D;&gt;{
-      console.log(&quot;group booking confirm success&quot;)
+      this.toastr.success(&quot;You have updated the status of this event to booked&quot;, &quot;Booked&quot;);
     })
   }
   confirmGoing(){
-    this.grp.confirmGroupEvent().subscribe({
+    this.grp.confirmGroupEvent().pipe(take(1)).subscribe({
       next:()&#x3D;&gt;{
-        console.log(&quot;SJUCCES&quot;);
+        this.toastr.success(&quot;Going for this event waiting for admin to book&quot;,&quot;Confirm Going&quot;);
       },
       error:(err)&#x3D;&gt;{
-        console.log(err);
+        this.toastr.error(err,&quot;Cannot got for event&quot;);
+        
       }
     })
   }
@@ -783,87 +862,145 @@ export class GroupDetailComponent implements OnInit {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">
-
+&lt;div class&#x3D;&quot;d-flex flex-row justify-content-center&quot;&gt;
+    &lt;h4 class&#x3D;&quot;d-inline-flex justify-content-center&quot;&gt;ID: {{grp.group$.value?.id}}&lt;/h4&gt;&lt;br/&gt;
+&lt;/div&gt;
 &lt;div class&#x3D;&quot;d-flex flex-row justify-content-center&quot;&gt;
     &lt;h1 class&#x3D;&quot;d-inline-flex justify-content-center&quot;&gt;{{grp.group$.value?.name}}&lt;/h1&gt;&lt;br/&gt;
 &lt;/div&gt;
 &lt;div class&#x3D;&quot;d-flex flex-row justify-content-center&quot;&gt;
     &lt;h2 class&#x3D;&quot;d-inline-flex justify-content-center&quot;&gt;{{grp.group$.value?.event?.name}}&lt;/h2&gt;&lt;br/&gt;
 &lt;/div&gt;
+&lt;div class&#x3D;&quot;d-flex flex-row justify-content-center&quot; *ngIf&#x3D;&quot;grp.group$.value &amp;&amp; grp.group$.value.booked&quot;&gt;
+    &lt;h2 class&#x3D;&quot;d-inline-flex justify-content-center text-success&quot; &gt;BOOKED&lt;/h2&gt;&lt;br/&gt;
+&lt;/div&gt;
 &lt;div class&#x3D;&quot;d-flex flex-row justify-content-center&quot;&gt;
-    &lt;h3 class&#x3D;&quot;d-inline-flex justify-content-center&quot;&gt;&lt;/h3&gt;{{grp.group$.value?.event?.location}}&lt;br/&gt;
+    &lt;h5 class&#x3D;&quot;d-inline-flex justify-content-center&quot;&gt;{{grp.group$.value?.event?.location}}&lt;/h5&gt;&lt;br/&gt;
+&lt;/div&gt;
+&lt;div class&#x3D;&quot;d-flex flex-row justify-content-center&quot;&gt;
+    &lt;h6 class&#x3D;&quot;d-inline-flex justify-content-center&quot;&gt;&lt;i&gt;{{grp.group$.value?.event?.details}}&lt;/i&gt;&lt;/h6&gt;&lt;br/&gt;
 &lt;/div&gt;
 &lt;div class&#x3D;&quot;d-flex flex-row justify-content-center&quot;&gt;
     &lt;p class&#x3D;&quot;d-inline-flex justify-content-center&quot;&gt;{{grp.group$.value?.event?.startDate|date:&#x27;medium&#x27;}} - {{grp.group$.value?.event?.endDate|date:&#x27;medium&#x27;}}&lt;/p&gt;&lt;br/&gt;
 &lt;/div&gt;
 &lt;div class&#x3D;&quot;d-flex flex-row justify-content-center&quot;&gt;
-&lt;p&gt;&lt;a class&#x3D;&quot;link-opacity-100 invite&quot; (click)&#x3D;&quot;copyInviteLink()&quot;&gt;Invite Link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class&#x3D;&quot;link-opacity-100 invite&quot; (click)&#x3D;&quot;copyInviteLink()&quot; title&#x3D;&quot;Copy the invite link to clipboard&quot;&gt;Invite Link&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 
 
 
 
 &lt;ng-template [ngIf]&#x3D;&quot;grp.group$.value &amp;&amp; grp.currentUser$.value.id &#x3D;&#x3D; group.admin.id&quot;&gt;
+    &lt;div class&#x3D;&quot;d-flex flex-row justify-content-center&quot; *ngIf&#x3D;&quot;!grp.group$.value.booked &amp;&amp; !grp.group$.value.confirmed.includes(grp.currentUser$.value.id)&quot;&gt;
+        &lt;div (click)&#x3D;&quot;confirmGoing()&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success m-1&quot; title&#x3D;&quot;Confirm you are going&quot;&gt;I will be going!&lt;/div&gt;
+    &lt;/div&gt;
     &lt;div class&#x3D;&quot;container p-2&quot;&gt;
         &lt;div class&#x3D;&quot;d-flex flex-row justify-content-center&quot;&gt;
             &lt;table class&#x3D;&quot;table&quot;&gt;
                 &lt;thead&gt;
                     &lt;tr&gt;
-                        &lt;th scope&#x3D;&quot;col&quot;&gt;Username&lt;/th&gt;
-                        &lt;th scope&#x3D;&quot;col&quot;&gt;Kick&lt;/th&gt;
-                        &lt;th scope&#x3D;&quot;col&quot;&gt;Status&lt;/th&gt;
-                        
+                        &lt;th scope&#x3D;&quot;col&quot;&gt;Name&lt;/th&gt;
+                        &lt;th scope&#x3D;&quot;col&quot;&gt;Going&lt;/th&gt;
+                        &lt;th scope&#x3D;&quot;col&quot; *ngIf &#x3D; &quot;!grp.group$.value!.booked &amp;&amp; grp.group$.value!.members.length&gt;0&quot;&gt;Kick&lt;/th&gt;
                     &lt;/tr&gt;
                 &lt;/thead&gt;
                 &lt;tbody&gt;
+                     &lt;!-- ADMIN --&gt;
                     &lt;tr&gt;
+                        &lt;!-- NAME --&gt;
                         &lt;td&gt;{{(grp.group$|async)!.admin.name}}&lt;/td&gt;
-                        &lt;td&gt;&lt;/td&gt;
-                        &lt;td&gt;{{(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)?&quot;Going&quot;:&quot;Not Going&quot; }}&lt;/td&gt;
+                        &lt;!-- GOING --&gt;
+                        &lt;td&gt;
+                            &lt;svg *ngIf&#x3D;&quot;!(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)&quot; width&#x3D;&quot;32&quot; height&#x3D;&quot;32&quot; fill&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 16 16&quot; style&#x3D;&quot;color:red;&quot;&gt;
+                                &lt;title&gt;{{(grp.group$|async)!.admin.name}} has not confirmed that they are going.&lt;/title&gt;
+                                &lt;path d&#x3D;&quot;M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708&quot;/&gt;
+                            &lt;/svg&gt;
+                            &lt;svg *ngIf&#x3D;&quot;(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)&quot; width&#x3D;&quot;32&quot; height&#x3D;&quot;32&quot; fill&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 16 16&quot; style&#x3D;&quot;color:green;&quot;&gt;
+                                &lt;title&gt;{{(grp.group$|async)!.admin.name}} is going!&lt;/title&gt;
+                                &lt;path *ngIf&#x3D;&quot;!(grp.group$.value)!.booked&quot; d&#x3D;&quot;M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z&quot;/&gt;
+                                &lt;path *ngIf&#x3D;&quot;(grp.group$.value)!.booked&quot; d&#x3D;&quot;M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z&quot;/&gt;
+                            &lt;/svg&gt;
+                        &lt;/td&gt;
+                        &lt;!-- EMPTY CELL --&gt;
+                        &lt;td *ngIf &#x3D; &quot;!grp.group$.value!.booked &amp;&amp; grp.group$.value!.members.length&gt;0&quot;&gt;&lt;/td&gt;
                     &lt;/tr&gt;
-                    &lt;tr  *ngFor&#x3D;&quot;let m of grp.group$.value!.members&quot;&gt;
+                     &lt;!-- MEMBERS --&gt;
+                    &lt;tr *ngFor&#x3D;&quot;let m of grp.group$.value!.members&quot;&gt;
+                        &lt;!-- NAME --&gt;
                         &lt;td&gt;{{ m.name }} &lt;/td&gt;
-                        &lt;td&gt;&lt;button (click)&#x3D;&quot;kickUser(m)&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-danger&quot; &gt;Kick&lt;/button&gt;&lt;/td&gt;
-                        &lt;td&gt;{{(grp.group$.value)!.confirmed.includes(m.id)?&quot;Going&quot;:&quot;Not Going&quot; }}&lt;/td&gt;
+                        &lt;!-- GOING --&gt;
+                        &lt;td&gt;
+                            &lt;svg *ngIf&#x3D;&quot;!(grp.group$.value)!.confirmed.includes(m.id)&quot; width&#x3D;&quot;32&quot; height&#x3D;&quot;32&quot; fill&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 16 16&quot; style&#x3D;&quot;color:red;&quot;&gt;
+                                &lt;title&gt;{{m.name}} has not confirmed that they are going.&lt;/title&gt;
+                                &lt;path d&#x3D;&quot;M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708&quot;/&gt;
+                            &lt;/svg&gt;
+                            &lt;svg *ngIf&#x3D;&quot;(grp.group$.value)!.confirmed.includes(m.id)&quot; width&#x3D;&quot;32&quot; height&#x3D;&quot;32&quot; fill&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 16 16&quot; style&#x3D;&quot;color:green;&quot;&gt;
+                                &lt;title&gt;{{m.name}} is going!&lt;/title&gt;
+                                &lt;path *ngIf&#x3D;&quot;!(grp.group$.value)!.booked&quot; d&#x3D;&quot;M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z&quot;/&gt;
+                                &lt;path *ngIf&#x3D;&quot;(grp.group$.value)!.booked&quot; d&#x3D;&quot;M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z&quot;/&gt;
+                            &lt;/svg&gt;
+                        &lt;/td&gt;
+                        &lt;!-- KICK --&gt;
+                        &lt;td *ngIf &#x3D; &quot;!grp.group$.value!.booked &amp;&amp; grp.group$.value!.members.length&gt;0&quot;&gt;&lt;button (click)&#x3D;&quot;kickUser(m)&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-danger&quot; title&#x3D;&quot;Remove {{m.name}} from the group&quot;&gt;Kick&lt;/button&gt;&lt;/td&gt;
                     &lt;/tr&gt;      
                 &lt;/tbody&gt;
             &lt;/table&gt;
         &lt;/div&gt;
         &lt;div class&#x3D;&quot;d-flex flex-row justify-content-center&quot;&gt;
-            &lt;div (click)&#x3D;&quot;deleteGroup()&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-danger m-1&quot; &gt;Delete Group&lt;/div&gt;
-            &lt;div (click)&#x3D;&quot;sendGroupConfirmation()&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success m-1&quot; *ngIf&#x3D;&quot;!(grp.group$|async)!.booked&quot;&gt;Request confirmation&lt;/div&gt;
-            &lt;div (click)&#x3D;&quot;confirmGroupbooking()&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success m-1&quot; *ngIf&#x3D;&quot;!(grp.group$|async)!.booked&quot; &gt;Confirm booking&lt;/div&gt;
+            &lt;div *ngIf&#x3D;&quot;!grp.group$.value!.booked&quot; (click)&#x3D;&quot;deleteGroup()&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-danger m-1&quot; title&#x3D;&quot;Deletes the group!!!&quot;&gt;Delete Group&lt;/div&gt;
+            &lt;div (click)&#x3D;&quot;sendGroupConfirmation()&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success m-1&quot; *ngIf&#x3D;&quot;!(grp.group$|async)!.booked &amp;&amp; (grp.group$.value.confirmed.length - ((grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)?1:0)) &lt; grp.group$.value!.members.length&quot; title&#x3D;&quot;Send an email to member(s) who have not confirmed&quot;&gt;Request confirmation&lt;/div&gt;
+            &lt;div (click)&#x3D;&quot;confirmGroupbooking()&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success m-1&quot; *ngIf&#x3D;&quot;!(grp.group$|async)!.booked &amp;&amp; grp.group$.value.confirmed.length &gt; 0&quot; title&#x3D;&quot;Tickets bought for all members who have confirmed! No further changes will be allowed.&quot;&gt;Confirm booking&lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/ng-template&gt;
 &lt;ng-template [ngIf]&#x3D;&quot;grp.group$.value &amp;&amp; grp.currentUser$.value.id !&#x3D; group.admin.id&quot;&gt;
+    &lt;div class&#x3D;&quot;d-flex flex-row justify-content-center&quot; *ngIf&#x3D;&quot;!grp.group$.value.booked &amp;&amp; !grp.group$.value.confirmed.includes(grp.currentUser$.value.id) &amp;&amp; grp.group$.value.allUUID.includes(grp.currentUser$.value.id)&quot;&gt;
+        &lt;div (click)&#x3D;&quot;confirmGoing()&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success m-1&quot; title&#x3D;&quot;Confirm you are going&quot;&gt;I will be going!&lt;/div&gt;
+    &lt;/div&gt;
     &lt;div class&#x3D;&quot;container p-2&quot;&gt;
         &lt;div class&#x3D;&quot;d-flex flex-row justify-content-center&quot;&gt;
             &lt;table class&#x3D;&quot;table&quot;&gt;
                 &lt;thead&gt;
                     &lt;tr&gt;
                         &lt;th scope&#x3D;&quot;col&quot;&gt;Username&lt;/th&gt;
-                        &lt;th scope&#x3D;&quot;col&quot;&gt;Status&lt;/th&gt;
-                        
+                        &lt;th scope&#x3D;&quot;col&quot;&gt;Going&lt;/th&gt;
                     &lt;/tr&gt;
                 &lt;/thead&gt;
                 &lt;tbody&gt;
                     &lt;tr&gt;
+                        &lt;!-- NAME --&gt;
                         &lt;td&gt;{{(grp.group$|async)!.admin.name}}&lt;/td&gt;
-                        
-                        &lt;td&gt;{{(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)?&quot;Going&quot;:&quot;Not Going&quot; }}&lt;/td&gt;
+                        &lt;!-- GOING --&gt;
+                        &lt;td&gt;
+                            &lt;svg *ngIf&#x3D;&quot;!(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)&quot; width&#x3D;&quot;32&quot; height&#x3D;&quot;32&quot; fill&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 16 16&quot; style&#x3D;&quot;color:red;&quot;&gt;
+                                &lt;title&gt;{{(grp.group$|async)!.admin.name}} has not confirmed that they are going.&lt;/title&gt;
+                                &lt;path d&#x3D;&quot;M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708&quot;/&gt;
+                            &lt;/svg&gt;
+                            &lt;svg *ngIf&#x3D;&quot;(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)&quot; width&#x3D;&quot;32&quot; height&#x3D;&quot;32&quot; fill&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 16 16&quot; style&#x3D;&quot;color:green;&quot;&gt;
+                                &lt;title&gt;{{(grp.group$|async)!.admin.name}} is going!&lt;/title&gt;
+                                &lt;path *ngIf&#x3D;&quot;!(grp.group$.value)!.booked&quot; d&#x3D;&quot;M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z&quot;/&gt;
+                                &lt;path *ngIf&#x3D;&quot;(grp.group$.value)!.booked&quot; d&#x3D;&quot;M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z&quot;/&gt;
+                            &lt;/svg&gt;
+                        &lt;/td&gt;
                     &lt;/tr&gt;
                     &lt;tr  *ngFor&#x3D;&quot;let m of grp.group$.value!.members&quot;&gt;
+                        &lt;!-- NAME --&gt;
                         &lt;td&gt;{{ m.name }} &lt;/td&gt;
-                        
-                        &lt;td&gt;{{(grp.group$.value)!.confirmed.includes(m.id)?&quot;Going&quot;:&quot;Not Going&quot; }}&lt;/td&gt;
+                        &lt;!-- GOING --&gt;
+                        &lt;td&gt;
+                            &lt;svg *ngIf&#x3D;&quot;!(grp.group$.value)!.confirmed.includes(m.id)&quot; width&#x3D;&quot;32&quot; height&#x3D;&quot;32&quot; fill&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 16 16&quot; style&#x3D;&quot;color:red;&quot;&gt;
+                                &lt;title&gt;{{m.name}} has not confirmed that they are going.&lt;/title&gt;
+                                &lt;path d&#x3D;&quot;M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708&quot;/&gt;
+                            &lt;/svg&gt;
+                            &lt;svg *ngIf&#x3D;&quot;(grp.group$.value)!.confirmed.includes(m.id)&quot; width&#x3D;&quot;32&quot; height&#x3D;&quot;32&quot; fill&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 16 16&quot; style&#x3D;&quot;color:green;&quot;&gt;
+                                &lt;title&gt;{{m.name}} is going!&lt;/title&gt;
+                                &lt;path *ngIf&#x3D;&quot;!(grp.group$.value)!.booked&quot; d&#x3D;&quot;M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z&quot;/&gt;
+                                &lt;path *ngIf&#x3D;&quot;(grp.group$.value)!.booked&quot; d&#x3D;&quot;M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z&quot;/&gt;
+                            &lt;/svg&gt;
+                        &lt;/td&gt;
                     &lt;/tr&gt;      
                 &lt;/tbody&gt;
             &lt;/table&gt;
-        &lt;/div&gt;
-        &lt;div class&#x3D;&quot;d-flex flex-row justify-content-center&quot; *ngIf&#x3D;&quot;!grp.group$.value.booked &amp;&amp; !grp.group$.value.confirmed.includes(grp.currentUser$.value.id)&quot;&gt;
-            &lt;div (click)&#x3D;&quot;confirmGoing()&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success m-1&quot; &gt;Confirm going&lt;/div&gt;
-            
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/ng-template&gt;
@@ -876,13 +1013,14 @@ export class GroupDetailComponent implements OnInit {
 &lt;/div&gt;
 
 &lt;div class&#x3D;&quot;row pt-2&quot;&gt;
-    &lt;table class&#x3D;&quot;table &quot;&gt;
+    &lt;h5 *ngIf&#x3D;&quot;(grp.groupCalendar$|async)!.length &#x3D;&#x3D; 0&quot; style&#x3D;&quot;text-align:center;&quot;&gt;Everyone is available!&lt;/h5&gt;
+    &lt;table class&#x3D;&quot;table &quot; *ngIf&#x3D;&quot;(grp.groupCalendar$|async)!.length &gt; 0&quot;&gt;
         &lt;thead&gt;
             &lt;tr&gt;
-                &lt;th scope&#x3D;&quot;col&quot;&gt;Username&lt;/th&gt;
-                &lt;th scope&#x3D;&quot;col&quot;&gt;Event Detail&lt;/th&gt;
-                &lt;th scope&#x3D;&quot;col&quot;&gt;Start Time&lt;/th&gt;
-                &lt;th scope&#x3D;&quot;col&quot;&gt;End Time&lt;/th&gt;
+                &lt;th scope&#x3D;&quot;col&quot;&gt;Name&lt;/th&gt;
+                &lt;th scope&#x3D;&quot;col&quot;&gt;Unavailable because&lt;/th&gt;
+                &lt;th scope&#x3D;&quot;col&quot;&gt;Start&lt;/th&gt;
+                &lt;th scope&#x3D;&quot;col&quot;&gt;End&lt;/th&gt;
             &lt;/tr&gt;
         &lt;/thead&gt;
         &lt;tbody&gt;
@@ -897,7 +1035,7 @@ export class GroupDetailComponent implements OnInit {
     &lt;/table&gt;
 &lt;/div&gt;
 
-&lt;ng-template [ngIf]&#x3D;&quot;!grp.group$.value?.allUUID?.includes(grp.currentUser$.value.id)&quot;&gt;
+&lt;ng-template [ngIf]&#x3D;&quot;!grp.group$.value?.allUUID?.includes(grp.currentUser$.value.id) &amp;&amp; !grp.group$.value?.booked&quot;&gt;
 &lt;div class&#x3D;&quot;d-flex flex-row justify-content-center&quot;&gt;
     &lt;div class&#x3D;&quot;btn btn-success&quot; (click)&#x3D;&quot;joinGroup()&quot;&gt;JOIN GROUP&lt;/div&gt;
 &lt;/div&gt;
@@ -926,6 +1064,7 @@ Infomraiton about the clicked dates
                 <pre class="line-numbers"><code class="language-scss">.invite{
     cursor: pointer;
     user-select: none;
+    text-decoration: underline;
 }</code></pre>
     </div>
 
@@ -954,7 +1093,7 @@ Infomraiton about the clicked dates
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="d-flex flex-row justify-content-center">    <h1 class="d-inline-flex justify-content-center">{{grp.group$.value?.name}}</h1><br/></div><div class="d-flex flex-row justify-content-center">    <h2 class="d-inline-flex justify-content-center">{{grp.group$.value?.event?.name}}</h2><br/></div><div class="d-flex flex-row justify-content-center">    <h3 class="d-inline-flex justify-content-center"></h3>{{grp.group$.value?.event?.location}}<br/></div><div class="d-flex flex-row justify-content-center">    <p class="d-inline-flex justify-content-center">{{grp.group$.value?.event?.startDate|date:\'medium\'}} - {{grp.group$.value?.event?.endDate|date:\'medium\'}}</p><br/></div><div class="d-flex flex-row justify-content-center"><p><a class="link-opacity-100 invite" (click)="copyInviteLink()">Invite Link</a></p></div><ng-template [ngIf]="grp.group$.value && grp.currentUser$.value.id == group.admin.id">    <div class="container p-2">        <div class="d-flex flex-row justify-content-center">            <table class="table">                <thead>                    <tr>                        <th scope="col">Username</th>                        <th scope="col">Kick</th>                        <th scope="col">Status</th>                                            </tr>                </thead>                <tbody>                    <tr>                        <td>{{(grp.group$|async)!.admin.name}}</td>                        <td></td>                        <td>{{(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)?"Going":"Not Going" }}</td>                    </tr>                    <tr  *ngFor="let m of grp.group$.value!.members">                        <td>{{ m.name }} </td>                        <td><button (click)="kickUser(m)" type="button" class="btn btn-danger" >Kick</button></td>                        <td>{{(grp.group$.value)!.confirmed.includes(m.id)?"Going":"Not Going" }}</td>                    </tr>                      </tbody>            </table>        </div>        <div class="d-flex flex-row justify-content-center">            <div (click)="deleteGroup()" type="button" class="btn btn-danger m-1" >Delete Group</div>            <div (click)="sendGroupConfirmation()" type="button" class="btn btn-success m-1" *ngIf="!(grp.group$|async)!.booked">Request confirmation</div>            <div (click)="confirmGroupbooking()" type="button" class="btn btn-success m-1" *ngIf="!(grp.group$|async)!.booked" >Confirm booking</div>        </div>    </div></ng-template><ng-template [ngIf]="grp.group$.value && grp.currentUser$.value.id != group.admin.id">    <div class="container p-2">        <div class="d-flex flex-row justify-content-center">            <table class="table">                <thead>                    <tr>                        <th scope="col">Username</th>                        <th scope="col">Status</th>                                            </tr>                </thead>                <tbody>                    <tr>                        <td>{{(grp.group$|async)!.admin.name}}</td>                                                <td>{{(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)?"Going":"Not Going" }}</td>                    </tr>                    <tr  *ngFor="let m of grp.group$.value!.members">                        <td>{{ m.name }} </td>                                                <td>{{(grp.group$.value)!.confirmed.includes(m.id)?"Going":"Not Going" }}</td>                    </tr>                      </tbody>            </table>        </div>        <div class="d-flex flex-row justify-content-center" *ngIf="!grp.group$.value.booked && !grp.group$.value.confirmed.includes(grp.currentUser$.value.id)">            <div (click)="confirmGoing()" type="button" class="btn btn-success m-1" >Confirm going</div>                    </div>    </div></ng-template><div class="d-flex flex-row justify-content-center">    <app-calander [events]="grp.groupCalendar$.value" [dateColor]="grp.dateColor$.value" [navigateTo]="grp.getStartDate(grp.group$.value?.event?.startDate)"></app-calander></div><div class="row pt-2">    <table class="table ">        <thead>            <tr>                <th scope="col">Username</th>                <th scope="col">Event Detail</th>                <th scope="col">Start Time</th>                <th scope="col">End Time</th>            </tr>        </thead>        <tbody>           <tr *ngFor="let e of grp.groupCalendar$|async">                <td>{{e.user.name}}</td>                <td>{{e.detail}}</td>                <td>{{e.start|date:"medium"}}</td>                <td>{{e.end|date:"medium"}}</td>                </tr>                   </tbody>    </table></div><ng-template [ngIf]="!grp.group$.value?.allUUID?.includes(grp.currentUser$.value.id)"><div class="d-flex flex-row justify-content-center">    <div class="btn btn-success" (click)="joinGroup()">JOIN GROUP</div></div></ng-template><!--Group nameInvite linkAdminA list of members (kick)Have the calanderInfomraiton about the clicked dates --></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="d-flex flex-row justify-content-center">    <h4 class="d-inline-flex justify-content-center">ID: {{grp.group$.value?.id}}</h4><br/></div><div class="d-flex flex-row justify-content-center">    <h1 class="d-inline-flex justify-content-center">{{grp.group$.value?.name}}</h1><br/></div><div class="d-flex flex-row justify-content-center">    <h2 class="d-inline-flex justify-content-center">{{grp.group$.value?.event?.name}}</h2><br/></div><div class="d-flex flex-row justify-content-center" *ngIf="grp.group$.value && grp.group$.value.booked">    <h2 class="d-inline-flex justify-content-center text-success" >BOOKED</h2><br/></div><div class="d-flex flex-row justify-content-center">    <h5 class="d-inline-flex justify-content-center">{{grp.group$.value?.event?.location}}</h5><br/></div><div class="d-flex flex-row justify-content-center">    <h6 class="d-inline-flex justify-content-center"><i>{{grp.group$.value?.event?.details}}</i></h6><br/></div><div class="d-flex flex-row justify-content-center">    <p class="d-inline-flex justify-content-center">{{grp.group$.value?.event?.startDate|date:\'medium\'}} - {{grp.group$.value?.event?.endDate|date:\'medium\'}}</p><br/></div><div class="d-flex flex-row justify-content-center"><p><a class="link-opacity-100 invite" (click)="copyInviteLink()" title="Copy the invite link to clipboard">Invite Link</a></p></div><ng-template [ngIf]="grp.group$.value && grp.currentUser$.value.id == group.admin.id">    <div class="d-flex flex-row justify-content-center" *ngIf="!grp.group$.value.booked && !grp.group$.value.confirmed.includes(grp.currentUser$.value.id)">        <div (click)="confirmGoing()" type="button" class="btn btn-success m-1" title="Confirm you are going">I will be going!</div>    </div>    <div class="container p-2">        <div class="d-flex flex-row justify-content-center">            <table class="table">                <thead>                    <tr>                        <th scope="col">Name</th>                        <th scope="col">Going</th>                        <th scope="col" *ngIf = "!grp.group$.value!.booked && grp.group$.value!.members.length>0">Kick</th>                    </tr>                </thead>                <tbody>                     <!-- ADMIN -->                    <tr>                        <!-- NAME -->                        <td>{{(grp.group$|async)!.admin.name}}</td>                        <!-- GOING -->                        <td>                            <svg *ngIf="!(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" style="color:red;">                                <title>{{(grp.group$|async)!.admin.name}} has not confirmed that they are going.</title>                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>                            </svg>                            <svg *ngIf="(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" style="color:green;">                                <title>{{(grp.group$|async)!.admin.name}} is going!</title>                                <path *ngIf="!(grp.group$.value)!.booked" d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>                                <path *ngIf="(grp.group$.value)!.booked" d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z"/>                            </svg>                        </td>                        <!-- EMPTY CELL -->                        <td *ngIf = "!grp.group$.value!.booked && grp.group$.value!.members.length>0"></td>                    </tr>                     <!-- MEMBERS -->                    <tr *ngFor="let m of grp.group$.value!.members">                        <!-- NAME -->                        <td>{{ m.name }} </td>                        <!-- GOING -->                        <td>                            <svg *ngIf="!(grp.group$.value)!.confirmed.includes(m.id)" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" style="color:red;">                                <title>{{m.name}} has not confirmed that they are going.</title>                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>                            </svg>                            <svg *ngIf="(grp.group$.value)!.confirmed.includes(m.id)" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" style="color:green;">                                <title>{{m.name}} is going!</title>                                <path *ngIf="!(grp.group$.value)!.booked" d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>                                <path *ngIf="(grp.group$.value)!.booked" d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z"/>                            </svg>                        </td>                        <!-- KICK -->                        <td *ngIf = "!grp.group$.value!.booked && grp.group$.value!.members.length>0"><button (click)="kickUser(m)" type="button" class="btn btn-danger" title="Remove {{m.name}} from the group">Kick</button></td>                    </tr>                      </tbody>            </table>        </div>        <div class="d-flex flex-row justify-content-center">            <div *ngIf="!grp.group$.value!.booked" (click)="deleteGroup()" type="button" class="btn btn-danger m-1" title="Deletes the group!!!">Delete Group</div>            <div (click)="sendGroupConfirmation()" type="button" class="btn btn-success m-1" *ngIf="!(grp.group$|async)!.booked && (grp.group$.value.confirmed.length - ((grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)?1:0)) < grp.group$.value!.members.length" title="Send an email to member(s) who have not confirmed">Request confirmation</div>            <div (click)="confirmGroupbooking()" type="button" class="btn btn-success m-1" *ngIf="!(grp.group$|async)!.booked && grp.group$.value.confirmed.length > 0" title="Tickets bought for all members who have confirmed! No further changes will be allowed.">Confirm booking</div>        </div>    </div></ng-template><ng-template [ngIf]="grp.group$.value && grp.currentUser$.value.id != group.admin.id">    <div class="d-flex flex-row justify-content-center" *ngIf="!grp.group$.value.booked && !grp.group$.value.confirmed.includes(grp.currentUser$.value.id) && grp.group$.value.allUUID.includes(grp.currentUser$.value.id)">        <div (click)="confirmGoing()" type="button" class="btn btn-success m-1" title="Confirm you are going">I will be going!</div>    </div>    <div class="container p-2">        <div class="d-flex flex-row justify-content-center">            <table class="table">                <thead>                    <tr>                        <th scope="col">Username</th>                        <th scope="col">Going</th>                    </tr>                </thead>                <tbody>                    <tr>                        <!-- NAME -->                        <td>{{(grp.group$|async)!.admin.name}}</td>                        <!-- GOING -->                        <td>                            <svg *ngIf="!(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" style="color:red;">                                <title>{{(grp.group$|async)!.admin.name}} has not confirmed that they are going.</title>                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>                            </svg>                            <svg *ngIf="(grp.group$.value)!.confirmed.includes(grp.group$.value!.admin.id)" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" style="color:green;">                                <title>{{(grp.group$|async)!.admin.name}} is going!</title>                                <path *ngIf="!(grp.group$.value)!.booked" d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>                                <path *ngIf="(grp.group$.value)!.booked" d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z"/>                            </svg>                        </td>                    </tr>                    <tr  *ngFor="let m of grp.group$.value!.members">                        <!-- NAME -->                        <td>{{ m.name }} </td>                        <!-- GOING -->                        <td>                            <svg *ngIf="!(grp.group$.value)!.confirmed.includes(m.id)" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" style="color:red;">                                <title>{{m.name}} has not confirmed that they are going.</title>                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>                            </svg>                            <svg *ngIf="(grp.group$.value)!.confirmed.includes(m.id)" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" style="color:green;">                                <title>{{m.name}} is going!</title>                                <path *ngIf="!(grp.group$.value)!.booked" d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>                                <path *ngIf="(grp.group$.value)!.booked" d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z"/>                            </svg>                        </td>                    </tr>                      </tbody>            </table>        </div>    </div></ng-template><div class="d-flex flex-row justify-content-center">    <app-calander [events]="grp.groupCalendar$.value" [dateColor]="grp.dateColor$.value" [navigateTo]="grp.getStartDate(grp.group$.value?.event?.startDate)"></app-calander></div><div class="row pt-2">    <h5 *ngIf="(grp.groupCalendar$|async)!.length == 0" style="text-align:center;">Everyone is available!</h5>    <table class="table " *ngIf="(grp.groupCalendar$|async)!.length > 0">        <thead>            <tr>                <th scope="col">Name</th>                <th scope="col">Unavailable because</th>                <th scope="col">Start</th>                <th scope="col">End</th>            </tr>        </thead>        <tbody>           <tr *ngFor="let e of grp.groupCalendar$|async">                <td>{{e.user.name}}</td>                <td>{{e.detail}}</td>                <td>{{e.start|date:"medium"}}</td>                <td>{{e.end|date:"medium"}}</td>                </tr>                   </tbody>    </table></div><ng-template [ngIf]="!grp.group$.value?.allUUID?.includes(grp.currentUser$.value.id) && !grp.group$.value?.booked"><div class="d-flex flex-row justify-content-center">    <div class="btn btn-success" (click)="joinGroup()">JOIN GROUP</div></div></ng-template><!--Group nameInvite linkAdminA list of members (kick)Have the calanderInfomraiton about the clicked dates --></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalanderComponent', 'selector': 'app-calander'},{'name': 'ClassificationComponentComponent', 'selector': 'app-classification-component'},{'name': 'EventComponentComponent', 'selector': 'app-event-component'},{'name': 'GroupCreateComponent', 'selector': 'app-group-create'},{'name': 'GroupDetailComponent', 'selector': 'app-group-detail'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupPageComponent', 'selector': 'app-group-page'},{'name': 'ListEventsComponent', 'selector': 'app-list-events'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'PersonalCalenderPageComponent', 'selector': 'app-personal-calender-page'},{'name': 'SearchPageComponent', 'selector': 'app-search-page'},{'name': 'WatchlistPageComponent', 'selector': 'app-watchlist-page'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'GroupDetailComponent'};

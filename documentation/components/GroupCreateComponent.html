@@ -220,6 +220,10 @@
                                     <span class="modifier">Optional</span>
                                 <a href="#selectedEvent" >selectedEvent</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#subs" >subs</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -276,12 +280,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(modalService: NgbModal, grp: <a href="../injectables/CreateGroupFacade.html" target="_self">CreateGroupFacade</a>)</code>
+<code>constructor(toastr: ToastrService, modalService: NgbModal, grp: <a href="../injectables/CreateGroupFacade.html" target="_self">CreateGroupFacade</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -298,6 +302,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>toastr</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastrService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                                 <tr>
                                                         <td>modalService</td>
                                                   
@@ -349,7 +365,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:19</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -383,8 +399,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="50"
-                                    class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:50</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -420,8 +436,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="30"
-                                    class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:30</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -457,8 +473,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="31"
+                                    class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -541,7 +557,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -578,7 +594,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -605,7 +621,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -642,7 +658,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -669,7 +685,39 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subs"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>subs</b></span>
+                        <a href="#subs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/group-page/group-create/group-create.component.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -682,10 +730,12 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, OnDestroy, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
 import { NgbModal, NgbNav } from &#x27;@ng-bootstrap/ng-bootstrap&#x27;;
 import { EventInterface } from &#x27;src/app/interfaces/event-interface&#x27;;
 import { CreateGroupFacade } from &#x27;src/app/facade/CreateGroupFacade&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
+import { ToastrService } from &#x27;ngx-toastr&#x27;;
 
 
 @Component({
@@ -694,6 +744,7 @@ import { CreateGroupFacade } from &#x27;src/app/facade/CreateGroupFacade&#x27;;
   styleUrls: [&#x27;./group-create.component.css&#x27;]
 })
 export class GroupCreateComponent implements OnInit{
+	private subs:Subscription[] &#x3D; [];
 	@ViewChild(NgbNav) private navStuff: NgbNav | undefined;
 	@ViewChild(&#x27;content&#x27;) private content:NgbModal | undefined; 
 		closeResult &#x3D; &#x27;&#x27;;
@@ -703,36 +754,36 @@ export class GroupCreateComponent implements OnInit{
 	selectedEvent?:EventInterface;
 	
 	constructor(
+		private toastr:ToastrService,
 		private modalService:NgbModal,
 		public grp: CreateGroupFacade
 	){}
+
 	
 	ngOnInit(){
-		this.em.subscribe(()&#x3D;&gt;this.open());
+		
+		this.subs.push(this.em.subscribe(()&#x3D;&gt;this.open()));
 	}
 
 	createGroup(){
-		this.grp.createGroup().then(_&#x3D;&gt;{
-			console.log(&quot;group create success&quot;);
-		}).catch(err&#x3D;&gt;{
-			if (err.message &#x3D;&#x3D;&#x3D; &quot;user-not-signed-in&quot;)
-				console.log(&quot;user not signed in&quot;);
-			else if (err.message &#x3D;&#x3D;&#x3D; &quot;group-name-taken&quot;)
-				console.log(&quot;group name taken&quot;);
-			else if (err.message &#x3D;&#x3D;&#x3D; &quot;group-date-incompatible&quot;)
-				console.log(&quot;group date invalid&quot;);
-			else
-				console.log(err);
+		this.grp.createGroup(this.selectedEvent!).then(_&#x3D;&gt;{
+			this.toastr.success(this.grp.newGroupForm.value.name?this.grp.newGroupForm.value.name:&quot;&quot;,&quot;Group Created&quot;);
+			this.close();
+		}).catch((err:Error)&#x3D;&gt;{
+			this.toastr.error(err.message,&quot;Group Creation Error&quot;);
 		})
 	}
 
 
 	open() {
+		this.grp.initialize();
 		this.modalService.open(this.content,{centered:true, fullscreen:true});
 	}
 
 	close(){
 		this.modalService.dismissAll();
+		this.grp.destroy();
+		this.selectedEvent &#x3D; undefined;
 	}
 	
 	
@@ -747,7 +798,7 @@ export class GroupCreateComponent implements OnInit{
 		&lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; aria-label&#x3D;&quot;Close&quot; (click)&#x3D;&quot;close()&quot;&gt;&lt;/button&gt;
 	&lt;/div&gt;
 	&lt;div class&#x3D;&quot;modal-body&quot;&gt;
-		&lt;form [formGroup]&#x3D;&quot;grp.newGroupForm&quot; (ngSubmit)&#x3D;&quot;createGroup()&quot;&gt;
+		&lt;form [formGroup]&#x3D;&quot;grp.newGroupForm&quot; &gt;
 			&lt;div class&#x3D;&quot;form-group row&quot;&gt;
 			  &lt;label class&#x3D;&quot;col-sm-2 col-form-label&quot;&gt;Group Name&lt;/label&gt;
 			  &lt;div class&#x3D;&quot;col-sm-10&quot;&gt;
@@ -758,8 +809,10 @@ export class GroupCreateComponent implements OnInit{
 				&lt;label  class&#x3D;&quot;col-sm-2 col-form-label&quot;&gt;Chooose Event&lt;/label&gt;
 				&lt;div class&#x3D;&quot;col-sm-10&quot;&gt;
 				&lt;select class&#x3D;&quot;custom-select&quot; [ngModelOptions]&#x3D;&quot;{standalone: true}&quot; [(ngModel)]&#x3D;&quot;selectedEvent&quot; (ngModelChange)&#x3D;&quot;grp.updateForm($event)&quot;&gt;
-					&lt;option *ngFor&#x3D;&quot;let evt of (grp.watchlist$|async)!&quot; [ngValue]&#x3D;&quot;evt&quot;&gt;{{evt.name}}&lt;/option&gt;
-					&lt;/select&gt;
+					&lt;option [ngValue]&#x3D;&quot;undefined&quot; selected&gt;CHOOSE HERE&lt;/option&gt;
+					&lt;option *ngFor&#x3D;&quot;let evt of grp.watchlist$.value&quot; [ngValue]&#x3D;&quot;evt&quot;&gt;{{evt.name}}&lt;/option&gt;
+					
+				&lt;/select&gt;
 				&lt;/div&gt;
 			  &lt;/div&gt;
 			  
@@ -790,11 +843,10 @@ export class GroupCreateComponent implements OnInit{
 					&lt;/div&gt;
 				  &lt;/div&gt;
 			&lt;/fieldset&gt;
+			&lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-outline-dark&quot;  [disabled]&#x3D;&quot;!grp.newGroupForm.valid&quot; (click)&#x3D;&quot;createGroup()&quot;&gt;Save&lt;/button&gt;
 		  &lt;/form&gt;
 	&lt;/div&gt;
-	&lt;div class&#x3D;&quot;modal-footer&quot;&gt;
-		&lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-outline-dark&quot; (click)&#x3D;&quot;createGroup()&quot;  [disabled]&#x3D;&quot;!grp.newGroupForm.valid&quot;&gt;Save&lt;/button&gt;
-	&lt;/div&gt;
+	
 &lt;/ng-template&gt;
 
 
@@ -833,7 +885,7 @@ export class GroupCreateComponent implements OnInit{
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-template #content let-c="close" let-d="dismiss">	<div class="modal-header">		<h4 class="modal-title" id="modal-basic-title">New Group</h4>		<button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>	</div>	<div class="modal-body">		<form [formGroup]="grp.newGroupForm" (ngSubmit)="createGroup()">			<div class="form-group row">			  <label class="col-sm-2 col-form-label">Group Name</label>			  <div class="col-sm-10">				<input  type="text" formControlName="name">			  </div>			</div>			<div class="form-group row">				<label  class="col-sm-2 col-form-label">Chooose Event</label>				<div class="col-sm-10">				<select class="custom-select" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedEvent" (ngModelChange)="grp.updateForm($event)">					<option *ngFor="let evt of (grp.watchlist$|async)!" [ngValue]="evt">{{evt.name}}</option>					</select>				</div>			  </div>			  			<fieldset class="form-group" formGroupName="event">				<legend class="row">Event Details</legend>				<div disabled class="form-group row">					<label for="groupName" class="col-sm-2 col-form-label">Event Name</label>					<div class="col-sm-10">					  <input class="form-control" type="text" formControlName="name" readonly>					</div>				  </div>				  <div class="form-group row">					<label  class="col-sm-2 col-form-label">Event details</label>					<div class="col-sm-10">					  <input class="form-control" type="text" formControlName="details">					</div>				  </div>				  <div class="form-group row">					<label class="col-sm-2 col-form-label">Start Date</label>					<div class="col-sm-10">					  <input class="form-control" type="datetime-local" formControlName="startDate">					</div>				  </div>				  <div class="form-group row">					<label  class="col-sm-2 col-form-label">End Date</label>					<div class="col-sm-10">					  <input class="form-control" type="datetime-local" formControlName="endDate">					</div>				  </div>			</fieldset>		  </form>	</div>	<div class="modal-footer">		<button type="submit" class="btn btn-outline-dark" (click)="createGroup()"  [disabled]="!grp.newGroupForm.valid">Save</button>	</div></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-template #content let-c="close" let-d="dismiss">	<div class="modal-header">		<h4 class="modal-title" id="modal-basic-title">New Group</h4>		<button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>	</div>	<div class="modal-body">		<form [formGroup]="grp.newGroupForm" >			<div class="form-group row">			  <label class="col-sm-2 col-form-label">Group Name</label>			  <div class="col-sm-10">				<input  type="text" formControlName="name">			  </div>			</div>			<div class="form-group row">				<label  class="col-sm-2 col-form-label">Chooose Event</label>				<div class="col-sm-10">				<select class="custom-select" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedEvent" (ngModelChange)="grp.updateForm($event)">					<option [ngValue]="undefined" selected>CHOOSE HERE</option>					<option *ngFor="let evt of grp.watchlist$.value" [ngValue]="evt">{{evt.name}}</option>									</select>				</div>			  </div>			  			<fieldset class="form-group" formGroupName="event">				<legend class="row">Event Details</legend>				<div disabled class="form-group row">					<label for="groupName" class="col-sm-2 col-form-label">Event Name</label>					<div class="col-sm-10">					  <input class="form-control" type="text" formControlName="name" readonly>					</div>				  </div>				  <div class="form-group row">					<label  class="col-sm-2 col-form-label">Event details</label>					<div class="col-sm-10">					  <input class="form-control" type="text" formControlName="details">					</div>				  </div>				  <div class="form-group row">					<label class="col-sm-2 col-form-label">Start Date</label>					<div class="col-sm-10">					  <input class="form-control" type="datetime-local" formControlName="startDate">					</div>				  </div>				  <div class="form-group row">					<label  class="col-sm-2 col-form-label">End Date</label>					<div class="col-sm-10">					  <input class="form-control" type="datetime-local" formControlName="endDate">					</div>				  </div>			</fieldset>			<button type="submit" class="btn btn-outline-dark"  [disabled]="!grp.newGroupForm.valid" (click)="createGroup()">Save</button>		  </form>	</div>	</ng-template></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalanderComponent', 'selector': 'app-calander'},{'name': 'ClassificationComponentComponent', 'selector': 'app-classification-component'},{'name': 'EventComponentComponent', 'selector': 'app-event-component'},{'name': 'GroupCreateComponent', 'selector': 'app-group-create'},{'name': 'GroupDetailComponent', 'selector': 'app-group-detail'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupPageComponent', 'selector': 'app-group-page'},{'name': 'ListEventsComponent', 'selector': 'app-list-events'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'PersonalCalenderPageComponent', 'selector': 'app-personal-calender-page'},{'name': 'SearchPageComponent', 'selector': 'app-search-page'},{'name': 'WatchlistPageComponent', 'selector': 'app-watchlist-page'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'GroupCreateComponent'};

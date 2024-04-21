@@ -151,6 +151,10 @@
                             <li>
                                 <a href="#dateColor$" >dateColor$</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#subs" >subs</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -168,6 +172,12 @@
                             </li>
                             <li>
                                 <a href="#deleteEvent" >deleteEvent</a>
+                            </li>
+                            <li>
+                                <a href="#destroy" >destroy</a>
+                            </li>
+                            <li>
+                                <a href="#initializeCalender" >initializeCalender</a>
                             </li>
                         </ul>
                     </td>
@@ -267,8 +277,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/app/facade/PersonalCalendarFacade.ts:58</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/facade/PersonalCalendarFacade.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -334,8 +344,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="54"
-                                    class="link-to-prism">src/app/facade/PersonalCalendarFacade.ts:54</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="61"
+                                    class="link-to-prism">src/app/facade/PersonalCalendarFacade.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -377,6 +387,80 @@
                             <div class="io-description">
                                 
                             </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="destroy"></a>
+                    <span class="name">
+                        <span ><b>destroy</b></span>
+                        <a href="#destroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>destroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="28"
+                                    class="link-to-prism">src/app/facade/PersonalCalendarFacade.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initializeCalender"></a>
+                    <span class="name">
+                        <span ><b>initializeCalender</b></span>
+                        <a href="#initializeCalender"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initializeCalender()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="31"
+                                    class="link-to-prism">src/app/facade/PersonalCalendarFacade.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -476,6 +560,38 @@
 
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subs"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>subs</b></span>
+                        <a href="#subs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/facade/PersonalCalendarFacade.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -489,7 +605,7 @@ import { UserInterface } from &#x27;../interfaces/user-interface&#x27;;
 import { CalanderEvent } from &#x27;../interfaces/calander-interface/CalanderEvent-interface&#x27;;
 import { CalanderColor, CalanderType, CalanderTypeColor, CalanderTypePriority } from &#x27;../interfaces/enums/calenderenum&#x27;;
 import { NgbDate } from &#x27;@ng-bootstrap/ng-bootstrap&#x27;;
-import { BehaviorSubject, Subject } from &#x27;rxjs&#x27;;
+import { BehaviorSubject, Subject, Subscription } from &#x27;rxjs&#x27;;
 
 import { NewCalendarEvent } from &quot;../class/NewCalendarEvent&quot;
 
@@ -498,7 +614,7 @@ import { NewCalendarEvent } from &quot;../class/NewCalendarEvent&quot;
   providedIn: &#x27;root&#x27;
 })
 export class CalendarFacade {
-
+    private subs:Subscription[] &#x3D; [];
     currentUser?: UserInterface;
     calendar$: BehaviorSubject&lt;CalanderEvent[]&gt; &#x3D; new BehaviorSubject&lt;CalanderEvent[]&gt;([]);
     dateColor$: BehaviorSubject&lt;[[NgbDate,NgbDate], CalanderColor][]&gt; &#x3D; new BehaviorSubject&lt;[[NgbDate,NgbDate], CalanderColor][]&gt;([]); //should be date range better // wtf does this mean
@@ -507,19 +623,21 @@ export class CalendarFacade {
         private authSvc:AuthenticationService,
         private calSvc: CalendarService
     ) {
+        
+    }
+    destroy(){
+        this.subs.forEach((e)&#x3D;&gt;e.unsubscribe());
+    }
+    initializeCalender(){
         this.authSvc.getCurrentUser().then(user&#x3D;&gt;{
             this.currentUser  &#x3D; user;
-            this.calSvc.getCalendar(user).subscribe(
+            var rtn:Subscription &#x3D; this.calSvc.getCalendar(user).subscribe(
             calEvents&#x3D;&gt;{
                 
                 calEvents.sort((a,b)&#x3D;&gt;{//sort by time then sort by calanderType, Booked for event is the highest priority
-                    if(a.start &lt; b.start) return -1;
-                    else if(a.start&#x3D;&#x3D;b.start){
-                        var aNum:number &#x3D; CalanderTypePriority.get(a.type)||0;
-                        var bNum:number &#x3D; CalanderTypePriority.get(b.type)||0;
-                        return bNum-aNum;
-                    }
-                    return 1;
+                    var aNum:number &#x3D; CalanderTypePriority.get(a.type)||0;
+                    var bNum:number &#x3D; CalanderTypePriority.get(b.type)||0;
+                    return aNum-bNum;
                 });
                 
                 let dateColor: [[NgbDate,NgbDate], CalanderColor][] &#x3D; calEvents.map(
@@ -529,12 +647,17 @@ export class CalendarFacade {
                         return [[start,endDate], CalanderTypeColor.get(e.type)||CalanderColor.Default]
                     }
                 );
+                
+                
                 this.calendar$.next(calEvents);
                 this.dateColor$.next(dateColor);
             });
+            
+            this.subs.push(rtn);
         });
-    }
 
+    }
+ 
     deleteEvent(e:CalanderEvent): Promise&lt;void&gt;{
         return this.calSvc.removeCalendarEvent(e);
     }
@@ -543,10 +666,15 @@ export class CalendarFacade {
         return new Promise&lt;void&gt;((res,rej)&#x3D;&gt;{
             if(this.currentUser &amp;&amp; newCalEvent.isValid()){
                 let calEvent &#x3D; newCalEvent.toCalendarevent(this.currentUser);
-                this.calSvc.addCalendarEvent(calEvent).then(_&#x3D;&gt;res());
+
+                this.calSvc.addCalendarEvent(calEvent)
+                    .then(_&#x3D;&gt;res())
+                    .catch(err&#x3D;&gt;rej(err));
+
+                
             }
             else {
-                rej(new Error(&quot;Invalid-Parameter&quot;));
+                rej(new Error(&quot;invalid-parameter&quot;));
             }
         })
     }

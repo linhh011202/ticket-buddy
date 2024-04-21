@@ -230,10 +230,6 @@
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#isBetween" >isBetween</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
                                 <a href="#isInside" >isInside</a>
                             </li>
                             <li>
@@ -478,99 +474,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="isBetween"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>isBetween</b></span>
-                        <a href="#isBetween"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>isBetween(a: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, b: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, c: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="59"
-                                    class="link-to-prism">src/app/common/calander/calander.component.ts:59</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>a</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>b</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>c</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="isInside"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -589,8 +492,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="62"
-                                    class="link-to-prism">src/app/common/calander/calander.component.ts:62</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/app/common/calander/calander.component.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -1049,13 +952,13 @@ export class CalanderComponent implements OnChanges{
 		
 		return &quot;&quot;
 	}
-	private isBetween(a:number, b:number, c:number){
-		return a&lt;&#x3D;b &amp;&amp; b&lt;&#x3D;c;
-	}
+	
 	private isInside(start:NgbDate, date:NgbDate, end:NgbDate):boolean{
-      return this.isBetween(start.year, date.year, end.year) &amp;&amp; 
-        this.isBetween(start.month, date.month, end.month) &amp;&amp; 
-        this.isBetween(start.day, date.day, end.day)
+		var startDate:Date &#x3D; new Date(start.year, start.month - 1, start.day);
+		var dateDate:Date &#x3D; new Date(date.year, date.month - 1, date.day);
+		var endDate:Date &#x3D; new Date(end.year, end.month - 1, end.day);
+		
+		return startDate&lt;&#x3D; dateDate &amp;&amp; dateDate&lt;&#x3D;endDate;
 	}
 }
 </code></pre>

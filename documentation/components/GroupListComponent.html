@@ -195,9 +195,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
-                            </li>
-                            <li>
                                 <a href="#onClick" >onClick</a>
                             </li>
                         </ul>
@@ -300,43 +297,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/app/group-page/group-list/group-list.component.ts:16</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="onClick"></a>
                     <span class="name">
                         <span ><b>onClick</b></span>
@@ -421,10 +381,7 @@ export class GroupListComponent {
     this.groupClicked.emit(group);
   }
 
-  ngOnInit(){
-    console.log(&quot;dasdas&quot;)
-    console.log(this.groups);
-  }
+  
 }
 </code></pre>
     </div>
@@ -435,20 +392,16 @@ export class GroupListComponent {
 &lt;table class&#x3D;&quot;table&quot;&gt;
 	&lt;thead&gt;
 		&lt;tr&gt;
-
-			&lt;th scope&#x3D;&quot;col&quot;&gt;GroupName&lt;/th&gt;
-			&lt;th scope&#x3D;&quot;col&quot;&gt;EventName&lt;/th&gt;
-			&lt;th scope&#x3D;&quot;col&quot;&gt;members&lt;/th&gt;
+			&lt;th scope&#x3D;&quot;col&quot;&gt;Name&lt;/th&gt;
+			&lt;th scope&#x3D;&quot;col&quot;&gt;Event&lt;/th&gt;
+			&lt;th scope&#x3D;&quot;col&quot;&gt;Members&lt;/th&gt;
 		&lt;/tr&gt;
 	&lt;/thead&gt;
 	&lt;tbody&gt;
-        
-			&lt;tr (click)&#x3D;&quot;onClick(g)&quot; *ngFor&#x3D;&quot;let g of groups&quot;&gt;
-				&lt;td&gt;
-					{{ g.name }}
-				&lt;/td&gt;
-				&lt;td&gt;{{ g.event.name }}&lt;/td&gt;
-				&lt;td&gt;{{ g.members |groupmemberPipe}}&lt;/td&gt;
+			&lt;tr (click)&#x3D;&quot;onClick(g)&quot; *ngFor&#x3D;&quot;let g of groups&quot; class&#x3D;&quot;event-row&quot;&gt;
+				&lt;td style&#x3D;&quot;background-color:inherit&quot;&gt;{{ g.name }}&lt;/td&gt;
+				&lt;td style&#x3D;&quot;background-color:inherit&quot;&gt;{{ g.event.name }}&lt;/td&gt;
+				&lt;td style&#x3D;&quot;background-color:inherit&quot;&gt;{{ g.members |groupmemberPipe}}&lt;/td&gt;
 			&lt;/tr&gt;
 		
 	&lt;/tbody&gt;
@@ -459,7 +412,15 @@ export class GroupListComponent {
                 <p class="comment">
                     <code>./group-list.component.css</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">.event-row {
+    cursor:pointer;
+    background-color: var(--bs-white);
+}
+
+
+.event-row:hover {
+    filter: brightness(95%);
+}</code></pre>
     </div>
 
     <div class="tab-pane fade " id="tree">
@@ -487,7 +448,7 @@ export class GroupListComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><table class="table">	<thead>		<tr>			<th scope="col">GroupName</th>			<th scope="col">EventName</th>			<th scope="col">members</th>		</tr>	</thead>	<tbody>        			<tr (click)="onClick(g)" *ngFor="let g of groups">				<td>					{{ g.name }}				</td>				<td>{{ g.event.name }}</td>				<td>{{ g.members |groupmemberPipe}}</td>			</tr>			</tbody></table></div>'
+        var COMPONENT_TEMPLATE = '<div><table class="table">	<thead>		<tr>			<th scope="col">Name</th>			<th scope="col">Event</th>			<th scope="col">Members</th>		</tr>	</thead>	<tbody>			<tr (click)="onClick(g)" *ngFor="let g of groups" class="event-row">				<td style="background-color:inherit">{{ g.name }}</td>				<td style="background-color:inherit">{{ g.event.name }}</td>				<td style="background-color:inherit">{{ g.members |groupmemberPipe}}</td>			</tr>			</tbody></table></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalanderComponent', 'selector': 'app-calander'},{'name': 'ClassificationComponentComponent', 'selector': 'app-classification-component'},{'name': 'EventComponentComponent', 'selector': 'app-event-component'},{'name': 'GroupCreateComponent', 'selector': 'app-group-create'},{'name': 'GroupDetailComponent', 'selector': 'app-group-detail'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupPageComponent', 'selector': 'app-group-page'},{'name': 'ListEventsComponent', 'selector': 'app-list-events'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'PersonalCalenderPageComponent', 'selector': 'app-personal-calender-page'},{'name': 'SearchPageComponent', 'selector': 'app-search-page'},{'name': 'WatchlistPageComponent', 'selector': 'app-watchlist-page'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'GroupListComponent'};

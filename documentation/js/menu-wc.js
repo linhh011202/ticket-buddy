@@ -173,6 +173,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/CreateGroupFacade.html" data-type="entity-link" >CreateGroupFacade</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/GrouppageFacadeService.html" data-type="entity-link" >GrouppageFacadeService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/GroupService.html" data-type="entity-link" >GroupService</a>
                                 </li>
                                 <li class="link">
@@ -186,6 +189,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/ViewGroupFacade.html" data-type="entity-link" >ViewGroupFacade</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/WatchlistFacadeService.html" data-type="entity-link" >WatchlistFacadeService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/WatchlistService.html" data-type="entity-link" >WatchlistService</a>

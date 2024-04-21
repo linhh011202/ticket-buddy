@@ -170,12 +170,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(fs: Firestore)</code>
+<code>constructor(fs: Firestore, platformLocation: PlatformLocation)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -197,6 +197,18 @@
                                                   
                                                         <td>
                                                                     <code>Firestore</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>platformLocation</td>
+                                                  
+                                                        <td>
+                                                                    <code>PlatformLocation</code>
                                                         </td>
                                                   
                                                     <td>
@@ -238,8 +250,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="48"
-                                    class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:48</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -305,8 +317,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="32"
-                                    class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:32</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -374,8 +386,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="13"
-                                    class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:13</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="16"
+                                    class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -439,7 +451,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PlatformLocation } from &#x27;@angular/common&#x27;;
+import { Injectable } from &#x27;@angular/core&#x27;;
 import { DocumentReference, Firestore, collection, addDoc, CollectionReference} from &#x27;@angular/fire/firestore&#x27;;
 import { GroupInterface } from &#x27;src/app/interfaces/group-interface&#x27;;
 
@@ -448,7 +461,9 @@ import { GroupInterface } from &#x27;src/app/interfaces/group-interface&#x27;;
 })
 export class NotificationService {
 
-  constructor(private fs: Firestore) { }
+  constructor(
+    private fs: Firestore, 
+    private platformLocation: PlatformLocation) { }
 
 
   private sendEmail(to: string[], message:any): Promise&lt;void&gt;{
@@ -476,10 +491,12 @@ export class NotificationService {
       if (!group.confirmed.includes(member.id))
         emailList.push(member.email);
     });
-
+    var url &#x3D; (this.platformLocation as any)._location.origin+&quot;/group&quot;+&quot;/&quot;+group.id;
     let content &#x3D; &#x60;
+    &lt;h2&gt;Requesting confirmation for ${group.event.name||&#x27;the concert&#x27;}!&lt;/h2&gt;
+    &lt;img src&#x3D;&quot;${group.event.images[0]}&quot;&gt;
     &lt;p&gt;Hello! ${group.admin.name} is asking for your confirmation to go to &lt;u&gt;${group.event.name||&#x27;the concert&#x27;}&lt;/u&gt; with ${group.name} on ${group.event.startDate!.toDateString()}.&lt;/p&gt;
-    &lt;p&gt;Please click &lt;a href&#x3D;&#x27;google.com&#x27;&gt;here&lt;/a&gt; to confirm your availability before ${group.admin.name} books the tickets!&lt;/p&gt;
+    &lt;p&gt;Please click &lt;a href&#x3D;&#x27;${url}&#x27;&gt;here&lt;/a&gt; to confirm your availability before ${group.admin.name} books the tickets!&lt;/p&gt;
     &lt;p&gt;&lt;i&gt;-Ticket Buddy&lt;/i&gt;&lt;/p&gt;
     &#x60;
 
@@ -495,6 +512,7 @@ export class NotificationService {
 
     let content &#x3D; &#x60;
     &lt;h2&gt;Booking confirmed for ${group.event.name||&#x27;the concert&#x27;}!&lt;/h2&gt;
+    &lt;img src&#x3D;&quot;${group.event.images[0]}&quot;&gt;
     &lt;p&gt;Congratulations! ${group.name} has booked the tickets for &lt;u&gt;${group.event.name||&#x27;the concert&#x27;}&lt;/u&gt;.&lt;/p&gt;
     &lt;p&gt;Contact ${group.admin.name} for details regarding the booking!&lt;/p&gt;
     &lt;p&gt;- &lt;i&gt;Ticket Buddy&lt;/i&gt;&lt;/p&gt;

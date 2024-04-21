@@ -133,6 +133,13 @@
 
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnDestroy</code>
+                <code>OnInit</code>
+    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -195,7 +202,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#searchFacade" >searchFacade</a>
+                                <a href="#watchlistFacade" >watchlistFacade</a>
                             </li>
                         </ul>
                     </td>
@@ -209,6 +216,9 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
@@ -230,12 +240,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(searchFacade: <a href="../injectables/SearchFacadeService.html" target="_self">SearchFacadeService</a>)</code>
+<code>constructor(watchlistFacade: <a href="../injectables/WatchlistFacadeService.html" target="_self">WatchlistFacadeService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/watchlist-page/watchlist-page.component.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/watchlist-page/watchlist-page.component.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -253,10 +263,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>searchFacade</td>
+                                                        <td>watchlistFacade</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/SearchFacadeService.html" target="_self" >SearchFacadeService</a></code>
+                                                                        <code><a href="../injectables/WatchlistFacadeService.html" target="_self" >WatchlistFacadeService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -286,6 +296,43 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="13"
+                                    class="link-to-prism">src/app/watchlist-page/watchlist-page.component.ts:13</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <span ><b>ngOnInit</b></span>
@@ -302,8 +349,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="13"
-                                    class="link-to-prism">src/app/watchlist-page/watchlist-page.component.ts:13</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="17"
+                                    class="link-to-prism">src/app/watchlist-page/watchlist-page.component.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -329,23 +376,23 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="searchFacade"></a>
+                    <a name="watchlistFacade"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
-                        <span ><b>searchFacade</b></span>
-                        <a href="#searchFacade"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>watchlistFacade</b></span>
+                        <a href="#watchlistFacade"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../injectables/SearchFacadeService.html" target="_self" >SearchFacadeService</a></code>
+                        <i>Type : </i>        <code><a href="../injectables/WatchlistFacadeService.html" target="_self" >WatchlistFacadeService</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/watchlist-page/watchlist-page.component.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/watchlist-page/watchlist-page.component.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -358,20 +405,24 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
 import { SearchFacadeService } from &#x27;../facade/search-facade.service&#x27;;
+import { WatchlistFacadeService } from &#x27;../facade/watchlist-facade.service&#x27;;
 
 @Component({
   selector: &#x27;app-watchlist-page&#x27;,
   templateUrl: &#x27;./watchlist-page.component.html&#x27;,
   styleUrls: [&#x27;./watchlist-page.component.css&#x27;]
 })
-export class WatchlistPageComponent {
+export class WatchlistPageComponent implements OnDestroy, OnInit{
   constructor(
-    public searchFacade:SearchFacadeService){}
+    public watchlistFacade:WatchlistFacadeService){}
+  ngOnDestroy(): void {
+      this.watchlistFacade.destroy();
+  }
 
   ngOnInit(){
-    this.searchFacade.getWatchList();  
+    this.watchlistFacade.initialise();  
   }
 }
 </code></pre>
@@ -379,13 +430,16 @@ export class WatchlistPageComponent {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container justify-content-center&quot;&gt;
-    &lt;app-list-events [events]&#x3D;&quot;(searchFacade.watchlist$|async)!&quot; [watchlist]&#x3D;&quot;(searchFacade.watchlist$|async)!&quot;&gt;&lt;/app-list-events&gt;
+    &lt;app-list-events [events]&#x3D;&quot;(watchlistFacade.watchlist$|async)!&quot; [watchlist]&#x3D;&quot;(watchlistFacade.watchlist$|async)!&quot;&gt;&lt;/app-list-events&gt;
     &lt;div class&#x3D;&quot;row  justify-content-center&quot; &gt;
         
-    
+
     
     &lt;/div&gt;
-    &lt;/div&gt;
+    &lt;h2 *ngIf&#x3D;&quot;((watchlistFacade.watchlist$|async)!).length &#x3D;&#x3D; 0&quot; style&#x3D;&quot;text-align:center; padding-top:5em;&quot;&gt;
+        You have no events added to your watchlist.
+    &lt;/h2&gt;
+&lt;/div&gt;
 </code></pre>
     </div>
 
@@ -421,7 +475,7 @@ export class WatchlistPageComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container justify-content-center">    <app-list-events [events]="(searchFacade.watchlist$|async)!" [watchlist]="(searchFacade.watchlist$|async)!"></app-list-events>    <div class="row  justify-content-center" >                    </div>    </div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="container justify-content-center">    <app-list-events [events]="(watchlistFacade.watchlist$|async)!" [watchlist]="(watchlistFacade.watchlist$|async)!"></app-list-events>    <div class="row  justify-content-center" >                </div>    <h2 *ngIf="((watchlistFacade.watchlist$|async)!).length == 0" style="text-align:center; padding-top:5em;">        You have no events added to your watchlist.    </h2></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalanderComponent', 'selector': 'app-calander'},{'name': 'ClassificationComponentComponent', 'selector': 'app-classification-component'},{'name': 'EventComponentComponent', 'selector': 'app-event-component'},{'name': 'GroupCreateComponent', 'selector': 'app-group-create'},{'name': 'GroupDetailComponent', 'selector': 'app-group-detail'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupPageComponent', 'selector': 'app-group-page'},{'name': 'ListEventsComponent', 'selector': 'app-list-events'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'PersonalCalenderPageComponent', 'selector': 'app-personal-calender-page'},{'name': 'SearchPageComponent', 'selector': 'app-search-page'},{'name': 'WatchlistPageComponent', 'selector': 'app-watchlist-page'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'WatchlistPageComponent'};

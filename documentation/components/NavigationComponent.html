@@ -133,6 +133,12 @@
 
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -185,6 +191,24 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#authApi" >authApi</a>
+                            </li>
+                            <li>
+                                <a href="#currentUser" >currentUser</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -196,6 +220,9 @@
                         <ul class="index-list">
                             <li>
                                 <a href="#logout" >logout</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                         </ul>
                     </td>
@@ -220,7 +247,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/common/navigation/navigation.component.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/common/navigation/navigation.component.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -299,8 +326,45 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="14"
-                                    class="link-to-prism">src/app/common/navigation/navigation.component.ts:14</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="18"
+                                    class="link-to-prism">src/app/common/navigation/navigation.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="15"
+                                    class="link-to-prism">src/app/common/navigation/navigation.component.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -317,12 +381,76 @@
         </tbody>
     </table>
 </section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authApi"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>authApi</b></span>
+                        <a href="#authApi"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/AuthenticationService.html" target="_self" >AuthenticationService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/common/navigation/navigation.component.ts:12</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentUser"></a>
+                    <span class="name">
+                        <span ><b>currentUser</b></span>
+                        <a href="#currentUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/common/navigation/navigation.component.ts:11</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 import { AuthenticationService } from &#x27;src/app/network/firebase/authentication/authentication.service&#x27;;
 
@@ -331,9 +459,13 @@ import { AuthenticationService } from &#x27;src/app/network/firebase/authenticat
   templateUrl: &#x27;./navigation.component.html&#x27;,
   styleUrls: [&#x27;./navigation.component.css&#x27;]
 })
-export class NavigationComponent {
-  constructor(private authApi:AuthenticationService,private router:Router){
+export class NavigationComponent implements OnInit{
+  currentUser:string &#x3D; &quot;&quot;;
+  constructor(public authApi:AuthenticationService,private router:Router){
 
+  }
+  ngOnInit(){
+    this.authApi.getCurrentUser().then((u)&#x3D;&gt;this.currentUser &#x3D; u.name)
   }
   logout(){
     this.authApi.logOut();
@@ -345,7 +477,7 @@ export class NavigationComponent {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;nav class&#x3D;&quot;navbar navbar-expand-lg navbar-light bg-light p-3&quot;&gt;
-    &lt;a class&#x3D;&quot;navbar-brand&quot; routerLink&#x3D;&quot;/search&quot;&gt;Ticket Buddy&lt;/a&gt;
+    &lt;a class&#x3D;&quot;navbar-brand&quot; &gt;{{currentUser}}&lt;/a&gt;
     &lt;button class&#x3D;&quot;navbar-toggler&quot; type&#x3D;&quot;button&quot; data-toggle&#x3D;&quot;collapse&quot; data-target&#x3D;&quot;#navbarSupportedContent&quot; aria-controls&#x3D;&quot;navbarSupportedContent&quot; aria-expanded&#x3D;&quot;false&quot; aria-label&#x3D;&quot;Toggle navigation&quot;&gt;
       &lt;span class&#x3D;&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;
     &lt;/button&gt;
@@ -365,6 +497,7 @@ export class NavigationComponent {
             &lt;a class&#x3D;&quot;nav-link&quot; routerLinkActive&#x3D;&quot;active&quot; routerLink&#x3D;&quot;/watchlist&quot;&gt;Watchlist&lt;/a&gt;
         &lt;/li&gt;
         
+      
         
       &lt;/ul&gt;
       &lt;button class&#x3D;&quot;btn btn-outline-success my-2 my-sm-0&quot; (click)&#x3D;&quot;logout()&quot;&gt;Logout&lt;/button&gt;
@@ -404,7 +537,7 @@ export class NavigationComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav class="navbar navbar-expand-lg navbar-light bg-light p-3">    <a class="navbar-brand" routerLink="/search">Ticket Buddy</a>    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">      <span class="navbar-toggler-icon"></span>    </button>      <div class="collapse navbar-collapse" id="navbarSupportedContent">      <ul class="navbar-nav mr-auto">        <li class="nav-item">          <a class="nav-link" routerLinkActive="active" routerLink="/search">Search <span class="sr-only">(current)</span></a>        </li>        <li class="nav-item">          <a class="nav-link" routerLinkActive="active" routerLink="/group">Groups</a>        </li>        <li class="nav-item">            <a class="nav-link" routerLinkActive="active" routerLink="/personalcalender">Personal Calendar</a>        </li>        <li class="nav-item">            <a class="nav-link" routerLinkActive="active" routerLink="/watchlist">Watchlist</a>        </li>                      </ul>      <button class="btn btn-outline-success my-2 my-sm-0" (click)="logout()">Logout</button>    </div>  </nav></div>'
+        var COMPONENT_TEMPLATE = '<div><nav class="navbar navbar-expand-lg navbar-light bg-light p-3">    <a class="navbar-brand" >{{currentUser}}</a>    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">      <span class="navbar-toggler-icon"></span>    </button>      <div class="collapse navbar-collapse" id="navbarSupportedContent">      <ul class="navbar-nav mr-auto">        <li class="nav-item">          <a class="nav-link" routerLinkActive="active" routerLink="/search">Search <span class="sr-only">(current)</span></a>        </li>        <li class="nav-item">          <a class="nav-link" routerLinkActive="active" routerLink="/group">Groups</a>        </li>        <li class="nav-item">            <a class="nav-link" routerLinkActive="active" routerLink="/personalcalender">Personal Calendar</a>        </li>        <li class="nav-item">            <a class="nav-link" routerLinkActive="active" routerLink="/watchlist">Watchlist</a>        </li>                            </ul>      <button class="btn btn-outline-success my-2 my-sm-0" (click)="logout()">Logout</button>    </div>  </nav></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalanderComponent', 'selector': 'app-calander'},{'name': 'ClassificationComponentComponent', 'selector': 'app-classification-component'},{'name': 'EventComponentComponent', 'selector': 'app-event-component'},{'name': 'GroupCreateComponent', 'selector': 'app-group-create'},{'name': 'GroupDetailComponent', 'selector': 'app-group-detail'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupPageComponent', 'selector': 'app-group-page'},{'name': 'ListEventsComponent', 'selector': 'app-list-events'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'PersonalCalenderPageComponent', 'selector': 'app-personal-calender-page'},{'name': 'SearchPageComponent', 'selector': 'app-search-page'},{'name': 'WatchlistPageComponent', 'selector': 'app-watchlist-page'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NavigationComponent'};

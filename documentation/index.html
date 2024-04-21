@@ -102,8 +102,7 @@
 <h4>1. Ticketmaster</h4>
 <ol>
 <li><a href="https://developer.ticketmaster.com/products-and-docs/apis/getting-started/" title="The Ticketmaster Developer Portal">Get an API key from Ticketmaster</a>.</li>
-<li>Add the following line into <code>env-prod.ts</code> with the ticket master api key.
-<code>export const ticketMasterApi = &quot;your-ticket-master-api-key&quot;;</code></li>
+<li>Add the following line into <code>env-prod.ts</code> with the ticket master api key.<br><code>export const ticketMasterApi = &quot;your-ticket-master-api-key&quot;;</code></li>
 </ol>
 <h4>2. Firebase config</h4>
 <ol>
@@ -111,16 +110,7 @@
 <li>Add Firebase to your Web App.</li>
 <li>Ignore any npm install commands, this is already completed earlier.</li>
 <li>Copy the <code>firebaseConfig</code> provided.</li>
-<li>Paste the config into <code>env-prod.ts</code> with the <code>export</code> keyword. It should look like the following.
-<code>export const firebaseConfig = {</code>
-<code> apiKey: &quot;your-proj-api-key&quot;,</code>
-<code> authDomain: &quot;your-proj-id.firebaseapp.com&quot;,</code>
-<code>  projectId: &quot;your-proj-id&quot;,</code>
-<code>  storageBucket: &quot;your-proj-id.appspot.com&quot;,</code>
-<code>  messagingSenderId: &quot;XXXXXXXXXXXX&quot;,</code>
-<code>  appId: &quot;1:XXXXXXXXXXXX:web:XXXXXXXXXXXXXXXXXXXXXXXX&quot;,</code>
-<code>  measurementId: &quot;G-XXXXX&quot;</code>
-<code>};</code></li>
+<li>Paste the config into <code>env-prod.ts</code> with the <code>export</code> keyword. It should look like the following.<br><code>export const firebaseConfig = {</code><br><code>  apiKey: &quot;your-proj-api-key&quot;,</code><br><code>  authDomain: &quot;your-proj-id.firebaseapp.com&quot;,</code><br><code>  projectId: &quot;your-proj-id&quot;,</code><br><code>  storageBucket: &quot;your-proj-id.appspot.com&quot;,</code><br><code>  messagingSenderId: &quot;XXXXXXXXXXXX&quot;,</code><br><code>  appId: &quot;1:XXXXXXXXXXXX:web:XXXXXXXXXXXXXXXXXXXXXXXX&quot;,</code><br><code>  measurementId: &quot;G-XXXXX&quot;</code><br><code>};</code></li>
 </ol>
 <h4>3. Firebase Authentication set up</h4>
 <ol>
