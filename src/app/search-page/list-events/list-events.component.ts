@@ -5,6 +5,9 @@ import {EventInterface} from '../../interfaces/event-interface';
   templateUrl: './list-events.component.html',
   styleUrls: ['./list-events.component.css']
 })
+/**
+ * manages list of events 
+ */
 export class ListEventsComponent {
   @Input() events:EventInterface[]=[];
   @Input() watchlist:EventInterface[] = [];

@@ -13,28 +13,71 @@ import { BehaviorSubject, Subscription, map, of, startWith, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class SearchFacadeService {
+  /**
+   * @ignore
+   */
   private query:any = {};
+  /**
+   * @ignore
+   */
   private subs:Subscription[] = [];
+  /**
+   * @ignore
+   */
   public loadingEvents$:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  /**
+   * @ignore
+   */
   public eventInput$:BehaviorSubject<string> = new BehaviorSubject<string>("");
+  /**
+   * @description data stream for list of events loaded from ticket master api
+   */
   public loadedEvents$:BehaviorSubject<EventInterface[]> = new BehaviorSubject<EventInterface[]>([]);
+  /**
+   * @description data stream for events in user watchlist
+   */
   public watchlist$:BehaviorSubject<EventInterface[]> = new BehaviorSubject<EventInterface[]>([]);
+  /**
+   * @ignore
+   */
   public cid$:BehaviorSubject<IdClassType[]> = new BehaviorSubject<IdClassType[]>([]); 
+  /**
+   * @ignore
+   */
   public error$:EventEmitter<{error:string, title:string}> = new EventEmitter<{error:string, title:string}>();
+  /**
+   * @description data stream for list of categories/genre being recomended by ticket masterAPI
+   */
   public cat$:BehaviorSubject<ClassificationInterface> = new BehaviorSubject<ClassificationInterface>({segment:[], genre:[], subGenre:[]});
+  /**
+   * @description data stream for page information with regards to ticket masterAPI return value of events
+   */
   public pageInfo$:BehaviorSubject<PageInterface> = new BehaviorSubject<PageInterface>({size:20, totalElements:0, number:0});
-  
+  /**
+   * 
+   * @ignore 
+   */
   constructor( private authApi:AuthenticationService,
     private tmApi: TicketmasterService,
     private watchlistSvc: WatchlistService) {
   }
+  /**
+   * 
+   * @ignore 
+   */
   updateEventInput(s:string){
     this.eventInput$.next(s);
   }
+  /**
+   * @description initialize facade
+   */
   initialise(){
     this.searchEvent();
     this.getWatchList();
   }
+  /**
+   * @description clean up code
+   */
   destroy(){
     this.query = {};
     this.cat$.next({segment:[], genre:[], subGenre:[]});
@@ -43,6 +86,9 @@ export class SearchFacadeService {
 
     this.subs.forEach((x)=>x.unsubscribe());
   }
+  /**
+   * @description initialize wathclist data stream
+   */
   private getWatchList(){
     this.authApi.getCurrentUser().then((x:UserInterface)=>{
       var rtn:Subscription = this.watchlistSvc.getWatchlist(x).subscribe(
@@ -51,6 +97,11 @@ export class SearchFacadeService {
       this.subs.push(rtn);
     });
   }
+  /**
+   * 
+   * @description update classification data stream based on recomendation from ticket master API
+   * @param {string} kw keyword used for recomendation
+   */
   getClassification(kw:string){
     return this.tmApi.getClassification(kw).pipe(
       tap((x:ClassificationInterface)=>{
@@ -58,6 +109,10 @@ export class SearchFacadeService {
       })
     );
   }
+  /**
+   * 
+   * @ignore
+   */
   addClassification(e:IdClassType){
     var n:IdClassType[] = this.cid$.value;
     for(var i of n){
@@ -66,11 +121,17 @@ export class SearchFacadeService {
     n.push(e);
     this.cid$.next(n);
   }
+  /**
+   * 
+   * @ignore 
+   */
   removeClassification(ie:IdClassType){
     var n:IdClassType[] = this.cid$.value;
     this.cid$.next(n.filter((c)=>c.id!=ie.id));
   }
- 
+  /**
+   * @description search for event based on the user query so far, will update loadedevent$ data stream
+   */
   searchEvent(){//this one got the queries
     this.query.segmentId = this.cid$.value.filter((c)=>c.type==ClassType.Segment).map((x)=>x.id);
     this.query.genreId = this.cid$.value.filter((c)=>c.type==ClassType.Genre).map((x)=>x.id);
@@ -101,6 +162,11 @@ export class SearchFacadeService {
   });
  
   }
+  /**
+   * @description get events based on input page number
+   * @param {number} pgNum page number for query
+   * 
+   */
   changePage(pgNum:number){
     this.query.page = pgNum-1;
     this.tmApi.getEventsQuery(this.query).pipe(startWith(undefined)).subscribe({
@@ -124,11 +190,19 @@ export class SearchFacadeService {
       }
     });
   }
+  /**
+   * @description remove event from wathclist
+   * @param event 
+   */
   removeFromWatchList(event:EventInterface){
     this.authApi.getCurrentUser().then((u)=>{
       this.watchlistSvc.removeWatchlistEvent(u,event);
     });
   }
+  /**
+   * @description add event to watchlist
+   * @param event 
+   */
   addToWatchList(event:EventInterface){
     this.authApi.getCurrentUser().then((u)=>{
       this.watchlistSvc.addWatchlistEvent(u,event);

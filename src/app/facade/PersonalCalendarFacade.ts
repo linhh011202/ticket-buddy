@@ -3,31 +3,54 @@ import { AuthenticationService } from '../network/firebase/authentication/authen
 import { CalendarService } from '../network/firebase/firestore/calendar.service';
 import { UserInterface } from '../interfaces/user-interface';
 import { CalanderEvent } from '../interfaces/calander-interface/CalanderEvent-interface';
-import { CalanderColor, CalanderType, CalanderTypeColor, CalanderTypePriority } from '../interfaces/enums/calenderenum';
+import { CalanderColor, CalanderTypeColor, CalanderTypePriority } from '../interfaces/enums/calenderenum';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 
 import { NewCalendarEvent } from "../class/NewCalendarEvent"
 
-
+/**
+ * @description Facade for person calender component
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class CalendarFacade {
+    /**
+     * @ignore
+     */
     private subs:Subscription[] = [];
+    /**
+     * @ignore
+     */
     currentUser?: UserInterface;
+    /**
+     * @description data stream for list of calender events
+     */
     calendar$: BehaviorSubject<CalanderEvent[]> = new BehaviorSubject<CalanderEvent[]>([]);
+    /**
+     * @description data stream of list of dates and their corresponding colours
+     */
     dateColor$: BehaviorSubject<[[NgbDate,NgbDate], CalanderColor][]> = new BehaviorSubject<[[NgbDate,NgbDate], CalanderColor][]>([]); //should be date range better // wtf does this mean
-
+    /**
+     * 
+     * @ignore
+     */
     constructor(
         private authSvc:AuthenticationService,
         private calSvc: CalendarService
     ) {
         
     }
+    /**
+     * @description clean up for destroy
+     */
     destroy(){
         this.subs.forEach((e)=>e.unsubscribe());
     }
+    /**
+     * @description get personal calender events for current user
+     */
     initializeCalender(){
         this.authSvc.getCurrentUser().then(user=>{
             this.currentUser  = user;
@@ -57,11 +80,18 @@ export class CalendarFacade {
         });
 
     }
- 
+    /**
+     * @description delete calender event from personal calender
+     * @param e Calender event user wants to delete
+     * 
+     */
     deleteEvent(e:CalanderEvent): Promise<void>{
         return this.calSvc.removeCalendarEvent(e);
     }
-
+    /**
+     * @description create new alender event
+     * @param {NewCalendarEvent} newCalEvent new calender event to be created
+     */
     createEvent(newCalEvent: NewCalendarEvent): Promise<void>{
         return new Promise<void>((res,rej)=>{
             if(this.currentUser && newCalEvent.isValid()){

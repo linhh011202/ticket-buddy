@@ -1,7 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { GroupInterface } from '../interfaces/group-interface';
 import { UserInterface } from '../interfaces/user-interface';
-
+/**
+ * @ignore
+ */
 @Pipe({
   name: 'grouppipe'
 })
