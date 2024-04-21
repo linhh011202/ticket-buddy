@@ -6,16 +6,26 @@ import { WatchlistService } from "../network/firebase/firestore/watchlist.servic
 import { UserInterface } from "../interfaces/user-interface"
 import { EventInterface } from "../interfaces/event-interface"
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { AbstractControl, FormBuilder, FormControl, ValidationErrors, Validators } from '@angular/forms';
+import {  FormBuilder, FormControl, Validators } from '@angular/forms';
 
-
+/**
+ * @description Facade for create Group UI
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class CreateGroupFacade {
-
+	/**
+	 * @ignore
+	 */
 	private subs:Subscription[] = [];
+	/**
+	 * @description data stream for watchlist
+	 */
     watchlist$: BehaviorSubject<EventInterface[]> = new BehaviorSubject<EventInterface[]>([]);
+	/**
+	 * @ignore
+	 */
 	newGroupForm = this.formBuilder.group({
 		name:['', Validators.required],
 		event:this.formBuilder.group({
@@ -28,7 +38,9 @@ export class CreateGroupFacade {
 			endDate:new FormControl("", Validators.required)
 		})
 	});
-
+	/**
+	 * @ignore 
+	 */
     constructor(
         private authSvc: AuthenticationService,
 		private formBuilder: FormBuilder,
@@ -36,14 +48,20 @@ export class CreateGroupFacade {
         private watchlistSvc: WatchlistService
     ) {
   	}
+	/**
+	 * @description initiates all the data streams objects
+	 */
   	initialize(){
 		this.authSvc.getCurrentUser().then(user=>{
 			this.subs.push(this.watchlistSvc.getWatchlist(user).subscribe(watchlist=>{
 				this.watchlist$.next(watchlist);
-				console.log(watchlist);
+			
 			}));
 		});
 	}
+	/**
+	 * @description unsubcribe to all resources and clean up
+	 */
 	destroy(){
 		this.subs.forEach((e)=>e.unsubscribe());
 		this.newGroupForm = this.formBuilder.group({
@@ -59,6 +77,9 @@ export class CreateGroupFacade {
 			})
 		});
 	}
+	/**
+	 * @ignore
+	 */
 	updateForm(evt:EventInterface){
 		var n:any = structuredClone(evt);
 		var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds 
@@ -75,7 +96,10 @@ export class CreateGroupFacade {
 			event:n
 		});
 	}
-
+	/**
+	 * @description make api call to create group
+	 * @param selectedEvent event for the created group 
+	 */
   	createGroup(selectedEvent: EventInterface): Promise<void>{
 		return this.authSvc.getCurrentUser().then((u:UserInterface)=>new Promise<void>((res,rej)=>{
 			var grp:any = this.newGroupForm.value;

@@ -3,25 +3,41 @@ import { AuthenticationService } from "../network/firebase/authentication/authen
 import { GroupService } from "../network/firebase/firestore/group.service"
 import { UserInterface } from "../interfaces/user-interface"
 import { GroupInterface } from "../interfaces/group-interface"
-import { CalendarService } from '../network/firebase/firestore/calendar.service';
-import { PlatformLocation } from '@angular/common';
-import { BehaviorSubject, Observable, Subscription, from, iif, map, of, switchMap, tap } from 'rxjs';
-import { CalanderEvent } from "../interfaces/calander-interface/CalanderEvent-interface"
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { CalanderColor, CalanderType, CalanderTypeColor, CalanderTypePriority } from '../interfaces/enums/calenderenum';
-import { Clipboard } from '@angular/cdk/clipboard';
+
+import { BehaviorSubject, Observable, Subscription, from, switchMap } from 'rxjs';
+/**
+ * @description Facade grouppage component
+ */
 
 @Injectable({
   providedIn: 'root'
 })
 export class GrouppageFacadeService {
+  /**
+   * @ignore
+   */
   private subs:Subscription[] = [];
+  /**
+   * @description data stream for group data
+   */
     group$: BehaviorSubject<GroupInterface|undefined> = new BehaviorSubject<GroupInterface|undefined>(undefined);
-   
+   /**
+   * @description data stream for groups user is admin of
+   */
     adminGroups$: BehaviorSubject<GroupInterface[]> = new BehaviorSubject<GroupInterface[]>([]);
+    /**
+   * @description data stream for groups user is member of 
+   */
     memberGroups$: BehaviorSubject<GroupInterface[]> = new BehaviorSubject<GroupInterface[]>([]);
+    /**
+     * @ignore
+     */
     groupById$: BehaviorSubject<GroupInterface|undefined> = new BehaviorSubject<GroupInterface|undefined>(undefined);
 
+    /**
+     * 
+     * @ignore
+     */
     constructor(
         private authSvc:AuthenticationService, 
         private grpSvc: GroupService
@@ -36,12 +52,21 @@ export class GrouppageFacadeService {
     
 
 }
+  /**
+   * @description initialise data streams
+   */
   initialise(){
     this.getGroups();
   }
+  /**
+   * @description clean up for better resource management
+   */
   destroy(){
     this.subs.forEach((e)=>e.unsubscribe());
   }
+  /**
+   * @description get all groups user is administrator and member of
+   */
   getGroups(){
     this.authSvc.getCurrentUser().then(user=>{
         
@@ -60,6 +85,10 @@ export class GrouppageFacadeService {
         this.subs.push(rtn);
     });
   }
+  /**
+   * 
+   * @ignore
+   */
   getGrpById(id: string): Observable<GroupInterface>{
     let obs: Observable<GroupInterface> = this.grpSvc.getGroupById(id);
     var rtn:Subscription = obs.subscribe(grp=>{

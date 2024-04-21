@@ -10,20 +10,48 @@ import { CalanderEvent } from "../interfaces/calander-interface/CalanderEvent-in
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { CalanderColor, CalanderType, CalanderTypeColor, CalanderTypePriority } from '../interfaces/enums/calenderenum';
 import { Clipboard } from '@angular/cdk/clipboard';
-
+/**
+ * @description facade for group page and group detail page
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class ViewGroupFacade {
-
+    /**
+     * @ignore
+     */
   	private subs:Subscription[] = [];
+     /**
+     * @ignore
+     */
     group$: BehaviorSubject<GroupInterface|undefined> = new BehaviorSubject<GroupInterface|undefined>(undefined);
+     /**
+     * @ignore
+     */
     dateColor$: BehaviorSubject<[[NgbDate,NgbDate], CalanderColor][]> = new BehaviorSubject<[[NgbDate,NgbDate], CalanderColor][]>([]); //should be date range better // wtf does this mean
+     /**
+      * @description data stream for what calender event clash with event in question
+      */
     groupCalendar$: BehaviorSubject<CalanderEvent[]> = new BehaviorSubject<CalanderEvent[]>([]);
+    /**
+      * @description data stream for groups user is admin of 
+      */
     adminGroups$: BehaviorSubject<GroupInterface[]> = new BehaviorSubject<GroupInterface[]>([]);
+    /**
+      * @description data stream for groups user is member of 
+      */
     memberGroups$: BehaviorSubject<GroupInterface[]> = new BehaviorSubject<GroupInterface[]>([]);
+    /**
+     * @ignore
+     */
     groupById$: BehaviorSubject<GroupInterface|undefined> = new BehaviorSubject<GroupInterface|undefined>(undefined);
+    /**
+     * @ignore
+     */
     currentUser$:BehaviorSubject<UserInterface> = new BehaviorSubject<UserInterface>({id:"",email:"",name:""});
+    /**
+     * @ignore
+     */
     constructor(
         private authSvc:AuthenticationService, 
         private calSvc: CalendarService,
@@ -34,17 +62,34 @@ export class ViewGroupFacade {
 
     
   }
+  /**
+   * @description initialize data stream based on parameters
+   * @param id user id
+   * @param group group in question
+   */
     initialise(id:string, group:GroupInterface){
         this.getCurrentUser();
     this.getGroup(id);
     this.getGroupCalander(group);
     }
+    /**
+     * @description clean up for resource management 
+     */
     destroy(){
         this.subs.forEach((e)=>e.unsubscribe());
     }
+    /**
+     * 
+     * @ignore
+     */
     getCurrentUser(){
         return this.authSvc.getCurrentUser().then(u=>this.currentUser$.next(u));
     }
+    /**
+     * 
+     * @description get inforamtion about group
+     * @param id group id
+     */
     getGroup(id:string){       
         this.subs.push(
             this.grpSvc.getGroupById(id).subscribe(group=>{
@@ -53,6 +98,9 @@ export class ViewGroupFacade {
         ); 
             
     }
+    /**
+     * @description get groups user is part of then initialize data admingropu$ and membergroups$ data stream
+     */
     getGroups(){
         this.authSvc.getCurrentUser().then(user=>{
             
@@ -71,6 +119,10 @@ export class ViewGroupFacade {
             this.subs.push(rtn);
         });
     }
+    /**
+     * @description get calender information for people in group
+     * @param g group in question
+     */
     getGroupCalander(g:GroupInterface){
         // Get latest group
         var rtn:Subscription = this.grpSvc.getGroupById(g.id).pipe(
@@ -98,7 +150,10 @@ export class ViewGroupFacade {
     }
     
    
-
+/**
+ * 
+ * @ignore
+ */
     private setGroupCalanderColor(grpCal:CalanderEvent[],group:GroupInterface):CalanderColor{
         if(grpCal.length==0) return CalanderColor.AllAvailable;
         var cmiCount = [...new Set(grpCal.map(i=>i.user.id))].length;
@@ -107,12 +162,18 @@ export class ViewGroupFacade {
         return CalanderColor.SomeFree
         
     }
-
+    /**
+     * 
+     * @ignore 
+     */
     copyInviteLink(): boolean {
         var base_url = (this.platformLocation as any)._location.origin+"/group"+"/"+this.group$.value!.id;
         return this.clipboard.copy(base_url);
     }
-
+    /**
+     * 
+     * @description delete group
+     */
     deleteGroup(): Promise<void> {
         return new Promise<void>(res=>{
             let allProm:Promise<void>[] = [];
@@ -130,7 +191,11 @@ export class ViewGroupFacade {
             });
         })
     }
-
+    /**
+     * @description kicker user from group
+     * @param user 
+     * 
+     */
     kickUser(user: UserInterface): Promise<void> {
         let allProm = [
             this.calSvc.removeReservedCalEvent(this.group$.value!, user),
@@ -144,7 +209,10 @@ export class ViewGroupFacade {
 
 
     }
-
+    /**
+     * @description join group
+     * @param id 
+     */
     joinGroup(id: string): Observable<void> {
         return from(this.authSvc.getCurrentUser()).pipe(
             switchMap((user:UserInterface)=>from(this.grpSvc.joinGroup(id, user)))
@@ -152,13 +220,18 @@ export class ViewGroupFacade {
         
     
     }
-
+    /**
+     * 
+     * @ignore
+     */
     getStartDate(d?: Date): NgbDate{
         if (!d)
             d = new Date();
         return new NgbDate(d.getFullYear(), d.getMonth()+1, d.getDate());
     }
-
+    /**
+     * @ignore
+     */
     getGrpById(id: string): Observable<GroupInterface>{
         let obs: Observable<GroupInterface> = this.grpSvc.getGroupById(id);
         var rtn:Subscription = obs.subscribe(grp=>{
@@ -167,6 +240,10 @@ export class ViewGroupFacade {
         this.subs.push(rtn);
         return obs;
     }
+    /**
+     * 
+     * @description send confirmation to group memberes
+     */
     sendGroupConfirmation(): Promise<void>{
         //groupInterface
         return new Promise<void>((res,rej)=>{
@@ -179,6 +256,10 @@ export class ViewGroupFacade {
             });
         });
     }   
+    /**
+     * 
+     * @description notify confirm booking
+     */
     confirmGroupbooking(): Promise<void>{
         //groupInterface
         return new Promise<void>((res,rej)=>{
@@ -195,7 +276,10 @@ export class ViewGroupFacade {
         });
         
     }
-
+    /**
+     * 
+     * @ignore
+     */
     confirmGroupEvent(): Observable<any>{
         return this.grpSvc.confirmGroupEvent(this.group$.value!, this.currentUser$.value);
        
