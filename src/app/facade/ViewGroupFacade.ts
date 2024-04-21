@@ -11,7 +11,7 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { CalanderColor, CalanderType, CalanderTypeColor, CalanderTypePriority } from '../interfaces/enums/calenderenum';
 import { Clipboard } from '@angular/cdk/clipboard';
 /**
- * @description facade for group page and group detail page
+ * facade for group page and group detail page
  */
 @Injectable({
   providedIn: 'root'
@@ -30,15 +30,15 @@ export class ViewGroupFacade {
      */
     dateColor$: BehaviorSubject<[[NgbDate,NgbDate], CalanderColor][]> = new BehaviorSubject<[[NgbDate,NgbDate], CalanderColor][]>([]); //should be date range better // wtf does this mean
      /**
-      * @description data stream for what calender event clash with event in question
+      * data stream for what calender event clash with event in question
       */
     groupCalendar$: BehaviorSubject<CalanderEvent[]> = new BehaviorSubject<CalanderEvent[]>([]);
     /**
-      * @description data stream for groups user is admin of 
+      * data stream for groups user is admin of 
       */
     adminGroups$: BehaviorSubject<GroupInterface[]> = new BehaviorSubject<GroupInterface[]>([]);
     /**
-      * @description data stream for groups user is member of 
+      * data stream for groups user is member of 
       */
     memberGroups$: BehaviorSubject<GroupInterface[]> = new BehaviorSubject<GroupInterface[]>([]);
     /**
@@ -63,7 +63,7 @@ export class ViewGroupFacade {
     
   }
   /**
-   * @description initialize data stream based on parameters
+   * initialize data stream based on parameters
    * @param id user id
    * @param group group in question
    */
@@ -73,7 +73,7 @@ export class ViewGroupFacade {
     this.getGroupCalander(group);
     }
     /**
-     * @description clean up for resource management 
+     * clean up for resource management 
      */
     destroy(){
         this.subs.forEach((e)=>e.unsubscribe());
@@ -87,7 +87,7 @@ export class ViewGroupFacade {
     }
     /**
      * 
-     * @description get inforamtion about group
+     * get inforamtion about group
      * @param id group id
      */
     getGroup(id:string){       
@@ -99,7 +99,7 @@ export class ViewGroupFacade {
             
     }
     /**
-     * @description get groups user is part of then initialize data admingropu$ and membergroups$ data stream
+     * get groups user is part of then initialize data admingropu$ and membergroups$ data stream
      */
     getGroups(){
         this.authSvc.getCurrentUser().then(user=>{
@@ -120,7 +120,7 @@ export class ViewGroupFacade {
         });
     }
     /**
-     * @description get calender information for people in group
+     * get calender information for people in group
      * @param g group in question
      */
     getGroupCalander(g:GroupInterface){
@@ -172,7 +172,7 @@ export class ViewGroupFacade {
     }
     /**
      * 
-     * @description delete group
+     * delete group
      */
     deleteGroup(): Promise<void> {
         return new Promise<void>(res=>{
@@ -192,7 +192,7 @@ export class ViewGroupFacade {
         })
     }
     /**
-     * @description kicker user from group
+     * kicker user from group
      * @param user 
      * 
      */
@@ -210,7 +210,7 @@ export class ViewGroupFacade {
 
     }
     /**
-     * @description join group
+     * join group
      * @param id 
      */
     joinGroup(id: string): Observable<void> {
@@ -242,7 +242,7 @@ export class ViewGroupFacade {
     }
     /**
      * 
-     * @description send confirmation to group memberes
+     * send confirmation to group memberes
      */
     sendGroupConfirmation(): Promise<void>{
         //groupInterface
@@ -258,7 +258,7 @@ export class ViewGroupFacade {
     }   
     /**
      * 
-     * @description notify confirm booking
+     * notify confirm booking
      */
     confirmGroupbooking(): Promise<void>{
         //groupInterface

@@ -4,7 +4,7 @@ import { ReplaySubject, take } from 'rxjs';
 import { CalanderEvent } from 'src/app/interfaces/calander-interface/CalanderEvent-interface';
 import { CalanderColor } from 'src/app/interfaces/enums/calenderenum';
 /**
- * @description manages UI  display anything related to calender
+ * manages UI  display anything related to calender
  */
 @Component({
   selector: 'app-calander',
@@ -18,15 +18,15 @@ export class CalanderComponent implements OnChanges{
 	 */
 	@Input() navigateTo!:NgbDate;
 	/**
-	 * @description [start date, end date] and its corresponding color
+	 * [start date, end date] and its corresponding color
 	 */
 	@Input() dateColor!: [[NgbDate, NgbDate], CalanderColor][];
 	/**
-	 * @description list of events which contains date to be coloured in the calender
+	 *  list of events which contains date to be coloured in the calender
 	 */
 	@Input() events!:CalanderEvent[];
 	/**
-	 * @description emit what date was being clicked
+	 * emit what date was being clicked
 	 */
 	@Output() clickedDate = new EventEmitter<NgbDate>();
 	/**

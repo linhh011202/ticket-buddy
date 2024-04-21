@@ -4,7 +4,7 @@ import { inject } from '@angular/core';
 import {tap } from 'rxjs';
 //https://angular.io/api/router/CanActivateFn
 /**
- * @description guard to check if user is authenticated
+ * guard to check if user is authenticated
  * @param route 
  * @param state 
  * @returns promise of whether or not the user is authenticated

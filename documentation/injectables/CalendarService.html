@@ -126,6 +126,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Handles all calendar-related methods.</p>
+
+            </p>
 
 
 
@@ -193,7 +200,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -256,14 +263,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="37"
-                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:37</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:48</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Adds CalendarEvent to firstore.
+Checks if the CalendarEvent is a personal event that clashes with a group event.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -274,6 +284,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -288,6 +299,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Event to be added.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -297,7 +312,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The promise resolves when the event has been added.</p>
+
                             </div>
                 </td>
             </tr>
@@ -323,14 +339,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="86"
-                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:86</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:105</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Checks if there is a clash between an event and a calendar event.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -341,6 +359,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -355,6 +374,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Event to check against.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>calEvent</td>
@@ -367,6 +390,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>CalenderEvent to check with.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -376,7 +403,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Returns true if there is a clash.</p>
+
                             </div>
                 </td>
             </tr>
@@ -402,14 +430,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="157"
-                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:157</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="196"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:196</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Converts all group user&#39;s Reserved CalendarEvent to Booked.
+This should only affect users who have confirmed their availabilities.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -420,6 +451,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -434,6 +466,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Group that is being &quot;booked&quot;.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -443,7 +479,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The promise resolves when update is successful.</p>
+
                             </div>
                 </td>
             </tr>
@@ -471,14 +508,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="26"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:26</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Convert firestore object to CalendarEvent object</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -489,6 +528,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -503,6 +543,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Calendar event from firestore in document format.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>user</td>
@@ -515,6 +559,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>User that this CalendarEvent is made for.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -550,14 +598,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="69"
-                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:69</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:83</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Get all of the user&#39;s CalendarEvents</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -568,6 +618,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -582,6 +633,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>User to pull CalendarEvents for.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -591,7 +646,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The observable updates in real time when user&#39;s calendar updates.</p>
+
                             </div>
                 </td>
             </tr>
@@ -617,14 +673,18 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="90"
-                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:90</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:116</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Gets all CalendarEvents of all users in a group.
+The method filters out CalendarEvents that does not clash with the Group&#39;s Event.
+The method also ignores reserved/book CalendarEvents that are made for the Group.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -635,6 +695,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -649,6 +710,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Group to pull CalendarEvents for.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -658,7 +723,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The observable updates in real time when any of the user&#39;s calendar updates or when new users joins the group.</p>
+
                             </div>
                 </td>
             </tr>
@@ -684,14 +750,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="146"
-                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:146</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="179"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:179</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Deletes a calendar event in firestore.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -702,6 +770,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -716,6 +785,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>CalendarEvent to be deleted.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -725,7 +798,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The promise resolves when deletion is successful.</p>
+
                             </div>
                 </td>
             </tr>
@@ -751,14 +825,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="183"
-                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:183</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="228"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:228</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Removes Reserve CalendarEvent from a user that is in a group.
+This is used when a user is kicked from the group.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -769,6 +846,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -783,6 +861,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Group that the user is being kicked from.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>user</td>
@@ -795,6 +877,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>User that is being kicked.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -804,7 +890,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The promise resolves when remove is successful.</p>
+
                             </div>
                 </td>
             </tr>
@@ -830,14 +917,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="131"
-                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:131</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="159"
+                                    class="link-to-prism">src/app/network/firebase/firestore/calendar.service.ts:159</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Updates a calendar event in firestore.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -848,6 +937,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -862,6 +952,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Updated calendarEvent.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -871,7 +965,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The promise resolves when update is successful.</p>
+
                             </div>
                 </td>
             </tr>
@@ -892,6 +987,9 @@ import { CalanderType } from &#x27;src/app/interfaces/enums/calenderenum&#x27;;
 import { GroupInterface } from &#x27;src/app/interfaces/group-interface&#x27;;
 import { EventInterface } from &#x27;src/app/interfaces/event-interface&#x27;;
 
+/**
+ * Handles all calendar-related methods.
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
@@ -899,9 +997,13 @@ export class CalendarService {
 
   constructor(private fs: Firestore) { }
 
-  private dbToCalendarEvent(dbCalEnt: DocumentData | DocumentData &amp; {id: string;}, user: UserInterface): CalanderEvent 
-  { 
-
+  /**
+   * Convert firestore object to CalendarEvent object
+   * @param dbCalEnt  Calendar event from firestore in document format.
+   * @param user User that this CalendarEvent is made for.
+   * @returns 
+   */
+  private dbToCalendarEvent(dbCalEnt: DocumentData | DocumentData &amp; {id: string;}, user: UserInterface): CalanderEvent { 
     let calEvent: CalanderEvent &#x3D; { 
       id: dbCalEnt[&quot;id&quot;],
       user: user, 
@@ -910,17 +1012,20 @@ export class CalendarService {
       detail: dbCalEnt[&quot;detail&quot;], 
       type: CalanderType[dbCalEnt[&quot;type&quot;] as keyof typeof CalanderType] 
     } 
-    
     if (calEvent.type &#x3D;&#x3D; CalanderType.ReservedForEvent || calEvent.type &#x3D;&#x3D; CalanderType.BookedForEvent){
       calEvent.groupId &#x3D; dbCalEnt[&quot;grp&quot;][&quot;id&quot;];
       calEvent.groupName &#x3D; dbCalEnt[&quot;grp&quot;][&quot;name&quot;];
     }
-
     return calEvent;
   } 
 
+  /**
+   * Adds CalendarEvent to firstore.
+   * Checks if the CalendarEvent is a personal event that clashes with a group event.
+   * @param calendarEvent Event to be added.
+   * @returns The promise resolves when the event has been added.
+   */
   addCalendarEvent(calendarEvent: CalanderEvent): Promise&lt;void&gt;{
-
     // Initialise
     let calCollection: CollectionReference &#x3D; collection(this.fs, &quot;calendar&quot;);
     let calDoc: any &#x3D; {
@@ -942,7 +1047,6 @@ export class CalendarService {
         const clash &#x3D; cal.some(c &#x3D;&gt; (c.type!&#x3D;&#x3D;CalanderType.Personal &amp;&amp; calendarEvent.start &lt; c.end &amp;&amp; calendarEvent.end &gt; c.start));
         if (clash)
           return rej(new Error(&quot;cal-event-clash&quot;));
-  
         // no clash carry on
         addDoc(calCollection, calDoc)
         .then(doc &#x3D;&gt; res()).
@@ -951,10 +1055,14 @@ export class CalendarService {
     });
   }
 
+  /**
+   * Get all of the user&#x27;s CalendarEvents
+   * @param user User to pull CalendarEvents for.
+   * @returns The observable updates in real time when user&#x27;s calendar updates.
+   */
   getCalendar(user: UserInterface): Observable&lt;CalanderEvent[]&gt;{
     let calCollection: CollectionReference &#x3D; collection(this.fs, &quot;calendar&quot;);
     let q &#x3D; query(calCollection, where(&quot;uid&quot;,&quot;&#x3D;&#x3D;&quot;,user.id));
-
     return new Observable&lt;CalanderEvent[]&gt;(obs&#x3D;&gt;{
       collectionData(q, {idField: &#x27;id&#x27;}).subscribe(
         data&#x3D;&gt;{
@@ -968,10 +1076,23 @@ export class CalendarService {
     })
   }
 
+  /**
+   * Checks if there is a clash between an event and a calendar event.
+   * @param event Event to check against.
+   * @param calEvent CalenderEvent to check with.
+   * @returns Returns true if there is a clash.
+   */
 	clash(event: EventInterface, calEvent: CalanderEvent): boolean {
 		return calEvent.start &lt;&#x3D; event.endDate! &amp;&amp; calEvent.end &gt;&#x3D; event.startDate!;
 	}
 
+  /**
+   * Gets all CalendarEvents of all users in a group.
+   * The method filters out CalendarEvents that does not clash with the Group&#x27;s Event.
+   * The method also ignores reserved/book CalendarEvents that are made for the Group.
+   * @param group Group to pull CalendarEvents for.
+   * @returns The observable updates in real time when any of the user&#x27;s calendar updates or when new users joins the group.
+   */
   getGroupCalendar(group: GroupInterface): Observable&lt;CalanderEvent[]&gt;{
     let calCollection: CollectionReference &#x3D; collection(this.fs, &quot;calendar&quot;);
     let q &#x3D; query(calCollection, and(
@@ -995,14 +1116,11 @@ export class CalendarService {
           let result: CalanderEvent[] &#x3D; [];
           data.forEach(cal&#x3D;&gt;{
             let calEvent &#x3D; this.dbToCalendarEvent(cal, allUserMap[cal[&quot;uid&quot;]]);
-
             if(!group.event.endDate || !group.event.startDate)
               return;
-
             // Reserved/Booked for the group
             if ((calEvent.type&#x3D;&#x3D;CalanderType.ReservedForEvent || calEvent.type&#x3D;&#x3D;CalanderType.BookedForEvent) &amp;&amp; calEvent.groupId &#x3D;&#x3D; group.id)
               return;
-
             // Clash with group date
 						if (this.clash(group.event,calEvent))
               result.push(calEvent);
@@ -1013,6 +1131,11 @@ export class CalendarService {
     })
   }
 
+  /**
+   * Updates a calendar event in firestore.
+   * @param calendarEvent Updated calendarEvent.
+   * @returns The promise resolves when update is successful.
+   */
   updateCalendarEvent(calendarEvent: CalanderEvent): Promise&lt;void&gt;{
     let calDoc &#x3D; doc(this.fs, &#x60;calendar/${calendarEvent.id}&#x60;);
     let update &#x3D; {
@@ -1028,6 +1151,11 @@ export class CalendarService {
     });
   }
   
+  /**
+   * Deletes a calendar event in firestore.
+   * @param calendarEvent CalendarEvent to be deleted.
+   * @returns The promise resolves when deletion is successful.
+   */
   removeCalendarEvent(calendarEvent: CalanderEvent): Promise&lt;void&gt;{
     let calDoc &#x3D; doc(this.fs, &#x60;calendar/${calendarEvent.id}&#x60;);
     return new Promise&lt;void&gt;(res&#x3D;&gt;{
@@ -1039,6 +1167,12 @@ export class CalendarService {
 
 	// 1. Pull all &quot;Reserved&quot; calendar event of all who has confirmed
 	// 2. Change type from &quot;ReservedForEvent&quot; to &quot;BookedForEvent&quot; &amp; update detail
+  /**
+   * Converts all group user&#x27;s Reserved CalendarEvent to Booked.
+   * This should only affect users who have confirmed their availabilities.
+   * @param grp Group that is being &quot;booked&quot;.
+   * @returns The promise resolves when update is successful.
+   */
   convertReservedToBooked(grp: GroupInterface): Promise&lt;void&gt;{
     return new Promise&lt;void&gt;(res&#x3D;&gt;{
       let calCollection: CollectionReference &#x3D; collection(this.fs, &quot;calendar&quot;);
@@ -1064,7 +1198,13 @@ export class CalendarService {
     });
   }
 
-
+  /**
+   * Removes Reserve CalendarEvent from a user that is in a group.
+   * This is used when a user is kicked from the group.
+   * @param grp   Group that the user is being kicked from.
+   * @param user  User that is being kicked.
+   * @returns The promise resolves when remove is successful.
+   */
   removeReservedCalEvent(grp: GroupInterface, user: UserInterface): Promise&lt;void&gt;{
     return new Promise&lt;void&gt;(res&#x3D;&gt;{
       let calCollection: CollectionReference &#x3D; collection(this.fs, &quot;calendar&quot;);

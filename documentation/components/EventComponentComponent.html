@@ -131,6 +131,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>manages UI which diplays event details</p>
+
+    </p>
 
 
 
@@ -255,7 +262,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/search-page/event-component/event-component.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/search-page/event-component/event-component.component.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -311,9 +318,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/search-page/event-component/event-component.component.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/search-page/event-component/event-component.component.ts:21</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event information to be displayed</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -332,9 +345,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/search-page/event-component/event-component.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/search-page/event-component/event-component.component.ts:17</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>if in watchlist event will be displayed without start on with start otherwist</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -366,14 +385,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="23"
-                                    class="link-to-prism">src/app/search-page/event-component/event-component.component.ts:23</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/app/search-page/event-component/event-component.component.ts:36</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>initiate add to watchlist</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -384,6 +405,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -398,6 +420,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>event the user wants to add to watchlist</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -433,14 +459,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="19"
-                                    class="link-to-prism">src/app/search-page/event-component/event-component.component.ts:19</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/app/search-page/event-component/event-component.component.ts:29</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>initiate remove from watchlist</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -451,6 +479,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -465,6 +494,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>event the user wants to remove from watchlist</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -506,7 +539,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/search-page/event-component/event-component.component.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/search-page/event-component/event-component.component.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -521,26 +554,39 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input } from &#x27;@angular/core&#x27;;
 import { EventInterface } from &#x27;../../interfaces/event-interface&#x27;;
-import { AuthenticationService } from &#x27;src/app/network/firebase/authentication/authentication.service&#x27;;
-import { WatchlistService } from &#x27;src/app/network/firebase/firestore/watchlist.service&#x27;;
-import { SearchFacadeService } from &#x27;src/app/facade/search-facade.service&#x27;;
 
+import { SearchFacadeService } from &#x27;src/app/facade/search-facade.service&#x27;;
+/**
+ * manages UI which diplays event details
+ */
 @Component({
   selector: &#x27;app-event-component&#x27;,
   templateUrl: &#x27;./event-component.component.html&#x27;,
   styleUrls: [&#x27;./event-component.component.css&#x27;]
 })
 export class EventComponentComponent {
+  /**
+   * if in watchlist event will be displayed without start on with start otherwist
+   */
   @Input() inWatchlist!:boolean;
+  /**
+   * Event information to be displayed
+   */
   @Input() event!:EventInterface;
   constructor(
     public searchFacade:SearchFacadeService
   ){}
-  
+  /**
+   * initiate remove from watchlist
+   * @param {EventInterface} event event the user wants to remove from watchlist
+   */
   removeEvent(event:EventInterface){
     this.searchFacade.removeFromWatchList(event);
   }
-
+  /**
+   * initiate add to watchlist
+   * @param {EventInterface} event event the user wants to add to watchlist
+   */
   addEvent(event:EventInterface){
     this.searchFacade.addToWatchList(event);
   }

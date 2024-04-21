@@ -126,6 +126,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Handles all authentication-related methods.</p>
+
+            </p>
 
 
 
@@ -177,7 +184,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/network/firebase/authentication/authentication.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/network/firebase/authentication/authentication.service.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -240,19 +247,25 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="33"
-                                    class="link-to-prism">src/app/network/firebase/authentication/authentication.service.ts:33</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/app/network/firebase/authentication/authentication.service.ts:46</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Get the user that is currently logged in.</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="../interfaces/UserInterface.html" target="_self" >Promise&lt;UserInterface&gt;</a></code>
 
                         </div>
+                            <div class="io-description">
+                                <p>The promise resolves with null if user is not logged in.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -277,19 +290,25 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="52"
-                                    class="link-to-prism">src/app/network/firebase/authentication/authentication.service.ts:52</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="68"
+                                    class="link-to-prism">src/app/network/firebase/authentication/authentication.service.ts:68</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Get latest authentication state</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
 
                         </div>
+                            <div class="io-description">
+                                <p>The observable updates when user&#39;s authentication state changes.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -314,19 +333,25 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="15"
-                                    class="link-to-prism">src/app/network/firebase/authentication/authentication.service.ts:15</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="21"
+                                    class="link-to-prism">src/app/network/firebase/authentication/authentication.service.ts:21</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Triggers a popup using Google authentication.</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                         </div>
+                            <div class="io-description">
+                                <p>The promise is resolved when login is successful.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -351,19 +376,25 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="25"
-                                    class="link-to-prism">src/app/network/firebase/authentication/authentication.service.ts:25</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/app/network/firebase/authentication/authentication.service.ts:35</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Triggers log out.</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                         </div>
+                            <div class="io-description">
+                                <p>The promise is resolved when log out is successful.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -380,14 +411,20 @@ import { signInWithPopup } from &#x27;firebase/auth&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
 import { UserInterface } from &#x27;src/app/interfaces/user-interface&#x27;;
 
+/**
+ * Handles all authentication-related methods.
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class AuthenticationService {
   
-  constructor(private auth: Auth) { 
-  
-  }
+  constructor(private auth: Auth) {}
+
+  /**
+   * Triggers a popup using Google authentication.
+   * @returns The promise is resolved when login is successful.
+   */
   loginGoogle(): Promise&lt;void&gt; {
     return new Promise&lt;void&gt;((res)&#x3D;&gt;{
       let provider &#x3D; new GoogleAuthProvider();
@@ -398,16 +435,22 @@ export class AuthenticationService {
     });
   }
 
+  /**
+   * Triggers log out.
+   * @returns The promise is resolved when log out is successful.
+   */
   logOut(): Promise&lt;void&gt; {
     return new Promise&lt;void&gt;((res)&#x3D;&gt;{
       this.auth.signOut();
-      console.log(&quot;signout&quot;)
       res();
     });
   }
 
+  /**
+   * Get the user that is currently logged in.
+   * @returns The promise resolves with null if user is not logged in.
+   */
   getCurrentUser():Promise&lt;UserInterface&gt;{
-
     return new Promise&lt;UserInterface&gt;((res,rej)&#x3D;&gt;{
       this.auth.authStateReady().then(_&#x3D;&gt;{
         if (this.auth.currentUser &#x3D;&#x3D;&#x3D; null) {
@@ -425,6 +468,10 @@ export class AuthenticationService {
    
   }
 
+  /**
+   * Get latest authentication state
+   * @returns The observable updates when user&#x27;s authentication state changes.
+   */
   isAuthenticated(): Observable&lt;boolean&gt;{
     return new Observable&lt;boolean&gt;(obs&#x3D;&gt;{
       this.auth.onAuthStateChanged((user)&#x3D;&gt;{

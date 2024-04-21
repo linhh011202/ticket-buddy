@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { GrouppageFacadeService } from '../facade/grouppage-facade.service';
 /**
- * @description manages UI for group page
+ * manages UI for group page
  */
 @Component({
   selector: 'app-group-page',
@@ -50,26 +50,26 @@ export class GroupPageComponent implements OnInit, AfterViewInit,OnDestroy{
     private toastr:ToastrService 
   ){}
   /**
-   * @description destroy component
+   * destroy component
    */
   ngOnDestroy(): void {
     
     this.grp.destroy();
   }
 /**
-   * @description initialize component
+   * initialize component
    */
   ngOnInit(): void {
     this.grp.initialise();
   }
   /**
-   * @description initiate join group
+   * initiate join group
    */
   joinGroup(){
     this.grp.joinGroup(this.groupID).subscribe({error:(err)=>this.toastr.error(err,"Join Group Error")});
   }
   /**
-   * @description redirects to specific group detail suppose user join group via link
+   * redirects to specific group detail suppose user join group via link
    */
   ngAfterViewInit(): void {
     this.route.paramMap.subscribe(params=>{

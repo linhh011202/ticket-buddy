@@ -3,7 +3,7 @@ import { EventInterface } from 'src/app/interfaces/event-interface';
 
 /**
  * 
- * @description Filters out if event is in watchlist on the html page
+ * Filters out if event is in watchlist on the html page
  */
 @Pipe({
   name: 'inwatchlist'

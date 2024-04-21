@@ -126,6 +126,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Handles all notification-related methods, all notifications are done via email.</p>
+
+            </p>
 
 
 
@@ -175,7 +182,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -250,14 +257,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="53"
-                                    class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:53</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:71</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Send an email to all members in a group that has confirmed that they are available. Used when the group is booked.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -268,6 +277,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -282,6 +292,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Group to email blast.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -291,7 +305,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The promise resolves when notification is sent.</p>
+
                             </div>
                 </td>
             </tr>
@@ -317,14 +332,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="35"
-                                    class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:35</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:49</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Send an email to all members in a group that has not confirmed that they are available. Used to remind users to confirm availability.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -335,6 +352,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -349,6 +367,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Group to email blast.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -358,7 +380,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The promise resolves when notification is sent.</p>
+
                             </div>
                 </td>
             </tr>
@@ -386,14 +409,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="24"
+                                    class="link-to-prism">src/app/network/firebase/firestore/notification.service.ts:24</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Send an email to all recipients</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -404,6 +429,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -418,6 +444,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Array of emails addresses of recipients</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>message</td>
@@ -430,6 +460,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>content of the email.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -439,7 +473,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The promise resolves when notification is sent.</p>
+
                             </div>
                 </td>
             </tr>
@@ -456,6 +491,9 @@ import { Injectable } from &#x27;@angular/core&#x27;;
 import { DocumentReference, Firestore, collection, addDoc, CollectionReference} from &#x27;@angular/fire/firestore&#x27;;
 import { GroupInterface } from &#x27;src/app/interfaces/group-interface&#x27;;
 
+/**
+ * Handles all notification-related methods, all notifications are done via email.
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
@@ -465,7 +503,12 @@ export class NotificationService {
     private fs: Firestore, 
     private platformLocation: PlatformLocation) { }
 
-
+  /**
+   * Send an email to all recipients
+   * @param to Array of emails addresses of recipients
+   * @param message content of the email.
+   * @returns The promise resolves when notification is sent.
+   */
   private sendEmail(to: string[], message:any): Promise&lt;void&gt;{
     let mailCol: CollectionReference &#x3D; collection(this.fs, &quot;mail&quot;);
     let mailDoc &#x3D; {
@@ -480,11 +523,17 @@ export class NotificationService {
       addDoc(mailCol, mailDoc).then((docRef: DocumentReference)&#x3D;&gt;{
         // technically this is not success yet
         // this means &quot;request to send email has been successfully sent&quot;
+        // however, this is good enough for now, success rate has been 100% since initial set up.
         res();
       });
     })
   }
 
+  /**
+   * Send an email to all members in a group that has not confirmed that they are available. Used to remind users to confirm availability.
+   * @param group Group to email blast.
+   * @returns The promise resolves when notification is sent.
+   */
   sendConfirmationRequest(group: GroupInterface): Promise&lt;void&gt;{
     let emailList: string[] &#x3D; [];
     group.members.forEach(member&#x3D;&gt;{
@@ -499,17 +548,20 @@ export class NotificationService {
     &lt;p&gt;Please click &lt;a href&#x3D;&#x27;${url}&#x27;&gt;here&lt;/a&gt; to confirm your availability before ${group.admin.name} books the tickets!&lt;/p&gt;
     &lt;p&gt;&lt;i&gt;-Ticket Buddy&lt;/i&gt;&lt;/p&gt;
     &#x60;
-
     return this.sendEmail(emailList,{subject: &#x60;${group.event.name||&#x27;Concert&#x27;} Confirmation&#x60;, html: content})
   }
 
+  /**
+   * Send an email to all members in a group that has confirmed that they are available. Used when the group is booked.
+   * @param group Group to email blast.
+   * @returns The promise resolves when notification is sent.
+   */
   sendBookingConfirmation(group: GroupInterface): Promise&lt;void&gt;{
     let emailList: string[] &#x3D; [];
     group.members.forEach(member&#x3D;&gt;{
       if (group.confirmed.includes(member.id))
         emailList.push(member.email);
     });
-
     let content &#x3D; &#x60;
     &lt;h2&gt;Booking confirmed for ${group.event.name||&#x27;the concert&#x27;}!&lt;/h2&gt;
     &lt;img src&#x3D;&quot;${group.event.images[0]}&quot;&gt;
@@ -517,7 +569,6 @@ export class NotificationService {
     &lt;p&gt;Contact ${group.admin.name} for details regarding the booking!&lt;/p&gt;
     &lt;p&gt;- &lt;i&gt;Ticket Buddy&lt;/i&gt;&lt;/p&gt;
     &#x60;
-
     return this.sendEmail(emailList,{subject: &#x60;${group.event.name||&#x27;Concert&#x27;} Booking Confirmed!&#x60;, html: content})
   }
 }

@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 /**
- * @description manages UI that create group
+ * manages UI that create group
  */
 @Component({
   selector: 'app-group-create',
@@ -46,14 +46,14 @@ export class GroupCreateComponent implements OnInit{
 	){}
 
 	/**
-	 * @description listen to when group create ui is being called to open
+	 * listen to when group create ui is being called to open
 	 *  */ 
 	ngOnInit(){
 		
 		this.subs.push(this.em.subscribe(()=>this.open()));
 	}
 	/**
-	 * @description intiate create group
+	 * intiate create group
 	 */
 	createGroup(){
 		this.grp.createGroup(this.selectedEvent!).then(_=>{
@@ -65,14 +65,14 @@ export class GroupCreateComponent implements OnInit{
 	}
 
 	/**
-	 * @description intiate component
+	 * intiate component
 	 *  */ 
 	open() {
 		this.grp.initialize();
 		this.modalService.open(this.content,{centered:true, fullscreen:true});
 	}
 /**
-	 * @description distroy component
+	 * distroy component
 	 *  */ 
 	close(){
 		this.modalService.dismissAll();

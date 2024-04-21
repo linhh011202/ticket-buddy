@@ -9,7 +9,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import {  FormBuilder, FormControl, Validators } from '@angular/forms';
 
 /**
- * @description Facade for create Group UI
+ * Facade for create Group UI
  */
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class CreateGroupFacade {
 	 */
 	private subs:Subscription[] = [];
 	/**
-	 * @description data stream for watchlist
+	 * data stream for watchlist
 	 */
     watchlist$: BehaviorSubject<EventInterface[]> = new BehaviorSubject<EventInterface[]>([]);
 	/**
@@ -49,7 +49,7 @@ export class CreateGroupFacade {
     ) {
   	}
 	/**
-	 * @description initiates all the data streams objects
+	 * initiates all the data streams objects
 	 */
   	initialize(){
 		this.authSvc.getCurrentUser().then(user=>{
@@ -60,7 +60,7 @@ export class CreateGroupFacade {
 		});
 	}
 	/**
-	 * @description unsubcribe to all resources and clean up
+	 * unsubcribe to all resources and clean up
 	 */
 	destroy(){
 		this.subs.forEach((e)=>e.unsubscribe());
@@ -97,7 +97,7 @@ export class CreateGroupFacade {
 		});
 	}
 	/**
-	 * @description make api call to create group
+	 * make api call to create group
 	 * @param selectedEvent event for the created group 
 	 */
   	createGroup(selectedEvent: EventInterface): Promise<void>{

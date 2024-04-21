@@ -6,7 +6,7 @@ import { GroupInterface } from "../interfaces/group-interface"
 
 import { BehaviorSubject, Observable, Subscription, from, switchMap } from 'rxjs';
 /**
- * @description Facade grouppage component
+ * Facade grouppage component
  */
 
 @Injectable({
@@ -18,15 +18,15 @@ export class GrouppageFacadeService {
    */
   private subs:Subscription[] = [];
   /**
-   * @description data stream for group data
+   * data stream for group data
    */
     group$: BehaviorSubject<GroupInterface|undefined> = new BehaviorSubject<GroupInterface|undefined>(undefined);
    /**
-   * @description data stream for groups user is admin of
+   * data stream for groups user is admin of
    */
     adminGroups$: BehaviorSubject<GroupInterface[]> = new BehaviorSubject<GroupInterface[]>([]);
     /**
-   * @description data stream for groups user is member of 
+   * data stream for groups user is member of 
    */
     memberGroups$: BehaviorSubject<GroupInterface[]> = new BehaviorSubject<GroupInterface[]>([]);
     /**
@@ -53,19 +53,19 @@ export class GrouppageFacadeService {
 
 }
   /**
-   * @description initialise data streams
+   * initialise data streams
    */
   initialise(){
     this.getGroups();
   }
   /**
-   * @description clean up for better resource management
+   * clean up for better resource management
    */
   destroy(){
     this.subs.forEach((e)=>e.unsubscribe());
   }
   /**
-   * @description get all groups user is administrator and member of
+   * get all groups user is administrator and member of
    */
   getGroups(){
     this.authSvc.getCurrentUser().then(user=>{

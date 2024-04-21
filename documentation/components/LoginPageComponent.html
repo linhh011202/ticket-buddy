@@ -131,6 +131,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>manages Login UI</p>
+
+    </p>
 
 
 
@@ -212,78 +219,6 @@
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(auth: <a href="../injectables/AuthenticationService.html" target="_self">AuthenticationService</a>, router: Router, route: ActivatedRoute)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/login-page/login-page.component.ts:10</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>auth</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/AuthenticationService.html" target="_self" >AuthenticationService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>router</td>
-                                                  
-                                                        <td>
-                                                                    <code>Router</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>route</td>
-                                                  
-                                                        <td>
-                                                                    <code>ActivatedRoute</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
 
@@ -314,14 +249,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="18"
-                                    class="link-to-prism">src/app/login-page/login-page.component.ts:18</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/app/login-page/login-page.component.ts:27</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>initiaate login pane and redirect to page the the user initially wants to redirect to before he was authenticated</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -351,14 +288,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="24"
-                                    class="link-to-prism">src/app/login-page/login-page.component.ts:24</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/app/login-page/login-page.component.ts:35</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>initiate logout</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -377,26 +316,37 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
 import { AuthenticationService } from &#x27;../network/firebase/authentication/authentication.service&#x27;;
 import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+/**
+ * manages Login UI
+ */
 
 @Component({
   selector: &#x27;app-login-page&#x27;,
   templateUrl: &#x27;./login-page.component.html&#x27;,
   styleUrls: [&#x27;./login-page.component.css&#x27;]
 })
-export class LoginPageComponent {
 
+export class LoginPageComponent {
+  /**
+   * 
+   * @ignore 
+   */
   constructor(
     private auth: AuthenticationService,
     private router:Router,
     private route:ActivatedRoute
   ) {}
-  
+  /**
+   * initiaate login pane and redirect to page the the user initially wants to redirect to before he was authenticated
+   */
   googleSignIn(){
     this.auth.loginGoogle().then(_&#x3D;&gt;{
       this.router.navigateByUrl( this.route.snapshot.queryParams[&#x27;returnUrl&#x27;] || &#x27;/&#x27;);
     })
   }
-
+/**
+ * initiate logout
+ */
   logOut(){
     this.auth.logOut().then(_&#x3D;&gt;{
       console.log(&quot;logout&quot;);

@@ -10,7 +10,7 @@ import { CalendarService } from './calendar.service';
 import { CalanderEvent } from 'src/app/interfaces/calander-interface/CalanderEvent-interface';
 
 /**
- * Handles all calendar-related methods.
+ * Handles all group-related methods.
  */
 @Injectable({
   providedIn: 'root'

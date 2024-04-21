@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthenticationService } from '../network/firebase/authentication/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 /**
- * @description manages Login UI
+ * manages Login UI
  */
 
 @Component({
@@ -22,7 +22,7 @@ export class LoginPageComponent {
     private route:ActivatedRoute
   ) {}
   /**
-   * @description initiaate login pane and redirect to page the the user initially wants to redirect to before he was authenticated
+   * initiaate login pane and redirect to page the the user initially wants to redirect to before he was authenticated
    */
   googleSignIn(){
     this.auth.loginGoogle().then(_=>{
@@ -30,7 +30,7 @@ export class LoginPageComponent {
     })
   }
 /**
- * @description initiate logout
+ * initiate logout
  */
   logOut(){
     this.auth.logOut().then(_=>{

@@ -5,7 +5,7 @@ import { SearchFacadeService } from '../facade/search-facade.service';
 import { Subscription } from 'rxjs';
 
 /**
- * @description UI controller for the Search page
+ * UI controller for the Search page
  */
 
 @Component({
@@ -45,14 +45,14 @@ export class SearchPageComponent implements OnInit, OnDestroy{
 
   }
   /**
-   * @description destroy component
+   * destroy component
    */
   ngOnDestroy(): void {
     this.searchFacade.destroy();
     this.subscriptions.forEach(s=>s.unsubscribe());
   }
   /**
-   * @description initialize component
+   * initialize component
    */
   ngOnInit(){
     

@@ -130,6 +130,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>filters list of members to check if they are a group member of a specific group</p>
+
+            </p>
 
 
         <section data-compodoc="block-metadata">
@@ -169,8 +176,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="9"
-                                    class="link-to-prism">src/app/group-page/groupmember-pipe.pipe.ts:9</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="11"
+                                    class="link-to-prism">src/app/group-page/groupmember-pipe.pipe.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -224,7 +231,9 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Pipe, PipeTransform } from &#x27;@angular/core&#x27;;
 import { UserInterface } from &#x27;../interfaces/user-interface&#x27;;
-
+/**
+ * filters list of members to check if they are a group member of a specific group
+ */
 @Pipe({
   name: &#x27;groupmemberPipe&#x27;
 })

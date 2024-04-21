@@ -131,6 +131,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>manages UI for how a list of group should be displayed</p>
+
+    </p>
 
 
 
@@ -216,20 +223,6 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Outputs</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#groupClicked" >groupClicked</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
 
@@ -256,36 +249,19 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/group-page/group-list/group-list.component.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/group-page/group-list/group-list.component.ts:15</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>list groups to be displayed</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
-    <section data-compodoc="block-outputs">
-    <h3 id="outputs">Outputs</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="groupClicked"></a>
-                        <b>groupClicked</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>EventEmitter</code>
 
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/group-page/group-list/group-list.component.ts:11</a></div>
-                            </td>
-                        </tr>
-            </tbody>
-        </table>
-</section>
 
 
     <section data-compodoc="block-methods">
@@ -313,14 +289,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="12"
-                                    class="link-to-prism">src/app/group-page/group-list/group-list.component.ts:12</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="25"
+                                    class="link-to-prism">src/app/group-page/group-list/group-list.component.ts:25</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>emit group for context using this component to use</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -331,6 +309,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -345,6 +324,11 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>group user clicks on
+emit group for context using this component to use</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -368,15 +352,28 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
 import { GroupInterface } from &#x27;src/app/interfaces/group-interface&#x27;;
-
+/**
+ * manages UI for how a list of group should be displayed
+ */
 @Component({
   selector: &#x27;app-group-list&#x27;,
   templateUrl: &#x27;./group-list.component.html&#x27;,
   styleUrls: [&#x27;./group-list.component.css&#x27;]
 })
 export class GroupListComponent {
+  /**
+   * list groups to be displayed
+   */
   @Input() groups!:GroupInterface[];
+  /**
+   * @ignore
+   */
   @Output() groupClicked &#x3D; new EventEmitter&lt;GroupInterface&gt;();
+  /**
+   * 
+   * @param {GroupInterface} group group user clicks on
+   * emit group for context using this component to use 
+   */
   onClick(group:GroupInterface){
     this.groupClicked.emit(group);
   }

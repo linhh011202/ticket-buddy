@@ -5,14 +5,14 @@ import { WatchlistService } from '../network/firebase/firestore/watchlist.servic
 import { AuthenticationService } from '../network/firebase/authentication/authentication.service';
 import { UserInterface } from '../interfaces/user-interface';
 /**
- * @description facade for watchclist component
+ * facade for watchclist component
  */
 @Injectable({
   providedIn: 'root'
 })
 export class WatchlistFacadeService {
   /**
-   * @description data stream for wathclist events
+   * data stream for wathclist events
    */
   public watchlist$:BehaviorSubject<EventInterface[]> = new BehaviorSubject<EventInterface[]>([]);
   /**
@@ -25,7 +25,7 @@ export class WatchlistFacadeService {
    */
   constructor(private watchlistSvc: WatchlistService,private authApi:AuthenticationService) {}
   /**
-   * @description remove event from wathclist
+   * remove event from wathclist
    * @param event 
    */
   removeFromWatchList(event:EventInterface){
@@ -34,7 +34,7 @@ export class WatchlistFacadeService {
     });
   }
   /**
-   * @description initialize watchlist$ data stream
+   * initialize watchlist$ data stream
    */
   getWatchList(){
     this.authApi.getCurrentUser().then((x:UserInterface)=>{
@@ -45,13 +45,13 @@ export class WatchlistFacadeService {
     });
   }
   /**
-   * @description init facade
+   * init facade
    */
   initialise(){
     this.getWatchList();
   }
   /**
-   * @description clean up code
+   * clean up code
    */
   destroy(){
     this.subs.forEach((x)=>x.unsubscribe());

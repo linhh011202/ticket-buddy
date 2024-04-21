@@ -210,7 +210,13 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>(route, state) &#x3D;&gt; {
+  /**
+   * @ignore
+   */
   const authApi:AuthenticationService &#x3D; inject(AuthenticationService);
+  /**
+   * @ignore
+   */
   const router:Router &#x3D; inject(Router);
   return authApi.isAuthenticated().pipe(
     tap((x:boolean)&#x3D;&gt;{
@@ -226,6 +232,12 @@
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>guard to check if user is authenticated</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>

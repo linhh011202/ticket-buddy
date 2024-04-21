@@ -8,6 +8,9 @@ import { Observable, catchError, concatMap, delay, filter, iif, map, mergeMap, o
 import { EventPageInterface } from 'src/app/interfaces/eventpage-interface';
 import { ClassificationInterface } from 'src/app/interfaces/clasification-interface';
 
+/**
+ * Handles all ticketmaster api calls.
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -26,6 +29,11 @@ export class TicketmasterService {
         'Content-Type': 'application/json'
       });
 
+    /**
+     * Get classifcation based on keyword from ticketmaster api.
+     * @param kw Keyword
+     * @returns 
+     */
     getClassification(kw:string):Observable<ClassificationInterface>{
       return this.http.get(this.baseurl+"/"+"classifications.json", {params:{apikey:ticketMasterApi, keyword:kw}}).pipe(
         filter((x:any)=>{
@@ -50,6 +58,10 @@ export class TicketmasterService {
         })
       );
     }
+
+    /**
+     * @ignore
+     */
     private returnEvents(x:any):Observable<EventPageInterface>{
       var rtn:any = {page:undefined, events:undefined};
       rtn.page = x.page;
@@ -75,6 +87,12 @@ export class TicketmasterService {
       
       return of(rtn as EventPageInterface)
     }
+
+    /**
+     * Get Events based on query
+     * @param query 
+     * @returns 
+     */
     getEventsQuery(query:any):Observable<EventPageInterface>{
       query.apikey = ticketMasterApi;
       return this.http.get(this.baseurl+"/events.json", {params:query}).pipe(

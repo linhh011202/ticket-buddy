@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { WatchlistFacadeService } from '../facade/watchlist-facade.service';
 
 /**
- * @description manages UI for watchlist
+ * manages UI for watchlist
  */
 @Component({
   selector: 'app-watchlist-page',

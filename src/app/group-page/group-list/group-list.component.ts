@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GroupInterface } from 'src/app/interfaces/group-interface';
 /**
- * @description manages UI for how a list of group should be displayed
+ * manages UI for how a list of group should be displayed
  */
 @Component({
   selector: 'app-group-list',
@@ -20,7 +20,7 @@ export class GroupListComponent {
   /**
    * 
    * @param {GroupInterface} group group user clicks on
-   * @description emit group for context using this component to use 
+   * emit group for context using this component to use 
    */
   onClick(group:GroupInterface){
     this.groupClicked.emit(group);

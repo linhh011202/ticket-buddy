@@ -8,7 +8,7 @@ import { NewCalendarEvent } from '../class/NewCalendarEvent';
 import { ToastrService } from 'ngx-toastr';
 
 /**
- * @description UI controller for the personal calander page
+ * UI controller for the personal calander page
  */
 @Component({
   selector: 'app-personal-calender-page',
@@ -29,13 +29,13 @@ export class PersonalCalenderPageComponent implements OnInit, OnDestroy{
     public cal: CalendarFacade
   ){}
   /**
-   * @description initialize component
+   * initialize component
    */
   ngOnInit(): void {
     this.cal.initializeCalender();
   }
   /**
-   * @description clean up
+   * clean up
    */
   ngOnDestroy(): void {
     this.cal.destroy();
@@ -52,7 +52,7 @@ export class PersonalCalenderPageComponent implements OnInit, OnDestroy{
 		return startDate<= dateDate && dateDate<=endDate;
 	}
   /**
-   * @description Based on what date clicked the calender events displayed in the table will be updated
+   * Based on what date clicked the calender events displayed in the table will be updated
    * @param {NgbDate} date date user clicked on 
    * 
    */
@@ -64,7 +64,7 @@ export class PersonalCalenderPageComponent implements OnInit, OnDestroy{
     });
   }
   /**
-   * @description initiates delete calander event 
+   * initiates delete calander event 
    * @param {CalanderEvent} e the calender event the user want to delete from his personal calender 
    */
   deleteEvent(e: CalanderEvent){
@@ -73,7 +73,7 @@ export class PersonalCalenderPageComponent implements OnInit, OnDestroy{
     })
   }
   /**
-   * @description initiates create calender event
+   * initiates create calender event
    */
   createEvent(){
     

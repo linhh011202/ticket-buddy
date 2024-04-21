@@ -30,11 +30,11 @@ export class SearchFacadeService {
    */
   public eventInput$:BehaviorSubject<string> = new BehaviorSubject<string>("");
   /**
-   * @description data stream for list of events loaded from ticket master api
+   * data stream for list of events loaded from ticket master api
    */
   public loadedEvents$:BehaviorSubject<EventInterface[]> = new BehaviorSubject<EventInterface[]>([]);
   /**
-   * @description data stream for events in user watchlist
+   * data stream for events in user watchlist
    */
   public watchlist$:BehaviorSubject<EventInterface[]> = new BehaviorSubject<EventInterface[]>([]);
   /**
@@ -46,11 +46,11 @@ export class SearchFacadeService {
    */
   public error$:EventEmitter<{error:string, title:string}> = new EventEmitter<{error:string, title:string}>();
   /**
-   * @description data stream for list of categories/genre being recomended by ticket masterAPI
+   * data stream for list of categories/genre being recomended by ticket masterAPI
    */
   public cat$:BehaviorSubject<ClassificationInterface> = new BehaviorSubject<ClassificationInterface>({segment:[], genre:[], subGenre:[]});
   /**
-   * @description data stream for page information with regards to ticket masterAPI return value of events
+   * data stream for page information with regards to ticket masterAPI return value of events
    */
   public pageInfo$:BehaviorSubject<PageInterface> = new BehaviorSubject<PageInterface>({size:20, totalElements:0, number:0});
   /**
@@ -69,14 +69,14 @@ export class SearchFacadeService {
     this.eventInput$.next(s);
   }
   /**
-   * @description initialize facade
+   * initialize facade
    */
   initialise(){
     this.searchEvent();
     this.getWatchList();
   }
   /**
-   * @description clean up code
+   * clean up code
    */
   destroy(){
     this.query = {};
@@ -87,7 +87,7 @@ export class SearchFacadeService {
     this.subs.forEach((x)=>x.unsubscribe());
   }
   /**
-   * @description initialize wathclist data stream
+   * initialize wathclist data stream
    */
   private getWatchList(){
     this.authApi.getCurrentUser().then((x:UserInterface)=>{
@@ -99,7 +99,7 @@ export class SearchFacadeService {
   }
   /**
    * 
-   * @description update classification data stream based on recomendation from ticket master API
+   * update classification data stream based on recomendation from ticket master API
    * @param {string} kw keyword used for recomendation
    */
   getClassification(kw:string){
@@ -130,7 +130,7 @@ export class SearchFacadeService {
     this.cid$.next(n.filter((c)=>c.id!=ie.id));
   }
   /**
-   * @description search for event based on the user query so far, will update loadedevent$ data stream
+   * search for event based on the user query so far, will update loadedevent$ data stream
    */
   searchEvent(){//this one got the queries
     this.query.segmentId = this.cid$.value.filter((c)=>c.type==ClassType.Segment).map((x)=>x.id);
@@ -163,7 +163,7 @@ export class SearchFacadeService {
  
   }
   /**
-   * @description get events based on input page number
+   * get events based on input page number
    * @param {number} pgNum page number for query
    * 
    */
@@ -191,7 +191,7 @@ export class SearchFacadeService {
     });
   }
   /**
-   * @description remove event from wathclist
+   * remove event from wathclist
    * @param event 
    */
   removeFromWatchList(event:EventInterface){
@@ -200,7 +200,7 @@ export class SearchFacadeService {
     });
   }
   /**
-   * @description add event to watchlist
+   * add event to watchlist
    * @param event 
    */
   addToWatchList(event:EventInterface){

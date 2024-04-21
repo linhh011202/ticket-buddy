@@ -10,7 +10,7 @@ import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { NewCalendarEvent } from "../class/NewCalendarEvent"
 
 /**
- * @description Facade for person calender component
+ * Facade for person calender component
  */
 @Injectable({
   providedIn: 'root'
@@ -25,11 +25,11 @@ export class CalendarFacade {
      */
     currentUser?: UserInterface;
     /**
-     * @description data stream for list of calender events
+     * data stream for list of calender events
      */
     calendar$: BehaviorSubject<CalanderEvent[]> = new BehaviorSubject<CalanderEvent[]>([]);
     /**
-     * @description data stream of list of dates and their corresponding colours
+     * data stream of list of dates and their corresponding colours
      */
     dateColor$: BehaviorSubject<[[NgbDate,NgbDate], CalanderColor][]> = new BehaviorSubject<[[NgbDate,NgbDate], CalanderColor][]>([]); //should be date range better // wtf does this mean
     /**
@@ -43,13 +43,13 @@ export class CalendarFacade {
         
     }
     /**
-     * @description clean up for destroy
+     * clean up for destroy
      */
     destroy(){
         this.subs.forEach((e)=>e.unsubscribe());
     }
     /**
-     * @description get personal calender events for current user
+     * get personal calender events for current user
      */
     initializeCalender(){
         this.authSvc.getCurrentUser().then(user=>{
@@ -81,7 +81,7 @@ export class CalendarFacade {
 
     }
     /**
-     * @description delete calender event from personal calender
+     * delete calender event from personal calender
      * @param e Calender event user wants to delete
      * 
      */
@@ -89,7 +89,7 @@ export class CalendarFacade {
         return this.calSvc.removeCalendarEvent(e);
     }
     /**
-     * @description create new alender event
+     * create new alender event
      * @param {NewCalendarEvent} newCalEvent new calender event to be created
      */
     createEvent(newCalEvent: NewCalendarEvent): Promise<void>{

@@ -123,9 +123,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                                 <a href="pipes/GroupmemberPipePipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >GroupmemberPipePipe</a>
                                             </li>
                                             <li class="link">
-                                                <a href="pipes/GrouppipePipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >GrouppipePipe</a>
-                                            </li>
-                                            <li class="link">
                                                 <a href="pipes/InwatchlistPipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >InwatchlistPipe</a>
                                             </li>
                                         </ul>

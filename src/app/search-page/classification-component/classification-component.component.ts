@@ -4,7 +4,7 @@ import { SearchFacadeService } from 'src/app/facade/search-facade.service';
 import { ClassType, IdClassType, IdName } from 'src/app/interfaces/clasification-interface';
 
 /**
- * @description manages UI that displays the list of classifier/genre recommendation
+ * manages UI that displays the list of classifier/genre recommendation
  */
 @Component({
   selector: 'app-classification-component',
@@ -25,7 +25,7 @@ export class ClassificationComponentComponent implements OnInit{
     
   }
   /**
-   * @description initializes component by initiating for classficiation from ticketmaster after the user stop input classification for 500ms
+   * initializes component by initiating for classficiation from ticketmaster after the user stop input classification for 500ms
    */
   ngOnInit(){
     this.classification.pipe(

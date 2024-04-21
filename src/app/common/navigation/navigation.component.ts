@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/network/firebase/authentication/authentication.service';
 /**
- * @description manages navigation bar ui
+ * manages navigation bar ui
  */
 @Component({
   selector: 'app-navigation',
@@ -18,13 +18,13 @@ export class NavigationComponent implements OnInit{
 
   }
   /**
-   * @description sets current user name to be displayed
+   * sets current user name to be displayed
    */
   ngOnInit(){
     this.authApi.getCurrentUser().then((u)=>this.currentUser = u.name)
   }
   /**
-   * @description initiate logout
+   * initiate logout
    */
   logout(){
     this.authApi.logOut();

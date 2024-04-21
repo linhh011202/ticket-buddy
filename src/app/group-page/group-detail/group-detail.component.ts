@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import {  Router } from '@angular/router';
 
 /**
- * @description manages group detail UI
+ * manages group detail UI
  */
 
 @Component({
@@ -32,19 +32,19 @@ export class GroupDetailComponent implements OnInit, OnDestroy{
     private router:Router
   ){}
   /**
-   * @description destroy component
+   * destroy component
    */
   ngOnDestroy(): void {
     this.grp.destroy();
   }
    /**
-   * @description intialize componoent
+   * intialize componoent
    */
   ngOnInit(){
     this.grp.initialise(this.group.id, this.group);
   }
   /**
-   * @description initiate delete group
+   * initiate delete group
    */
   deleteGroup(){
     this.grp.deleteGroup().then(_=>{
@@ -54,7 +54,7 @@ export class GroupDetailComponent implements OnInit, OnDestroy{
     })
   }
   /**
-   * @description initiate kick user
+   * initiate kick user
    */
   kickUser(user:UserInterface){
     this.grp.kickUser(user).then(_=>{
@@ -69,7 +69,7 @@ export class GroupDetailComponent implements OnInit, OnDestroy{
       this.toastr.info("Link copied!");
   }
   /**
-   * @description initiate join group
+   * initiate join group
    */
   joinGroup(){
     this.grp.joinGroup(this.grp.group$.value!.id).subscribe({
@@ -81,7 +81,7 @@ export class GroupDetailComponent implements OnInit, OnDestroy{
     }) 
   }
   /**
-   * @description initiate send group confirmation 
+   * initiate send group confirmation 
    */
   sendGroupConfirmation(){
     this.grp.sendGroupConfirmation().then(_=>{
@@ -89,7 +89,7 @@ export class GroupDetailComponent implements OnInit, OnDestroy{
     })
   }
   /**
-   * @description initiate group booking
+   * initiate group booking
    */
   confirmGroupbooking(){
     //calaa fascase
@@ -98,7 +98,7 @@ export class GroupDetailComponent implements OnInit, OnDestroy{
     })
   }
   /**
-   * @description initiate user want confirm going to event
+   * initiate user want confirm going to event
    */
   confirmGoing(){
     this.grp.confirmGroupEvent().pipe(take(1)).subscribe({
